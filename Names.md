@@ -26,6 +26,8 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Full Name
 * **Part-Time**
-  * Rebecca Samuel
+  * Bereket Heramo
+=======
+
 
 ## Make sure to follow the instructions here and follow the GitHub workflow steps to update this file. I hope this was fun 😇
