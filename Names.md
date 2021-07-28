@@ -9,8 +9,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ## Members List
 ### Mobile Team
 * **Full-Time**
-  * James May
-  * Candice Taylor
+  * Daniel Araya
 * **Part-Time**
   * Jack John
   * Pearl Maron
