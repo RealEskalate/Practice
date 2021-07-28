@@ -24,8 +24,8 @@ This is a document holds the team members of the different sub teams in the A2SV
 
 
 ### Web Team
-* **Full-Time**
-  * Full Name
+* **Full-Time** 
+  * Lensa Billion DTL
 * **Part-Time**
   * Full Name
 
