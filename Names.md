@@ -27,5 +27,6 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Full Name
 * **Part-Time**
   * Full Name
+  * Rebecca Samuel
 
 ## Make sure to follow the instructions here and follow the GitHub workflow steps to update this file. I hope this was fun 😇
