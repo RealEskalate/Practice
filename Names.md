@@ -19,7 +19,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Full Name
 * **Part-Time**
-  * Full Name
+  * Biruk Ayalew
 
 
 ### Web Team
