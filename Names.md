@@ -11,6 +11,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Minasie Alemu
   * Kaleb Mesfin
+  * Daniel Araya
 * **Part-Time**
   * Bontu Fufa
   * Pearl Maron
