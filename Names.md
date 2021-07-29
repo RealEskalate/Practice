@@ -20,6 +20,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Selamawit Elias
 * **Part-Time**
   * Biruk Ayalew
+  * Dawit Yonas
 
 
 ### Web Team
