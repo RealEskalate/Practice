@@ -10,6 +10,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Mobile Team
 * **Full-Time**
   * Minasie Alemu
+  * Kaleb Mesfin
 * **Part-Time**
   * Bontu Fufa
   * Pearl Maron
