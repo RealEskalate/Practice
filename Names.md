@@ -17,7 +17,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 
 ### Backend Team
 * **Full-Time**
-  * Full Name
+  * Henok Adane
 * **Part-Time**
   * Full Name
 
