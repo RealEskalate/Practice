@@ -11,7 +11,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Minasie Alemu
 * **Part-Time**
-  * Jack John
+  * Bontu Fufa
   * Pearl Maron
 
 ### Backend Team
