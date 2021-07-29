@@ -32,6 +32,7 @@ This is a document holds the team members of the different sub teams in the A2SV
     * Bereket Heramo
     * Meti Adane
     * Rebecca Samuel
+    * Sinkumen Aseffa
 
 
 
