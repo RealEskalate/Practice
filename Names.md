@@ -27,6 +27,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Lensa Billion 
 * **Part-Time**
     * Adona Tesfaye
+    * Beimnet Zewdu
     * Bereket Heramo
     * Meti Adane
     * Rebecca Samuel
