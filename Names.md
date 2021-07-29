@@ -18,6 +18,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Backend Team
 * **Full-Time**
   * Henok Adane
+  * Kaleab Girma
   * Selamawit Elias
 * **Part-Time**
   * Biruk Ayalew
