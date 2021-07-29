@@ -31,10 +31,11 @@ This is a document holds the team members of the different sub teams in the A2SV
     * Beimnet Zewdu
     * Bereket Heramo
     * Beshir Dekebo
+    * Daniel Geremew
     * Meti Adane
     * Rebecca Samuel
     * Sinkumen Aseffa
-    * Daniel Geremew
+
 
 
 
