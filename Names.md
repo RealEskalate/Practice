@@ -20,6 +20,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Henok Adane
 * **Part-Time**
   * Biruk Ayalew
+  * Eden Mesfin
 
 
 ### Web Team
