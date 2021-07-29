@@ -13,6 +13,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Part-Time**
   * Bontu Fufa
   * Pearl Maron
+  * Eyob Alemu
 
 ### Backend Team
 * **Full-Time**
