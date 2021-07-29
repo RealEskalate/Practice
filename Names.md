@@ -28,6 +28,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Part-Time**
     * Bereket Heramo
     * Rebecca Samuel
+    * Meti Adane
 
 
 
