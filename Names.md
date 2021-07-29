@@ -34,6 +34,7 @@ This is a document holds the team members of the different sub teams in the A2SV
     * Meti Adane
     * Rebecca Samuel
     * Sinkumen Aseffa
+    * Daniel Geremew
 
 
 
