@@ -32,6 +32,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Web Team
 * **Full-Time** 
   * Lensa Billion 
+  * Natneam Mesele
 * **Part-Time**
     * Adona Tesfaye
     * Amir Mustefa
