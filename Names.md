@@ -10,9 +10,12 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Mobile Team
 * **Full-Time**
   * Minasie Alemu
+  * Kaleb Mesfin
+  * Daniel Araya
 * **Part-Time**
-  * Jack John
+  * Bontu Fufa
   * Pearl Maron
+  * Eyob Alemu
 
 ### Backend Team
 * **Full-Time**
@@ -21,18 +24,26 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Part-Time**
   * Biruk Ayalew
   * Biruk Solomon
+  * Eden Mesfin
+  * Dawit Yonas
+  * Riyad Hassen 
+  * Taklemariam Alazar
 
 ### Web Team
 * **Full-Time** 
   * Lensa Billion 
+  * Natneam Mesele
 * **Part-Time**
     * Adona Tesfaye
+    * Amir Mustefa
     * Beimnet Zewdu
     * Bereket Heramo
     * Beshir Dekebo
+    * Daniel Geremew
     * Meti Adane
     * Rebecca Samuel
     * Sinkumen Aseffa
+
 
 
 
