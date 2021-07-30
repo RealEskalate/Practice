@@ -28,6 +28,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Dawit Yonas
   * Riyad Hassen 
   * Taklemariam Alazar
+  * Kidus Yoseph
 
 ### Web Team
 * **Full-Time** 
