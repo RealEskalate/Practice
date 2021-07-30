@@ -1,4 +1,4 @@
-# start_project_mobile
+# starter project mobile
 
 ## Getting Started
 
