@@ -23,6 +23,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Kaleab Girma
   * Selamawit Elias
 * **Part-Time**
+  * Abel Tesfaye
   * Biruk Ayalew
   * Biruk Solomon
   * Eden Mesfin
