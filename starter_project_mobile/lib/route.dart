@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:start_project_mobile/screens/Screens.dart';
-import 'package:start_project_mobile/screens/kaleb_page.dart';
 
 import 'models/User.dart';
 
@@ -17,6 +16,9 @@ class PageRouter {
         return MaterialPageRoute(builder: (context) {
           return KalebPage();
         });
+
+      case EyobPage.PageRoute:
+        return MaterialPageRoute(builder: (context) => EyobPage());
     }
   }
 }
