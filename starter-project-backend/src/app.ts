@@ -25,5 +25,5 @@ mongoose.connect(DB_URI, {
 .then(() => {
     app.listen(8000, () => console.log('Server running...'));
 })
-.catch((err) => console.log('Error occured while connecting', err));
+.catch((err) => console.log('Error occurred while connecting', err));
 
