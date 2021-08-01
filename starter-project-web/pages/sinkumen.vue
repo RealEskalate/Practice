@@ -56,7 +56,12 @@
                             <v-col cols="1">
                               <v-checkbox @change="onChange($event, item.id ,item.userId)" light v-model= "item.completed"  ></v-checkbox>
                             </v-col>
-                            <v-col  class="black--text"> <h4 style="text-transform: capitalize">{{item.title}}</h4></v-col>
+                            <v-col cols="10"  class="black--text"> <h4 style="text-transform: capitalize">{{item.title}}</h4></v-col>
+                            <v-col > 
+                              <v-btn @click="deleteTodo(item.id)" icon color="red">
+                                <v-icon>mdi-delete</v-icon>
+                              </v-btn>
+                            </v-col>
                         </v-row>
                     </v-card-title>
                 </v-card>
@@ -79,7 +84,7 @@ export default Vue.extend({
     name:"Sinkumen's Todo list",
 
     data(){
-        return {todos:[""],todo:""}
+        return {todos:[{id:""}],todo:""}
     },
     mounted(){
         fetch('http://jsonplaceholder.typicode.com/users/1/todos')
@@ -87,26 +92,26 @@ export default Vue.extend({
         .then(json => {this.todos = json})
     },
     methods: {
-    onChange(val: any, id: any, userId: any) {
-        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                id,
-                completed:val,
-                userId,
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-            })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-       console.log(val,id,userId)
-        if (!val) { // Custom checks in this
-          console.log('Unchecked')
-        } else {
-          console.log('Checked')
-        }
+      onChange(val: any, id: any, userId: any) {
+          fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                  id,
+                  completed:val,
+                  userId,
+              }),
+              headers: {
+                  'Content-type': 'application/json; charset=UTF-8',
+              },
+              })
+          .then((response) => response.json())
+          .then((json) => console.log(json));
+        console.log(val,id,userId)
+          if (!val) { // Custom checks in this
+            console.log('Unchecked')
+          } else {
+            console.log('Checked')
+          }
       },
       addTodo(e:any){
       e.preventDefault() // it prevent from page reload
@@ -115,7 +120,6 @@ export default Vue.extend({
           method: 'POST',
           body: JSON.stringify({
             title: e.target.todo.value,
-            body: 'bar',
             completed: false,
             userId: 1,
           }),
@@ -135,7 +139,20 @@ export default Vue.extend({
         }).catch((err)=>{
           alert(err)
         });
-    }
+      },
+      deleteTodo(id:any){
+        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+        method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(()=>{
+          this.todos = this.todos.filter(todo => todo.id != id)
+          console.log(`Todo with the id ${id} successfuly deleted!`);
+          
+        });
+      }
+
+
     }
 })
 </script>
