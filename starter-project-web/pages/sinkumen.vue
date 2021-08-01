@@ -39,11 +39,10 @@
 
           <v-list-item  >
             <v-list-item-content style="padding:10px">
-              
                 <v-card v-for="item in todos" v-bind:key="item.id"  elevation= "2" color="white" >
                     <v-card-title >
                         <v-row>
-                            <v-col cols="1"><v-checkbox light v-model= "item.completed"  ></v-checkbox>
+                            <v-col cols="1"><v-checkbox @change="onChange($event, item.id ,item.userId)" light v-model= "item.completed"  ></v-checkbox>
                             </v-col>
                             <v-col  class="black--text"> <h4 style="text-transform: capitalize">{{item.title}}</h4></v-col>
                         </v-row>
@@ -77,6 +76,29 @@ export default Vue.extend({
         fetch('http://jsonplaceholder.typicode.com/users/1/todos')
         .then(response => response.json())
         .then(json => {this.todos = json})
+    },
+    methods: {
+    onChange(val, id,userId) {
+        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                id,
+                completed:val,
+                userId,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+       console.log(val,id,userId)
+        if (!val) { // Custom checks in this
+          console.log('Unchecked')
+        } else {
+          console.log('Checked')
+        }
+      }
     }
 })
 </script>
