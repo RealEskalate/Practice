@@ -30,11 +30,22 @@
           <v-card-title class="black--text">
             <h3>Sinkumen's Todo list</h3>
           </v-card-title>
-          <v-card-action >
-            <v-btn left>
+           <form v-on:submit="addTodo">
+             <v-row style="padding-left:25px">
+            <v-col>
+              <v-text-field required name="todo" label="Todo" placeholder="Study" dense light outlined></v-text-field>
+            </v-col>
+            <v-col>
+                 <v-card-action >
+            <v-btn type="submit">
               Add Todo
             </v-btn> 
           </v-card-action>
+            </v-col>
+          </v-row>
+           </form>
+          
+       
           <v-spacer />
 
           <v-list-item  >
@@ -42,16 +53,13 @@
                 <v-card v-for="item in todos" v-bind:key="item.id"  elevation= "2" color="white" >
                     <v-card-title >
                         <v-row>
-                            <v-col cols="1"><v-checkbox @change="onChange($event, item.id ,item.userId)" light v-model= "item.completed"  ></v-checkbox>
+                            <v-col cols="1">
+                              <v-checkbox @change="onChange($event, item.id ,item.userId)" light v-model= "item.completed"  ></v-checkbox>
                             </v-col>
                             <v-col  class="black--text"> <h4 style="text-transform: capitalize">{{item.title}}</h4></v-col>
                         </v-row>
-                       
                     </v-card-title>
                 </v-card>
-                
-              
-            
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -69,8 +77,9 @@ Vue.use(Vuetify)
 
 export default Vue.extend({
     name:"Sinkumen's Todo list",
+
     data(){
-        return {todos:undefined}
+        return {todos:[""],todo:""}
     },
     mounted(){
         fetch('http://jsonplaceholder.typicode.com/users/1/todos')
@@ -78,8 +87,8 @@ export default Vue.extend({
         .then(json => {this.todos = json})
     },
     methods: {
-    onChange(val, id,userId) {
-        fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    onChange(val: any, id: any, userId: any) {
+        fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 id,
@@ -98,7 +107,35 @@ export default Vue.extend({
         } else {
           console.log('Checked')
         }
-      }
+      },
+      addTodo(e:any){
+      e.preventDefault() // it prevent from page reload
+      console.log(e.target.todo.value);
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+          method: 'POST',
+          body: JSON.stringify({
+            title: e.target.todo.value,
+            body: 'bar',
+            completed: false,
+            userId: 1,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+      .then((response) => response.json())
+      .then((json) => {
+        //  let tds = [...this.todos];
+        //  tds.push(json)
+       
+          this.todos.unshift(json)
+        
+         
+         
+        }).catch((err)=>{
+          alert(err)
+        });
+    }
     }
 })
 </script>
