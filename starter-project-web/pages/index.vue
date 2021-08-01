@@ -1,5 +1,6 @@
 <template>
   <v-container>
+
     <v-row
       v-for="member in members"
       :key="member.name"
@@ -19,12 +20,14 @@
 
           <v-card-subtitle class="black--text">
             {{ member.description }}
+
           </v-card-subtitle>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
 
 <script lang='ts'>
 // Add decorator to help the development
@@ -49,6 +52,7 @@ export default class IndexPage extends Vue {
 
   ];
 }
+
 </script>
 
 <style scoped></style>

@@ -20,6 +20,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Backend Team
 * **Full-Time**
   * Henok Adane
+  * Kaleab Girma
   * Selamawit Elias
 * **Part-Time**
   * Biruk Ayalew
@@ -28,6 +29,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Dawit Yonas
   * Riyad Hassen 
   * Taklemariam Alazar
+  * Kidus Yoseph
 
 ### Web Team
 * **Full-Time** 
@@ -40,6 +42,7 @@ This is a document holds the team members of the different sub teams in the A2SV
     * Bereket Heramo
     * Beshir Dekebo
     * Daniel Geremew
+    * Lydia Gashawtena
     * Meti Adane
     * Rebecca Samuel
     * Sinkumen Aseffa

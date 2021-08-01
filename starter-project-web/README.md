@@ -2,6 +2,7 @@
 1. Nuxt, Typescript, Vuetify, and Axios will be used in this project.
 2. Add a page to the pages folder with your name on it (eg. lensa.vue)
 3. Add your page's component to the components folder with your name (eg . LensaAddButton.vue)
+
 4. There is a card with your name on the front page. If we click on this card, it should take us to your website.
 5. Include your name, photo, and description on the page you made, then use the free fake api given below to pick whatever end point you'd want to show the data on your page and perform CRUD.
 6. To retrieve api endpoints we'll use http://jsonplaceholder.typicode.com/
@@ -9,6 +10,7 @@
 8. To work on vuex, go to the store folder and create a new file named after you (eg. lensa.ts)
 9. In a Nuxt project utilizing TypeScript, there are several ways for writing and accessing the store. Use vuex-module-decorators.
 10. Use Vuex and axios to make API calls.
+
 
 
 
