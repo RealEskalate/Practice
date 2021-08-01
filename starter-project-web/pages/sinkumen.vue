@@ -87,7 +87,7 @@ export default Vue.extend({
         return {todos:[{id:""}],todo:""}
     },
     mounted(){
-        fetch('http://jsonplaceholder.typicode.com/users/1/todos')
+        fetch('https://jsonplaceholder.typicode.com/users/1/todos')
         .then(response => response.json())
         .then(json => {this.todos = json})
     },
