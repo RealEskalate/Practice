@@ -56,6 +56,17 @@
           </v-card-subtitle>
         </v-card>
       </v-col>
+       <v-col cols="12">
+        <v-card to="/sinkumen" color="#FFFFFF" dark>
+          <v-card-title class="black--text">
+            Sinkumen Aseffa
+          </v-card-title>
+
+          <v-card-subtitle class="black--text">
+            Part-Time
+          </v-card-subtitle>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>

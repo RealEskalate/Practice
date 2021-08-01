@@ -31,6 +31,16 @@
                 Adona
               </v-list-tile-title>
             </NuxtLink>
+            <v-divider class="mx-2" vertical />
+             <NuxtLink
+              to="/sinkumen"
+            >
+              <v-list-tile-title
+                class="  white--text"
+              >
+                Sinkumen
+              </v-list-tile-title>
+            </NuxtLink>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
