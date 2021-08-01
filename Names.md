@@ -22,6 +22,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Henok Adane
   * Kaleab Girma
   * Selamawit Elias
+  * Natnael Awel
 * **Part-Time**
   * Biruk Ayalew
   * Biruk Solomon
