@@ -34,10 +34,10 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "jest": "^27.0.5",
-    "ts-jest": "^27.0.3"
+    "ts-jest": "^27.0.3",
     "vue-jest": "^3.0.4",
     "vuex-class": "^0.3.2",
-    "vuex-module-decorators": "^1.0.1
+    "vuex-module-decorators": "^1.0.1"
 
   }
 }
