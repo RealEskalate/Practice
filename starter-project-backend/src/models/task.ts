@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface ITask extends Document {
+export interface ITask extends Document {
     title: String,
     isComplete: boolean
 }
@@ -18,4 +18,4 @@ const taskSchema: Schema<ITask> = new mongoose.Schema(
     }
 );
 
-export default mongoose.model<ITask>("Task", taskSchema);
+export default mongoose.model("Task", taskSchema);
