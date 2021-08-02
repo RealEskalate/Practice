@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <v-container class="black--text">
       <v-row>
         <v-col cols="10">
@@ -22,6 +23,26 @@
       </v-row>
       <v-divider class="grey lighten-3" />
     </v-container>
+=======
+       <v-pagination
+      v-model="page"
+      :length="6"
+    >
+    <v-container class="black--text">
+      <v-list-item two-line >
+        <v-list-item-content>
+          <v-list-item-title class="black--text">
+            {{ post.title }}
+          </v-list-item-title>
+          <v-list-item-subtitle class="grey--text text--darken-2">
+            {{ post.body }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider class="grey lighten-3"/>
+    </v-container>
+    </v-pagination>
+>>>>>>> fetch posts
   </div>
 </template>
 
@@ -32,6 +53,7 @@ export default Vue.extend({
   props: {
     // eslint-disable-next-line vue/require-default-prop
     post: Object
+<<<<<<< HEAD
   },
   methods: {
     removePost (id:number) {
@@ -48,3 +70,8 @@ export default Vue.extend({
   font-size: 20px !important;
 }
 </style>
+=======
+  }
+})
+</script>
+>>>>>>> fetch posts

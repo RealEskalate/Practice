@@ -16,7 +16,11 @@
 export default {
   data () {
     return {
+<<<<<<< HEAD
       title: 'Web Team Members Dashboard'
+=======
+      title: "Web Team Members Dashboard",
+>>>>>>> fetch posts
     }
   }
 }

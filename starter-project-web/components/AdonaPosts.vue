@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="post-section">
     <div class="add-title">
       <h2>Add new Post</h2>
@@ -30,12 +31,29 @@
       <h2>Posts</h2>
       <AdonaPost v-for="post in allPosts" :key="post.id" :post="post" />
     </div>
+=======
+  <div>
+    <v-card color="white">
+      <v-card-title class="black--text">
+        <h3>Adona's Posts</h3>
+      </v-card-title>
+      <v-card-action>
+        <v-btn left> Add Post </v-btn>
+      </v-card-action>
+      <v-spacer />
+      <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
+    </v-card>
+>>>>>>> fetch posts
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+<<<<<<< HEAD
 import { mapGetters } from 'vuex'
+=======
+import axios from 'axios'
+>>>>>>> fetch posts
 import AdonaPost from './AdonaPost.vue'
 export default Vue.extend({
   name: 'AdonaPosts',
@@ -44,6 +62,7 @@ export default Vue.extend({
   },
   data () {
     return {
+<<<<<<< HEAD
       title: '',
       body: ''
     }
@@ -86,3 +105,15 @@ export default Vue.extend({
   margin:  4rem 0;
 }
 </style>
+=======
+      posts: []
+    }
+  },
+  async created () {
+    const response = await axios.get('http://jsonplaceholder.typicode.com/posts')
+    this.posts = response.data
+    console.log(response.data)
+  }
+})
+</script>
+>>>>>>> fetch posts
