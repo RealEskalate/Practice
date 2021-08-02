@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <v-row
       v-for="member in members"
       :key="member.name"
@@ -20,7 +19,6 @@
 
           <v-card-subtitle class="black--text">
             {{ member.description }}
-
           </v-card-subtitle>
         </v-card>
       </v-col>
@@ -31,28 +29,26 @@
 
 <script lang='ts'>
 // Add decorator to help the development
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from "nuxt-property-decorator";
 @Component({
-  components: {}
+  components: {},
 })
 export default class IndexPage extends Vue {
   public members: Array<object> = [
-    { name: 'Lensa Billion', description: 'Full-Time', link: '/lensa' },
-    { name: 'Natneam Mesele', description: 'Full-Time', link: '/natneam' },
-    { name: 'Adona Tesfaye', description: 'Part-Time', link: '/adona' },
-    { name: 'Amir Mustefa', description: 'Part-Time', link: '/amir' },
-    { name: 'Beimnet Zewdu', description: 'Part-Time', link: '/beimnet' },
-    { name: 'Bereket Heramo', description: 'Part-Time', link: '/bereket' },
-    { name: 'Beshir Dekebo', description: 'Part-Time', link: '/beshir' },
-    { name: 'Daniel Geremew', description: 'Part-Time', link: '/daniel' },
-    { name: 'Lydia Gashawtena', description: 'Part-Time', link: '/lydia' },
-    { name: 'Meti Adane', description: 'Part-Time', link: '/meti' },
-    { name: 'Rebbeca Samuel', description: 'Part-Time', link: '/rebecca' },
-    { name: 'Sinkumen Assefa', description: 'Part-Time', link: '/sinkumen' }
-
+    { name: "Lensa Billion", description: "Full-Time", link: "/lensa" },
+    { name: "Natneam Mesele", description: "Full-Time", link: "/natneam" },
+    { name: "Adona Tesfaye", description: "Part-Time", link: "/adona" },
+    { name: "Amir Mustefa", description: "Part-Time", link: "/amir" },
+    { name: "Beimnet Zewdu", description: "Part-Time", link: "/beimnet" },
+    { name: "Bereket Heramo", description: "Part-Time", link: "/bereket" },
+    { name: "Beshir Dekebo", description: "Part-Time", link: "/beshir" },
+    { name: "Daniel Geremew", description: "Part-Time", link: "/daniel" },
+    { name: "Lydia Gashawtena", description: "Part-Time", link: "/lydia" },
+    { name: "Meti Adane", description: "Part-Time", link: "/meti" },
+    { name: "Rebbeca Samuel", description: "Part-Time", link: "/rebecca" },
+    { name: "Sinkumen Assefa", description: "Part-Time", link: "/sinkumen" },
   ];
 }
-
 </script>
 
 <style scoped></style>
