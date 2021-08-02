@@ -19,6 +19,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Eyob Alemu
   * Feysel Mubarek
   * Michael Gashaw
+  * Mahlet Dereje
 
 ### Backend Team
 * **Full-Time**
