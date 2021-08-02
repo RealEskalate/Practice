@@ -2,7 +2,9 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 interface INoteDocument extends Document {
     title: string;
-    detail: string;        
+    detail: string;
+    createdAt: Date;
+    updatedAt: Date;        
 }
 
 const NoteSchema: Schema<INoteDocument>  = new mongoose.Schema({

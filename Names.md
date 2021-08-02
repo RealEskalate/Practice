@@ -16,6 +16,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Bontu Fufa
   * Pearl Maron
   * Eyob Alemu
+  * Feysel Mubarek
 
 ### Backend Team
 * **Full-Time**
