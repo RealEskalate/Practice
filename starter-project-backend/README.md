@@ -28,7 +28,6 @@ POST    → Add Note
 GET	    → Get Note by Id
 GET	    → Get All Notes
 GET	    → Get Notes by Favorite
-GET     → Search Notes given a keyword
 PUT	    → Update Note by Id
 DEL 	→ Delete Note by Id
 
