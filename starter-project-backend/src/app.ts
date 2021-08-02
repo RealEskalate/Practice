@@ -8,7 +8,7 @@ import routes from './routes';
 
 dotenv.config();
 
-const DB_URI = process.env.MONGO_URI;
+const DB_URI = 'mongodb+srv://enoch:TVi2jwT62Yiz9GU@cluster0.hnbgb.mongodb.net/backend_starter?retryWrites=true&w=majority';
 
 const app: Application = express();
 
