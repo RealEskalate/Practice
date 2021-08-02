@@ -27,9 +27,31 @@ class DanielPage extends StatelessWidget {
             children: [
               SizedBox(height: 40),
               Center(
-                child: CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage("assets/image.jfif"),
+                child: Container(
+                  width: 160,
+                  height: 160,
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        // backgroundColor: Colors.red,
+                        radius: 80,
+                        backgroundImage: AssetImage("assets/image.jfif"),
+                      ),
+                      Positioned(
+                        bottom: -10,
+                        right: -20,
+                        child: TextButton(
+                          onPressed: () {
+                            print("clicked");
+                          },
+                          child: Icon(
+                            Icons.favorite_border,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 40),
