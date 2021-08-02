@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:start_project_mobile/route.dart';
+import 'package:starter_project_mobile/bloc/theme_bloc.dart';
+import './route.dart';
 
 import 'bloc/like_bloc.dart';
 
 void main() {
-  runApp(BlocProvider(
-    lazy: false,
-    create: (context) => LikeBloc(false),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
+      BlocProvider(lazy: false, create: (context) => ThemeBloc()),
+    ],
     child: MyApp(),
   ));
 }
