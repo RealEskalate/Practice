@@ -1,15 +1,22 @@
 <template>
-  <div>
-    <v-card color="white">
-      <v-card-title class="black--text">
-        <h3>Adona's Posts</h3>
-      </v-card-title>
-      <v-card-action>
-        <v-btn left> Add Post </v-btn>
-      </v-card-action>
+  <div class="posts">
+    <v-row>
+      <v-col cols="10">
+        <v-card-title class="title black--text">
+          <h3>Adona's Posts</h3>
+        </v-card-title>
+      </v-col>
+      <v-col cols="2">
+        <v-card-action>
+          <v-btn left>
+            Add Post
+          </v-btn>
+        </v-card-action>
+      </v-col>
       <v-spacer />
-      <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
-    </v-card>
+    </v-row>
+
+    <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
   </div>
 </template>
 
@@ -28,9 +35,19 @@ export default Vue.extend({
     }
   },
   async created () {
-    const response = await axios.get('http://jsonplaceholder.typicode.com/posts')
+    const response = await axios.get(
+      'http://jsonplaceholder.typicode.com/posts'
+    )
     this.posts = response.data
-    console.log(response.data)
   }
 })
 </script>
+<style scoped>
+.posts {
+  max-width: 85% !important;
+  margin: 3rem auto;
+}
+.title {
+  margin: 0 1rem;
+}
+</style>

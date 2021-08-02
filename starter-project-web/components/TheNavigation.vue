@@ -22,9 +22,9 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      title: "Web Team Members Dashboard",
+      title: 'Web Team Members Dashboard'
     }
   }
 }
