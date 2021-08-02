@@ -8,11 +8,10 @@
       scroll-target="#scrolling-techniques-7"
     >
       <v-toolbar-title>{{ title }}</v-toolbar-title>
-
     </v-app-bar>
   </v-card>
 </template>
-<script>
+<script> 
 export default {
   data () {
     return {
