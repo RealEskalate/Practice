@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
-export interface NoteDocument extends mongoose.Document {
+interface INoteDocument extends Document {
     title: string;
-    detail: string;    
+    detail: string;        
 }
 
-const NoteSchema = new mongoose.Schema({
+const NoteSchema: Schema<INoteDocument>  = new mongoose.Schema({
     title: {
         type: 'String',
         required: true,
@@ -24,6 +24,4 @@ const NoteSchema = new mongoose.Schema({
 });
 
 
-const Note = mongoose.model<NoteDocument>("Note", NoteSchema);
-
-export default Note;
+export default mongoose.model<INoteDocument>("Note", NoteSchema);
