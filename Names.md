@@ -18,6 +18,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Pearl Maron
   * Eyob Alemu
   * Feysel Mubarek
+  * Michael Gashaw
 
 ### Backend Team
 * **Full-Time**
