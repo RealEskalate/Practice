@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div>
 <<<<<<< HEAD
     <v-container class="black--text">
@@ -28,21 +29,27 @@
       v-model="page"
       :length="6"
     >
+=======
+  <div >
+>>>>>>> Add info page
     <v-container class="black--text">
-      <v-list-item two-line >
+      <v-list-item two-line>
         <v-list-item-content>
           <v-list-item-title class="black--text">
             {{ post.title }}
           </v-list-item-title>
-          <v-list-item-subtitle class="grey--text text--darken-2">
+          <p class="grey--text text--lighten -2">
             {{ post.body }}
-          </v-list-item-subtitle>
+          </p>
         </v-list-item-content>
       </v-list-item>
-      <v-divider class="grey lighten-3"/>
+      <v-divider class="grey lighten-3" />
     </v-container>
+<<<<<<< HEAD
     </v-pagination>
 >>>>>>> fetch posts
+=======
+>>>>>>> Add info page
   </div>
 </template>
 

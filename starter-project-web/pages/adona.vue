@@ -1,6 +1,7 @@
 <template>
   <v-container class="black--text">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <AdonaInfo />
     <AdonaPosts />
 =======
@@ -31,12 +32,17 @@
       </v-col>
     </v-row>
 >>>>>>> fetch posts
+=======
+    <AdonaInfo />
+    <AdonaPosts />
+>>>>>>> Add info page
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import AdonaPosts from '../components/AdonaPosts.vue'
+<<<<<<< HEAD
 <<<<<<< HEAD
 import AdonaInfo from '../components/AdonaInfo.vue'
 export default Vue.extend({
@@ -49,6 +55,13 @@ export default Vue.extend({
   components: {
     AdonaPosts
 >>>>>>> fetch posts
+=======
+import AdonaInfo from '../components/AdonaInfo.vue'
+export default Vue.extend({
+  components: {
+    AdonaPosts,
+    AdonaInfo
+>>>>>>> Add info page
   }
 })
 </script>

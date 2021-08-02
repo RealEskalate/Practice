@@ -1,5 +1,6 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div class="post-section">
     <div class="add-title">
       <h2>Add new Post</h2>
@@ -44,6 +45,26 @@
       <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
     </v-card>
 >>>>>>> fetch posts
+=======
+  <div class="posts">
+    <v-row>
+      <v-col cols="10">
+        <v-card-title class="title black--text">
+          <h3>Adona's Posts</h3>
+        </v-card-title>
+      </v-col>
+      <v-col cols="2">
+        <v-card-action>
+          <v-btn left>
+            Add Post
+          </v-btn>
+        </v-card-action>
+      </v-col>
+      <v-spacer />
+    </v-row>
+
+    <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
+>>>>>>> Add info page
   </div>
 </template>
 
@@ -110,10 +131,23 @@ export default Vue.extend({
     }
   },
   async created () {
-    const response = await axios.get('http://jsonplaceholder.typicode.com/posts')
+    const response = await axios.get(
+      'http://jsonplaceholder.typicode.com/posts'
+    )
     this.posts = response.data
-    console.log(response.data)
   }
 })
 </script>
+<<<<<<< HEAD
 >>>>>>> fetch posts
+=======
+<style scoped>
+.posts {
+  max-width: 85% !important;
+  margin: 3rem auto;
+}
+.title {
+  margin: 0 1rem;
+}
+</style>
+>>>>>>> Add info page
