@@ -8,7 +8,7 @@ import routes from './routes';
 
 dotenv.config();
 
-const DB_URI = '';
+const DB_URI = process.env.MONGO_URI || "";
 
 const app: Application = express();
 
@@ -28,5 +28,5 @@ mongoose.connect(DB_URI, {
 .then(() => {
     app.listen(8000, () => console.log('Server running...'));
 })
-.catch((err) => console.log('Error occured while connecting', err));
+.catch((err) => console.log('Error occurred while connecting', err));
 
