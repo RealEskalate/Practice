@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
+import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -50,6 +51,18 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushNamed(MinasiePage.RouteName);
+              }),
+              ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Mahlet",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(MahletPage.RouteName);
               }),
         ],
       ),
