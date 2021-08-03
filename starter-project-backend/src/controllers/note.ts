@@ -20,8 +20,7 @@ export const getNoteById = async (req: Request, res: Response) => {
 export const getAllNotes = async (req: Request, res: Response) => {
     try {
         const notes : NoteDocument[] = await models.Note.find();
-
-        res.send({data: notes});
+        res.status(200).json({data: notes});
     } catch (e){
         console.error(e);
         res.status(500).send();

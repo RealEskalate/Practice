@@ -15,8 +15,10 @@ const app: Application = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/api/tasks", routes.taskRouter)
+app.use("/api/tasks", routes.taskRouter);
+app.use("/api/notes", routes.noteRouter);
 
+// @ts-ignore
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
