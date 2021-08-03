@@ -20,7 +20,7 @@
             <v-list-item-content>
               <!-- <v-list-item-title> Adona Tesfaye </v-list-item-title> -->
 
-              <p class="font-weight-medium">
+              <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Distinctio sint dicta corporis quasi inventore odio, deserunt
                 vitae magnam, accusantium atque rerum adipisci id iusto
