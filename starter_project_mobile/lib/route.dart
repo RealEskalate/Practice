@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 import 'package:starter_project_mobile/screens/Screens.dart';
 import 'package:starter_project_mobile/screens/eyob_screen/eyob_page.dart';
 import 'package:starter_project_mobile/screens/home_page.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'models/User.dart';
 
@@ -29,11 +27,7 @@ class PageRouter {
         });
       case DanielPage.RouteName:
         return MaterialPageRoute(builder: (context) {
-          return BlocProvider<LikeBlocDani>(
-            create: (context) => LikeBlocDani(false),
-            child: DanielPage(),
-          );
-          // return DanielPage();
+          return DanielPage();
         });
     }
   }

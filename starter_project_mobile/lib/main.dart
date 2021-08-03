@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project_mobile/bloc/theme_bloc.dart';
-import './route.dart';
+import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
+import 'package:starter_project_mobile/route.dart';
+import 'package:starter_project_mobile/screens/Screens.dart';
 
 import 'bloc/like_bloc.dart';
 
@@ -10,9 +12,31 @@ void main() {
     providers: [
       BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
       BlocProvider(lazy: false, create: (context) => ThemeBloc()),
+      BlocProvider<LikeBlocDani>(
+        lazy: false,
+        create: (context) => LikeBlocDani(false),
+        child: DanielPage(),
+      ),
     ],
     child: MyApp(),
   ));
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          lazy: false,
+          create: (context) => LikeBloc(false),
+          child: MyApp(),
+        ),
+        BlocProvider<LikeBlocDani>(
+          lazy: false,
+          create: (context) => LikeBlocDani(false),
+          child: DanielPage(),
+        )
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

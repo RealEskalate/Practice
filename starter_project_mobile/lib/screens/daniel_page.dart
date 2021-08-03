@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:start_project_mobile/daniel_bloc/bloc/like_bloc.dart';
+import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 
 class DanielPage extends StatelessWidget {
   static const RouteName = '/daniel';
