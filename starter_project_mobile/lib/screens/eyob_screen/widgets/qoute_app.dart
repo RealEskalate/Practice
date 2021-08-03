@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:start_project_mobile/bloc/qoute_bloc/qoute_bloc.dart';
-import 'package:start_project_mobile/screens/eyob_screen/widgets/progress_display.dart';
-import 'package:start_project_mobile/screens/eyob_screen/widgets/qoute_display.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:starter_project_mobile/bloc/qoute_bloc/qoute_bloc.dart';
+import 'package:starter_project_mobile/screens/eyob_screen/widgets/progress_display.dart';
+import 'package:starter_project_mobile/screens/eyob_screen/widgets/qoute_display.dart';
 
 class QouteApp extends StatelessWidget {
   const QouteApp({

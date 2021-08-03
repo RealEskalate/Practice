@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-
-import 'package:start_project_mobile/models/Qoute.dart';
+import 'package:starter_project_mobile/models/Qoute.dart';
 
 part 'qoute_state.dart';
 

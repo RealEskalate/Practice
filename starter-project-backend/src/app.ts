@@ -8,7 +8,7 @@ import routes from './routes';
 
 dotenv.config();
 
-const DB_URI = process.env.MONGO_URI;
+const DB_URI = '';
 
 const app: Application = express();
 

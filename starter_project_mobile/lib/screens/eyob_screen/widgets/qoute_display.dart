@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:start_project_mobile/bloc/qoute_bloc/qoute_bloc.dart';
+import 'package:starter_project_mobile/bloc/qoute_bloc/qoute_bloc.dart';
 
 class QouteDisplay extends StatelessWidget {
   const QouteDisplay({
