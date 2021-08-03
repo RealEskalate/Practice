@@ -37,6 +37,7 @@ export const putTask = async (req: Request, res: Response) => {
         console.error(e);
         res.status(500).send({ error: e.message });
     }
+}
 
 export const postTask = async (req: Request, res: Response) => {
 
