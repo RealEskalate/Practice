@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:start_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 
 class DanielPage extends StatelessWidget {
   static const RouteName = '/daniel';
@@ -6,6 +8,7 @@ class DanielPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var likeBloc = BlocProvider.of<LikeBlocDani>(context);
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SafeArea(
@@ -28,29 +31,47 @@ class DanielPage extends StatelessWidget {
               SizedBox(height: 40),
               Center(
                 child: Container(
-                  width: 160,
-                  height: 160,
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        // backgroundColor: Colors.red,
-                        radius: 80,
-                        backgroundImage: AssetImage("assets/image.jfif"),
-                      ),
-                      Positioned(
-                        bottom: -10,
-                        right: -20,
-                        child: TextButton(
-                          onPressed: () {
-                            print("clicked");
-                          },
-                          child: Icon(
-                            Icons.favorite_border,
-                            color: Colors.white,
+                  width: 165,
+                  height: 165,
+                  child: Center(
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          // backgroundColor: Colors.red,
+                          radius: 80,
+                          backgroundImage: AssetImage("assets/image.jfif"),
+                        ),
+                        Positioned(
+                          bottom: -10,
+                          right: -20,
+                          child: BlocBuilder<LikeBlocDani, LikeState>(
+                            builder: (context, LikeState state) {
+                              if (state == LikeState.isLiked) {
+                                return TextButton(
+                                  onPressed: () {
+                                    likeBloc.add(LikeToggleEvent.toggleLike);
+                                  },
+                                  child: Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                  ),
+                                );
+                              } else {
+                                return TextButton(
+                                  onPressed: () {
+                                    likeBloc.add(LikeToggleEvent.toggleLike);
+                                  },
+                                  child: Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.white,
+                                  ),
+                                );
+                              }
+                            },
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
