@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface INoteDocument extends Document {
+export interface INoteDocument extends Document {
     title: string;
     detail: string;
     createdAt: Date;
