@@ -55,3 +55,13 @@ export const postTask = async (req: Request, res: Response) => {
     }
 
 }
+export const searchTasks = async (req: Request, res: Response) => {
+    try {
+        const keyword = req.params.keyword;
+        const tasks = await models.Task.find({$text:{$search:keyword}});
+        return res.status(200).json(tasks);
+    } catch (e) {
+        console.error(e);
+        res.status(400).end();
+    }
+}
