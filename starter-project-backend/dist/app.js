@@ -13,6 +13,8 @@ var app = express_1.default();
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use("/api/tasks", routes_1.default.taskRouter);
+app.use("/api/notes", routes_1.default.noteRouter);
+// @ts-ignore -- added to ignore the DB_URI error since it's a environment setup issue
 mongoose_1.default.connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -12,3 +12,17 @@ export const getNoteById = async (req: Request, res: Response) => {
         res.status(400).end();
     }
 }
+
+/**
+ * Get all notes
+ * @route GET /note
+ */
+export const getAllNotes = async (req: Request, res: Response) => {
+    try {
+        const notes : NoteDocument[] = await models.Note.find();
+        res.status(200).json({data: notes});
+    } catch (e){
+        console.error(e);
+        res.status(500).send();
+    }
+};
