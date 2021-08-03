@@ -13,6 +13,9 @@ class QouteApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.purple[200],
+      appBar: AppBar(
+        backgroundColor: Colors.purple[200],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
