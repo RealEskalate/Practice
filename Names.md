@@ -31,9 +31,9 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Biruk Solomon
   * Eden Mesfin
   * Dawit Yonas
+  * Kidus Yoseph
   * Riyad Hassen 
   * Taklemariam Alazar
-  * Kidus Yoseph
 
 ### Web Team
 * **Full-Time** 
