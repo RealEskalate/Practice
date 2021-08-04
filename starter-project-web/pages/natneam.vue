@@ -1,6 +1,9 @@
 <template>
   <div>
-    <v-card outlined class="rounded-lg pa-3 purple lighten-5 black--text">
+    <v-alert dense dismissible outlined text type="error" v-show="showError"
+      >Please fill all the fields with valid data</v-alert
+    >
+    <v-card class="rounded-lg pa-3 purple lighten-5 black--text">
       <v-row>
         <v-col cols="12" md="3" align-self="center">
           <v-img
@@ -33,10 +36,37 @@
       </v-row>
     </v-card>
 
-    <p class="black--text pt-5 text-h5">POSTS</p>
+    <v-card color="purple lighten-5 mt-6 pa-3">
+      <p class="grey--text text-h6 pa-2">Create Post</p>
+      <v-row>
+        <v-text-field
+          light
+          :rules="rules"
+          label="Title"
+          color="purple black--text"
+          class="px-6"
+          v-model="postTitle"
+        ></v-text-field>
+      </v-row>
+      <v-row>
+        <v-text-field
+          light
+          :rules="rules"
+          label="Body"
+          color="purple black--text"
+          class="px-6"
+          v-model="postBody"
+        ></v-text-field>
+      </v-row>
+      <v-row class="px-6 pb-3">
+        <v-spacer></v-spacer>
+        <v-btn outlined color="purple" @click="createPost()">Post</v-btn>
+      </v-row>
+    </v-card>
+
+    <p class="black--text mt-5 pt-5 text-h5">POSTS</p>
 
     <v-card
-      flat
       class="my-3 purple lighten-5 pa-5"
       v-for="post in posts"
       :key="post.id"
@@ -62,15 +92,42 @@ import "material-design-icons-iconfont/dist/material-design-icons.css";
 export default class Natneam extends Vue {
   private posts: Array<any> = [];
   private comments: any = {};
+  private postTitle = "";
+  private postBody = "";
+  private showError = false;
+
+  private rules = [
+    (value: any) => !!value || "Required.",
+    (value: any) => (value && value.length >= 3) || "Min 3 characters"
+  ];
 
   async created() {
     let data = await axios("https://jsonplaceholder.typicode.com/posts");
-    this.posts = Object.assign(data.data, { show: false });
+    this.posts = data.data.slice(0, 20);
 
     this.posts.forEach(post => {
       post.show = false;
     });
-    console.log(this.posts[1]);
+  }
+
+  createPost() {
+    if (
+      this.rules[0](this.postTitle) !== "Required." &&
+      this.rules[1](this.postTitle) !== "Min 3 characters" &&
+      this.rules[0](this.postBody) !== "Required." &&
+      this.rules[1](this.postBody) !== "Min 3 characters"
+    ) {
+      this.posts = [
+        {
+          userId: 1,
+          id: this.posts.length + 1,
+          title: this.postTitle,
+          body: this.postBody
+        }
+      ].concat(this.posts);
+    } else {
+      this.showError = true;
+    }
   }
 }
 </script>
