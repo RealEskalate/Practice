@@ -12,6 +12,16 @@ export const getTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const getCompletedTasks = async (req: Request, res: Response) => {
+    try {
+        const Completed_tasks = await models.Task.find({isComplete : true});
+        return res.status(200).json(Completed_tasks);
+    } catch (e) {
+        console.error(e);
+        res.status(400).end();
+    }
+}
+
 export const putTask = async (req: Request, res: Response) => {
     try {
         const { title, isComplete } = req.body;
