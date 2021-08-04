@@ -80,11 +80,11 @@
       </v-row>
       <v-row>
         <v-spacer></v-spacer>
-        <v-cols cols="1" class="px-6">
+        <!-- <v-cols cols="1" class="px-6">
           <v-icon color="purple">
             mdi-comment
           </v-icon>
-        </v-cols>
+        </v-cols> -->
         <v-cols cols="1" class="px-6">
           <v-icon color="purple" @click="deletePost(post.id)">
             mdi-delete
