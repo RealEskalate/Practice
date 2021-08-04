@@ -29,6 +29,8 @@ class PageRouter {
         return MaterialPageRoute(builder: (context) {
           return DanielPage();
         });
+      case HannaPage.RouteName:
+        return MaterialPageRoute(builder: (context) => HannaPage());
     }
   }
 }
