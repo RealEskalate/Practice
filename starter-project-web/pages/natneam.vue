@@ -89,7 +89,6 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
-import "material-design-icons-iconfont/dist/material-design-icons.css";
 
 @Component
 export default class Natneam extends Vue {
