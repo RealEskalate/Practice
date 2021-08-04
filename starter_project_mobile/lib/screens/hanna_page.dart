@@ -20,23 +20,26 @@ class _HannaPageState extends State<HannaPage> {
           BlocBuilder<CounterBloc, CounterBlocState>(builder: (context, state) {
         return Container(
           width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 120),
+          padding: EdgeInsets.only(top:120,left:20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Starter-project',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                'Hanna Samuel',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
                 textAlign: TextAlign.left,
               ),
-              Text(
-                'Hanna Samuel',
-                style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 18,
-                    color: Colors.grey),
-                textAlign: TextAlign.left,
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Text(
+                  'Quis commodo labore non magna Lorem consequat adipisicing excepteur duis cillum. Reprehenderit fugiat ullamco anim dolore. Id ipsum pariatur culpa nostrud cupidatat non eu ex culpa commodo irure in esse proident.Proident qui occaecat in amet esse in esse dolor laboris et amet qui officia sit. Anim est laborum duis nostrud. Velit in id tempor aliquip cillum excepteur commodo.Occaecat non quis do labore ad pariatur aliqua magna enim sint id consequat cupidatat sint.',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14,
+                      color: Colors.grey),
+                  textAlign: TextAlign.left,
+                ),
               ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(25.0),
