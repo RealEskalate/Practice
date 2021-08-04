@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import routes from './routes';
+import router from './routes/task';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/tasks", routes.taskRouter);
 app.use("/api/notes", routes.noteRouter);
+app.use(router);
 
 // @ts-ignore
 mongoose.connect(DB_URI, {
