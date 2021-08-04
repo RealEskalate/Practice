@@ -75,7 +75,7 @@
         </v-col>
         <v-col cols="1">
           <v-icon color="purple" @click="deletePost(post.id)">
-            delete_forever
+            mdi-delete
           </v-icon>
         </v-col>
         <v-col cols="12" class="black--text">
