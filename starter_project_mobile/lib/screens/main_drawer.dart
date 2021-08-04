@@ -78,6 +78,18 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushNamed(MinasiePage.RouteName);
               }),
+                        ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Hanna",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(HannaPage.RouteName);
+              }),
         ],
       ),
     );
