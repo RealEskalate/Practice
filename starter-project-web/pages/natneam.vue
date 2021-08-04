@@ -74,14 +74,22 @@
         <v-col cols="11" class="black--text text-h6">
           {{ post.title }}
         </v-col>
-        <v-col cols="1">
-          <v-icon color="purple" @click="deletePost(post.id)">
-            mdi-delete
-          </v-icon>
-        </v-col>
         <v-col cols="12" class="black--text">
           {{ post.body }}
         </v-col>
+      </v-row>
+      <v-row>
+        <v-spacer></v-spacer>
+        <v-cols cols="1" class="px-6">
+          <v-icon color="purple">
+            mdi-comment
+          </v-icon>
+        </v-cols>
+        <v-cols cols="1" class="px-6">
+          <v-icon color="purple" @click="deletePost(post.id)">
+            mdi-delete
+          </v-icon>
+        </v-cols>
       </v-row>
     </v-card>
   </div>
@@ -110,6 +118,7 @@ export default class Natneam extends Vue {
 
     this.posts.forEach(post => {
       post.show = false;
+      post.comments = [];
     });
   }
 
