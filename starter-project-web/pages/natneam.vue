@@ -1,8 +1,5 @@
 <template>
   <div>
-    <v-alert dense dismissible outlined text type="error" v-show="showError"
-      >Please fill all the fields with valid data</v-alert
-    >
     <v-card class="rounded-lg pa-3 purple lighten-5 black--text">
       <v-row no-gutters>
         <v-col cols="12" md="2" align-self="center">
@@ -60,6 +57,10 @@
         <v-btn outlined color="purple" @click="createPost()">Post</v-btn>
       </v-row>
     </v-card>
+    <v-alert dense outlined text class="mt-6" type="error" v-show="showError"
+      >Please fill all the fields with valid data</v-alert
+    >
+
     <div v-if="posts.length > 0">
       <p class="black--text mt-5 pt-5 text-h5">POSTS</p>
     </div>
@@ -127,6 +128,7 @@ export default class Natneam extends Vue {
           body: this.postBody
         }
       ].concat(this.posts);
+      this.showError = false;
     } else {
       this.showError = true;
     }
