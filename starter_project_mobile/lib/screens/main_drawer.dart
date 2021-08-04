@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starter_project_mobile/screens/Screens.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
+import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'eyob_screen/eyob_page.dart';
 
@@ -78,17 +79,17 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushNamed(MinasiePage.RouteName);
               }),
-                        ListTile(
+              ListTile(
               leading: Icon(Icons.person),
               title: Text(
-                "Hanna",
+                "Mahlet",
                 style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 16.0,
                 ),
               ),
               onTap: () {
-                Navigator.of(context).pushNamed(HannaPage.RouteName);
+                Navigator.of(context).pushNamed(MahletPage.RouteName);
               }),
         ],
       ),
