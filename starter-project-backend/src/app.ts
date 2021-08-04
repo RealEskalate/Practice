@@ -9,7 +9,7 @@ import routes from './routes';
 
 dotenv.config();
 
-const DB_URI = process.env.MONGO_URI || "mongodb+srv://selam:User3@cluster0.hnbgb.mongodb.net/backend_starter?retryWrites=true&w=majority";
+const DB_URI = process.env.MONGO_URI || "";
 
 const app: Application = express();
 
