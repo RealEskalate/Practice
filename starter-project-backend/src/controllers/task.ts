@@ -37,7 +37,7 @@ export const putTask = async (req: Request, res: Response) => {
         console.error(e);
         res.status(500).send({ error: e.message });
     }
-
+}
 export const postTask = async (req: Request, res: Response) => {
 
     const task = new models.Task({
@@ -45,10 +45,10 @@ export const postTask = async (req: Request, res: Response) => {
         isComplete: req.body.isComplete
     });
 
-    try{
+    try {
         const newTask = await task.save();
-        res.status(201).json({data : newTask});
-    }catch (e){
+        res.status(201).json({ data: newTask });
+    } catch (e) {
         console.error(e);
         res.status(400).end();
     }
