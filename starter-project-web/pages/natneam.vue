@@ -35,16 +35,18 @@
 
     <p class="black--text pt-5 text-h5">POSTS</p>
 
-    <v-card class="my-5 purple lighten-5 pa-5">
+    <v-card
+      flat
+      class="my-3 purple lighten-5 pa-5"
+      v-for="post in posts"
+      :key="post.id"
+    >
       <v-row no-gutters>
         <v-col cols="12" class="black--text text-h6">
-          Title
+          {{ post.title }}
         </v-col>
         <v-col cols="12" class="black--text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat,
-          libero? Placeat asperiores, sed repellat porro quaerat repudiandae
-          labore nesciunt, sequi dolore aliquam explicabo quis laudantium quae
-          hic deserunt ex provident.
+          {{ post.body }}
         </v-col>
       </v-row>
     </v-card>
@@ -52,8 +54,25 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({});
+import { Component, Vue } from "vue-property-decorator";
+import axios from "axios";
+import "material-design-icons-iconfont/dist/material-design-icons.css";
+
+@Component
+export default class Natneam extends Vue {
+  private posts: Array<any> = [];
+  private comments: any = {};
+
+  async created() {
+    let data = await axios("https://jsonplaceholder.typicode.com/posts");
+    this.posts = Object.assign(data.data, { show: false });
+
+    this.posts.forEach(post => {
+      post.show = false;
+    });
+    console.log(this.posts[1]);
+  }
+}
 </script>
 
 <style></style>
