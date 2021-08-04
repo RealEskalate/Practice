@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getAllTasks, putTask, getCompletedTasks }
+import { getTasks, searchTasks, putTask, getCompletedTasks }
     from '../controllers/task';
 
 import { postTask } from '../controllers/task';
@@ -12,5 +12,6 @@ router.get('/Completed-Tasks', getCompletedTasks)
 router.put('/:id', putTask);
 
 router.post('/', postTask);
+router.get('/:keyword', searchTasks)
 
 export default router;
