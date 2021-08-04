@@ -1,20 +1,30 @@
+import axios from 'axios'
+
 export const state = () => ({
   posts: [
-    {
-      id: 1,
-      date: 'Tuesday, August 3, 2021 2:19 PM',
-      content: 'Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla'
-    },
-    {
-      id: 2,
-      date: 'Tuesday, August 3, 2021 2:21 PM',
-      content: 'Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla'
-    }
   ]
 })
 
 export const mutations = {
-  add (state, post) {
+  addPost (state, post) {
     state.posts.push(post)
+  },
+  setPosts (state, posts) {
+    state.posts = posts
+  }
+}
+
+export const actions = {
+  addPost ({ commit }, content) {
+    const post = {
+      user_id: 1,
+      title: 'My new post title',
+      body: content
+    }
+    commit('addPost', post)
+  },
+  async fetchPosts ({ commit }) {
+    const response = await axios.get('http://jsonplaceholder.typicode.com/posts?userId=1')
+    commit('setPosts', response.data)
   }
 }

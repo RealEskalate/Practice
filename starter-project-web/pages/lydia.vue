@@ -44,16 +44,16 @@
       <v-text-field
         label="New Post"
         outlined
-        @keydown.enter="addPost"
+        @keydown.enter="addPost($event.target.value)"
       />
     </v-container>
 
     <v-card v-for="post in lydia_posts.slice().reverse()" :key="post.id" class="mb-4">
       <v-card-subtitle class="grey--text pb-0">
-        {{ post.date }}
+        {{ post.title }}
       </v-card-subtitle>
       <v-card-text class="black--text">
-        {{ post.content }}
+        {{ post.body }}
       </v-card-text>
     </v-card>
   </v-container>
@@ -61,7 +61,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const moment = require('moment')
 
 export default Vue.extend({
   data () {
@@ -77,20 +76,19 @@ export default Vue.extend({
       return this.$store.state.lydia.posts[this.$store.state.lydia.posts.length - 1].id + 1
     }
   },
+  created () {
+    this.$store.dispatch('lydia/fetchPosts')
+  },
   methods: {
     handleClick () {
       this.textarea_visible = !this.textarea_visible
     },
-    addPost (event: { target: HTMLInputElement }) {
-      const post = {
-        id: this.next_id,
-        date: moment().format('LLLL'),
-        content: event.target.value
-      }
-      this.$store.commit('lydia/add', post)
+    addPost (newContent: String) {
+      this.$store.dispatch('lydia/addPost', newContent)
     }
   }
 })
+
 </script>
 
 <style scoped></style>
