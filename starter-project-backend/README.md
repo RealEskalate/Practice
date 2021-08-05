@@ -14,7 +14,9 @@ Task:
 POST    → Add Task
 GET     → Get Task by Id
 GET 	→ Get All Tasks
+GET 	→ Get first L tasks only, given L as a limit
 GET	    → Get Task by Completed
+GET     → Search Tasks given a keyword
 PUT	    → Update Task by Id
 DEL 	→ Delete Task by Id
 
