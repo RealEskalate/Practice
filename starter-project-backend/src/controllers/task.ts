@@ -1,10 +1,10 @@
-import task, { ITask } from '../models/task'
 import { Request, Response } from 'express';
 import models from '../models';
+import { ITask } from '../models/task';
 
 export const getAllTasks = async (req: Request, res: Response) => {
     try {
-        const tasks = await models.Task.find({});
+        const tasks : ITask = await models.Task.find({});
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);

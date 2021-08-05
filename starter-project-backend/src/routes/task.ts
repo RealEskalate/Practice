@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getTasks, searchTasks, putTask, getCompletedTasks }
+import { searchTasks, putTask, getCompletedTasks, getAllTasks }
     from '../controllers/task';
 
 import { postTask } from '../controllers/task';
