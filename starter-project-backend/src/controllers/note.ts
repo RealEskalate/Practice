@@ -33,7 +33,6 @@ export const getAllNotes = async (req: Request, res: Response) => {
  */
  export const deleteNoteById = async (req: Request, res: Response) => {
     try{ 
-        var c = req.params.id;
         const result = await models.Note.findByIdAndDelete(req.params.id).exec();
         res.status(200).json({result: result});
     }catch(e){
