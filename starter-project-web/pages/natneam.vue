@@ -61,7 +61,7 @@
       >Please fill all the fields with valid data</v-alert
     >
 
-    <div v-if="posts.length > 0">
+    <div v-if="posts().length > 0">
       <p class="black--text mt-5 pt-5 text-h5">POSTS</p>
     </div>
 
