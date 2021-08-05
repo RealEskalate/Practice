@@ -67,7 +67,7 @@
 
     <v-card
       class="my-3 purple lighten-5 pa-5"
-      v-for="post in posts"
+      v-for="post in posts()"
       :key="post.id"
     >
       <v-row no-gutters>
@@ -101,52 +101,58 @@ import axios from "axios";
 
 @Component
 export default class Natneam extends Vue {
-  private posts: Array<any> = [];
-  private comments: any = {};
   private postTitle = "";
   private postBody = "";
   private showError = false;
-
   private rules = [
     (value: any) => !!value || "Required.",
     (value: any) => (value && value.length >= 3) || "Min 3 characters"
   ];
 
-  async created() {
-    let data = await axios("https://jsonplaceholder.typicode.com/posts");
-    this.posts = data.data.slice(0, 20);
-
-    this.posts.forEach(post => {
-      post.show = false;
-      post.comments = [];
-    });
+  posts(): Array<any> {
+    return this.$store.state.natneamStore.posts;
   }
 
-  createPost() {
+  updatePosts(posts: Array<any>): void {
+    this.$store.commit("natneamStore/updatePosts", posts);
+  }
+
+  createPost(): void {
     if (
       this.rules[0](this.postTitle) !== "Required." &&
       this.rules[1](this.postTitle) !== "Min 3 characters" &&
       this.rules[0](this.postBody) !== "Required." &&
       this.rules[1](this.postBody) !== "Min 3 characters"
     ) {
-      this.posts = [
+      let updatedPosts = [
         {
           userId: 1,
           id: this.posts.length * 1000 + 1,
           title: this.postTitle,
           body: this.postBody
         }
-      ].concat(this.posts);
+      ].concat(this.posts());
       this.showError = false;
+      this.$store.commit("natneamStore/updatePosts", updatedPosts);
     } else {
       this.showError = true;
     }
   }
 
   deletePost(id: any) {
-    this.posts = this.posts.filter(value =>
-      value.id !== id ? value : undefined
-    );
+    this.$store.commit("natneamStore/removePost", id);
+  }
+
+  async created() {
+    let data = await axios("https://jsonplaceholder.typicode.com/posts");
+    let rawData = data.data.slice(0, 20);
+
+    rawData.forEach((post: any) => {
+      post.show = false;
+      post.comments = [];
+    });
+
+    this.updatePosts(rawData);
   }
 }
 </script>
