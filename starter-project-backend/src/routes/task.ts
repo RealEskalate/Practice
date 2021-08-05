@@ -1,11 +1,11 @@
 import express from 'express';
 
-import { getTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask }
+import { getAllTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask }
     from '../controllers/task';
 
 const router = express.Router();
 
-router.get('/', getTasks);
+// router.get('/', getTasks);
 
 router.get('/count', getFirstLTasks);
 
