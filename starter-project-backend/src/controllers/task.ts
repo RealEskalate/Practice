@@ -4,10 +4,21 @@ import models from '../models';
 
 export const getTasks = async (req: Request, res: Response) => {
     try {
-        const tasks = await models.Task.find();
+        const tasks: ITask[] = await models.Task.find();
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);
+        res.status(400).end();
+    }
+}
+
+export const getFirstLTasks = async (req: Request, res: Response) => {
+    try {
+        const limit = req.query.count
+        const firstLTasks: ITask[] = await models.Task.find().limit(Number(limit));
+        return res.status(200).json(firstLTasks)
+    } catch(e) {
+        console.log(e);
         res.status(400).end();
     }
 }
