@@ -33,7 +33,7 @@ export const addNote = async (req: Request, res : Response) => {
         detail: req.body.detail
     });
 
-    try {
+    try {        
         await note.save();
         res.status(201).json({ data: note });
     } catch (e) {
