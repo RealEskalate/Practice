@@ -23,6 +23,8 @@
       </v-list-item>
     </v-card>
 
+    <danielalbum />
+
     <v-card outlined class="mx-auto">
       <v-row dense>
         <v-col cols="12">
@@ -30,11 +32,6 @@
             <v-card-title class="black--text">
               <h3>Albums</h3>
             </v-card-title>
-            <v-card-action>
-              <v-btn left>
-                Add album
-              </v-btn>
-            </v-card-action>
             <v-spacer />
 
             <v-list-item class="black--text">
@@ -50,8 +47,13 @@
 <script lang="ts">
 
 import Vue from 'vue'
+import danielalbum from '@/components/danielalbum.vue'
 
 export default Vue.extend({
+  components: {
+    danielalbum
+
+  },
   data () {
     return {
       data: {
