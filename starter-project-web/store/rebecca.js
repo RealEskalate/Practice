@@ -11,15 +11,15 @@ const getters = {
 // actions
 const actions = {
   async getPosts ({ commit }) {
-    const posts = await axios.get('http://jsonplaceholder.typicode.com/posts')
+    const posts = await axios.get('https://jsonplaceholder.typicode.com/posts')
     commit('setPosts', posts.data)
   },
   async addPost ({ commit }, post) {
-    const newPost = await axios.post('http://jsonplaceholder.typicode.com/posts', post)
+    const newPost = await axios.post('https://jsonplaceholder.typicode.com/posts', post)
     commit('newPost', newPost.data)
   },
   async deletePost ({ commit }, id) {
-    await axios.delete(`http://jsonplaceholder.typicode.com/posts/${id}`)
+    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
     commit('removePost', id)
   }
 }
