@@ -2,7 +2,7 @@ import task, { ITask } from '../models/task'
 import { Request, Response } from 'express';
 import models from '../models';
 
-export const getTasks = async (req: Request, res: Response) => {
+export const getAllTasks = async (req: Request, res: Response) => {
     try {
         const tasks: ITask[] = await models.Task.find();
         return res.status(200).json(tasks);
@@ -19,6 +19,15 @@ export const getFirstLTasks = async (req: Request, res: Response) => {
         return res.status(200).json(firstLTasks)
     } catch(e) {
         console.log(e);
+        res.status(400).end();
+    }
+}
+export const getCompletedTasks = async (req: Request, res: Response) => {
+    try {
+        const Completed_tasks = await models.Task.find({isComplete : true});
+        return res.status(200).json(Completed_tasks);
+    } catch (e) {
+        console.error(e);
         res.status(400).end();
     }
 }
@@ -49,6 +58,7 @@ export const putTask = async (req: Request, res: Response) => {
         res.status(500).send({ error: e.message });
     }
 }
+
 export const postTask = async (req: Request, res: Response) => {
 
     const task = new models.Task({
@@ -64,4 +74,15 @@ export const postTask = async (req: Request, res: Response) => {
         res.status(400).end();
     }
 
+}
+
+export const searchTasks = async (req: Request, res: Response) => {
+    try {
+        const keyword = req.params.keyword;
+        const tasks = await models.Task.find({$text:{$search:keyword}});
+        return res.status(200).json(tasks);
+    } catch (e) {
+        console.error(e);
+        res.status(400).end();
+    }
 }

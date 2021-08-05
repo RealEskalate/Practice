@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import routes from './routes';
 
+
 dotenv.config();
 
 const DB_URI = process.env.MONGO_URI || "";
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/tasks", routes.taskRouter);
 app.use("/api/notes", routes.noteRouter);
+
 
 // @ts-ignore
 mongoose.connect(DB_URI, {
