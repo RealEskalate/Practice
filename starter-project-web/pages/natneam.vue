@@ -127,7 +127,7 @@ export default class Natneam extends Vue {
       let updatedPosts = [
         {
           userId: 1,
-          id: this.posts.length * 1000 + 1,
+          id: this.posts().length * 1000 + 1,
           title: this.postTitle,
           body: this.postBody
         }
