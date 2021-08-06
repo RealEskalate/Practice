@@ -21,7 +21,7 @@ export const mutations = {
 export const actions = {
   async fetchPosts ({ commit }) {
     const response = await this.$axios.get(
-      'http://jsonplaceholder.typicode.com/posts'
+      'https://jsonplaceholder.typicode.com/posts'
     )
     commit('setPosts', response.data)
   },
