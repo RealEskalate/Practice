@@ -1,17 +1,20 @@
 import express from 'express';
 
-import { getAllTasks, searchTasks, putTask, getCompletedTasks }
+import { getAllTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask }
     from '../controllers/task';
-
-import { postTask } from '../controllers/task';
 
 const router = express.Router();
 
+router.get('/count', getFirstLTasks);
+
 router.get('/', getAllTasks);
+
 router.get('/Completed-Tasks', getCompletedTasks)
+
 router.put('/:id', putTask);
 
 router.post('/', postTask);
+
 router.get('/:keyword', searchTasks)
 
 export default router;

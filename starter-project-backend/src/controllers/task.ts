@@ -4,7 +4,7 @@ import models from '../models';
 
 export const getAllTasks = async (req: Request, res: Response) => {
     try {
-        const tasks: ITask[] = await models.Task.find({});
+        const tasks: ITask[] = await models.Task.find();
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);
@@ -12,6 +12,16 @@ export const getAllTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const getFirstLTasks = async (req: Request, res: Response) => {
+    try {
+        const limit = req.query.count
+        const firstLTasks: ITask[] = await models.Task.find().limit(Number(limit));
+        return res.status(200).json(firstLTasks)
+    } catch(e) {
+        console.log(e);
+        res.status(400).end();
+    }
+}
 export const getCompletedTasks = async (req: Request, res: Response) => {
     try {
         const Completed_tasks: ITask[] = await models.Task.find({isComplete : true});
@@ -65,6 +75,7 @@ export const postTask = async (req: Request, res: Response) => {
     }
 
 }
+
 export const searchTasks = async (req: Request, res: Response) => {
     try {
         const keyword = req.params.keyword;
