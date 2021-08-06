@@ -5,8 +5,6 @@ import { getAllTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, p
 
 const router = express.Router();
 
-// router.get('/', getTasks);
-
 router.get('/count', getFirstLTasks);
 
 router.get('/', getAllTasks);
