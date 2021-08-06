@@ -1,7 +1,6 @@
 import express from 'express';
 
-import { getAllTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask }
-    from '../controllers/task';
+import { getAllTasks, getTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask } from '../controllers/task';
 
 const router = express.Router();
 

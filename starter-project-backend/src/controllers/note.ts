@@ -40,4 +40,19 @@ export const addNote = async (req: Request, res : Response) => {
         console.error(e);
         res.status(400).end();
     }
-}
+};
+
+/**
+ * Delete Note By Id
+ * @route DELETE /delete/:id
+ */
+ export const deleteNoteById = async (req: Request, res: Response) => {
+    try{ 
+        const result = await models.Note.findByIdAndDelete(req.params.id).exec();
+        res.status(200).json({result: result});
+    }catch(e){
+        console.log(e);
+        res.status(400).send();
+    }
+};
+
