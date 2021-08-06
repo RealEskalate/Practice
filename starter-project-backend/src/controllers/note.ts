@@ -27,6 +27,21 @@ export const getAllNotes = async (req: Request, res: Response) => {
     }
 };
 
+export const addNote = async (req: Request, res : Response) => {
+    const note = new models.Note({
+        title: req.body.title,
+        detail: req.body.detail
+    });
+
+    try {        
+        await note.save();
+        res.status(201).json({ data: note });
+    } catch (e) {
+        console.error(e);
+        res.status(400).end();
+    }
+};
+
 /**
  * Delete Note By Id
  * @route DELETE /delete/:id
@@ -40,3 +55,4 @@ export const getAllNotes = async (req: Request, res: Response) => {
         res.status(400).send();
     }
 };
+
