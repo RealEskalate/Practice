@@ -101,21 +101,27 @@
                 :items="alltodos"
                 :search="search"
                 :items-per-page="5"
-                class="elevation-1 ml-4 accent"
+                class="elevation-1 ml-4"
               >
-                <template>
+                <template v-slot:item.action="{item}">
+                  <v-btn text color="primary">
                   <v-icon
                     small
-                    class="mr-2 text--white"
+                    class="text--white"
+                    @click="onUpdate(item)"
                   >
                     mdi-pencil
                     </v-icon>
+                  </v-btn>
+                  <v-btn text color="error">
                     <v-icon
                       small
-                      @click="deleteItem(todo)"
+                      @click="onDelete(item.id)"
+                      
                     >
                       mdi-delete
                       </v-icon>
+                  </v-btn>
                 </template>
                 </v-data-table>
 
@@ -134,7 +140,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState} from "vuex";
 
 export default {
   name: "Todos",
@@ -144,32 +150,41 @@ export default {
         { id: "id", value: "id" },
         { text: "title", value: "title" },
         { text: "completed", value: "completed" },
-        { text: "Actions", value: "actions", sortable: false }
+        { text: "Actions", value: "action", sortable: false }
       ],
       search: "",
       newtodo: ""
     };
   },
-  async fetch({ store }) {
-    await store.dispatch("todos/fetchTodos");
+  
+  created(){
+    this.$store.dispatch("bereket/fetchTodos");
   },
   computed: {
     ...mapState({
       alltodos: state => {
-        return state.todos.todos;
+        return state.bereket.todos;
       }
     })
   },
   methods: {
     onSubmit(e) {
-      this.$store.dispatch("todos/addTodos", this.newtodo);
+      this.$store.dispatch("bereket/addTodos", this.newtodo);
       this.newtodo = "";
+    },
+    onDelete(id){
+      this.$store.dispatch("bereket/deleteTodo",id);
+     
+    },
+    onUpdate(todo){
+      const updatedTodo={
+        id:todo.id,
+        title:todo.title,
+        completed:!todo.completed
+      }
+      this.$store.dispatch("bereket/updateTodo",updatedTodo);
     }
   }
-  //  data(){
-  //    return{
-
-  //  },
 };
 
 //    }
