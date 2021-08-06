@@ -1,44 +1,38 @@
 <template>
-  <v-card
-    class="mx-auto "
-    max-width="600"
-    outlined
-    color="gray lighten--2"
-  >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <div class="text-overline mb-4">
-          articles
-        </div>
-        <v-list-item-title class="text-h5 mb-1">
-          title
-        </v-list-item-title>
-        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+  <v-card max-width="800" outlined class="purple lighten-4 black--text mx-auto">
+    <v-card-title ml-4 outline>
+      Add Album
+    </v-card-title>
+    <v-card-text>
+      <v-text-field v-model="userId" class="black--text" placeholder="user Id" />
+      <v-text-field v-model="Title" placeholder="Title" />
+    </v-card-text>
 
     <v-card-actions>
-      <v-btn
-        outlined
-        rounded
-        text
-        right
-      >
+      <v-spacer />
+      <v-btn color="primary" @click="addAlbum">
         Add album
       </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
-<script lang="ts">
-import Component from 'vue-class-component'
+<script >
 
-import { Vue } from 'vue-property-decorator'
-@Component
-export default class danielalbum extends Vue {
+export default {
+  data () {
+    return {
+      userId: '',
+      Title: ''
+    }
+  },
+  methods: {
+    addAlbum () {
+      this.$store.dispatch('daniel/addAlbum', { userId: this.userId, Title: this.Title })
+    }
+  }
 }
 </script>
 
 <style>
-
 </style>
