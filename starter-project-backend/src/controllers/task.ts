@@ -1,10 +1,10 @@
+import task, { ITask } from '../models/task';
 import { Request, Response } from 'express';
 import models from '../models';
-import { ITask } from '../models/task';
 
 export const getAllTasks = async (req: Request, res: Response) => {
     try {
-        const tasks : ITask = await models.Task.find({});
+        const tasks: ITask[] = await models.Task.find();
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);
@@ -12,9 +12,19 @@ export const getAllTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const getFirstLTasks = async (req: Request, res: Response) => {
+    try {
+        const limit = req.query.count
+        const firstLTasks: ITask[] = await models.Task.find().limit(Number(limit));
+        return res.status(200).json(firstLTasks)
+    } catch(e) {
+        console.log(e);
+        res.status(400).end();
+    }
+}
 export const getCompletedTasks = async (req: Request, res: Response) => {
     try {
-        const Completed_tasks = await models.Task.find({isComplete : true});
+        const Completed_tasks: ITask[] = await models.Task.find({isComplete : true});
         return res.status(200).json(Completed_tasks);
     } catch (e) {
         console.error(e);
@@ -56,22 +66,33 @@ export const postTask = async (req: Request, res: Response) => {
         isComplete: req.body.isComplete
     });
 
-    try{
+    try {
         const newTask = await task.save();
-        res.status(201).json({data : newTask});
-    }catch (e){
+        res.status(201).json({ data: newTask });
+    } catch (e) {
         console.error(e);
         res.status(400).end();
     }
 
 }
+
 export const searchTasks = async (req: Request, res: Response) => {
     try {
         const keyword = req.params.keyword;
-        const tasks = await models.Task.find({$text:{$search:keyword}});
+        const tasks: ITask[] = await models.Task.find({$text:{$search:keyword}});
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);
+        res.status(400).end();
+    }
+}
+
+export const deleteTask = async(req:Request,res:Response)=>{
+    try{
+        const id = req.body.id;
+        await models.Task.findByIdAndDelete(id).exec();
+        res.redirect('/');
+    }catch(e){
         res.status(400).end();
     }
 }
