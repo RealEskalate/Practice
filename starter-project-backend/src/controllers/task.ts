@@ -86,3 +86,13 @@ export const searchTasks = async (req: Request, res: Response) => {
         res.status(400).end();
     }
 }
+
+export const deleteTask = async(req:Request,res:Response)=>{
+    try{
+        const id = req.body.id;
+        await models.Task.findByIdAndDelete(id).exec();
+        res.redirect('/');
+    }catch(e){
+        res.status(400).end();
+    }
+}
