@@ -1,6 +1,10 @@
 import express from 'express';
 
-import { getAllTasks, getTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask } from '../controllers/task';
+
+
+import { getAllTasks, getFirstLTasks, searchTasks, putTask, getCompletedTasks, postTask, deleteTask }
+    from '../controllers/task';
+
 
 const router = express.Router();
 
@@ -15,5 +19,7 @@ router.put('/:id', putTask);
 router.post('/', postTask);
 
 router.get('/:keyword', searchTasks)
+
+router.get('/delete/:id',deleteTask);
 
 export default router;
