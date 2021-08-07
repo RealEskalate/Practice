@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import models from '../models';
-import NoteDocuemnt , { INoteDocument } from '../models/note';
+import { INoteDocument } from '../models/note';
 
 export const getNoteById = async (req: Request, res: Response) => {
     try {
         const note: INoteDocument | null = await models.Note.findById(req.params.id);
 
-        res.status(200).json({ data: note });
+        res.status(200).json(note);
     } catch (e) {
         console.error(e);
         res.status(400).end();
@@ -20,7 +20,7 @@ export const getNoteById = async (req: Request, res: Response) => {
 export const getAllNotes = async (req: Request, res: Response) => {
     try {
         const notes : INoteDocument[] = await models.Note.find();
-        res.status(200).json({data: notes});
+        res.status(200).json(notes);
     } catch (e){
         console.error(e);
         res.status(500).send();
