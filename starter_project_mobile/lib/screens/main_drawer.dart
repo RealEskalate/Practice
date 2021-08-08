@@ -6,6 +6,7 @@ import 'package:starter_project_mobile/screens/kaleb_page.dart';
 import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'eyob_screen/eyob_page.dart';
+import 'package:starter_project_mobile/screens/bontu_page.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -30,6 +31,7 @@ class MainDrawer extends StatelessWidget {
            * to add your name to the drawer you can use the same
            * pattern as follows
            */
+
           ListTile(
               leading: Icon(Icons.person),
               title: Text(
@@ -79,7 +81,7 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushNamed(MinasiePage.RouteName);
               }),
-              ListTile(
+          ListTile(
               leading: Icon(Icons.person),
               title: Text(
                 "Mahlet",
@@ -90,6 +92,30 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushNamed(MahletPage.RouteName);
+              }),
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Hanna",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(HannaPage.RouteName);
+              }),
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Bontu",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(BontuPage.RouteName);
               }),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/home_page.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
+import 'package:starter_project_mobile/screens/bontu_page.dart';
 
 import 'models/User.dart';
 
@@ -35,6 +36,11 @@ class PageRouter {
       case MahletPage.RouteName:
         return MaterialPageRoute(builder: (context) {
           return MahletPage();
+        });
+
+      case BontuPage.RouteName:
+        return MaterialPageRoute(builder: (context) {
+          return BontuPage();
         });
     }
   }
