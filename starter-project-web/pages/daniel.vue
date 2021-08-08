@@ -33,49 +33,42 @@
     <v-divider />
 
     <v-card max-width="800" outlined class="purple lighten-4 black--text mx-auto">
-      <v-row dense>
-        <v-col cols="12">
-          <v-card color="white">
-            <v-card-title class="black--text">
-              <h3>Albums</h3>
-            </v-card-title>
-            <v-spacer />
-            <v-row
-              :align="align"
-              no-gutters
-              style="height: 150px;"
-            >
-              <v-col>
-                <v-card
-                  class="pa-2"
-                  outlined
-                  tile
-                >
-                  id
-                </v-card>
-              </v-col>
-              <v-col>
-                <v-card
-                  class="pa-2"
-                  outlined
-                  tile
-                >
-                  user id
-                </v-card>
-              </v-col>
-              <v-col>
-                <v-card
-                  class="pa-2"
-                  outlined
-                  tile
-                >
-                  title
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
+      <v-list class="gray lighten-5 green--text mx-auto">
+        <v-list-group
+          v-for="item in album"
+          :key="item.title"
+          no-action
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+          </template>
+
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.userId" />
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title" />
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn color="error" @click="deletealbum(item.id)">
+                DELETE
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-card>
+  </v-container>
+</template>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
     </v-card>
   </v-container>
 </template>
@@ -83,6 +76,7 @@
 <script >
 import Vue from 'vue'
 import danielalbum from '@/components/danielalbum.vue'
+// this.$vuetify.theme.dark = false
 export default Vue.extend({
   components: {
     danielalbum
@@ -93,11 +87,20 @@ export default Vue.extend({
         name: 'Daniel Geremew',
         photo: '../assets/amirPhoto.jpeg',
         desc: 'This is my description'
-      }
+      },
+      album: this.$store.getters['daniel/allAlbums']
+
     }
   },
+
   created () {
     return this.$store.dispatch('daniel/fetchalbums')
+  },
+  methods: {
+    deletealbum (id) {
+      this.$store.dispatch('daniel/deletealbum', id)
+    }
+
   }
 })
 </script>
