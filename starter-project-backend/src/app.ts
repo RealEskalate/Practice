@@ -3,12 +3,10 @@ import express, {Application, Request, Response, NextFunction} from 'express';
 import mongoose from 'mongoose';
 
 import dotenv from 'dotenv';
-
 import routes from './routes';
 
 
 dotenv.config();
-
 const DB_URI = process.env.MONGO_URI || "";
 
 const app: Application = express();

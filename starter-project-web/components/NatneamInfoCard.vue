@@ -7,7 +7,7 @@
           max-height="250"
           max-width="150"
           src="/natneam.jpg"
-        ></v-img>
+        />
       </v-col>
       <v-col cols="12" md="6">
         <v-list-item two-line>
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class InfoCard extends Vue {}
 </script>
