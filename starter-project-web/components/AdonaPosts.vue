@@ -3,13 +3,14 @@
     <div class="add-title">
       <h2>Add new Post</h2>
     </div>
-    <v-form ref="form" @submit="addPost">
+    <v-form ref="form" lazy-validation @submit="addPost">
       <v-text-field
         v-model="title"
         light
         color="purple"
         label="Title"
         class="black--text"
+
         required
       />
       <v-textarea
@@ -60,7 +61,9 @@ export default Vue.extend({
   methods: {
     addPost (e: { preventDefault: () => void; }) {
       e.preventDefault()
-      this.$store.dispatch('adona/addPost', { title: this.title, body: this.body })
+      if (this.title !== '' && this.body !== '') {
+        this.$store.dispatch('adona/addPost', { title: this.title, body: this.body })
+      }
     }
   }
 })
