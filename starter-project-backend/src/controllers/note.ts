@@ -56,3 +56,29 @@ export const addNote = async (req: Request, res : Response) => {
     }
 };
 
+export const putNote = async (req: Request, res: Response) => {
+    try {
+        const { title, detail } = req.body;
+        const id = req.params.id;
+
+        if (typeof title === 'undefined') throw Error(`"title" has to be defined`)
+        if (typeof detail === 'undefined') throw Error(`"isComplete" has to be defined`)
+
+        const noteObj = {
+            title,
+            detail
+        };
+
+        const note = await models.Task.findOneAndUpdate({ _id: id }, noteObj,
+            {
+                upsert: true,
+                new: true,
+                setDefaultsOnInsert: true
+            })
+
+        res.status(201).json({ data: note });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+    }
+}
