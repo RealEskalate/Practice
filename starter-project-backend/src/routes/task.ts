@@ -8,6 +8,7 @@ import {
   deleteTask,
   searchTasks,
   getAllTasks,
+  putNote,
 } from "../controllers/task";
 
 const router = express.Router();
@@ -25,5 +26,7 @@ router.post("/", postTask);
 router.get("/:keyword", searchTasks);
 
 router.get("/delete/:id", deleteTask);
+
+router.put('/:id', putNote);
 
 export default router;
