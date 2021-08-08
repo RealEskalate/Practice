@@ -40,10 +40,39 @@
               <h3>Albums</h3>
             </v-card-title>
             <v-spacer />
-
-            <v-list-item class="black--text">
-              hi
-            </v-list-item>
+            <v-row
+              :align="align"
+              no-gutters
+              style="height: 150px;"
+            >
+              <v-col>
+                <v-card
+                  class="pa-2"
+                  outlined
+                  tile
+                >
+                  id
+                </v-card>
+              </v-col>
+              <v-col>
+                <v-card
+                  class="pa-2"
+                  outlined
+                  tile
+                >
+                  user id
+                </v-card>
+              </v-col>
+              <v-col>
+                <v-card
+                  class="pa-2"
+                  outlined
+                  tile
+                >
+                  title
+                </v-card>
+              </v-col>
+            </v-row>
           </v-card>
         </v-col>
       </v-row>
