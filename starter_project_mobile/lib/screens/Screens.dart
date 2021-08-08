@@ -1,3 +1,4 @@
+export 'bontu_page.dart';
 export 'kaleb_page.dart';
 export 'daniel_page.dart';
 export 'eyob_screen/eyob_page.dart';

@@ -6,6 +6,7 @@ import 'package:starter_project_mobile/bloc/theme_bloc.dart';
 import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 import 'package:starter_project_mobile/route.dart';
 import 'package:starter_project_mobile/screens/Screens.dart';
+import 'package:starter_project_mobile/bloc/star_bloc.dart';
 
 import 'bloc/like_bloc.dart';
 
@@ -21,6 +22,8 @@ void main() {
         create: (context) => LikeBlocDani(false),
         child: DanielPage(),
       ),
+      BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
+      BlocProvider(lazy: false, create: (context) => StarBloc()),
     ],
     child: MyApp(),
   ));
