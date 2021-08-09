@@ -10,7 +10,7 @@
             <v-list-item-content>
               <v-list-item-title> Amir Mustefa </v-list-item-title>
               <v-list-item-title>
-                <img width="200px" src="../assets/amirPhoto.jpeg" />
+                <img width="200px" src="../assets/amirPhoto.jpeg">
               </v-list-item-title>
               <v-list-item-title>
                 <span style="white-space: pre-line">
@@ -31,7 +31,7 @@
           <v-card-title class="black--text">
             <h3>Amir's Todo list</h3>
           </v-card-title>
-          <form v-on:submit="addTodo">
+          <form @submit="addTodo">
             <v-row style="padding-left: 25px">
               <v-col>
                 <v-text-field
@@ -42,11 +42,13 @@
                   dense
                   light
                   outlined
-                ></v-text-field>
+                />
               </v-col>
               <v-col>
                 <v-card-action>
-                  <v-btn type="submit"> Add Todo </v-btn>
+                  <v-btn type="submit">
+                    Add Todo
+                  </v-btn>
                 </v-card-action>
               </v-col>
             </v-row>
@@ -58,7 +60,7 @@
             <v-list-item-content style="padding: 10px">
               <v-card
                 v-for="item in todos"
-                v-bind:key="item.id"
+                :key="item.id"
                 elevation="2"
                 color="white"
               >
@@ -66,18 +68,18 @@
                   <v-row>
                     <v-col cols="1">
                       <v-checkbox
-                        @change="onChange($event, item.id, item.userId)"
-                        light
                         v-model="item.completed"
-                      ></v-checkbox>
+                        light
+                        @change="onChange($event, item.id, item.userId)"
+                      />
                     </v-col>
                     <v-col cols="10" class="black--text">
                       <h4 style="text-transform: capitalize">
                         {{ item.title }}
-                      </h4></v-col
-                    >
+                      </h4>
+                    </v-col>
                     <v-col>
-                      <v-btn @click="deleteTodo(item.id)" icon color="red">
+                      <v-btn icon color="red" @click="deleteTodo(item.id)">
                         <v-icon>mdi-delete</v-icon>
                       </v-btn>
                     </v-col>
@@ -93,84 +95,84 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
-Vue.use(Vuetify);
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
 
 export default Vue.extend({
   name: "Amir's Todo list",
 
-  data() {
-    return { todos: [{ id: "" }], todo: "" };
+  data () {
+    return { todos: [{ id: '' }], todo: '' }
   },
-  mounted() {
-    fetch("https://jsonplaceholder.typicode.com/users/1/todos")
-      .then((response) => response.json())
+  mounted () {
+    fetch('https://jsonplaceholder.typicode.com/users/1/todos')
+      .then(response => response.json())
       .then((json) => {
-        this.todos = json;
-      });
+        this.todos = json
+      })
   },
   methods: {
-    onChange(val: any, id: any, userId: any) {
+    onChange (val: any, id: any, userId: any) {
       fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: "PUT",
+        method: 'PUT',
         body: JSON.stringify({
           id,
           completed: val,
-          userId,
+          userId
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
+          'Content-type': 'application/json; charset=UTF-8'
+        }
       })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-      console.log(val, id, userId);
+        .then(response => response.json())
+        .then(json => console.log(json))
+      console.log(val, id, userId)
       if (!val) {
         // Custom checks in this
-        console.log("Unchecked");
+        console.log('Unchecked')
       } else {
-        console.log("Checked");
+        console.log('Checked')
       }
     },
-    addTodo(e: any) {
-      e.preventDefault(); // it prevent from page reload
-      console.log(e.target.todo.value);
-      fetch("https://jsonplaceholder.typicode.com/todos", {
-        method: "POST",
+    addTodo (e: any) {
+      e.preventDefault() // it prevent from page reload
+      console.log(e.target.todo.value)
+      fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: 'POST',
         body: JSON.stringify({
           title: e.target.todo.value,
           completed: false,
-          userId: 1,
+          userId: 1
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
+          'Content-type': 'application/json; charset=UTF-8'
+        }
       })
-        .then((response) => response.json())
+        .then(response => response.json())
         .then((json) => {
           //  let tds = [...this.todos];
           //  tds.push(json)
 
-          this.todos.unshift(json);
+          this.todos.unshift(json)
         })
         .catch((err) => {
-          alert(err);
-        });
+          alert(err)
+        })
     },
-    deleteTodo(id: any) {
+    deleteTodo (id: any) {
       fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: "DELETE",
+        method: 'DELETE'
       })
-        .then((response) => response.json())
+        .then(response => response.json())
         .then(() => {
-          this.todos = this.todos.filter((todo) => todo.id != id);
-          console.log(`Todo with the id ${id} successfuly deleted!`);
-        });
-    },
-  },
-});
+          this.todos = this.todos.filter(todo => todo.id !== id)
+          console.log(`Todo with the id ${id} successfuly deleted!`)
+        })
+    }
+  }
+})
 </script>
 
 <style scoped></style>

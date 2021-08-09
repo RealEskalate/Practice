@@ -17,14 +17,14 @@ export const getFirstLTasks = async (req: Request, res: Response) => {
         const limit = req.query.count
         const firstLTasks: ITask[] = await models.Task.find().limit(Number(limit));
         return res.status(200).json(firstLTasks)
-    } catch(e) {
+    } catch (e) {
         console.log(e);
         res.status(400).end();
     }
 }
 export const getCompletedTasks = async (req: Request, res: Response) => {
     try {
-        const Completed_tasks: ITask[] = await models.Task.find({isComplete : true});
+        const Completed_tasks: ITask[] = await models.Task.find({ isComplete: true });
         return res.status(200).json(Completed_tasks);
     } catch (e) {
         console.error(e);
@@ -79,10 +79,48 @@ export const postTask = async (req: Request, res: Response) => {
 export const searchTasks = async (req: Request, res: Response) => {
     try {
         const keyword = req.params.keyword;
-        const tasks: ITask[] = await models.Task.find({$text:{$search:keyword}});
+        const tasks: ITask[] = await models.Task.find({ $text: { $search: keyword } });
         return res.status(200).json(tasks);
     } catch (e) {
         console.error(e);
+        res.status(400).end();
+    }
+}
+
+
+export const putNote = async (req: Request, res: Response) => {
+    try {
+        const { title, detail } = req.body;
+        const id = req.params.id;
+
+        if (typeof title === 'undefined') throw Error(`"title" has to be defined`)
+        if (typeof detail === 'undefined') throw Error(`"isComplete" has to be defined`)
+
+        const noteObj = {
+            title,
+            detail
+        };
+
+        const note = await models.Task.findOneAndUpdate({ _id: id }, noteObj,
+            {
+                upsert: true,
+                new: true,
+                setDefaultsOnInsert: true
+            })
+
+        res.status(201).json({ data: note });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+    }
+}
+    
+export const deleteTask = async(req:Request,res:Response)=>{
+    try{
+        const id = req.body.id;
+        await models.Task.findByIdAndDelete(id).exec();
+        res.redirect('/');
+    }catch(e){
         res.status(400).end();
     }
 }
