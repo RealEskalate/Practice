@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
     <v-container class="black--text">
       <v-row>
@@ -21,20 +20,6 @@
           </v-icon>
         </v-col>
       </v-row>
-=======
-  <div >
-    <v-container class="black--text">
-      <v-list-item two-line>
-        <v-list-item-content>
-          <v-list-item-title class="black--text">
-            {{ post.title }}
-          </v-list-item-title>
-          <p class="grey--text text--lighten -2">
-            {{ post.body }}
-          </p>
-        </v-list-item-content>
-      </v-list-item>
->>>>>>> 44ae52b264db15a4f3719a41de1a9805eccae6bd
       <v-divider class="grey lighten-3" />
     </v-container>
   </div>
@@ -47,7 +32,6 @@ export default Vue.extend({
   props: {
     // eslint-disable-next-line vue/require-default-prop
     post: Object
-<<<<<<< HEAD
   },
   methods: {
     removePost (id:number) {
@@ -64,8 +48,3 @@ export default Vue.extend({
   font-size: 20px !important;
 }
 </style>
-=======
-  }
-})
-</script>
->>>>>>> 44ae52b264db15a4f3719a41de1a9805eccae6bd
