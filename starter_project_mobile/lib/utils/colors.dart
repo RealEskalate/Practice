@@ -7,3 +7,4 @@ const Color scarletRed = Color(0xFFFF2400);
 const Color mintGreen = Color(0xFF3EB489);
 const Color deepOrange = Color(0xFFF89221);
 const Color brightYellow = Color(0xFFF9E22C);
+const Color darkTheme = Color(0xFF1f1a24);
