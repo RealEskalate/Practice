@@ -81,10 +81,13 @@ export default Vue.extend({
         name: 'Daniel Geremew',
         photo: '../assets/amirPhoto.jpeg',
         desc: 'This is my description'
-      },
-      album: this.$store.getters['daniel/allAlbums']
+      }
+      // album: this.$store.getters['daniel/allAlbums']
 
     }
+  },
+  computed: {
+    album () { return this.$store.state.daniel.albums }
   },
 
   created () {
