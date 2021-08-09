@@ -8,7 +8,7 @@
           </v-card-title>
           <v-list-item class="black--text">
             <v-list-item-content>
-              <v-list-item-title> Amir Mustefa </v-list-item-title>
+              <v-list-item-title> amir Mustefa </v-list-item-title>
               <v-list-item-title>
                 <img width="200px" src="../assets/amirPhoto.jpeg" />
               </v-list-item-title>
@@ -26,10 +26,10 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <v-card elevation="2" color="white">
           <v-card-title class="black--text">
-            <h3>Amir's Todo list</h3>
+            <h3>amir's Todo list</h3>
           </v-card-title>
           <form v-on:submit="addTodo">
             <v-row style="padding-left: 25px">
@@ -87,90 +87,130 @@
             </v-list-item-content>
           </v-list-item>
         </v-card>
+      </v-col> -->
+      <v-col cols="12">
+        <v-card color="white">
+          <v-card-title class="black--text">
+            <h3>amir's todos</h3>
+          </v-card-title>
+          <v-card-text>
+            <v-form>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" md="4">
+                    <v-text-field
+                      v-model="newtodo"
+                      dense
+                      light
+                      outlined
+                      label="To do"
+                      required
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col cols="12" md="2">
+                    <v-btn left class="primary" @click="onSubmit">
+                      Add Todo
+                    </v-btn>
+                    <div></div>
+                  </v-col>
+                  <v-col cols="12" md="4">
+                    <v-text-field
+                      v-model="search"
+                      dense
+                      light
+                      outlined
+                      append-icon="mdi-magnify"
+                      label="Search"
+                      single-line
+                      hide-details
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <!-- <div class="black--text" v-for="todo in list"
+        :key="todo.id" >
+        <v-card>
+            {{todo.title}} 
+        </v-card> 
+         </div> -->
+
+                <v-data-table
+                  :headers="headers"
+                  :items="alltodos"
+                  :search="search"
+                  :items-per-page="5"
+                  class="elevation-1 ml-4"
+                >
+                  <template v-slot:item.action="{ item }">
+                    <v-btn text color="primary">
+                      <v-icon small class="text--white" @click="onUpdate(item)">
+                        mdi-pencil
+                      </v-icon>
+                    </v-btn>
+                    <v-btn text color="error">
+                      <v-icon small @click="onDelete(item.id)">
+                        mdi-delete
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                </v-data-table>
+              </v-container>
+            </v-form>
+          </v-card-text>
+
+          <v-card-action> </v-card-action>
+          <v-spacer />
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
-Vue.use(Vuetify);
-
-export default Vue.extend({
-  name: "Amir's Todo list",
-
+<script>
+import { mapState } from "vuex";
+export default {
+  name: "Todos",
   data() {
-    return { todos: [{ id: "" }], todo: "" };
+    return {
+      headers: [
+        { id: "id", value: "id" },
+        { text: "title", value: "title" },
+        { text: "completed", value: "completed" },
+        { text: "Actions", value: "action", sortable: false },
+      ],
+      search: "",
+      newtodo: "",
+    };
   },
-  mounted() {
-    fetch("https://jsonplaceholder.typicode.com/users/1/todos")
-      .then((response) => response.json())
-      .then((json) => {
-        this.todos = json;
-      });
+
+  created() {
+    this.$store.dispatch("amir/fetchTodos");
+  },
+  computed: {
+    ...mapState({
+      alltodos: (state) => {
+        return state.amir.todos;
+      },
+    }),
   },
   methods: {
-    onChange(val: any, id: any, userId: any) {
-      fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-          id,
-          completed: val,
-          userId,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-      console.log(val, id, userId);
-      if (!val) {
-        // Custom checks in this
-        console.log("Unchecked");
-      } else {
-        console.log("Checked");
-      }
+    onSubmit(e) {
+      this.$store.dispatch("amir/addTodos", this.newtodo);
+      this.newtodo = "";
     },
-    addTodo(e: any) {
-      e.preventDefault(); // it prevent from page reload
-      console.log(e.target.todo.value);
-      fetch("https://jsonplaceholder.typicode.com/todos", {
-        method: "POST",
-        body: JSON.stringify({
-          title: e.target.todo.value,
-          completed: false,
-          userId: 1,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          //  let tds = [...this.todos];
-          //  tds.push(json)
-
-          this.todos.unshift(json);
-        })
-        .catch((err) => {
-          alert(err);
-        });
+    onDelete(id) {
+      this.$store.dispatch("amir/deleteTodo", id);
     },
-    deleteTodo(id: any) {
-      fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then(() => {
-          this.todos = this.todos.filter((todo) => todo.id != id);
-          console.log(`Todo with the id ${id} successfuly deleted!`);
-        });
+    onUpdate(todo) {
+      const updatedTodo = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed,
+      };
+      this.$store.dispatch("amir/updateTodo", updatedTodo);
     },
   },
-});
+};
+//    }
 </script>
 
-<style scoped></style>
