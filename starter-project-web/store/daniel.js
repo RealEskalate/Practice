@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   albums: []
 })
@@ -10,19 +8,19 @@ const getters = {
 
 const actions = {
   async fetchalbums ({ commit }) {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/albums')
+    const response = await this.$axios.get('https://jsonplaceholder.typicode.com/albums')
     commit('setalbums', response.data)
   },
   async addAlbum ({ commit }, title) {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/albums', title)
+    const response = await this.$axios.post('https://jsonplaceholder.typicode.com/albums', title)
     commit('newalbum', response.data)
   },
   async deletealbum ({ commit }, id) {
-    await axios.delete(`https://jsonplaceholder.typicode.com/albums/${id}`)
+    await this.$axios.delete(`https://jsonplaceholder.typicode.com/albums/${id}`)
     commit('removealbum', 'id')
   },
   async editAlbum ({ commit }, title) {
-    const response = await axios.put(`https://jsonplaceholder.typicode.com/albums/${title.id}`, title)
+    const response = await this.$axios.put(`https://jsonplaceholder.typicode.com/albums/${title.id}`, title)
     commit('editAlbum', response.data)
   }
 

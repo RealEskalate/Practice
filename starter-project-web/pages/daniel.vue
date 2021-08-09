@@ -2,7 +2,7 @@
   <v-container>
     <v-card
       justify="center"
-      max-width="400"
+      ms-width="400"
       color="white"
       outlined
       class="font-weight-light text-center mx-auto"
@@ -60,12 +60,6 @@
                 DELETE
               </v-btn>
             </v-list-item-action>
-          </v-list-item>
-        </v-list-group>
-      </v-list>
-    </v-card>
-  </v-container>
-</template>
           </v-list-item>
         </v-list-group>
       </v-list>
