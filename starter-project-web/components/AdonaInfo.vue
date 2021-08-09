@@ -1,18 +1,20 @@
 <template>
-<<<<<<< HEAD
   <v-card color="white" elevation="1">
+<<<<<<< HEAD
 =======
   <v-card color="white">
     <v-card-title class="black--text">
       <h2>Adona Tesfaye</h2>
     </v-card-title>
 >>>>>>> Add info page
+=======
+>>>>>>> Update Info page
     <v-container>
       <v-row no-gutters>
         <v-col cols="3">
           <v-list-item-title>
-<<<<<<< HEAD
             <img src="../assets/adona.jpg">
+<<<<<<< HEAD
 =======
             <v-img
               class="circle"
@@ -20,6 +22,8 @@
               src="https://picsum.photos/id/11/500/300"
             />
 >>>>>>> Add info page
+=======
+>>>>>>> Update Info page
           </v-list-item-title>
         </v-col>
 
@@ -27,7 +31,6 @@
           <v-list-item class="black--text">
             <v-list-item-content>
               <!-- <v-list-item-title> Adona Tesfaye </v-list-item-title> -->
-<<<<<<< HEAD
               <h2 class="name" color="purple">
                 Adona Tesaye
               </h2>
@@ -39,6 +42,7 @@
                 adipisicing elit. Consectetur, rem quisquam mollitia veritatis,
                 eum quas, modi est impedit eos labore earum laborum similique!
                 Aperiam similique, unde officia voluptatibus dolor magni.
+<<<<<<< HEAD
 =======
 
               <p>
@@ -54,6 +58,8 @@
                 aliquam! Praesentium ab accusamus numquam maxime similique rerum
                 excepturi! Aliquam sapiente dolor quis quibusdam. Non.
 >>>>>>> Add info page
+=======
+>>>>>>> Update Info page
               </p>
             </v-list-item-content>
           </v-list-item>
@@ -74,7 +80,6 @@ export default Vue.extend({
   display: flex;
   align-items: center;
 }
-<<<<<<< HEAD
 img {
   width: 250;
   height: 250px;
@@ -84,6 +89,9 @@ img {
 .name {
   margin: 1rem 0;
 }
+<<<<<<< HEAD
 =======
 >>>>>>> Add info page
+=======
+>>>>>>> Update Info page
 </style>

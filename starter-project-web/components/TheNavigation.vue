@@ -16,15 +16,7 @@
 export default {
   data () {
     return {
-<<<<<<< HEAD
-<<<<<<< HEAD
       title: 'Web Team Members Dashboard'
-=======
-      title: "Web Team Members Dashboard",
->>>>>>> fetch posts
-=======
-      title: 'Web Team Members Dashboard'
->>>>>>> Add info page
     }
   }
 }

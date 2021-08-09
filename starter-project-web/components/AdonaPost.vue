@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div>
 <<<<<<< HEAD
     <v-container class="black--text">
@@ -22,6 +21,7 @@
           </v-icon>
         </v-col>
       </v-row>
+<<<<<<< HEAD
       <v-divider class="grey lighten-3" />
     </v-container>
 =======
@@ -43,6 +43,8 @@
           </p>
         </v-list-item-content>
       </v-list-item>
+=======
+>>>>>>> Update Info page
       <v-divider class="grey lighten-3" />
     </v-container>
 <<<<<<< HEAD
@@ -60,7 +62,6 @@ export default Vue.extend({
   props: {
     // eslint-disable-next-line vue/require-default-prop
     post: Object
-<<<<<<< HEAD
   },
   methods: {
     removePost (id:number) {
@@ -77,8 +78,11 @@ export default Vue.extend({
   font-size: 20px !important;
 }
 </style>
+<<<<<<< HEAD
 =======
   }
 })
 </script>
 >>>>>>> fetch posts
+=======
+>>>>>>> Update Info page

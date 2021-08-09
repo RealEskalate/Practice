@@ -1,6 +1,9 @@
 <template>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Update Info page
   <div class="post-section">
     <div class="add-title">
       <h2>Add new Post</h2>
@@ -32,6 +35,7 @@
       <h2>Posts</h2>
       <AdonaPost v-for="post in allPosts" :key="post.id" :post="post" />
     </div>
+<<<<<<< HEAD
 =======
   <div>
     <v-card color="white">
@@ -65,16 +69,20 @@
 
     <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
 >>>>>>> Add info page
+=======
+>>>>>>> Update Info page
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-<<<<<<< HEAD
 import { mapGetters } from 'vuex'
+<<<<<<< HEAD
 =======
 import axios from 'axios'
 >>>>>>> fetch posts
+=======
+>>>>>>> Update Info page
 import AdonaPost from './AdonaPost.vue'
 export default Vue.extend({
   name: 'AdonaPosts',
@@ -83,7 +91,6 @@ export default Vue.extend({
   },
   data () {
     return {
-<<<<<<< HEAD
       title: '',
       body: ''
     }
@@ -125,6 +132,7 @@ export default Vue.extend({
 .posts{
   margin:  4rem 0;
 }
+<<<<<<< HEAD
 </style>
 =======
       posts: []
@@ -149,5 +157,7 @@ export default Vue.extend({
 .title {
   margin: 0 1rem;
 }
+=======
+>>>>>>> Update Info page
 </style>
 >>>>>>> Add info page
