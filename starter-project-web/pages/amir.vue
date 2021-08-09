@@ -8,9 +8,9 @@
           </v-card-title>
           <v-list-item class="black--text">
             <v-list-item-content>
-              <v-list-item-title> amir Mustefa </v-list-item-title>
+              <v-list-item-title> Amir Mustefa </v-list-item-title>
               <v-list-item-title>
-                <img width="200px" src="../assets/amirPhoto.jpeg" />
+                <img width="200px" src="../assets/amirPhoto.jpeg">
               </v-list-item-title>
               <v-list-item-title>
                 <span style="white-space: pre-line">
@@ -25,13 +25,12 @@
           </v-list-item>
         </v-card>
       </v-col>
-
-      <!-- <v-col cols="12">
+      <v-col cols="12">
         <v-card elevation="2" color="white">
           <v-card-title class="black--text">
-            <h3>amir's Todo list</h3>
+            <h3>Amir's Todo list</h3>
           </v-card-title>
-          <form v-on:submit="addTodo">
+          <form @submit="addTodo">
             <v-row style="padding-left: 25px">
               <v-col>
                 <v-text-field
@@ -213,4 +212,3 @@ export default {
 };
 //    }
 </script>
-
