@@ -27,3 +27,4 @@ const NoteSchema: Schema<INoteDocument>  = new mongoose.Schema({
 
 
 export default mongoose.model<INoteDocument>("Note", NoteSchema);
+    
