@@ -12,24 +12,30 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Minasie Alemu
   * Kaleb Mesfin
   * Daniel Araya
+  * Hanna Samuel
 * **Part-Time**
   * Bontu Fufa
   * Pearl Maron
   * Eyob Alemu
+  * Feysel Mubarek
+  * Michael Gashaw
+  * Mahlet Dereje
 
 ### Backend Team
 * **Full-Time**
   * Henok Adane
   * Kaleab Girma
+  * Natnael Awel
   * Selamawit Elias
 * **Part-Time**
   * Biruk Ayalew
   * Biruk Solomon
   * Eden Mesfin
+  * Elshadai Kassu
   * Dawit Yonas
+  * Kidus Yoseph
   * Riyad Hassen 
   * Taklemariam Alazar
-  * Kidus Yoseph
 
 ### Web Team
 * **Full-Time** 
