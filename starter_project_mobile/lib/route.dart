@@ -6,6 +6,7 @@ import 'package:starter_project_mobile/screens/home_page.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'package:starter_project_mobile/screens/bontu_page.dart';
+import 'package:start_project_mobile/screens/feysel_page.dart';
 
 import 'models/User.dart';
 
@@ -41,6 +42,11 @@ class PageRouter {
       case BontuPage.RouteName:
         return MaterialPageRoute(builder: (context) {
           return BontuPage();
+      
+      case FeyselPage.RouteName:
+        return MaterialPageRoute(builder: (context) {
+          return FeyselPage();
+          
         });
     }
   }
