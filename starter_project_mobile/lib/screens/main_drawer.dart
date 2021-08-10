@@ -7,7 +7,7 @@ import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'eyob_screen/eyob_page.dart';
 import 'package:starter_project_mobile/screens/bontu_page.dart';
-import 'package:start_project_mobile/screens/feysel_page.dart';
+import 'package:starter_project_mobile/screens/feysel_page.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -67,7 +67,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(FeyselPage.PageRoute);
+              Navigator.of(context).pushNamed(FeyselPage.RouteName);
             },
           ),
           ListTile(

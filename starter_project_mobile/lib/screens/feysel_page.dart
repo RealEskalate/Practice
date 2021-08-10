@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:start_project_mobile/bloc/feysel/count_bloc.dart';
+import 'package:starter_project_mobile/bloc/feysel/count_bloc.dart';
 
 class FeyselPage extends StatelessWidget {
   static const RouteName = "/feysel";
