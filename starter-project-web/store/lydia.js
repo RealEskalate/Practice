@@ -21,7 +21,7 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts ({ commit }) {
-    const response = await this.$axios.get('http://jsonplaceholder.typicode.com/posts?userId=1')
+    const response = await this.$axios.get('https://jsonplaceholder.typicode.com/posts?userId=1')
     commit('setPosts', response.data)
   },
   async addPost ({ commit }, content) {
@@ -30,15 +30,15 @@ export const actions = {
       title: 'My new post title',
       body: content
     }
-    const response = await this.$axios.post('http://jsonplaceholder.typicode.com/posts/', post)
+    const response = await this.$axios.post('https://jsonplaceholder.typicode.com/posts/', post)
     commit('addPost', response.data)
   },
   async editPost ({ commit }, post) {
-    const response = await this.$axios.put(`http://jsonplaceholder.typicode.com/posts/${post.id}`, post)
+    const response = await this.$axios.put(`https://jsonplaceholder.typicode.com/posts/${post.id}`, post)
     commit('editPost', response.data)
   },
   async deletePost ({ commit }, id) {
-    await this.$axios.delete(`http://jsonplaceholder.typicode.com/posts/${id}`)
+    await this.$axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
     commit('deletePost', id)
   }
 }
