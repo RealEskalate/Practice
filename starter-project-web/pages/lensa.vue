@@ -11,7 +11,6 @@
             <v-text-field
               v-model="newtitle"
               light
-
               :rules="rules"
               label="Title"
               required
@@ -67,64 +66,63 @@
 </template>
 
 <script>
-
-import { mapMutations, mapGetters, mapActions } from 'vuex'
-import LensaInfo from '@/components/LensaInfo.vue'
+import { mapMutations, mapGetters, mapActions } from "vuex";
+import LensaInfo from "@/components/LensaInfo.vue";
 export default {
   components: {
     LensaInfo
   },
   data: () => ({
-    newtitle: '',
-    newbody: '',
+    newtitle: "",
+    newbody: "",
     rules: [
-      value => !!value || 'Required.',
-      value => (value && value.length >= 3) || 'Min 3 characters'
+      value => !!value || "Required.",
+      value => (value && value.length >= 3) || "Min 3 characters"
     ]
   }),
 
   computed: {
-    ...mapGetters('lensa', ['allPosts'])
+    ...mapGetters("lensa", ["allPosts"])
   },
 
-  created () {
-    this.$store.dispatch('lensa/fetchPosts')
+  created() {
+    this.$store.dispatch("lensa/fetchPosts");
   },
 
   methods: {
-    ...mapActions('lensa', [
-      'fetchPosts',
-      'addPost',
-      'deletePost',
-      'updatePost'
+    ...mapActions("lensa", [
+      "fetchPosts",
+      "addPost",
+      "deletePost",
+      "updatePost"
     ]),
-    ...mapMutations('lensa', [
-      'setPosts',
-      'newPost',
-      'removePost',
-      'updatePost'
+    ...mapMutations("lensa", [
+      "setPosts",
+      "newPost",
+      "removePost",
+      "updatePost"
     ]),
 
-    addPost () {
-      this.$store.dispatch('lensa/addPost', {
+    addPost() {
+      this.$store.dispatch("lensa/addPost", {
         title: this.newtitle,
         body: this.newbody
-      })
+      });
     },
-    deletePost (id) {
-      this.$store.dispatch('lensa/deletePost', id)
+    deletePost(id) {
+      this.$store.dispatch("lensa/deletePost", id);
     },
-    onDblClick (post) {
+    onDblClick(post) {
       const updPost = {
         id: post.id,
         title: post.title,
         body: post.body
-      }
+      };
 
-      this.$store.dispatch('lensa/updatePost', updPost)
+      this.$store.dispatch("lensa/updatePost", updPost);
     }
   }
-}
+};
 </script>
 
 <style scoped></style>
