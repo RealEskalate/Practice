@@ -18,14 +18,32 @@
                   Sinkumen Aseffa
                 </h1>
               </v-list-item-title>
-              <v-list-item-title>
-                <img style="border-radius:7px" width="200px" src="../assets/sinkumen.jpg">
-              </v-list-item-title>
-              <v-list-item-title style="padding:10px">
-                <span style="white-space: pre-line">
-                  My name is <b>Sinkumen Aseffa</b>, a 5th year software engineer student at Addis ababa university, self thought graphics designer and tech enthusiast with 5 years experience in graphics design currently working on front end web development and android application development and Learning backend to add it to my skill set to meet my passion of solving problems existing in my community. and currently i'm seeking for full time jobs in top-tech companies.
-                </span>
-              </v-list-item-title>
+              <v-row>
+                <v-col cols="4" style="padding-left:45px">
+                  <v-list-item-title>
+                    <img
+                      style="border-radius:7px"
+                      width="200px"
+                      src="../assets/sinkumen.jpg"
+                    />
+                  </v-list-item-title>
+                </v-col>
+                <v-col cols="8">
+                  <v-list-item-title>
+                    <span style="white-space: pre-line">
+                      My name is <b>Sinkumen Aseffa</b>, a 5th year software
+                      engineer student at Addis ababa university, self thought
+                      graphics designer and tech enthusiast with 5 years
+                      experience in graphics design currently working on front
+                      end web development and android application development
+                      and Learning backend to add it to my skill set to meet my
+                      passion of solving problems existing in my community. and
+                      currently i'm seeking for full time jobs in top-tech
+                      companies.
+                    </span>
+                  </v-list-item-title>
+                </v-col>
+              </v-row>
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -50,11 +68,9 @@
                 />
               </v-col>
               <v-col>
-                <v-card-action>
-                  <v-btn type="submit">
-                    Add Todo
-                  </v-btn>
-                </v-card-action>
+                <v-btn type="submit">
+                  Add Todo
+                </v-btn>
               </v-col>
             </v-row>
           </form>
@@ -63,11 +79,22 @@
 
           <v-list-item>
             <v-list-item-content style="padding:10px">
-              <v-card v-for="item in todos" :key="item.id" elevation="2" color="white">
+              <v-card
+                v-for="item in getTodos"
+                :key="item.id"
+                elevation="2"
+                color="white"
+              >
                 <v-card-title>
                   <v-row>
                     <v-col cols="1">
-                      <v-checkbox v-model="item.completed" light @change="onChange($event, item.id ,item.userId)" />
+                      <v-checkbox
+                        v-on:input="item.completed"
+                        light
+                        @change="
+                          onChange($event, item.title, item.id, item.userId)
+                        "
+                      />
                     </v-col>
                     <v-col cols="10" class="black--text">
                       <h4 style="text-transform: capitalize">
@@ -91,82 +118,51 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import Vue from "vue";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
+import { mapGetters } from "vuex";
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
 export default Vue.extend({
-  name: "Sinkumen's Todo list",
+  name: "Todos",
 
-  data () {
-    return { todos: [{ id: '' }], todo: '' }
+  data() {
+    return { todos: [{ id: "" }], todo: "" };
   },
-  mounted () {
-    fetch('https://jsonplaceholder.typicode.com/users/1/todos')
-      .then(response => response.json())
-      .then((json) => { this.todos = json })
+  computed: {
+    ...mapGetters("sinkumen", ["getTodos"])
+  },
+
+  created() {
+    let res = this.$store.dispatch("sinkumen/fetchTodos");
   },
   methods: {
-    onChange (val: any, id: any, userId: any) {
-      fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          id,
-          completed: val,
-          userId
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-        .then(response => response.json())
-        .then(json => console.log(json))
-      console.log(val, id, userId)
-      if (!val) { // Custom checks in this
-        console.log('Unchecked')
+    onChange(val: any, title: any, id: any, userId: any) {
+      const updatedTodo = {
+        id,
+        title,
+        completed: val,
+        userId
+      };
+      this.$store.dispatch("sinkumen/updateTodo", updatedTodo);
+      if (!val) {
+        // Custom checks in this
+        console.log("Unchecked");
       } else {
-        console.log('Checked')
+        console.log("Checked");
       }
     },
-    addTodo (e:any) {
-      e.preventDefault() // it prevent from page reload
-      console.log(e.target.todo.value)
-      fetch('https://jsonplaceholder.typicode.com/todos', {
-        method: 'POST',
-        body: JSON.stringify({
-          title: e.target.todo.value,
-          completed: false,
-          userId: 1
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8'
-        }
-      })
-        .then(response => response.json())
-        .then((json) => {
-        //  let tds = [...this.todos];
-        //  tds.push(json)
-
-          this.todos.unshift(json)
-        }).catch((err) => {
-          alert(err)
-        })
+    addTodo(e: any) {
+      e.preventDefault();
+      this.$store.dispatch("sinkumen/addTodos", e.target.todo.value);
     },
-    deleteTodo (id:any) {
-      fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-        method: 'DELETE'
-      })
-        .then(response => response.json())
-        .then(() => {
-          this.todos = this.todos.filter(todo => todo.id !== id)
-          console.log(`Todo with the id ${id} successfuly deleted!`)
-        })
+    deleteTodo(id: any) {
+      this.$store.dispatch("sinkumen/deleteTodo", id);
     }
-
   }
-})
+});
 </script>
 
 <style scoped></style>
