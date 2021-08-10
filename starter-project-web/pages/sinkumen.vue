@@ -19,7 +19,7 @@
                 </h1>
               </v-list-item-title>
               <v-row>
-                <v-col cols="4" style="padding-left:45px">
+                <v-col cols="3" style="padding-left:45px;">
                   <v-list-item-title>
                     <img
                       style="border-radius:7px"
@@ -28,7 +28,7 @@
                     />
                   </v-list-item-title>
                 </v-col>
-                <v-col cols="8">
+                <v-col>
                   <v-list-item-title>
                     <span style="white-space: pre-line">
                       My name is <b>Sinkumen Aseffa</b>, a 5th year software
