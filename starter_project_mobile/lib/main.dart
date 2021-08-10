@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:start_project_mobile/bloc/feysel/count_bloc.dart';
 import 'package:start_project_mobile/route.dart';
 
 import 'bloc/like_bloc.dart';
 
 void main() {
-  runApp(BlocProvider(
-    lazy: false,
-    create: (context) => LikeBloc(false),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
+      BlocProvider(lazy: false, create: (context) => CountBloc(0)),
+    ],
     child: MyApp(),
   ));
 }
