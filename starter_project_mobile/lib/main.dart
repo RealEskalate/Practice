@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project_mobile/bloc/counter_bloc/counter_bloc.dart';
 import 'package:starter_project_mobile/bloc/fav_bloc.dart';
+import 'package:starter_project_mobile/bloc/michael_bloc/coin_bloc.dart';
 import 'package:starter_project_mobile/bloc/theme_bloc.dart';
 import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 import 'package:starter_project_mobile/route.dart';
@@ -18,6 +19,7 @@ void main() {
       BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
       BlocProvider(lazy: false, create: (context) => ThemeBloc()),
       BlocProvider(lazy: false, create: (context) => CounterBloc()),
+      BlocProvider(lazy: false, create: (context) => CoinBloc(0)),
       BlocProvider<LikeBlocDani>(
         lazy: false,
         create: (context) => LikeBlocDani(false),
