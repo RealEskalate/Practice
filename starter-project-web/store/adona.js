@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   posts: []
 })
@@ -14,15 +12,15 @@ export const mutations = {
 }
 export const actions = {
   async fetchPosts ({ commit }) {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const response = await this.$axios.get('https://jsonplaceholder.typicode.com/posts')
     commit('setPosts', response.data)
   },
   async addPost ({ commit }, { title, body }) {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', { title, body })
+    const response = await this.$axios.post('https://jsonplaceholder.typicode.com/posts', { title, body })
     commit('addPost', response.data)
   },
   async deletePost ({ commit }, id) {
-    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    await this.$axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
     commit('removePost', id)
   }
 }
