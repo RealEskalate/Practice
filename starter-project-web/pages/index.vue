@@ -28,9 +28,9 @@
 
 <script lang='ts'>
 // Add decorator to help the development
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from "nuxt-property-decorator";
 @Component({
-  components: {}
+  components: {},
 })
 export default class IndexPage extends Vue {
   public members: Array<object> = [

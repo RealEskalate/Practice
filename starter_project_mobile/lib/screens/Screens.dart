@@ -6,3 +6,4 @@ export 'hanna_page.dart';
 export 'home_page.dart';
 export 'main_drawer.dart';
 export 'michael_page.dart';
+export 'feysel_page.dart';
