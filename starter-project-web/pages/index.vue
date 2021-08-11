@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <v-row
       v-for="member in members"
       :key="member.name"
@@ -20,7 +19,6 @@
 
           <v-card-subtitle class="black--text">
             {{ member.description }}
-
           </v-card-subtitle>
         </v-card>
       </v-col>
@@ -28,12 +26,11 @@
   </v-container>
 </template>
 
-
 <script lang='ts'>
 // Add decorator to help the development
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from "nuxt-property-decorator";
 @Component({
-  components: {}
+  components: {},
 })
 export default class IndexPage extends Vue {
   public members: Array<object> = [
@@ -49,10 +46,8 @@ export default class IndexPage extends Vue {
     { name: 'Meti Adane', description: 'Part-Time', link: '/meti' },
     { name: 'Rebbeca Samuel', description: 'Part-Time', link: '/rebecca' },
     { name: 'Sinkumen Assefa', description: 'Part-Time', link: '/sinkumen' }
-
   ];
 }
-
 </script>
 
 <style scoped></style>

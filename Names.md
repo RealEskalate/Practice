@@ -25,15 +25,17 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Henok Adane
   * Kaleab Girma
+  * Natnael Awel
   * Selamawit Elias
 * **Part-Time**
   * Biruk Ayalew
   * Biruk Solomon
   * Eden Mesfin
+  * Elshadai Kassu
   * Dawit Yonas
+  * Kidus Yoseph
   * Riyad Hassen 
   * Taklemariam Alazar
-  * Kidus Yoseph
 
 ### Web Team
 * **Full-Time** 
