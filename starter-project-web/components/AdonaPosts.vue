@@ -1,9 +1,4 @@
 <template>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Update Info page
   <div class="post-section">
     <div class="add-title">
       <h2>Add new Post</h2>
@@ -35,54 +30,12 @@
       <h2>Posts</h2>
       <AdonaPost v-for="post in allPosts" :key="post.id" :post="post" />
     </div>
-<<<<<<< HEAD
-=======
-  <div>
-    <v-card color="white">
-      <v-card-title class="black--text">
-        <h3>Adona's Posts</h3>
-      </v-card-title>
-      <v-card-action>
-        <v-btn left> Add Post </v-btn>
-      </v-card-action>
-      <v-spacer />
-      <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
-    </v-card>
->>>>>>> fetch posts
-=======
-  <div class="posts">
-    <v-row>
-      <v-col cols="10">
-        <v-card-title class="title black--text">
-          <h3>Adona's Posts</h3>
-        </v-card-title>
-      </v-col>
-      <v-col cols="2">
-        <v-card-action>
-          <v-btn left>
-            Add Post
-          </v-btn>
-        </v-card-action>
-      </v-col>
-      <v-spacer />
-    </v-row>
-
-    <AdonaPost v-for="post in posts" :key="post.id" :post="post" />
->>>>>>> Add info page
-=======
->>>>>>> Update Info page
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-<<<<<<< HEAD
-=======
-import axios from 'axios'
->>>>>>> fetch posts
-=======
->>>>>>> Update Info page
 import AdonaPost from './AdonaPost.vue'
 export default Vue.extend({
   name: 'AdonaPosts',
@@ -100,10 +53,6 @@ export default Vue.extend({
   },
   created () {
     this.$store.dispatch('adona/fetchPosts')
-    // const response = await axios.get(
-    //   'http://jsonplaceholder.typicode.com/posts'
-    // )
-    // this.posts = response.data
   },
   methods: {
     addPost (e: { preventDefault: () => void; }) {
@@ -132,32 +81,4 @@ export default Vue.extend({
 .posts{
   margin:  4rem 0;
 }
-<<<<<<< HEAD
 </style>
-=======
-      posts: []
-    }
-  },
-  async created () {
-    const response = await axios.get(
-      'http://jsonplaceholder.typicode.com/posts'
-    )
-    this.posts = response.data
-  }
-})
-</script>
-<<<<<<< HEAD
->>>>>>> fetch posts
-=======
-<style scoped>
-.posts {
-  max-width: 85% !important;
-  margin: 3rem auto;
-}
-.title {
-  margin: 0 1rem;
-}
-=======
->>>>>>> Update Info page
-</style>
->>>>>>> Add info page

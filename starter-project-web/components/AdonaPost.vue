@@ -1,6 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
     <v-container class="black--text">
       <v-row>
         <v-col cols="10">
@@ -21,37 +20,8 @@
           </v-icon>
         </v-col>
       </v-row>
-<<<<<<< HEAD
       <v-divider class="grey lighten-3" />
     </v-container>
-=======
-       <v-pagination
-      v-model="page"
-      :length="6"
-    >
-=======
-  <div >
->>>>>>> Add info page
-    <v-container class="black--text">
-      <v-list-item two-line>
-        <v-list-item-content>
-          <v-list-item-title class="black--text">
-            {{ post.title }}
-          </v-list-item-title>
-          <p class="grey--text text--lighten -2">
-            {{ post.body }}
-          </p>
-        </v-list-item-content>
-      </v-list-item>
-=======
->>>>>>> Update Info page
-      <v-divider class="grey lighten-3" />
-    </v-container>
-<<<<<<< HEAD
-    </v-pagination>
->>>>>>> fetch posts
-=======
->>>>>>> Add info page
   </div>
 </template>
 
@@ -78,11 +48,3 @@ export default Vue.extend({
   font-size: 20px !important;
 }
 </style>
-<<<<<<< HEAD
-=======
-  }
-})
-</script>
->>>>>>> fetch posts
-=======
->>>>>>> Update Info page
