@@ -7,6 +7,7 @@ import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'eyob_screen/eyob_page.dart';
 import 'package:starter_project_mobile/screens/bontu_page.dart';
+import 'package:starter_project_mobile/screens/michael_page.dart';
 import 'package:starter_project_mobile/screens/feysel_page.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -130,6 +131,18 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushNamed(BontuPage.RouteName);
+              }),
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Michael",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(MichaelPage.PageRoute);
               }),
         ],
       ),
