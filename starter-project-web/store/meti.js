@@ -1,4 +1,3 @@
-import axios from 'axios';
 export const state = () =>({
     allPosts : [
         
@@ -19,14 +18,13 @@ export const getters = {
 export const actions = {
 
     async fetchTodos({ commit }) {
-		const res = await axios.get(
+		const res = await this.$axios.get(
 			"https://jsonplaceholder.typicode.com/todos"
 		);
-        console.log("Fetch called")
 		commit("setPosts", res.data);
 	},
     async addPost ({ commit }, title) {
-        const res = await axios.post("https://jsonplaceholder.typicode.com/todos", {
+        const res = await this.$axios.post("https://jsonplaceholder.typicode.com/todos", {
             title : title, 
             completed : false
         });
@@ -35,7 +33,7 @@ export const actions = {
     }, 
 
     async deletePost ({ commit }, id){
-        await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        await this.$axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
 
         commit('removePost', id)
     },
@@ -49,7 +47,6 @@ export const actions = {
 export const mutations = {
     setPosts: (state, newPosts) => {
         (state.allPosts = newPosts)
-        console.log("set state mutation called")
     }
         ,
     addNewPost: (state, newPost) => state.allPosts.unshift(newPost),
