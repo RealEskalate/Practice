@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:starter_project_mobile/screens/Screens.dart';
 import 'package:starter_project_mobile/screens/kaleb_page.dart';
+import 'package:starter_project_mobile/screens/mahlet_page.dart';
 import 'package:starter_project_mobile/screens/minasie_page.dart';
 import 'eyob_screen/eyob_page.dart';
+import 'package:starter_project_mobile/screens/bontu_page.dart';
+import 'package:starter_project_mobile/screens/michael_page.dart';
+import 'package:starter_project_mobile/screens/feysel_page.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -29,6 +33,7 @@ class MainDrawer extends StatelessWidget {
            * to add your name to the drawer you can use the same
            * pattern as follows
            */
+
           ListTile(
               leading: Icon(Icons.person),
               title: Text(
@@ -56,6 +61,19 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text(
+              "Feysel",
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 16.0,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed(FeyselPage.RouteName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text(
               "Eyob",
               style: TextStyle(
                 color: Colors.blueAccent,
@@ -78,7 +96,19 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).pushNamed(MinasiePage.RouteName);
               }),
-                        ListTile(
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Mahlet",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(MahletPage.RouteName);
+              }),
+          ListTile(
               leading: Icon(Icons.person),
               title: Text(
                 "Hanna",
@@ -89,6 +119,30 @@ class MainDrawer extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).pushNamed(HannaPage.RouteName);
+              }),
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Bontu",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(BontuPage.RouteName);
+              }),
+          ListTile(
+              leading: Icon(Icons.person),
+              title: Text(
+                "Michael",
+                style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(MichaelPage.PageRoute);
               }),
         ],
       ),
