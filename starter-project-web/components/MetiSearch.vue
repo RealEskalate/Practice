@@ -16,9 +16,9 @@
                 ></v-text-field>
               </v-col>
               <v-col>
-                <v-card-action>
+                <v-card-actions>
                   <v-btn type="submit" class="btn-submit"> Search todo </v-btn>
-                </v-card-action>
+                </v-card-actions>
               </v-col>
             </v-row>
           </form>
@@ -40,35 +40,23 @@ export default {
     },
     computed : {
        
-    },
-    methods :{
        ...mapActions('meti', ['searchP'] ),
        ...mapGetters('meti', ['allPosts']),
+    },
+    methods :{
       searchForPost(){
-        console.log(this.searchKey)
-
-        for (post in this.allPosts){
-          console.log(post.title)
-          break
-        }
-        console.log("************************************")
-
-        this.searchP(this.searchKey)
-        for (post in this.allPosts){
-          console.log(post.title)
-          break
-        }
         if (this.searchKey !== ''){
-          
-        
+          this.$store.dispatch("meti/searchForPost",this.searchKey)        
         }
       }
     }
 }
 </script>
 
-<style lang="stylus" scoped>
-
+<style scoped>
+.btn-submit{
+  background: #861388 !important;
+}
 </style>
 
 

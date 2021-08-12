@@ -13,18 +13,14 @@
           <v-card-title class="mx-auto text-center black--text">
              
             <v-list-item>
-                <img width="200px" src="../assets/meti.jpg" />
+                <img width="200px" src="@/assets/meti.jpg" />
               </v-list-item>
-              <v-list-item-subtitle>
-              <p class="blogger-name">
-              {{ blogger.name }}
+              <v-list-item-subtitle class="blogger-name">
+              {{ bloggerInfo.name }}
                
-            </p>
             </v-list-item-subtitle>
-              <v-list-item-subtitle>
-              <p class="blogger-desc text-sucess">
-              {{ blogger.description }}
-            </p>
+              <v-list-item-subtitle class="blogger-desc text-sucess">
+              {{ bloggerInfo.description }}
             </v-list-item-subtitle>
             
             
@@ -46,13 +42,10 @@ export default {
       }
     },
     computed : {
-        ...mapState('meti',['blogger'])
-    },
-    methods :{
-      
+        ...mapGetters('meti',['bloggerInfo'])
     },
     created() {
-		  mapState('meti',['blogger'])
+		  this.$store.state.blogger
 	},
 }
 </script>
@@ -70,8 +63,5 @@ export default {
   font-weight: 40px;
   font-size: 20px;
 
-}
-.hey{
-  color: green;
 }
 </style>

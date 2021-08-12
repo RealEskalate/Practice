@@ -1,6 +1,6 @@
 <template>
     <v-container class="black--text">
-    <h3 class="hey">All Blogs </h3>
+    <h3 class="title green--text">All Blogs </h3>
     
     <v-row
       no-gutters
@@ -12,7 +12,7 @@
       <v-col 
       
       v-for="post in allPosts"
-      :key="post.userId"
+      :key="post.id"
       cols="12"
       
       >
@@ -22,7 +22,7 @@
               {{ post.title }}
                
             </p>
-            <v-btn v-on:click = "del(post.id)" class="del-btn padding-right: 5px; float:right; position:absolute; top:10px; right:10px;"> X </v-btn>
+            <v-btn v-on:click = "del(post.id)" class="del-btn padding-right: 5px; float:right; position:absolute; top:10px; right:10px;"><v-icon class="red--text">mdi-delete</v-icon></v-btn>
           </v-card-title>
         </v-card>
       </v-col>
@@ -30,28 +30,29 @@
   </v-container>
 </template>
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapGetters, mapActions} from 'vuex';
 
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
 export default {
-    name:'blogs',
+    name:'Blogs',
     data() {
       return {
         title : '',
       }
     },
     computed : {
-        ...mapState('meti',['allPosts'])
+      ...mapGetters("meti", ["allPosts"])
     },
     methods :{
-      ...mapActions('meti', ['deletePost']),
-      ...mapActions('meti', ['fetchTodos']),
       del : function(id) {
-        console.log("delete pressed", id);
-			  this.deletePost(id);
+        this.$store.dispatch("meti/deletePost", id);
+        this.title = '';
       }
+      
     },
     created() {
-		  this.fetchTodos();
+      this.$store.dispatch("meti/fetchTodos")
 	},
 }
 </script>
@@ -62,9 +63,7 @@ export default {
   position: absolute;
   top:5px;
   right:10px;
+  background-color: rgb(255, 255, 255) !important;
 
-}
-.hey{
-  color: green;
 }
 </style>

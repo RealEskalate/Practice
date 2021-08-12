@@ -1,6 +1,6 @@
 <template>
     <v-container class="black--text">
-    <form @submit.prevent="addThis">
+    <form @submit.prevent="addNewPost">
             <v-row style="margin:auto; justify-content:center; text:center; padding: 20px">
               <v-col>
                 <v-text-field
@@ -14,18 +14,16 @@
                 ></v-text-field>
               </v-col>
               <v-col>
-                <v-card-action>
+                <v-card-actions>
                   <v-btn type="submit" class="btn-submit"> Add Todo </v-btn>
-                </v-card-action>
+                </v-card-actions>
               </v-col>
             </v-row>
           </form>
   </v-container>
 </template>
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import Vue from 'vue';
-import Vuetify from "vuetify";
+import { mapActions} from 'vuex';
 import "vuetify/dist/vuetify.min.css";
 export default {
     name:'AddPost',
@@ -35,15 +33,12 @@ export default {
       }
     },
     computed : {
-        ...mapState('meti',['allPosts'])
+        ...mapActions('meti',['addPost']),
     },
     methods :{
-        ...mapActions('meti',['addPost']),
-      addThis(){
-          console.log(this.title)
-          this.addPost(this.title)
-          this.title = ''
-          
+      addNewPost(){
+          this.$store.dispatch("meti/addPost", this.title)
+          this.title = ''          
       }
     }
 }
@@ -51,7 +46,7 @@ export default {
 
 <style scoped>
 .btn-submit{
-    background: crimson !important;
+    background: #861388 !important;
     font-weight: 50px;
     padding: 10px;
 }

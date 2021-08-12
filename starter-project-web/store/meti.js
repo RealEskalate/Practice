@@ -1,10 +1,12 @@
 import axios from 'axios';
 export const state = () =>({
-    allPosts : [],
+    allPosts : [
+        
+    ],
     blogger : {
         name : "Meti Adane",
         description : "An aspiring third year software engineering student",
-        img : '../assets/meti.jpg',
+        img : '@/assets/meti.jpg',
         stars : '6'
     }
 });
@@ -20,7 +22,7 @@ export const actions = {
 		const res = await axios.get(
 			"https://jsonplaceholder.typicode.com/todos"
 		);
-            console.log(res.data)
+        console.log("Fetch called")
 		commit("setPosts", res.data);
 	},
     async addPost ({ commit }, title) {
@@ -38,7 +40,7 @@ export const actions = {
         commit('removePost', id)
     },
 
-    searchP ({ commit }, searchTerm){
+    searchForPost ({ commit }, searchTerm){
         commit('searchPost', searchTerm.toLowerCase())
     }
 
@@ -47,6 +49,7 @@ export const actions = {
 export const mutations = {
     setPosts: (state, newPosts) => {
         (state.allPosts = newPosts)
+        console.log("set state mutation called")
     }
         ,
     addNewPost: (state, newPost) => state.allPosts.unshift(newPost),

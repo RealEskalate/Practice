@@ -4,17 +4,18 @@
           <Search />
           <Header />
           <AddPost />
-          <blogs />
+          <Blogs />
+
       </v-row>
   </v-container>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
-import Header from '../components/MetiHeader';
-import blogs from '../components/MetiBlogs';
-import AddPost from '../components/MetiAddPost';
-import Search from '../components/MetiSearch';
+import Header from '@/components/MetiHeader.vue';
+import Blogs from '@/components/MetiBlogs.vue';
+import AddPost from '@/components/MetiAddPost.vue';
+import Search from '@/components/MetiSearch.vue';
 
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
@@ -23,7 +24,7 @@ export default {
     name:'meti',
     components : {
         Header, 
-        blogs,
+        Blogs,
         AddPost, 
         Search
     }
