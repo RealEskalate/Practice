@@ -34,3 +34,10 @@ describe("Tasks", () => {
         expect(newTask?.isComplete).toEqual(new_object.isComplete);
     });
 });
+
+describe("Test getTaskById path", () => {
+    test("should respond 200 if id is provided", async () => {
+      const response = await request(app).get("/api/tasks/:id");
+      expect(response.statusCode).toBe(200);
+    });
+});

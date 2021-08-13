@@ -2,7 +2,7 @@ import app from "./app"
 import mongoose from 'mongoose';
 
 const PORT = process.env.PORT || 8000
-const DB_URI = process.env.MONGO_URI || "mongodb://localhost:27017/test";
+const DB_URI = process.env.MONGO_URI || "";
 
 // @ts-ignore
 mongoose.connect(DB_URI, {
