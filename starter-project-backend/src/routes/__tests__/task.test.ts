@@ -33,4 +33,12 @@ describe("Tasks", () => {
         expect(newTask?.title).toEqual(new_object.title);
         expect(newTask?.isComplete).toEqual(new_object.isComplete);
     });
+
+    it("returns status code 200 if completed tasks are found", async () => {
+        expect.assertions(1);
+        const res = await agent.get('/api/tasks/Completed-Tasks');
+        
+        expect(res.statusCode).toEqual(200);
+    });
+
 });
