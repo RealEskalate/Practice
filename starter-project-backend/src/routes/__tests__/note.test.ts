@@ -38,3 +38,22 @@ describe("Note", () => {
   });
 
 });
+
+describe("Note", () => {
+  it("update note by id", async () => {
+      expect.assertions(3);
+      const sampleNote = new Note({
+          title: "Sample Title",
+          detail: "Sample detail"
+      });
+      const data = await sampleNote.save();
+
+      const new_object = {title: "Improved Title", detail: "Improved detail"}
+      const res = await agent.put(`/api/notes/${data._id}`).send(new_object);
+          
+      const newNote = res.body?.data;
+      expect(res.statusCode).toEqual(201);
+      expect(newNote?.title).toEqual(new_object.title);
+      expect(newNote?.detail).toEqual(new_object.detail);
+  });
+});
