@@ -34,3 +34,21 @@ describe("Tasks", () => {
         expect(newTask?.isComplete).toEqual(new_object.isComplete);
     });
 });
+
+
+describe("Test getTaskById path", () => {
+    it("should respond 200 if id is provided", async () => {
+        
+      const testTask= new Task({
+          title:"TestTask",
+          isComplete:false
+      });
+      const data= await testTask.save();
+      const response = await request(app).get(`/api/tasks/${data._id}`);
+      const getTask= response.body;
+      expect(response.statusCode).toBe(200);
+      expect(getTask.title).toEqual(testTask.title);
+      expect(getTask.isComplete).toEqual(testTask.isComplete);
+
+    });
+});

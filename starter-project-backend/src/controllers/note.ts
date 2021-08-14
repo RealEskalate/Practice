@@ -69,7 +69,7 @@ export const putNote = async (req: Request, res: Response) => {
             detail
         };
 
-        const note = await models.Task.findOneAndUpdate({ _id: id }, noteObj,
+        const note = await models.Note.findOneAndUpdate({ _id: id }, noteObj,
             {
                 upsert: true,
                 new: true,

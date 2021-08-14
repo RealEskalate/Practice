@@ -8,6 +8,7 @@ import {
   deleteTask,
   searchTasks,
   getAllTasks,
+  getTaskById,
 } from "../controllers/task";
 
 const router = express.Router();
@@ -15,6 +16,8 @@ const router = express.Router();
 router.get("/count", getFirstLTasks);
 
 router.get("/", getAllTasks);
+
+router.get("/:id",getTaskById);
 
 router.get("/Completed-Tasks", getCompletedTasks);
 

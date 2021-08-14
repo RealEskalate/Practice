@@ -12,6 +12,16 @@ export const getAllTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const getTaskById =  async(req:Request,res:Response) =>{
+    try{
+        const oneTask : ITask | null = await models.Task.findById(req.params.id);
+        return res.status(200).json(oneTask);
+    }catch(e){
+        console.error(e);
+        res.status(404).end();
+    }
+}
+
 export const getFirstLTasks = async (req: Request, res: Response) => {
     try {
         const limit = req.query.count
