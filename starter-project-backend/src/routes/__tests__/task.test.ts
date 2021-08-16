@@ -34,6 +34,11 @@ describe("Tasks", () => {
         expect(newTask?.isComplete).toEqual(new_object.isComplete);
     });
 
+    
+
+});
+
+describe("Test getCompletedTasks", () => {
     it("returns status code 200 if completed tasks are found", async () => {
         expect.assertions(1);
         const res = await agent.get('/api/tasks/Completed-Tasks');
@@ -42,7 +47,6 @@ describe("Tasks", () => {
     });
 
 });
-
 
 describe("Test getTaskById path", () => {
     it("should respond 200 if id is provided", async () => {
