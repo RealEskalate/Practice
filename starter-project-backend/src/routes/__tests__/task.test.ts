@@ -60,3 +60,26 @@ describe("Test getTaskById path", () => {
 
     });
 });
+
+describe("Tasks", () => {
+    it("get all tasks", async () => {
+        expect.assertions(2);
+        const newTask1 = new Task({
+            title: "Sample Title",
+            isComplete: false
+        });
+        const newTask2 = new Task({
+            title: "2nd Sample Title",
+            isComplete: false
+        });
+        const data1 = await newTask1.save();
+        const data2 = await newTask2.save();
+
+        const res = await agent.get(`/api/tasks/`)
+        const savedTasks = res.body;
+        
+        expect(res.statusCode).toEqual(200);
+        expect(savedTasks.length).toEqual(2);
+    });
+    
+});
