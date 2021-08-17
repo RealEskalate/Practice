@@ -43,10 +43,11 @@ class PageRouter {
       case BontuPage.RouteName:
         return MaterialPageRoute(builder: (context) {
           return BontuPage();
-        });      
+        });
       case MichaelPage.PageRoute:
         return MaterialPageRoute(builder: (context) {
           return MichaelPage();
+        });
 
       case FeyselPage.RouteName:
         return MaterialPageRoute(builder: (context) {

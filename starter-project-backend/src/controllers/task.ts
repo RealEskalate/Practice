@@ -12,6 +12,16 @@ export const getAllTasks = async (req: Request, res: Response) => {
     }
 }
 
+export const getTaskById =  async(req:Request,res:Response) =>{
+    try{
+        const oneTask : ITask | null = await models.Task.findById(req.params.id);
+        return res.status(200).json(oneTask);
+    }catch(e){
+        console.error(e);
+        res.status(404).end();
+    }
+}
+
 export const getFirstLTasks = async (req: Request, res: Response) => {
     try {
         const limit = req.query.count
@@ -84,34 +94,6 @@ export const searchTasks = async (req: Request, res: Response) => {
     } catch (e) {
         console.error(e);
         res.status(400).end();
-    }
-}
-
-
-export const putNote = async (req: Request, res: Response) => {
-    try {
-        const { title, detail } = req.body;
-        const id = req.params.id;
-
-        if (typeof title === 'undefined') throw Error(`"title" has to be defined`)
-        if (typeof detail === 'undefined') throw Error(`"isComplete" has to be defined`)
-
-        const noteObj = {
-            title,
-            detail
-        };
-
-        const note = await models.Task.findOneAndUpdate({ _id: id }, noteObj,
-            {
-                upsert: true,
-                new: true,
-                setDefaultsOnInsert: true
-            })
-
-        res.status(201).json({ data: note });
-    } catch (err) {
-        console.error(err);
-        res.status(500).send({ error: err.message });
     }
 }
     
