@@ -29,8 +29,8 @@ describe("Tasks", () => {
             .send(sampleTask);
         const newTask = res.body?.data;
         expect(res.statusCode).toEqual(201);
-        expect(newTask?.title).toEqual(new_object.title);
-        expect(newTask?.isComplete).toEqual(new_object.isComplete);
+        expect(newTask?.title).toEqual(sampleTask.title);
+        expect(newTask?.isComplete).toEqual(sampleTask.isComplete);
   });
 
 });
