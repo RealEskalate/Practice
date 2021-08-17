@@ -13,7 +13,27 @@ afterEach(async () => {
 afterAll(async () => {
   await dbHandler.disconnect()
 });
+
 const agent = request.agent(app);
+
+describe("Tasks", () => {
+  it("post task", async () => {
+    expect.assertions(3);
+        const sampleTask = new Task({
+            title: "Sample Title",
+            isComplete: false
+        });
+        
+        const res = await agent
+            .post(`/api/tasks/`)
+            .send(sampleTask);
+        const newTask = res.body?.data;
+        expect(res.statusCode).toEqual(201);
+        expect(newTask?.title).toEqual(sampleTask.title);
+        expect(newTask?.isComplete).toEqual(sampleTask.isComplete);
+  });
+
+});
 
 describe("Tasks", () => {
     it("should put task by id", async () => {
