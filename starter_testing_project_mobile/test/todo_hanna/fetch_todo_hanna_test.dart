@@ -4,8 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:starter_testing_project_mobile/data/todo.dart';
 import 'package:starter_testing_project_mobile/models/todo.dart';
-
-import 'fetch_todo_test.mocks.dart';
+import 'fetch_todo_hanna_test.mock.dart';
 
 // Generate a MockClient using the Mockito package.
 // Create new instances of this class in each test.
