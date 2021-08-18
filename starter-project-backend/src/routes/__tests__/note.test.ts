@@ -110,7 +110,6 @@ describe('delete /delete/:id', () => {
     const response = await agent.delete(`/api/notes/delete/${note._id}`);
     expect(response.statusCode).toEqual(200);
     
-
   });
   
 });
