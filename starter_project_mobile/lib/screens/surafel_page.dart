@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:starter_project_mobile/bloc/surafel_bloc/name_bloc.dart';
+import 'package:starter_project_mobile/bloc/surafel_bloc/name_event.dart';
 
 class SurafelPage extends StatelessWidget {
   static const PageRoute = '/surafel';
   @override
   Widget build(BuildContext context) {
+    NameBloc nameBloc = BlocProvider.of<NameBloc>(context);
     return Scaffold(
       backgroundColor: Color(0xFFA7DCF0),
       resizeToAvoidBottomInset: false,
@@ -34,13 +38,16 @@ class SurafelPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Surafel Kassahun",
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF132880),
-                            ),
-                      ),
+                      BlocBuilder<NameBloc, String>(builder: (context, name) {
+                        return Text(
+                          "$name",
+                          style:
+                              Theme.of(context).textTheme.headline5?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF132880),
+                                  ),
+                        );
+                      }),
                       SizedBox(height: 10),
                       Text(
                         "lorem ipsum",
@@ -117,20 +124,30 @@ class SurafelPage extends StatelessWidget {
                                     child: Center(
                                       child: Column(
                                         children: [
-                                          TextFormField(
+                                          TextField(
                                             decoration: InputDecoration(
                                                 border: UnderlineInputBorder(),
                                                 labelText:
                                                     'Enter your full name'),
-                                            onFieldSubmitted: (String str) {},
+                                            onChanged: (String name) {
+                                              if (name != '') {
+                                                nameBloc.add(NameChangedEvent(
+                                                    name: name));
+                                              } else {
+                                                nameBloc.add(NameChangedEvent(
+                                                    name: "Lorem Ipsum"));
+                                              }
+                                            },
                                           ),
                                           SizedBox(
                                             height: 10,
                                           ),
                                           TextButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              FocusScope.of(context).unfocus();
+                                            },
                                             child: Text(
-                                              "Submit",
+                                              "Done",
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .headline6
