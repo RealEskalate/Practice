@@ -93,3 +93,25 @@ describe("Note", () => {
       expect(newNote?.detail).toEqual(new_object.detail);
   });
 });
+
+
+describe('delete /delete/:id', () => {
+
+  it("delete note by id", async()=>{
+    // mock data
+    const note1: INoteDocument = new Note(
+      {
+        title: 'note1',
+        detail: 'detail1',
+      }
+    );
+
+    const note = await note1.save();
+    const response = await agent.delete(`/api/notes/delete/${note._id}`);
+    expect(response.statusCode).toEqual(200);
+    
+
+  });
+  
+});
+
