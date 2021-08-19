@@ -1,10 +1,4 @@
-import _ from "lodash";
-import Vuex from "vuex";
-import { createLocalVue } from "@vue/test-utils";
-
 describe("store/natneamStore", () => {
-  const localVue = createLocalVue();
-  localVue.use(Vuex);
   let NuxtStore;
   let store;
 
