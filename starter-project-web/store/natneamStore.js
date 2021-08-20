@@ -26,8 +26,14 @@ export const mutations = {
 
 export const actions = {
   async fetchPostsFromApi(context) {
-    const data = await axios("https://jsonplaceholder.typicode.com/posts");
-    const rawData = data.data.slice(0, 20);
-    context.commit("updatePosts", rawData);
+    try {
+      const data = await axios.get(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      const rawData = data.data.slice(0, 20);
+      context.commit("updatePosts", rawData);
+    } catch (e) {
+      context.commit("updatePosts", []);
+    }
   }
 };
