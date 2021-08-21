@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:starter_testing_project_mobile/data/user.dart';
 import 'package:starter_testing_project_mobile/models/user.dart';
 
-import 'fetch_user_test.mocks.dart';
+import 'user_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
@@ -33,41 +33,13 @@ void main() {
 
     test('throws an exception if the http call completes with an error', () {
       final client = MockClient();
-      final todoData = UserData();
+      final userData = UserData();
       when(client
               .get(Uri.parse('https://jsonplaceholder.typicode.com/users/1')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
-      expect(todoData.fetchUser(client, 1), throwsException);
+      expect(userData.fetchUser(client, 1), throwsException);
     });
     ;
-  });
-  group('post user', () {
-    final company = Company(
-        name: "Romaguera-Crona",
-        catchPhrase: "Multi-layered client-server neural-net",
-        bs: "harness real-time e-markets");
-    final user = User(
-        username: "abebe",
-        name: "Abebe Kebede",
-        email: "abebe@gmail.com",
-        company: company);
-    test('returns true if the http call completes successfully', () async {
-      final client = MockClient();
-      final userData = UserData();
-      when(client.post(Uri.parse("https://jsonplaceholder.typicode.com/users/"),
-              body: user.toJson()))
-          .thenAnswer((realInvocation) async => http.Response('''{
-"name": "Abebe Kebede",
-"username": "abebe",
-"email": "abebe@gmail.com",
-"company": {
-"name": "Romaguera-Crona",
-"catchPhrase": "Multi-layered client-server neural-net",
-"bs": "harness real-time e-markets"
-}
-}''', 201));
-      expect(await userData.postUser(client, user), isA<String>());
-    });
   });
 }
