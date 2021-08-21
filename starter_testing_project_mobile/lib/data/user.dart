@@ -14,9 +14,10 @@ class UserData {
     }
   }
 
-  Future<String> postUser(http.Client client) async {
-    final response = await client
-        .post(Uri.parse("https://jsonplaceholder.typicode.com/users/"));
+  Future<String> postUser(http.Client client, User user) async {
+    final response = await client.post(
+        Uri.parse("https://jsonplaceholder.typicode.com/users/"),
+        body: user.toJson());
     if (response.statusCode == 201) {
       return "success";
     } else {

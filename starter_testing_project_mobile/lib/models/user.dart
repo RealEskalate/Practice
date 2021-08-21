@@ -38,6 +38,13 @@ class User {
     email = json['email'];
     _username = json['username'];
   }
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "username": username,
+        "email": email,
+        "company": company.toJson(),
+      };
 }
 
 class Company {
@@ -52,4 +59,10 @@ class Company {
     catchPhrase = json['catchPhrase'];
     bs = json['bs'];
   }
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "catchPhrase": catchPhrase,
+        "bs": bs,
+      };
 }
