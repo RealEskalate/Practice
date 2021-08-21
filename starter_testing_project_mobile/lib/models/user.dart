@@ -1,46 +1,55 @@
 class User {
   late String _username;
-  late String _fname;
-  late String _lname;
-  late DateTime _birthDate;
+  late String _name;
+  late String _email;
+  late Company _company;
 
   String get username => _username;
-  String get fname => _fname;
-  String get lname => _lname;
-  DateTime get birthDate => _birthDate;
+  String get name => _name;
+  String get email => _email;
+  Company get company => _company;
 
-  set birthDate(var strDate) {
-    _birthDate = DateTime.parse(strDate);
+  set company(var comp) {
+    _company = comp;
   }
 
-  set fname(String firstName) {
-    _fname = firstName;
+  set name(String name) {
+    _name = name;
   }
 
-  set lname(String lastName) {
-    _lname = lastName;
+  set email(String email) {
+    _email = email;
   }
 
   User(
       {required String username,
-      required String fname,
-      required String lname,
-      required String birthDate}) {
-    this.birthDate = birthDate;
-    this.fname = fname;
-    this.lname = lname;
+      required String name,
+      required String email,
+      required Company company}) {
+    this.company = company;
+    this.name = name;
+    this.email = email;
     this._username = username;
   }
 
   User.fromJson(Map json) {
-    birthDate = json['birthDate'];
-    fname = json['fname'];
-    lname = json['lname'];
+    company = Company.fromJson(json['company']);
+    name = json['name'];
+    email = json['email'];
     _username = json['username'];
   }
+}
 
-  int getAge() {
-    DateTime current = DateTime.now();
-    return birthDate.year - current.year;
+class Company {
+  late String name;
+  late String catchPhrase;
+  late String bs;
+
+  Company({required this.name, required this.catchPhrase, required this.bs});
+
+  Company.fromJson(Map json) {
+    name = json['name'];
+    catchPhrase = json['catchPhrase'];
+    bs = json['bs'];
   }
 }
