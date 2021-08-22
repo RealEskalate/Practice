@@ -16,7 +16,7 @@
       cols="12"
       
       >
-        <v-card color="#FFFFFF" dark nuxt>
+        <v-card class="todo" color="#FFFFFF" dark nuxt>
           <v-card-title class="mx-auto text-center black--text p-5">
             <p>
               {{ post.title }}
@@ -33,7 +33,6 @@
 import { mapGetters, mapActions} from 'vuex';
 
 import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
 export default {
     name:'Blogs',
     data() {
