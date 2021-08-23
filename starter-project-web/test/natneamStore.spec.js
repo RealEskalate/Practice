@@ -56,7 +56,6 @@ describe('store/natneamStore', () => {
 
   beforeEach(async () => {
     store = await NuxtStore.createStore()
-
   })
 
   describe('getters', () => {
