@@ -23,7 +23,7 @@
     <v-col cols="3">
       <v-btn
         outlined
-        class="mt-3"
+        class="mt-3 submit-btn"
         color="purple darken-4"
         @click="submitPost(title, body)"
       >
@@ -59,6 +59,7 @@ export default {
         titleInput.classList.remove('red')
         bodyInput.classList.remove('red')
       } else {
+        this.$store.dispatch('rebecca/addPost', { title, body })
         this.showError()
       }
     },

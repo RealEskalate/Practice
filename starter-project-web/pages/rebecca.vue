@@ -5,8 +5,9 @@
         <v-row class="mb-5">
           <v-col class="ml-5" cols="4">
             <v-card color="white" class="black--text">
-              <v-img
-                :src="require('../assets/rebecca.jpg')"
+              <img
+                v-img
+                src="require('../assets/rebecca.jpg')"
                 class="grey darken-4"
               />
               <v-card-title class="justify-center">
@@ -39,14 +40,14 @@
         <v-card
           v-for="post in posts"
           :key="post.id"
-          class="ml-5 mr-5 mb-4 grey lighten-5 black--text font-weight-bold"
+          class="post ml-5 mr-5 mb-4 grey lighten-5 black--text font-weight-bold"
         >
           <v-card-title>{{ post.title }}</v-card-title>
           <p class="ml-5 mr-5 pb-5 text-body-1">
             {{ post.body }}
           </p>
           <v-icon
-            class="fab white ml-5 mb-3 deep-orange--text text-right"
+            class="fab white ml-5 mb-3 deep-orange--text text-right delete"
             @click="$store.dispatch('rebecca/deletePost', post.id)"
           >
             mdi-delete
