@@ -92,19 +92,8 @@ describe("Meti store", () => {
         store.commit("meti/searchPost", 1);
         expect(store.getters["meti/allPosts"].length).toBe(1)
       });
-  });
 
-  describe("actions", () => {
-    describe("fetch todos list", () => {
-      
-      it("fetch todos list", async () => {
-      axios.get.mockResolvedValueOnce({data:todos});
-      expect(store.getters["meti/allPosts"]).toStrictEqual([]);
-
-        await store.dispatch("meti/fetchTodos");
-        expect(store.getters["meti/allPosts"]).toStrictEqual(todos);
-      });
-    });
+  // describe("actions", () => {
 
     describe("API Error on fetch todos", () => {
       axios.get.mockRejectedValue(new Error("Couldnt fetch"));

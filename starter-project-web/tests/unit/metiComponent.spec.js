@@ -1,8 +1,7 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import Blogs from '@/components/MetiBlogs.vue'
-import { getters } from '~/store/meti'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -13,14 +12,17 @@ describe('Meti Page', () => {
   let store
   let state
   let vuetify
+  let id
 
   beforeEach(() => {
     state = {
+      blogger : [{ id: 1, title: 'post', completed:false }],
       posts: [{ id: 1, title: 'post', completed:false }]
     }
 
     actions = {
-      allPosts: jest.fn()
+      fetchTodos: jest.fn(),
+      deletePost: jest.fn()
     }
 
     store = new Vuex.Store({
@@ -35,56 +37,16 @@ describe('Meti Page', () => {
     vuetify = new Vuetify()
   })
 
-  it('calls get Post', async () => {
+  it('calls and renders to dos ', async () => {
     const wrapper = shallowMount(Blogs, { store, localVue, vuetify })
     store.dispatch = jest.fn()
     await wrapper.vm.$nextTick()
-    expect(actions.allPosts).toHaveBeenCalled()
-  })
-  it('renders todos', async () => {
-    const wrapper = shallowMount(Blogs, { store, localVue, vuetify })
-    await wrapper.vm.$nextTick()
-    expect(wrapper.findAll('.post').length).toBe(1)
+    expect(actions.fetchTodos).toHaveBeenCalled()
   })
 
-
-  it('call delete post', async () => {
-    const wrapper = shallowMount(Blogs, { store, localVue, vuetify })
-    store.dispatch = jest.fn()
-    wrapper.find('.del-btn').trigger('click')
-    await wrapper.vm.$nextTick()
-    expect(store.dispatch).toHaveBeenCalledWith('meti/deletePost', 1)
-  })
+  
+  
 })
 
 
-
-
-
-
-
-
-
-
-
-
-// import { shallowMount } from "@vue/test-utils";
-// import Header from "@/components/MetiHeader.vue";
-
-// console.log(Header)
-// describe("Header - Meti", () => {
-//   let wrapper;
-
-//   it("shows blogger Name", () => {
-//     wrapper = shallowMount(Header, { store, localVue, vuetify })
-//     expect(wrapper.find("v-list-item-subtitle").text()).toContain(
-//       "Meti Adane"
-//     );
-//   });
-
-//   it("have an image with a source", () => {
-//     wrapper = shallowMount(Header, { store, localVue, vuetify })
-//     expect(wrapper.find("[src='@/assets/meti.jpg']").exists()).toBe(true);
-//   });
-
-// });
+  
