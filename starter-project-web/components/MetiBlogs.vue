@@ -13,7 +13,7 @@
         <v-card class="todo" color="#FFFFFF" dark nuxt>
           <v-card-title class="postTitle mx-auto text-center black--text p-5">
             <p>
-              {{ post.title }} hello
+              {{ post.title }}
                
             </p>
             <v-btn v-on:click = "del(post.id)" class="del-btn padding-right: 5px; float:right; position:absolute; top:10px; right:10px;"><v-icon class="red--text">mdi-delete</v-icon></v-btn>
