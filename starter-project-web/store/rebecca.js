@@ -1,14 +1,14 @@
 // state
-const state = () => ({
+export const state = () => ({
   posts: []
 })
 // getters
-const getters = {
+export const getters = {
   allPosts: state => state.posts
 }
 
 // actions
-const actions = {
+export const actions = {
   async getPosts ({ commit }) {
     const posts = await this.$axios.get('https://jsonplaceholder.typicode.com/posts')
     commit('setPosts', posts.data)
@@ -23,15 +23,8 @@ const actions = {
   }
 }
 // mutations
-const mutations = {
+export const mutations = {
   setPosts: (state, posts) => (state.posts = posts),
   newPost: (state, post) => (state.posts.unshift(post)),
   removePost: (state, id) => (state.posts = state.posts.filter(post => post.id !== id))
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }

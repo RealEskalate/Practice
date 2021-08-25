@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:starter_project_mobile/bloc/counter_bloc/counter_bloc.dart';
 import 'package:starter_project_mobile/bloc/fav_bloc.dart';
 import 'package:starter_project_mobile/bloc/michael_bloc/coin_bloc.dart';
+import 'package:starter_project_mobile/bloc/surafel_bloc/name_bloc.dart';
 import 'package:starter_project_mobile/bloc/theme_bloc.dart';
 import 'package:starter_project_mobile/daniel_bloc/bloc/like_bloc.dart';
 import 'package:starter_project_mobile/route.dart';
@@ -28,6 +29,7 @@ void main() {
       BlocProvider(lazy: false, create: (context) => LikeBloc(false)),
       BlocProvider(lazy: false, create: (context) => StarBloc()),
       BlocProvider(lazy: false, create: (context) => CountBloc(0)),
+      BlocProvider(lazy: false, create: (context) => NameBloc("Lorem Ipsum")),
     ],
     child: MyApp(),
   ));
