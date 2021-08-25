@@ -13,7 +13,7 @@
             <v-list-item-content>
               <!-- <v-list-item-title> Adona Tesfaye </v-list-item-title> -->
               <h2 class="name" color="purple">
-                Adona Tesaye
+                Adona Tesfaye
               </h2>
               <p class="description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
