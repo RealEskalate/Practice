@@ -1,5 +1,5 @@
-import { Nuxt, Builder } from "nuxt"
-import nuxtConfig from "./nuxt.config"
+import { Nuxt, Builder } from "nuxt";
+import nuxtConfig from "./nuxt.config";
 
 // these boolean switches turn off the build for all but the store
 const resetConfig = {
@@ -29,26 +29,26 @@ const resetConfig = {
     indicator: false,
     terser: false
   }
-}
+};
 
 // we take our nuxt config, lay the resets on top of it,
 // and lastly we apply the non-boolean overrides
 const config = Object.assign({}, nuxtConfig, resetConfig, {
-  mode: "spa",
+  ssr: false,
   srcDir: nuxtConfig.srcDir,
   ignore: ["**/components/**/*", "**/layouts/**/*", "**/pages/**/*"]
-})
+});
 
 const buildNuxt = async () => {
-  const nuxt = new Nuxt(config)
-  await new Builder(nuxt).build()
-  return nuxt
-}
+  const nuxt = new Nuxt(config);
+  await new Builder(nuxt).build();
+  return nuxt;
+};
 
 module.exports = async () => {
-  const nuxt = await buildNuxt()
-  
-  // we surface this path as an env var now 
+  const nuxt = await buildNuxt();
+
+  // we surface this path as an env var now
   // so we can import the store dynamically later on
-  process.env.buildDir = nuxt.options.buildDir
-}
+  process.env.buildDir = nuxt.options.buildDir;
+};

@@ -1,32 +1,20 @@
 module.exports = {
-  globalSetup: "<rootDir>/jest.setup.js",
+  globalSetup: "<rootDir>/jest.setup.js", // this line is the only change here
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
-    '^~/(.*)$': '<rootDir>/$1',
-    '^vue$': 'vue/dist/vue.common.js'
+    "^@/(.*)$": "<rootDir>/$1",
+    "^~/(.*)$": "<rootDir>/$1",
+    "^vue$": "vue/dist/vue.common.js"
   },
-
-  moduleFileExtensions: [
-    'ts',
-    'js',
-    'vue',
-    'json'
-  ],
-
+  moduleFileExtensions: ["ts", "js", "vue", "json"],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
-    '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    "^.+\\.ts$": "ts-jest",
+    "^.+\\.js$": "babel-jest",
+    ".*\\.(vue)$": "vue-jest"
   },
-
   collectCoverage: true,
-
   collectCoverageFrom: [
-    '<rootDir>/components/**/*.vue',
-    '<rootDir>/pages/**/*.vue',
-    '<rootDir>/store/**/*.js'
+    "<rootDir>/components/**/*.vue",
+    "<rootDir>/pages/**/*.vue"
   ],
-
-  testEnvironment: 'jsdom',
-  preset: '@vue/cli-plugin-unit-jest/presets/no-babel'
-}
+  testEnvironment: "jsdom"
+};
