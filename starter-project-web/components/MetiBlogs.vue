@@ -2,13 +2,7 @@
     <v-container class="black--text">
     <h3 class="title green--text">All Blogs </h3>
     
-    <v-row
-      no-gutters
-      dense
-      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
-      sm="6"
-      md="3"
-    >
+    
       <v-col 
       
       v-for="post in allPosts"
@@ -17,14 +11,15 @@
       
       >
         <v-card class="todo" color="#FFFFFF" dark nuxt>
-          <v-card-title class="mx-auto text-center black--text p-5">
+          <v-card-title class="postTitle mx-auto text-center black--text p-5">
             <p>
-              {{ post.title }}
+              {{ post.title }} hello
                
             </p>
             <v-btn v-on:click = "del(post.id)" class="del-btn padding-right: 5px; float:right; position:absolute; top:10px; right:10px;"><v-icon class="red--text">mdi-delete</v-icon></v-btn>
           </v-card-title>
         </v-card>
+
       </v-col>
     </v-row>
   </v-container>

@@ -58,7 +58,6 @@ describe("Meti store", () => {
 
     it("loads blogger information", ()=>{
         let bloggerData = store.getters["meti/bloggerInfo"];
-        console.log(bloggerData)
         expect(Object.keys(bloggerData).length).toBe(4);
     })
   });
@@ -92,8 +91,6 @@ describe("Meti store", () => {
         store.commit("meti/searchPost", 1);
         expect(store.getters["meti/allPosts"].length).toBe(1)
       });
-
-  // describe("actions", () => {
 
     describe("API Error on fetch todos", () => {
       axios.get.mockRejectedValue(new Error("Couldnt fetch"));

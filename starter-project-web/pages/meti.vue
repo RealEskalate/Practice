@@ -18,7 +18,6 @@ import AddPost from '@/components/MetiAddPost.vue';
 import Search from '@/components/MetiSearch.vue';
 
 import Vuetify from "vuetify";
-import "vuetify/dist/vuetify.min.css";
 Vue.use(Vuetify);
 export default {
     name:'meti',
