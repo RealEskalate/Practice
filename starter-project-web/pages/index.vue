@@ -45,7 +45,9 @@ export default class IndexPage extends Vue {
     { name: 'Lydia Gashawtena', description: 'Part-Time', link: '/lydia' },
     { name: 'Meti Adane', description: 'Part-Time', link: '/meti' },
     { name: 'Rebbeca Samuel', description: 'Part-Time', link: '/rebecca' },
-    { name: 'Sinkumen Assefa', description: 'Part-Time', link: '/sinkumen' }
+    { name: 'Sinkumen Assefa', description: 'Part-Time', link: '/sinkumen' },
+    { name: 'Abdulfeta Dedgeba', description: 'Full-Time', link: '/abdi' },
+
   ];
 }
 </script>
