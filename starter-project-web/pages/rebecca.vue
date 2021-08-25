@@ -7,7 +7,7 @@
             <v-card color="white" class="black--text">
               <img
                 v-img
-                src="require('../assets/rebecca.jpg')"
+                src='../assets/rebecca.jpg'
                 class="grey darken-4"
               />
               <v-card-title class="justify-center">
@@ -78,4 +78,8 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+  img {
+      width:100%;
+    }
+</style>
