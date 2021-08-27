@@ -6,6 +6,7 @@
           class="profile d-flex justify-center"
           color="primary"
           size="250"
+          radis = "20"
         ><img
             
             src="~/assets/abdi.jpg"

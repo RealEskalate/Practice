@@ -12,32 +12,31 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import AbdiCard from "~/components/AbdiCard.vue";
+import { mapGetters, mapActions } from 'vuex'
+import AbdiCard from '~/components/AbdiCard.vue'
 
 export default {
   components: { AbdiCard },
 
   computed: {
-    ...mapGetters("abdi", ["getAllPosts"]),
+    ...mapGetters('abdi', ['getAllPosts'])
   },
-  created() {
-    this.fetchPosts();
-    console.log("here");
+  created () {
+    this.fetchPosts()
   },
   methods: {
-    ...mapActions("abdi", ["fetchPosts", "addNewPost"]),
-    addPost() {
+    ...mapActions('abdi', ['fetchPosts', 'addNewPost']),
+    addPost () {
       if (this.$refs.inputs.validate()) {
         const post = {
           title: this.title,
-          body: this.body,
-        };
-        this.addNewPost(post);
+          body: this.body
+        }
+        this.addNewPost(post)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style  scoped>
