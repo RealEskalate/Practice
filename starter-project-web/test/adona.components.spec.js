@@ -12,7 +12,7 @@ describe('AdonaInfo', () => {
     vuetify = new Vuetify()
   })
 
-  it('Title', () => {
+  it('should find text', () => {
     const wrapper = mount(AdonaInfo, { localVue, vuetify })
     const title = wrapper.find('h2')
     expect(title.text()).toBe('Adona Tesfaye')

@@ -61,7 +61,7 @@ describe('store/posts', () => {
       store.commit('adona/setPosts', allposts)
       expect(store.getters['adona/allPosts']).toStrictEqual(allposts)
     })
-    test('add post', () => {
+    test('should add  new post', () => {
       store.commit('adona/addPost', post1)
       const newPosts = store.getters['adona/allPosts']
       expect(newPosts.length).toBe(1)
