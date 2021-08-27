@@ -17,7 +17,6 @@ describe('store/posts', () => {
   jest.mock('axios', () => ({
     get: jest.fn(() => Promise.resolve(mockAxiosGetResult)),
     post: jest.fn(() => Promise.resolve(mockAxiosGetResult))
-    // $patch: jest.fn(() => Promise.resolve(mockAxiosGetResult))
   }))
 
   let action
@@ -26,7 +25,6 @@ describe('store/posts', () => {
   }
 
   beforeAll(async () => {
-    // note the store will mutate across tests
     const storePath = `${process.env.buildDir}/store.js`
     NuxtStore = await import(storePath)
   })
