@@ -17,11 +17,16 @@ export const getters = {
 
 export const actions = {
 
-    async fetchTodos({ commit }) {
-		const res = await this.$axios.get(
-			"https://jsonplaceholder.typicode.com/todos"
-		);
-		commit("setPosts", res.data);
+    async fetchTodos(context) {
+        try{
+            const res = await this.$axios.get(
+                "https://jsonplaceholder.typicode.com/todos"
+            );
+            context.commit("setPosts", res.data);
+        }catch (e){
+            context.commit("setPosts", []);
+        }
+		
 	},
     async addPost ({ commit }, title) {
         const res = await this.$axios.post("https://jsonplaceholder.typicode.com/todos", {
