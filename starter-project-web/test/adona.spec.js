@@ -6,9 +6,9 @@ import _ from 'lodash'
 import { createLocalVue } from '@vue/test-utils'
 import { actions } from '@/store/adona'
 describe('store/posts', () => {
-// ----------------------------------------------------
-// focus on the code from here...
   const localVue = createLocalVue()
+  // eslint-disable-next-line import/no-named-as-default-member
+  Vuex.Store.prototype.$axios = axios
   localVue.use(Vuex)
   const allposts = [{ id: '1', userId: 1, title: 'post 1', body: 'first post' }, { id: '2', userId: 1, title: 'post 2', body: 'second post' }]
   let NuxtStore
@@ -52,7 +52,14 @@ describe('store/posts', () => {
       await testedAction({ commit })
       expect(store.getters['adona/allPosts']).toEqual([])
     })
+    test('should add new post', async () => {
+      const mockPost = { id: '1', userId: 1, title: 'post 1', body: 'first post' }
+      mockAxiosGetResult = [mockPost]
+      await store.dispatch('adona/addPost', mockPost)
+      expect(store.getters['adona/allPosts'].length).toBe(1)
+    })
   })
+
   describe('mutations', () => {
     const post1 = { id: '1', userId: 1, title: 'post 1', body: 'first post' }
     test('should be equal to mock post', () => {
