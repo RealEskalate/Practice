@@ -7,5 +7,6 @@ const middleware = (req, res, next) => {
 };
 
 router.get("/api/users", middleware, UserController.getAllUsers);
+router.get("/api/users/:id", middleware, UserController.getUserDetail);
 
 module.exports = router;

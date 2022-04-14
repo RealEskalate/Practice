@@ -14,4 +14,13 @@ describe("User API", () => {
     expect(response.body).toMatchObject;
     expect(response.body.data.length).toBeGreaterThan(1);
   });
+
+  it("It should get user details", async () => {
+    let response = await chai.request(server).get("/api/users/" + 1);
+
+    expect(response.status).toEqual(200);
+    expect(response.body).toMatchObject;
+    expect(response.body.data).toMatchObject;
+    expect(response.body.data.userId).toEqual(1);
+  });
 });

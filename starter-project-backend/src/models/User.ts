@@ -4,4 +4,5 @@ interface UserI {
   lastName: string;
   username: string;
   password: string;
+  userId: number;
 }
