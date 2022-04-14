@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+
+const UserController = require("../controllers/UserController");
+const middleware = (req, res, next) => {
+  next();
+};
+
+router.get("/api/users", middleware, UserController.getAllUsers);
+
+module.exports = router;
