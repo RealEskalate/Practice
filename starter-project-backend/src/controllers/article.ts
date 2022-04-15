@@ -9,11 +9,10 @@ export async function getAllArticle(req:Request, res:Response, next:NextFunction
 }
 
 export async function getArticleById( req:Request,res:Response, next:NextFunction) {
+  
+  if(!req.params.id) res.status(400).send("bad request")
 
-  console.log("get article with id", )
-  console.log(req.body.id)
-
-  let article = await Article.findOne({id: req.body.id}) 
+  let article = await Article.findOne({id: req.params.id}) 
 
   if(!article) res.status(404).json("article not found");
 

@@ -5,7 +5,7 @@ let controller = require("../controllers/article")
 
 
 router.get("/all",controller.getAllArticle)//all in no id
-router.get("/byid", controller.getArticleById)
+router.get("/:id", controller.getArticleById)
 
 router.post("/", controller.addArticle);
 router.patch("/:id", controller.updateArticleById)
