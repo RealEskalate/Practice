@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## starter_next_project
+
+1. Next, TypeScript, Redux, MUI, and Jest will be used in this project
+2. Add a page to the pages folder with your task on it (eg. auth.tsx)
+3. Add your page's component to the components folder with your name (eg . JohnLoginButton.tsx)
+4. Use store folder to store your Redux files
+5. We will be using backend team api for the project
+
 ## Getting Started
 
 First, run the development server:
