@@ -53,5 +53,7 @@ const ArticleSchema:mongoose.Schema<Article_Interface> = new mongoose.Schema({
     required: true
   },
 })
+let Article = mongoose.model<Article_Interface>("ArticleColl", ArticleSchema)
+export default Article;
 
-export let Article  = mongoose.model<Article_Interface>("ArticleColl", ArticleSchema)
+

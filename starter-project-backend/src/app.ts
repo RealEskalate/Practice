@@ -14,6 +14,6 @@ app.use(express.json());
 //app.use("/", json({}))
 
 
-app.use("/api/article", routes.articleRouter)
+app.use("/api/articles", routes.articleRouter)
 
 export default app
