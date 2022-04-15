@@ -16,6 +16,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Kaleb Mesfin
   * Daniel Araya
   * Hanna Samuel
+  * Süha Tanrıverdi
 * **Part-Time**
   * Bontu Fufa
   * Pearl Maron
