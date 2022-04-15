@@ -16,6 +16,9 @@ export const createRating = async (
         date
     })
     try {
+        if (value < 0 || value > 6) {
+            throw new Error()
+        }
         const ratingExists = await Rating.findOne({articleId, userId})
         if (ratingExists) {
             return res.status(409).json({
@@ -38,6 +41,9 @@ export const updateRating =async (
     const {userId, value} = req.body
 
     try {
+        if (userId == undefined) {
+            return res.status(400).end()
+        }
         const rating = await Rating.findOne({articleId, userId})
         if (!rating) {
             return res.status(404).json({

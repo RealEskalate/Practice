@@ -11,6 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/", json({}))
-app.use("/articles/:articleId/ratings", routes.ratingsRouter)
+app.use("/api/articles/:articleId/ratings", routes.ratingsRouter)
 
 export default app
