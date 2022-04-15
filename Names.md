@@ -24,6 +24,8 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Michael Gashaw
   * Mahlet Dereje
   * Surafel Kassahun
+* **Intern**
+  * Semere Habtu
 
 ### Backend Team
 
@@ -39,13 +41,13 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Elshadai Kassu
   * Dawit Yonas
   * Kidus Yoseph
-  * Riyad Hassen 
+  * Riyad Hassen
   * Taklemariam Alazar
 
 ### Web Team
 
-* **Full-Time** 
-  * Lensa Billion 
+* **Full-Time**
+  * Lensa Billion
   * Natneam Mesele
 * **Part-Time**
   * Adona Tesfaye
