@@ -10,6 +10,5 @@ router.get("/byid", controller.getArticleById)
 router.post("/", controller.addArticle);
 router.patch("/:id", controller.updateArticleById)
 router.delete("/:id", controller.deleteArticleById)
-
-
-module.exports = router
+  
+export default router;
