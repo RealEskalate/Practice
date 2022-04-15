@@ -1,6 +1,6 @@
 import express, {Application, Request, Response, NextFunction, json} from 'express';
 import dotenv from 'dotenv';
-
+import routes from './routes'
 
 
 dotenv.config();
@@ -11,5 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use("/", json({}))
+app.use("/articles/:articleId/ratings", routes.ratingsRouter)
 
 export default app
