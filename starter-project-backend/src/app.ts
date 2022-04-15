@@ -1,14 +1,6 @@
-import express, {
-  Application,
-  Request,
-  Response,
-  NextFunction,
-  json,
-} from "express";
+import express, { Application } from "express";
 import dotenv from "dotenv";
-
-//Routers
-const userRouter = require("./routes/UserRouter");
+import UserRouter from "./routes/UserRouter";
 
 dotenv.config();
 
@@ -18,6 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // app.use("/", json({}));
-app.use(userRouter);
+app.use(UserRouter);
 
 export default app;
