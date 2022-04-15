@@ -1,14 +1,16 @@
 import {Router} from "express"
-
 let router = Router()
-let controller = require("../controllers/article")
+
+import controller from "../controllers/article";
 
 
-router.get("/all",controller.getAllArticle)//all in no id
+router.get("/",controller.getAllArticle)//not Id to get all posts
+
 router.get("/:id", controller.getArticleById)
+router.delete("/:id", controller.deleteArticleById)
+router.patch("/:id", controller.updateArticleById)
 
 router.post("/", controller.addArticle);
-router.patch("/:id", controller.updateArticleById)
-router.delete("/:id", controller.deleteArticleById)
+
   
 export default router;
