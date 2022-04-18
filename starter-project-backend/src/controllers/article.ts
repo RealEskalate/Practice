@@ -24,7 +24,7 @@ async function getArticleById( req:Request,res:Response, next:NextFunction) {
 
   try{
 
-    let article = await Article.findOne({id: req.params.id}) 
+    const article = await Article.findOne({id: req.params.id}) 
 
     if(!article){ 
       res.status(404).json("article not found")
@@ -122,6 +122,13 @@ async function updateArticleById( req:Request, res:Response, next:NextFunction)
 }
 async function deleteArticleById( req:Request, res:Response, next:NextFunction)
 {
+  
+  const article = await Article.findOne({id: req.params.id}) 
+  if(!article)
+  {
+    res.status(400).send("bad request")
+    return
+  }
 
   try {
     await Article.deleteOne({id:req.params.id}) 

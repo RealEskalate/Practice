@@ -15,6 +15,30 @@ let sampleArticle = {
   title: "how I got to do jobs using mars",
   content: "blah blah blah mars blah blah"
 }
+
+let wrongArticle = {
+  id:"atr_9812",
+  author:{
+    wrong_firstName: "gzachew",
+    wrong_lastName: "demeke",
+    wrong_bio: "I'm blah blah"
+  },
+
+  title: "how I got to do jobs using mars",
+  content: "blah blah blah mars blah blah"
+}
+let wrongAuthor= {
+  id:"atr_9812",
+  author:{
+    firstName: "gzachew",
+    lastName: "demeke",
+    bio: "I'm blah blah"
+  },
+
+  wrong_title: "how I got to do jobs using mars",
+  worng_content: "blah blah blah mars blah blah"
+}
+
 let sampleId = sampleArticle.id
 let wrongId = "ksjflksdjfkd"
 
@@ -34,7 +58,6 @@ describe("GET all Article ",()=>{
 
   test("GET all articles",async()=>{
     const res = await agent.get("/api/articles")
-    console.log("after agent")
     expect(res.status).toEqual(200)
   });
 
@@ -43,8 +66,17 @@ describe("POST Article ",()=>{
 
   test("POST article",async()=>{
     const res = await agent.post("/api/articles").send(sampleArticle)
-    console.log("after agent")
     expect(res.status).toEqual(200)
+  });
+  
+  test("POST article bad request wrong aticle shape",async()=>{
+    const res = await agent.post("/api/articles").send(wrongArticle)
+    expect(res.status).toEqual(400)
+  });
+  
+  test("POST article bad request wrong author shape",async()=>{
+    const res = await agent.post("/api/articles").send(wrongArticle)
+    expect(res.status).toEqual(400)
   });
 
 
@@ -56,7 +88,6 @@ describe("GET Article By ID",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.get("/api/articles/"+sampleId)
-    console.log("after agent")
     expect(res.status).toEqual(200)
   });
 
@@ -64,7 +95,6 @@ describe("GET Article By ID",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.get("/api/articles/"+wrongId)
-    console.log("after agent")
     expect(res.status).toEqual(404)
 
   });
@@ -76,7 +106,6 @@ describe("PATCH Article API",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.patch("/api/articles/"+sampleId).send({title:"another"})
-    console.log("after agent")
     expect(res.status).toEqual(200)
   });
 
@@ -84,7 +113,6 @@ describe("PATCH Article API",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.patch("/api/articles/"+wrongId).send({title:"another"})
-    console.log("after agent")
     expect(res.status).toEqual(404)
   });
 
@@ -92,7 +120,6 @@ describe("PATCH Article API",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.patch("/api/articles/"+sampleId).send({node:"another"})
-    console.log("after agent")
     expect(res.status).toEqual(400)
   });
 
@@ -104,9 +131,16 @@ describe("DELET Article API",()=>{
     await agent.post("/api/articles").send(sampleArticle)
       
     const res = await agent.delete("/api/articles/"+sampleId);
-    console.log("after agent")
     expect(res.status).toEqual(200)
   });
+  
+  test("it should be 400 for bad request",async()=>{
+    await agent.post("/api/articles").send(sampleArticle)
+      
+    const res = await agent.delete("/api/articles/"+wrongId);
+    expect(res.status).toEqual(400)
+  });
+
 });
   
 
