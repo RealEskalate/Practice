@@ -8,8 +8,6 @@ import mongoose from 'mongoose'
 
 export interface Article_Interface extends mongoose.Document{
 
-  id:String,
-
   author:{
     firstName:String,
     lastName:String,
@@ -23,11 +21,6 @@ export interface Article_Interface extends mongoose.Document{
 
 const ArticleSchema:mongoose.Schema<Article_Interface> = new mongoose.Schema({
   
-  id:{
-    type:String,
-    required: true
-  },
-
   author:{
     firstName:{
       type:String,

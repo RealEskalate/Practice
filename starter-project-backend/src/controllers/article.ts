@@ -16,15 +16,9 @@ async function getAllArticle(req:Request, res:Response, next:NextFunction)
 async function getArticleById( req:Request,res:Response, next:NextFunction) {
 
 
-  if(!req.params.id) {
-    res.status(400).send("bad request")
-    return;
-  }
-
-
   try{
 
-    const article = await Article.findOne({id: req.params.id}) 
+    const article = await Article.findById(req.params.id) 
 
     if(!article){ 
       res.status(404).json("article not found")
@@ -43,9 +37,9 @@ async function getArticleById( req:Request,res:Response, next:NextFunction) {
 async function addArticle(req:Request, res:Response,  next:NextFunction) 
 {
   //TODO: what if the same object exists already
-  let {id, author, title, content} = req.body
+  let {author, title, content} = req.body
 
-  if(!id || !author || !title || !content)
+  if(!author || !title || !content)
   {
     // bad request
     res.status(400).send("bad request")
@@ -61,7 +55,7 @@ async function addArticle(req:Request, res:Response,  next:NextFunction)
 
   if(!author.bio){author.bio = ""}
 
-  let newArticle =  new Article({id, author, title, content})
+  let newArticle =  new Article({author, title, content})
 
 
   try{
@@ -80,36 +74,35 @@ async function addArticle(req:Request, res:Response,  next:NextFunction)
 async function updateArticleById( req:Request, res:Response, next:NextFunction)
 {
 
-  let article = await Article.findOne({id:req.params.id})
-  if(!article)
-  {
-    // article not found 
-    res.status(404).send("article not found"); 
-    return
-  }
+  try{
+    let article = await Article.findById(req.params.id)
 
-  
-  let {id, author, title, content} = req.body
+    if(!article)
+    {
+      // article not found 
+      res.status(404).send("article not found"); 
+      return
+    }
 
-  if(id){ article.id = id}
+    
+    let {author, title, content} = req.body
 
-  else if(author && 
-    author.firstName && 
-    author.lastName && 
-    author.bio)
-  {
-      article.author = author
-  }
+    if(author && 
+      author.firstName && 
+      author.lastName && 
+      author.bio)
+    {
+        article.author = author
+    }
 
-  else if(title) {article.title = title}
-  else if(content){article.content = content;}
-  else {
-    res.status(400).send("bad request")
-    return;
-  }
+    else if(title) {article.title = title}
+    else if(content){article.content = content;}
+    else {
+      res.status(400).send("bad request")
+      return;
+    }
  
 
-  try{
 
     await article.save()
     res.status(200).send("article updated")
@@ -123,15 +116,15 @@ async function updateArticleById( req:Request, res:Response, next:NextFunction)
 async function deleteArticleById( req:Request, res:Response, next:NextFunction)
 {
   
-  const article = await Article.findOne({id: req.params.id}) 
-  if(!article)
-  {
-    res.status(400).send("bad request")
-    return
-  }
-
   try {
-    await Article.deleteOne({id:req.params.id}) 
+    const article = await Article.findById(req.params.id) 
+    if(!article)
+    {
+      res.status(400).send("bad request")
+      return
+    }
+
+    await Article.findByIdAndDelete(req.params.id) 
     res.status(200).send("article deleted")
 
   }catch(e) {
