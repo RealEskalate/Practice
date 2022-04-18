@@ -8,12 +8,12 @@ const theme = createTheme({
         primary: {
             main: "#4caf50",
             contrastText: "#fff"
-        }, 
-        
+        },    
     },
     typography:{
         fontFamily:"Poppins",
         fontSize: 14,
+
     }
 })
 
@@ -27,4 +27,7 @@ const AuthPage = ()=>{
     )
 }
 
+ 
+
 export default AuthPage 
+
