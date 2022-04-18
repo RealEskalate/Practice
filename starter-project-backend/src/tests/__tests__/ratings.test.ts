@@ -17,11 +17,6 @@ afterAll(async () => {
 
 describe('GET /api/articles/{id}/ratings', () => {
     it('should return status code 200', async () => {
-        const userId = "1"
-        const value = 3
-        await request(app)
-            .post("/api/articles/1/ratings")
-            .send({userId, value})
         const res = await request(app)
             .get("/api/articles/1/ratings")
             .send()
