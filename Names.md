@@ -27,6 +27,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Surafel Kassahun
 * **Intern**
   * Semere Habtu
+  * Murad Abdella
 
 ### Backend Team
 
