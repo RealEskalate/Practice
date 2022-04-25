@@ -3,6 +3,7 @@
 import { NextFunction, Request, Response } from "express";
 import User, { UserI } from "../models/User";
 import Bcrypt from "bcryptjs";
+import { Console } from "console";
 
 const ObjectID = require("mongodb").ObjectID;
 
@@ -107,12 +108,17 @@ export const deleteUser = async (
   next: NextFunction
 ) => {
   try {
-    const user = await User.findByIdAndDelete(req.body._id);
+    let { id } = req.params;
+
+    const user = await User.findByIdAndDelete(id);
+
     if (!user) {
       return res.status(404).send("No item found");
     }
-    return res.status(201);
+
+    return res.status(201).send();
   } catch (error: any) {
+    console.log("Error: ", error);
     return res.status(500).send(error.toString());
   }
 };

@@ -6,6 +6,9 @@ chai.use(chaiHttp);
 let mongoose = require("mongoose");
 import * as dbHandler from "../setupdb";
 
+let user: UserI;
+let user2: UserI;
+
 beforeAll(async () => {
   await dbHandler.connect();
 });
@@ -34,17 +37,21 @@ beforeEach(async () => {
 afterEach(async () => {
   await User.findByIdAndDelete(user._id);
   await User.findByIdAndDelete(user2._id);
+  // Close the server instance after each test
+  server.close();
 });
 
 describe("User API", () => {
-  let user: UserI;
-  let user2: UserI;
-
   it("It should get all users", async () => {
     let response = await chai.request(server).get("/api/users");
     expect(response.status).toEqual(200);
     expect(response.body).toMatchObject;
     expect(response.body.data.length).toBeGreaterThan(1);
+  });
+
+  it("It shouldn't get all users", async () => {
+    let response = await chai.request(server).get("/api/userss");
+    expect(response.status).toEqual(404);
   });
 
   it("It should get user details", async () => {
@@ -54,6 +61,19 @@ describe("User API", () => {
     expect(response.body).toMatchObject;
     expect(response.body.data).toMatchObject;
     expect(response.body.data[0]._id).toEqual("" + user.id);
+  });
+
+  it("It should not get user with wrong api", async () => {
+    let response = await chai.request(server).get("/api/user/" + user._id);
+    expect(response.status).toEqual(404);
+  });
+
+  it("It should not get user details", async () => {
+    let response = await chai
+      .request(server)
+      .get("/api/users/" + user._id + "dontexist");
+
+    expect(response.status).toEqual(404);
   });
 
   it("It should create user", async () => {
@@ -72,6 +92,20 @@ describe("User API", () => {
     expect(response.body).toHaveProperty("password");
     expect(response.body).toHaveProperty("firstName");
     expect(response.body).toHaveProperty("lastName");
+  });
+
+  it("It should not create user with wrong api", async () => {
+    let response = await chai
+      .request(server)
+      .post("/api/user/signup")
+      .send({
+        username: "test" + Date.now(),
+        password: "testings",
+        firstName: "testFirst" + Date.now(),
+        lastName: "testLast" + Date.now(),
+      });
+
+    expect(response.status).toEqual(404);
   });
 
   it("It should not allow password length less than 8", async () => {
@@ -100,7 +134,7 @@ describe("User API", () => {
         firstName: "firstName",
       });
 
-    console.log("response.data" + response.data);
+    // console.log("response.data" + response.data);
     expect(response.status).toEqual(200);
     expect(response.body).toHaveProperty("username");
     expect(response.body).toHaveProperty("password");
@@ -108,21 +142,47 @@ describe("User API", () => {
     expect(response.body).toHaveProperty("firstName");
   });
 
+  it("It should not update user", async () => {
+    let response = await chai
+      .request(server)
+      .patch("/api/user")
+      .send({
+        id: user._id,
+        username: "Testing " + Date.now(),
+        password: "88888888",
+        lastName: "lastName",
+        firstName: "firstName",
+      });
+
+    // console.log("response.data" + response.data);
+    expect(response.status).toEqual(404);
+  });
+
   it("It should delete user", async () => {
     let toBeDeleted = await chai
       .request(server)
       .post("/api/users/signup")
       .send({
-        username: "test" + Date.now(),
+        username: "testDelete" + Date.now(),
         password: "testings",
         firstName: "testFirst" + Date.now(),
         lastName: "testLast" + Date.now(),
       });
-
-    let response = await chai.request(server).delete("/api/users/").send({
-      _id: toBeDeleted.body._id,
-    });
+    console.log(
+      "toBeDeleted: ",
+      toBeDeleted.body.username,
+      " ",
+      toBeDeleted.body._id
+    );
+    let response = await chai
+      .request(server)
+      .delete("/api/users/" + toBeDeleted.body._id);
 
     expect(response.status).toEqual(201);
+  });
+  it("It should not delete user", async () => {
+    let response = await chai.request(server).delete("/api/user/" + user._id);
+
+    expect(response.status).toEqual(404);
   });
 });

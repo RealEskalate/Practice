@@ -12,7 +12,7 @@ const router = Router();
 router.get("/api/users", getAllUsers);
 router.get("/api/users/:id", getUserDetail);
 router.post("/api/users/signup", createUser);
-router.delete("/api/users", deleteUser);
+router.delete("/api/users/:id", deleteUser);
 router.patch("/api/users", updateUser);
 
 export default router;

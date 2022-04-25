@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT;
-const DB_URI = process.env.MONGO_URI;
+const DB_URI: string = process.env.MONGO_URI || "";
 
 // @ts-ignore
 mongoose
