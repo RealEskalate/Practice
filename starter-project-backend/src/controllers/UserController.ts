@@ -111,7 +111,7 @@ export const deleteUser = async (
     if (!user) {
       return res.status(404).send("No item found");
     }
-    return res.status(201).send(user);
+    return res.status(201);
   } catch (error: any) {
     return res.status(500).send(error.toString());
   }
