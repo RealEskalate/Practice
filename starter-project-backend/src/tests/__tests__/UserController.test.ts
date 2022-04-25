@@ -26,7 +26,7 @@ beforeEach(async () => {
   user2 = new User({
     _id: mongoose.Types.ObjectId(),
     username: `${Date.now().toString()} ${Math.random()}`,
-    password: "$2a$10$efmxm5o1v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
+    password: "$2a$10$efmxm5871v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
     firstName: "Kebede",
     lastName: "Abebe",
   });
