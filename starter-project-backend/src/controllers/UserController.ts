@@ -76,7 +76,7 @@ export const updateUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  let { id } = req.body;
+  let { id, username, password, firstName, lastName } = req.body;
   try {
     let toBeChanged = await User.findById(id);
 
@@ -88,10 +88,10 @@ export const updateUser = async (
 
     let user: UserI = toBeChanged;
     // console.log("toBechanged: ", toBeChanged);
-    user.username = req.body.username || user.username;
-    user.password = req.body.password || user.password;
-    user.firstName = req.body.firstName || user.firstName;
-    user.lastName = req.body.lastName || user.lastName;
+    user.username = username || user.username;
+    user.password = password || user.password;
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
 
     await user.save();
     res.status(200).send(user);
