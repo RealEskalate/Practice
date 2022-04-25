@@ -1,8 +1,11 @@
 import app from "./app";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const PORT = process.env.PORT || 8000;
-const DB_URI = process.env.MONGO_URI || "mongodb://localhost:27017/";
+dotenv.config();
+
+const PORT = process.env.PORT;
+const DB_URI = process.env.MONGO_URI;
 
 // @ts-ignore
 mongoose
