@@ -6,39 +6,39 @@ chai.use(chaiHttp);
 let mongoose = require("mongoose");
 import * as dbHandler from "../setupdb";
 
+beforeAll(async () => {
+  await dbHandler.connect();
+});
+
+beforeEach(async () => {
+  user = new User({
+    _id: mongoose.Types.ObjectId(),
+    username: `${Date.now().toString()} ${Math.random()}`,
+    password: "$2a$10$efmxm5o1v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
+    firstName: "Abenezer",
+    lastName: "Belay",
+  });
+  await user.save();
+
+  user2 = new User({
+    _id: mongoose.Types.ObjectId(),
+    username: `${Date.now().toString()} ${Math.random()}`,
+    password: "$2a$10$efmxm5o1v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
+    firstName: "Kebede",
+    lastName: "Abebe",
+  });
+
+  await user2.save();
+});
+
+afterEach(async () => {
+  await User.findByIdAndDelete(user._id);
+  await User.findByIdAndDelete(user2._id);
+});
+
 describe("User API", () => {
   let user: UserI;
   let user2: UserI;
-
-  beforeAll(async () => {
-    await dbHandler.connect();
-  });
-
-  beforeEach(async () => {
-    user = new User({
-      _id: mongoose.Types.ObjectId(),
-      username: `${Date.now().toString()} ${Math.random()}`,
-      password: "$2a$10$efmxm5o1v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
-      firstName: "Abenezer",
-      lastName: "Belay",
-    });
-    await user.save();
-
-    user2 = new User({
-      _id: mongoose.Types.ObjectId(),
-      username: `${Date.now().toString()} ${Math.random()}`,
-      password: "$2a$10$efmxm5o1v.inI.eStGGxgO1zHk.L6UoA9LEyYrRPhWkmTQPX8.NKO",
-      firstName: "Kebede",
-      lastName: "Abebe",
-    });
-
-    await user2.save();
-  });
-
-  afterEach(async () => {
-    await User.findByIdAndDelete(user._id);
-    await User.findByIdAndDelete(user2._id);
-  });
 
   it("It should get all users", async () => {
     let response = await chai.request(server).get("/api/users");
