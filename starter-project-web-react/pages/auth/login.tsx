@@ -1,6 +1,7 @@
-import LoginCard from "../components/minteLoginCard";
+import React from 'react';
+import LoginCard from "../../components/auth/minteLoginCard";
+import RegisterCard from '../../components/auth/minteRegisterCard';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import {green } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 
 const theme = createTheme({
@@ -17,14 +18,15 @@ const theme = createTheme({
     }
 })
 
-const AuthPage = ()=>{
+const LoginPage: React.FC = ()=>{
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="sm">
                 <LoginCard/>
+                
             </Container>
         </ThemeProvider>
     )
 }
 
-export default AuthPage 
+export default LoginPage; 
