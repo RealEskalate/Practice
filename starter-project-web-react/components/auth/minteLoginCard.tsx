@@ -1,0 +1,90 @@
+import * as React from 'react';
+import { ChangeEvent, useState } from 'react';
+import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Typography from '@mui/material/Typography';
+import AuthButton from './minteAuthButton';
+import TextField from '@mui/material/TextField';
+import Link from 'next/link';
+
+const style = {
+  backgroundColor: "#607d8b",
+  minHeight: "85vh",
+  margin: "auto",
+  padding: "30px 30px 20px 30px",
+  marginTop: "50px",
+  display: "flex",
+  flexDirection: "column",
+  // "justify-content": "center",
+
+  boxShadow: 3,
+  width: "100%",
+  
+}
+const inputStyle = {
+  backgroundColor:"#f5f5f5",
+  margin:"10px 0px"
+  
+}
+const h1Style = {
+  color: "#fff",
+  textAlign: "center",
+  margin:"20px 0px"
+}
+
+
+const LoginCard = ()=>{
+    const [username, setUsername] = useState("");
+    const [password, setPassword]= useState("");
+    const [usernameError, setUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [usernameHelperText, setUsernameHelperText] = useState("");
+    const [passwordHelperText, setPasswordHelperText] = useState("");
+
+    const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
+      setUsername(event.target.value);
+      setUsernameError(false);
+      setUsernameHelperText("");
+    }
+    const passwordChange = (event: ChangeEvent<HTMLInputElement>)=>{
+      setPassword(event.target.value);
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+
+    const handleClick = ()=>{
+      
+      if(username == ""){
+        setUsernameError(true);
+        setUsernameHelperText("Username required");
+      }
+      if(password == ""){
+        setPasswordError(true);
+        setPasswordHelperText("Password required");
+      }
+      
+      if(username && password){
+        alert(`user with username ${username} has successfully logged in`);
+        setUsername("");
+        setPassword("");
+      }
+    }
+
+    return (
+    <Box sx={style}>
+        <Typography variant="h3" sx={h1Style}>Sign in</Typography>
+        <TextField  label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
+        <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
+        <AuthButton text="Login" ClickHandler={handleClick}/>
+        <Typography variant="h6" color="#fff">
+          you don't have account?{' '}
+          <Link href="/auth/register">
+            <a>Signup</a>
+          </Link>
+        </Typography>
+    </Box>
+  );
+}
+
+
+export default LoginCard;
