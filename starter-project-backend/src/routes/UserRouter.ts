@@ -1,15 +1,21 @@
 import { NextFunction, Router } from "express";
+import {
+  getAllUsers,
+  getUserDetail,
+  createUser,
+  deleteUser,
+  updateUser,
+} from "../controllers/UserController";
 
 const router = Router();
-const UserController = require("../controllers/UserController");
 const middleware = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-router.get("/api/users", UserController.getAllUsers);
-router.get("/api/users/:id", UserController.getUserDetail);
-router.post("/api/users/signup", UserController.createUser);
-router.delete("/api/users", UserController.deleteUser);
-router.patch("/api/users", UserController.updateUser);
+router.get("/api/users", getAllUsers);
+router.get("/api/users/:id", getUserDetail);
+router.post("/api/users/signup", createUser);
+router.delete("/api/users", deleteUser);
+router.patch("/api/users", updateUser);
 
 export default router;
