@@ -1,4 +1,3 @@
-import Rating, { IRating } from "../../models/ratings"
 import * as dbHandler from '../setupdb'
 import request from 'supertest'
 import app from "../../app"
@@ -15,21 +14,21 @@ afterAll(async () => {
     await dbHandler.disconnect()
 })
 
-describe('GET /api/articles/{id}/ratings', () => {
+describe('GET /api/rate/{id}/ratings', () => {
     it('should return status code 200', async () => {
         const res = await request(app)
-            .get("/api/articles/1/ratings")
+            .get("/api/rate/1/ratings")
             .send()
         expect(res.statusCode).toEqual(200)
     })
 })
 
-describe('POST /api/articles/{id}/ratings', () => {
+describe('POST /api/rate/{id}/ratings', () => {
     it('should return status code 201',async () => {
         const userId = "1"
         const value = 3
         const res = await request(app)
-            .post("/api/articles/1/ratings")
+            .post("/api/rate/1/ratings")
             .send({userId, value})
         expect(res.statusCode).toEqual(201)
     })
@@ -38,28 +37,28 @@ describe('POST /api/articles/{id}/ratings', () => {
         const userId = "1"
         const value = 3
         const res = await request(app)
-            .post("/api/articles/1/ratings")
+            .post("/api/rate/1/ratings")
             .send({userId, value})
         expect(res.statusCode).toEqual(201)
     })
 
     it('should return status code 400 if userId or value is missing', async () => {
         const res = await request(app)
-            .post("/api/articles/2/ratings")
+            .post("/api/rate/2/ratings")
             .send()
         expect(res.statusCode).toEqual(400)
     })
 })
 
-describe('Update /api/articles/{id}/ratings', () => {
+describe('Update /api/rate/{id}/ratings', () => {
     it('should return status code 201', async () => {
         const userId = "1"
         const value = 3
         await request(app)
-            .post("/api/articles/1/ratings")
+            .post("/api/rate/1/ratings")
             .send({userId, "value": value + 1})
         const res = await request(app)
-            .patch("/api/articles/1/ratings")
+            .patch("/api/rate/1/ratings")
             .send({userId, value})
         
         expect(res.statusCode).toEqual(201)
@@ -69,10 +68,10 @@ describe('Update /api/articles/{id}/ratings', () => {
         const userId = "1"
         const value = 3
         await request(app)
-            .post("/api/articles/1/ratings")
+            .post("/api/rate/1/ratings")
             .send({userId, "value": value})
         const res = await request(app)
-            .patch("/api/articles/1/ratings")
+            .patch("/api/rate/1/ratings")
             .send()
         expect(res.statusCode).toEqual(400)
     })
@@ -81,21 +80,21 @@ describe('Update /api/articles/{id}/ratings', () => {
         const userId = "1"
         const value = 3
         const res = await request(app)
-            .patch("/api/articles/1/ratings")
+            .patch("/api/rate/1/ratings")
             .send({userId, value})
         expect(res.statusCode).toEqual(404)
     })
 })
 
-describe('Delete /api/articles/{id}/ratings', () => {
+describe('Delete /api/rate/{id}/ratings', () => {
     it('should return status code 201', async () => {
         const userId = "1"
         const value = 3
         await request(app)
-            .post("/api/articles/1/ratings")
+            .post("/api/rate/1/ratings")
             .send({userId, value})
         const res = await request(app)
-            .delete("/api/articles/1/ratings")
+            .delete("/api/rate/1/ratings")
             .send({userId})
         expect(res.statusCode).toEqual(201)
     })

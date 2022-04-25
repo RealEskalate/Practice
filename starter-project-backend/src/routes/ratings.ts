@@ -9,9 +9,9 @@ import {
 
 const router = Router({mergeParams: true})
 
-router.get("/", getRating)
-router.patch("/", updateRating)
-router.delete("/", deleteRating)
-router.post("/", createRating)
+router.get("/:articleId/ratings/", getRating)
+router.patch("/:articleId/ratings/", updateRating)
+router.delete("/:articleId/ratings/", deleteRating)
+router.post("/:articleId/ratings/", createRating)
 
 export default router

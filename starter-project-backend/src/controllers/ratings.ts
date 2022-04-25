@@ -68,10 +68,10 @@ export const deleteRating = async (
     ) => {
     const {articleId} = req.params
     const {userId} = req.body
-
     try {
         const rating = await Rating.findOneAndDelete({articleId, userId})
         if (!rating) {
+            
             return res.status(404).json({
                 message: `Rating doesn't exist`
             })
