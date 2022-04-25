@@ -62,7 +62,7 @@ export const createUser = async (
         .status(422)
         .send("The password length must be greater than or equal to 8");
     } else {
-      password = Bcrypt.hashSync(password, 10);
+      user.password = Bcrypt.hashSync(password, 10);
       await user.save();
       res.send(user);
     }
