@@ -8,9 +8,6 @@ import {
 } from "../controllers/UserController";
 
 const router = Router();
-const middleware = (req: Request, res: Response, next: NextFunction) => {
-  next();
-};
 
 router.get("/api/users", getAllUsers);
 router.get("/api/users/:id", getUserDetail);
