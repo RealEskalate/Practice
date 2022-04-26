@@ -27,6 +27,7 @@
     "@nestjs/mongoose": "^9.0.3",
     "@nestjs/platform-express": "^8.0.0",
     "@types/mongoose": "^5.11.97",
+    "joi": "^17.6.0",
     "mongoose": "^6.3.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

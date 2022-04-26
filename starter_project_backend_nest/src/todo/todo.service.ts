@@ -51,7 +51,7 @@ export class TodoService {
       if (completed) {
         todo.completed = completed;
       }
-      todo.save();
+      await todo.save();
     } catch (error) {
       throw new NotFoundException(error);
     }
@@ -71,7 +71,7 @@ export class TodoService {
   async deleteTodo(id: string) {
     const todo = await this.findTodo(id);
     if (todo) {
-      this.todomodel.deleteOne({ _id: id });
+      await this.todomodel.deleteOne({ _id: id });
     } else {
       throw new NotFoundException(`todo with ${id} not found`);
     }

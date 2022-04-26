@@ -3,16 +3,24 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TodosModule } from './todo/todos.module';
-import { ArticleController } from './article/article.controller';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import config from './config/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    ConfigModule.forRoot({
+      load: [config],
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        uri: config.get<string>('MONGO_URI'),
+      }),
+    }),
     TodosModule,
   ],
-  controllers: [AppController, ArticleController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
