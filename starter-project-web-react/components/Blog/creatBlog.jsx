@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Button, TextField, Box } from '@mui/material';
-import CustomizedButtons from './Button';
+import { Button, Box } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,7 +7,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Form from './form';
 
 export default function CreateBlog() {

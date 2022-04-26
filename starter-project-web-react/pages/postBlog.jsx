@@ -1,5 +1,5 @@
 
-import CreateBlog from '../components/Blog/creatBlog';
+import CreateBlog from '../components/blog/creatBlog';
 
 
 const AddBlog = ()=>{
