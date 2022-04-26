@@ -14,7 +14,6 @@ const AuthButton: React.FC<Props> = ({text,ClickHandler})=>{
         fontSize: 24,
         margin: "30px 0px",
         padding:"8px 0px"
-
     };
 
     

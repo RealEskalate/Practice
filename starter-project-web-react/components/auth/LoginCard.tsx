@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
-import AuthButton from './minteAuthButton';
+import AuthButton from './AuthButton';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 
@@ -15,8 +15,6 @@ const style = {
   marginTop: "50px",
   display: "flex",
   flexDirection: "column",
-  // "justify-content": "center",
-
   boxShadow: 3,
   width: "100%",
   
@@ -77,7 +75,7 @@ const LoginCard = ()=>{
         <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
         <AuthButton text="Login" ClickHandler={handleClick}/>
         <Typography variant="h6" color="#fff">
-          you don't have account?{' '}
+          you don&apos;t have account?{" "}
           <Link href="/auth/register">
             <a>Signup</a>
           </Link>

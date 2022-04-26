@@ -1,7 +1,7 @@
 import {ChangeEvent, useState} from 'react';
 import Box from '@mui/material/Box';
 import { Typography, OutlinedInput, TextField} from '@mui/material';
-import AuthButton from './minteAuthButton';
+import AuthButton from './AuthButton';
 import Link from 'next/link';
 
 const style = {
@@ -12,16 +12,13 @@ const style = {
         marginTop: "50px",
         display: "flex",
         flexDirection: "column",
-        "justify-content": "center",
-
+        justifyContent: "center",
         boxShadow: 3,
-        width: "100%",
-        
+        width: "100%",   
       }
     const inputStyle = {
         backgroundColor:"#f5f5f5",
         margin:"10px 0px"
-        
     }
     const h1Style = {
         color: "#fff",
@@ -33,9 +30,7 @@ const style = {
         justifyContent: "space-between"
     }
 
-    const handleClick = ()=>{
-        alert("Register clicked");
-    }
+
 
 const RegisterCard = ()=>{
     const [fName,setFName] = useState("");
@@ -76,7 +71,7 @@ const RegisterCard = ()=>{
     const fNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
         setFName(event.target.value);
         setFNameError(false);
-        // setFNameHelperText("");
+        setFNameHelperText("");
     }
     const lNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
         setLName(event.target.value);
