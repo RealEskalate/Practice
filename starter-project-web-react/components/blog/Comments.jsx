@@ -14,6 +14,9 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import SingleComment from './SingleComment';
+import InputAdornment from '@mui/material/InputAdornment';
+import AddCommentOutlined from '@mui/icons-material/AddCommentOutlined';
 
 
 export default function Comments({blog}) {
@@ -59,40 +62,28 @@ export default function Comments({blog}) {
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
         <Box px={2}>
-          <TextField fullWidth label="Leave a comment!" id="commentForm" variant="standard" />
+          <TextField 
+            fullWidth 
+            label="Leave a comment!" 
+            id="commentForm" 
+            variant="standard" 
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <AddCommentOutlined />
+                </InputAdornment>
+              ),
+            }}
+          />
         </Box>
         
         <List className='comment-list' sx={{ width: '100%', maxHeight: 500, overflow: 'auto' }}>
             {comments.map((comment, ind) => (
-              <Box key={`comment-${ind}`}>
-                <ListItem alignItems="flex-start">
-                  <ListItemAvatar>
-                    <Avatar alt={comment.commenter} src={comment.img} />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={comment.commenter}
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                            sx={{ display: 'inline' }}
-                            component="span"
-                            variant="body2"
-                            color="text.primary"
-                        >
-                            {comment.created_at}
-                        </Typography>
-                        {' — ' + comment.comment}
-                      </React.Fragment>
-                  }
-                  />
-                </ListItem>
-                {
-                  (ind < comments.length - 1) &&
-                    <Divider variant="inset" component="li" />
-                }
-                
-              </Box>
-              
+              <SingleComment 
+                comment={comment} 
+                key={`comment-${ind}`}
+                divider={ind < comments.length - 1} 
+              />
             ))}
         </List>
       </CardContent>
