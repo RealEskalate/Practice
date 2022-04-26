@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button} from '@mui/material';
-import PostBlogDialog from '../components/blog/postBlogDialog';
+import BlogPostDialog from '../components/blog/blogPostDialog';
 export default function CreateBlog() {
   const [open, setOpen] = useState(false);
 
@@ -16,7 +16,7 @@ export default function CreateBlog() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Post
       </Button>
-      <PostBlogDialog open={open} handleClose={handleClose} />
+      <BlogPostDialog open={open} handleClose={handleClose} />
     </div>
   );
 }

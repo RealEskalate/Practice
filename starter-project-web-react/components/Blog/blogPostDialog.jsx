@@ -9,16 +9,15 @@ import {
 import { useTheme } from '@mui/material/styles';
 import BlogPostForm from './blogPostForm';
 
-export default function PostBlogDialog({
+export default function BlogPostDialog({
     open,
     handleClose
-                }) {
+}) {
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
-        <div>
             <Dialog
                 fullScreen={fullScreen}
                 open={open}
@@ -36,6 +35,5 @@ export default function PostBlogDialog({
                 <DialogActions>
                 </DialogActions>
             </Dialog>
-        </div>
     )
 }
