@@ -19,7 +19,6 @@ export default function Form({
               rows={4}
             />
             </Box>
-
             <Button size='large' fullWidth variant="outlined" onClick={handleClose} autoFocus >
               Post
             </Button>
