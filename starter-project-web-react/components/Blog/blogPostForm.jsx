@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, TextField, Button} from '@mui/material'
-export default function Form({
+export default function BlogPostForm({
     handleClose
 }) {
   return (

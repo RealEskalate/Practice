@@ -7,7 +7,7 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Form from './form';
+import BlogPostForm from './blogPostForm';
 
 export default function PostBlogDialog({
     open,
@@ -31,7 +31,7 @@ export default function PostBlogDialog({
                     </Box>
                 </DialogTitle>
                 <DialogContent>
-                    <Form handleClose={handleClose} />
+                    <BlogPostForm handleClose={handleClose} />
                 </DialogContent>
                 <DialogActions>
                 </DialogActions>
