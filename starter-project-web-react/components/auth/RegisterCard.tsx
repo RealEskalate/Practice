@@ -4,7 +4,6 @@ import { Typography, OutlinedInput, TextField} from '@mui/material';
 import AuthButton from './AuthButton';
 import Link from 'next/link';
 import { register } from '../../store/slices/auth';
-import Home from '../../pages';
 import { useDispatch, useStore} from 'react-redux';
 import {useRouter} from 'next/router';
 
@@ -37,7 +36,6 @@ const style = {
 
 
 const RegisterCard = ()=>{
-    const [status, setStatus] = useState(Boolean);
     const [fName,setFName] = useState("");
     const [fNameError, setFNameError] = useState(false);
     const [fNameHelperText, setFNameHelperText] = useState("");
@@ -112,12 +110,13 @@ const RegisterCard = ()=>{
         }
         if(fName && lName && username && password && confirmPassword){
             dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}));
-            
+
             setFName("");
             setLName("");
             setUsername("");
             setPassword("");
             setConfirmPassword("");
+
             if(store.getState().entities.authentication.isLogin){
                 router.push('/')
               }
@@ -125,27 +124,24 @@ const RegisterCard = ()=>{
     }
 
     return (
-        <div>
-            <Box sx={style}>
-                <Typography variant="h3" sx={h1Style}>Sign Up</Typography>
-                <div style={divStyle}>
-                    <TextField  label="first name" error={fNameError} helperText={fNameHelperText} value={fName} onChange={fNameChange} sx={inputStyle}/>
-                    <TextField label="last name" error={lNameError} helperText={lNameHelperText} value={lName} onChange={lNameChange} sx={inputStyle}/>           
-                </div>
-                <TextField label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
-                <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>
-                <TextField label="confirm password" error={confirmPasswordError} helperText={confirmPasswordHelperText} onChange={confirmPasswordChange} value={confirmPassword} sx={inputStyle}/>
-                <AuthButton  text="Register" ClickHandler={handleClick}/>
-                <Typography variant="h6" color="#fff" sx={h1Style}>
-                    ---------------{' '}
-                    <Link href="/auth/login">
-                        <a>Signin</a>
-                    </Link>
-                    {' '}---------------
-                </Typography>
-            </Box>
-                
-        </div>
+        <Box sx={style}>
+            <Typography variant="h3" sx={h1Style}>Sign Up</Typography>
+            <div style={divStyle}>
+                <TextField  label="first name" error={fNameError} helperText={fNameHelperText} value={fName} onChange={fNameChange} sx={inputStyle}/>
+                <TextField label="last name" error={lNameError} helperText={lNameHelperText} value={lName} onChange={lNameChange} sx={inputStyle}/>           
+            </div>
+            <TextField label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
+            <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>
+            <TextField label="confirm password" error={confirmPasswordError} helperText={confirmPasswordHelperText} onChange={confirmPasswordChange} value={confirmPassword} sx={inputStyle}/>
+            <AuthButton  text="Register" ClickHandler={handleClick}/>
+            <Typography variant="h6" color="#fff" sx={h1Style}>
+                ---------------{' '}
+                <Link href="/auth/login">
+                    <a>Signin</a>
+                </Link>
+                {' '}---------------
+            </Typography>
+        </Box>
     )
 
 }

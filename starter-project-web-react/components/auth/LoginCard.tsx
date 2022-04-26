@@ -1,5 +1,7 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+import * as React from 'react';
+import { ChangeEvent, useState } from 'react';
 import Box from '@mui/material/Box';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import AuthButton from './AuthButton';
 import TextField from '@mui/material/TextField';
@@ -35,13 +37,13 @@ const h1Style = {
 
 
 const LoginCard = ()=>{
-    
     const [username, setUsername] = useState("");
     const [password, setPassword]= useState("");
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [usernameHelperText, setUsernameHelperText] = useState("");
     const [passwordHelperText, setPasswordHelperText] = useState("");
+
     const router = useRouter();
 
     const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
@@ -58,7 +60,6 @@ const LoginCard = ()=>{
     const dispatch: any = useDispatch();
     const store: any = useStore();
 
-
     const handleClick = ()=>{
       
       if(username == ""){
@@ -72,13 +73,10 @@ const LoginCard = ()=>{
       
       if(username && password){
         dispatch(login({username, password}));
-      
-               
+     
         setUsername("");
         setPassword("");
      
-        
-        
         if(store.getState().entities.authentication.isLogin){
           router.push('/')
         }
@@ -86,8 +84,7 @@ const LoginCard = ()=>{
     }
 
     return (
-    <div>
-      <Box sx={style}>
+    <Box sx={style}>
         <Typography variant="h3" sx={h1Style}>Sign in</Typography>
         <TextField  label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
         <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
@@ -98,8 +95,7 @@ const LoginCard = ()=>{
             <a>Signup</a>
           </Link>
         </Typography>
-      </Box>
-    </div>
+    </Box>
   );
 }
 
