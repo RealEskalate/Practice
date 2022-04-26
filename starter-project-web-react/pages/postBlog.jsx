@@ -1,14 +1,22 @@
+import React, { useState } from 'react';
+import { Button} from '@mui/material';
+import PostBlogDialog from '../components/blog/postBlogDialog';
+export default function CreateBlog() {
+  const [open, setOpen] = useState(false);
 
-import CreateBlog from '../components/blog/creatBlog';
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-
-const AddBlog = ()=>{
-    return (
-        <>
-        <CreateBlog/>
-        </>
-    )
+  const handleClose = () => {
+    setOpen(false);
+  };
+  return (
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Post
+      </Button>
+      <PostBlogDialog open={open} handleClose={handleClose} />
+    </div>
+  );
 }
-
-export default AddBlog 
-
