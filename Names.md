@@ -29,6 +29,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   * Semere Habtu
   * Murad Abdella
   * Gizachew Tegegn 
+  * Dawit Addise 
 
 ### Backend Team
 
