@@ -7,7 +7,7 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import BlogPostForm from './blogPostForm';
+import BlogPostForm from './BlogPostForm';
 
 export default function BlogPostDialog({
     open,
