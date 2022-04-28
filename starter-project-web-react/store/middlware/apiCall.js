@@ -21,7 +21,6 @@ const apiCall = ({ dispatch }) => next => async action => {
         dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
         if (onSuccess) dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
     } catch (error) {
-        console.log()
         dispatch(actions.apiCallFailed(error.message)) //ourt general onFailed action will dispatch heer
         if (onFailed) dispatch({
             type: onFailed, payload:
