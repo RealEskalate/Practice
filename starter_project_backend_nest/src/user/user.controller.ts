@@ -7,16 +7,20 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Public } from 'src/auth/constants';
 import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Public()
   @Get('/all')
   getAllUser() {
     return this.userService.getAllUser();
   }
 
+  @Public()
   @Post()
   createUser(
     @Body('username') username: string,

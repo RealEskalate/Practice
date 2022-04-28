@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import User from './user.model';
+import UserI from './user.model';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly usermodel: Model<User>) {}
+  constructor(@InjectModel('User') private readonly usermodel: Model<UserI>) {}
 
   async createUser(
     username: string,
@@ -32,6 +32,11 @@ export class UserService {
     const user = await this.usermodel.findById(id);
     return user;
     //throw new Error('Method not implemented.');
+  }
+
+  async findOne(username: string) {
+    const user = await this.usermodel.findOne({ username: username });
+    return user;
   }
 
   async updateUser(
