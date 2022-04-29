@@ -11,7 +11,7 @@ export class ArticleService {
   ) {}
 
   async getAllArticle() {
-    let allModels = await this.articleModel.find();
+    const allModels = await this.articleModel.find();
     return allModels;
   }
 
