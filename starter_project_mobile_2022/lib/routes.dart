@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_minasie/presentation/blog_list.dart';
 import 'package:starter_project_mobile_2022/main/homepage.dart';
 
 class PageRouter {
@@ -10,11 +9,6 @@ class PageRouter {
           return const MyHomePage(
             title: "Test Project",
           );
-        });
-
-      case BlogListingAppMinasie.pageRoute:
-        return MaterialPageRoute(builder: (context) {
-          return const BlogListingAppMinasie();
         });
     }
     return null;

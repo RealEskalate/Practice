@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_minasie/presentation/blog_list.dart';
 import 'package:starter_project_mobile_2022/routes.dart';
 
 void main() {
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: BlogListingAppMinasie.pageRoute,
+      initialRoute: '/',
     );
   }
 }
