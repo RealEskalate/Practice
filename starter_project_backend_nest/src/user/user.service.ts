@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import UserI from './user.model';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -13,25 +14,27 @@ export class UserService {
     lastName: string,
     password: string,
   ) {
+
+    const saltOrRounds = 10;
+    const hashed_password = await bcrypt.hash(password, saltOrRounds);
+    password = hashed_password;
+
     const newUser = await this.usermodel.create({
-      username,
       firstName,
       lastName,
+      username,
       password,
     });
     return newUser;
-    //throw new Error('Method not implemented.');
   }
 
   async getAllUser() {
     const users = await this.usermodel.find();
-    //throw new Error('Method not implemented.');
   }
 
   async getUserById(id: string) {
     const user = await this.usermodel.findById(id);
     return user;
-    //throw new Error('Method not implemented.');
   }
 
   async findOne(username: string) {
@@ -58,7 +61,6 @@ export class UserService {
     } catch (error) {
       throw new NotFoundException(error);
     }
-    //throw new Error('Method not implemented.');
   }
 
   async deleteUser(id: string) {
@@ -68,6 +70,5 @@ export class UserService {
     } else {
       throw new NotFoundException(`user with ${id} not found`);
     }
-    // throw new Error('Method not implemented.');
   }
 }
