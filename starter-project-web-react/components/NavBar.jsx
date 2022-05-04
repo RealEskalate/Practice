@@ -28,8 +28,7 @@ export default function ButtonAppBar() {
             ))}
           </Box>
 
-          <Button color="inherit">Sign Up</Button>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>

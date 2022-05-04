@@ -1,11 +1,14 @@
-import * as React from 'react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import AuthButton from './AuthButton';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
+import { login} from '../../store/slices/auth';
+import Home from '../../pages';
+import Bloglist from '../../pages/blogs';
+import { useDispatch, useStore} from 'react-redux';
 
 const style = {
   backgroundColor: "#607d8b",
@@ -32,12 +35,14 @@ const h1Style = {
 
 
 const LoginCard = ()=>{
+    
     const [username, setUsername] = useState("");
     const [password, setPassword]= useState("");
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [usernameHelperText, setUsernameHelperText] = useState("");
     const [passwordHelperText, setPasswordHelperText] = useState("");
+    const router = useRouter();
 
     const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
       setUsername(event.target.value);
@@ -49,6 +54,10 @@ const LoginCard = ()=>{
       setPasswordError(false);
       setPasswordHelperText("");
     }
+
+    const dispatch: any = useDispatch();
+    const store: any = useStore();
+
 
     const handleClick = ()=>{
       
@@ -62,14 +71,23 @@ const LoginCard = ()=>{
       }
       
       if(username && password){
-        alert(`user with username ${username} has successfully logged in`);
+        dispatch(login({username, password}));
+      
+               
         setUsername("");
         setPassword("");
+     
+        
+        
+        if(store.getState().entities.authentication.isLogin){
+          router.push('/')
+        }
       }
     }
 
     return (
-    <Box sx={style}>
+    <div>
+      <Box sx={style}>
         <Typography variant="h3" sx={h1Style}>Sign in</Typography>
         <TextField  label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
         <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
@@ -80,7 +98,8 @@ const LoginCard = ()=>{
             <a>Signup</a>
           </Link>
         </Typography>
-    </Box>
+      </Box>
+    </div>
   );
 }
 
