@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     if(!store.getState().entities.authentication.isLogin){
       router.push('/auth/login')
     }
-  },[]);
+  },[store,router]);
  
   return (
     <div className={styles.container}>
