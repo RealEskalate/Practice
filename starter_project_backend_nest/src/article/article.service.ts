@@ -1,4 +1,8 @@
-import { NotFoundException, Injectable } from '@nestjs/common';
+import {
+  NotFoundException,
+  BadRequestException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
@@ -22,7 +26,7 @@ export class ArticleService {
       article = await this.articleModel.findById(id);
     } catch (e) {
       // for invalied id
-      throw new NotFoundException(`Article with ${id} not found`);
+      throw new BadRequestException(`${id} is doesn't have valied format`);
     }
 
     if (!article) throw new NotFoundException(`Article with ${id} not found`);
@@ -31,35 +35,33 @@ export class ArticleService {
   }
 
   async deleteArticleById(id: string) {
-    let article = await this.getArticleById(id);
-    if (!article) throw new NotFoundException(`Article with ${id} not found`);
-    await this.articleModel.deleteOne({ _id: id });
-    return `Article with ${id} is now deleted`;
+    try {
+      await this.getArticleById(id);
+      await this.articleModel.deleteOne({ _id: id });
+      return `success`;
+    } catch (e) {
+      throw e;
+    }
   }
 
-  async updateArticleById(
-    id: string,
-    {
-      author,
-      title,
-      content,
-    }: {
-      author: { name: any; lastName: any; bio: any };
-      title: any;
-      content: any;
-    },
-  ) {
-    let article = await this.getArticleById(id);
+  async updateArticleById(id: string, newEntries: any) {
+    try {
+      let article = await this.getArticleById(id);
 
-    if (author && author.name) article.author.name = author.name;
-    if (author && author.lastName) article.author.name = author.lastName;
-    if (author && author.bio) article.author.name = author.bio;
-
-    if (title) article.title = title;
-    if (content) article.content = content;
-
-    await article.save();
-    return article;
+      if (newEntries.title) article.title = newEntries.title;
+      if (newEntries.content) article.content = newEntries.content;
+      if (newEntries.author) {
+        if (newEntries.author.firstName)
+          article.author.name = newEntries.author.firstName;
+        if (newEntries.author.lastName)
+          article.author.lastName = newEntries.author.lastName;
+        if (newEntries.author.bio) article.author.name = newEntries.author.bio;
+      }
+      await article.save();
+      return article;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async addArticle({
@@ -67,7 +69,7 @@ export class ArticleService {
     title,
     content,
   }: {
-    author: { name: String; lastName: String; bio: String };
+    author: { firstName: String; lastName: String; bio: String };
     title: String;
     content: string;
   }) {
