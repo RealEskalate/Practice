@@ -14,6 +14,7 @@ import { UserModule } from './user/user.module';
   imports: [
     ConfigModule.forRoot({
       load: [config],
+      isGlobal: true
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

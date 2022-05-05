@@ -14,7 +14,6 @@ export class UserService {
     lastName: string,
     password: string,
   ) {
-
     const saltOrRounds = 10;
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
@@ -30,6 +29,7 @@ export class UserService {
 
   async getAllUser() {
     const users = await this.usermodel.find();
+    return users;
   }
 
   async getUserById(id: string) {
