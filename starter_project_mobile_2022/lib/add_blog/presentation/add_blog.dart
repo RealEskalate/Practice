@@ -24,7 +24,7 @@ class _AddBlogState extends State<AddBlog> {
         color: Colors.white,
       ),
       Icon(
-        Icons.book,
+        Icons.publish,
         size: 30,
         color: Colors.white,
       ),
@@ -113,7 +113,7 @@ class _AddBlogState extends State<AddBlog> {
                 width: 2,
               ),
             ),
-            labelText: "Provide Body of Your Blog",
+            labelText: "Article Content",
             prefixIcon: IconButton(
               icon: Icon(
                 Icons.image,
@@ -135,12 +135,12 @@ class _AddBlogState extends State<AddBlog> {
         height: 50,
         width: 200,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.teal,
+          borderRadius: BorderRadius.circular(60),
+          color: Colors.blue,
         ),
         child: const Center(
           child: Text(
-            'Add Blog',
+            'Publish',
             style: TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
