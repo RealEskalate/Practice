@@ -19,12 +19,12 @@ class _AddBlogState extends State<AddBlog> {
         color: Colors.white,
       ),
       Icon(
-        Icons.article,
+        Icons.menu_book,
         size: 30,
         color: Colors.white,
       ),
       Icon(
-        Icons.favorite,
+        Icons.book,
         size: 30,
         color: Colors.white,
       ),
@@ -99,30 +99,32 @@ class _AddBlogState extends State<AddBlog> {
   Widget bodyTextField() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: TextFormField(
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.teal,
+      child: Expanded(
+        child: TextFormField(
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.teal,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.orange,
+                width: 2,
+              ),
+            ),
+            labelText: "Provide Body of Your Blog",
+            prefixIcon: IconButton(
+              icon: Icon(
+                Icons.image,
+                color: Colors.teal,
+              ),
+              onPressed: null,
             ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.orange,
-              width: 2,
-            ),
-          ),
-          labelText: "Provide Body of Your Blog",
-          prefixIcon: IconButton(
-            icon: Icon(
-              Icons.image,
-              color: Colors.teal,
-            ),
-            onPressed: null,
-          ),
+          maxLength: 10000,
+          maxLines: 9,
         ),
-        maxLength: 10000,
-        maxLines: 9,
       ),
     );
   }
