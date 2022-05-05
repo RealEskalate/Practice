@@ -11,8 +11,7 @@ describe('TodoTesting', () => {
   beforeAll(async () => {
     module = await Test.createTestingModule({
       imports: [
-     
-  rootMongooseTestModule(),
+        rootMongooseTestModule(),
         MongooseModule.forFeature([
           {
             name: 'Todo',
