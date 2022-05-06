@@ -8,8 +8,7 @@ import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { login} from '../../store/slices/auth';
-import Home from '../../pages';
-import Bloglist from '../../pages/blogs';
+import { apiCallBegan } from '../../store/api';
 import { useDispatch, useStore} from 'react-redux';
 
 const style = {
@@ -72,12 +71,13 @@ const LoginCard = ()=>{
       }
       
       if(username && password){
-        dispatch(login({username, password}));
-     
+        dispatch({type:apiCallBegan.type, payload:{url: "/login", method: "post",onSuccess: login.type,data:{username,password}}});
+
         setUsername("");
         setPassword("");
      
         if(store.getState().entities.authentication.isLogin){
+          
           router.push('/')
         }
       }

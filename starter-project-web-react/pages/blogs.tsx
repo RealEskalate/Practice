@@ -20,19 +20,19 @@ const Bloglist = () => {
                 "title": "Grand kalab",
                 "body": "is a truly amazing master of all",
                 "author": "Kalab",
-                "id": 12
+                "id": 3
               },
               {
                 "title": "good man!",
                 "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
                 "author": "yoshi",
-                "id": 2
+                "id": 4
               },      
               {
                 "title": "good man!",
                 "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
                 "author": "yoshi",
-                "id": 2
+                "id": 5
               }, 
         ]
     return (  

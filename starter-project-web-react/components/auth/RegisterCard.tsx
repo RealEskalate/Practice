@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { register } from '../../store/slices/auth';
 import { useDispatch, useStore} from 'react-redux';
 import {useRouter} from 'next/router';
+import { apiCallBegan } from '../../store/api';
 
 const style = {
         backgroundColor: "#607d8b",
@@ -109,8 +110,9 @@ const RegisterCard = ()=>{
             setConfirmPasswordHelperText("Confirm Password required");
         }
         if(fName && lName && username && password && confirmPassword){
-            dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}));
-
+           
+            dispatch({type:apiCallBegan.type, payload:{url: "/register", method: "post",onSuccess: register.type, data:{firstName: fName, lastName: lName, username, password, confirmPassword}}});
+        
             setFName("");
             setLName("");
             setUsername("");

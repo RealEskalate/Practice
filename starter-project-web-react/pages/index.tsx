@@ -11,17 +11,19 @@ import { useRouter } from 'next/router'
 
 
 const Home: NextPage = () => {
-  const [status, setStatus] = useState(Boolean);
+  const [status, setStatus] = useState(false);
   const store: any = useStore();
   const router = useRouter()
 
   useEffect(()=>{
-  
+    
     if(!store.getState().entities.authentication.isLogin){
       router.push('/auth/login')
     }
   },[store,router]);
- 
+  
+
+
   return (
     <div className={styles.container}>
       <Layout> <Bloglist/> </Layout>

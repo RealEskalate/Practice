@@ -6,9 +6,26 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import {useDispatch,useStore} from 'react-redux';
+import { logout } from '../store/slices/auth';
+import { useRouter } from 'next/router';
 
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
+  const [user, setUser] = React.useState({});
+  const store = useStore();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  React.useEffect(()=>{
+    setUser(store.getState().entities.authentication.user);
+  },[])
+
+  const logoutHandler = ()=>{
+    dispatch(logout({}));
+    router.push('/auth/login')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -28,7 +45,8 @@ export default function ButtonAppBar() {
             ))}
           </Box>
 
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={logoutHandler}>Logout</Button>
+          <Typography variant='h6'>{user? user.username: ""}</Typography>
         </Toolbar>
       </AppBar>
     </Box>
