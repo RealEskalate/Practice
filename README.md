@@ -26,7 +26,6 @@ Open the `starter-project-[your team]` folder where you will find a `README.md` 
 # If you have any other questions, feel free to look it up, ask your team leads or really anyone else. Thank You.
 
 
-[![Build Status](https://travis-ci.org/RealEskalate/TrackSym.svg?branch=master)](https://travis-ci.org/RealEskalate/TrackSym) [![Coverage Status](https://coveralls.io/repos/github/RealEskalate/TrackSym/badge.svg?branch=master)](https://coveralls.io/github/RealEskalate/TrackSym?branch=master)
 ![eskalate](https://user-images.githubusercontent.com/36234545/91556848-14882e00-e93c-11ea-8ebb-a490362c924d.png)
 
 Made with ❤ since 2019 in Ethiopia, Turkey and USA by the Eskalate team. Eskalate LLC is a American company. <br>
