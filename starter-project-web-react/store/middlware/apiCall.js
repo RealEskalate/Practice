@@ -12,38 +12,35 @@ const apiCall =
     //   if (onStart) dispatch({ type: onStart }) // loading before the api call
 
     try {
-<<<<<<< HEAD
-    //     const response = await axios.request({
-    //         baseURL: 'our base url gooes heer',
-    //         url,
-    //         method,
-    //         data,
-    //         headers
-    //     })
-        const response = {
-            data:{
-                json:{
-                    data
-                }
-            }
-        }
-
-        dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
-        if (onSuccess) dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
-=======
+      //     const response = await axios.request({
+      //         baseURL: 'our base url gooes heer',
+      //         url,
+      //         method,
+      //         data,
+      //         headers
+      //     })
+      const response = {
+        data: {
+          json: {
+            data,
+          },
+        },
+      }
       const { status, result } = routeFunc(data, url)
 
       if (status) {
         if (onSuccess) dispatch({ type: onSuccess, payload: result })
+      } else {
+        dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
+        if (onSuccess)
+          dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
       }
 
       // our passed success action will dispatch  heer if there is one
->>>>>>> 91e616d ([WEB] implement pseudo api call)
     } catch (error) {
       console.log(error.message)
     }
   }
-
 export default apiCall
 
 const routeFunc = (input, url) => {
