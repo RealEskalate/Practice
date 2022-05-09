@@ -11,7 +11,7 @@ class PageRouter {
             title: "Test Project",
           );
         });
-      case "/addBlog":
+      case AddBlog.routeName:
         return MaterialPageRoute(builder: (context) {
           return const AddBlog();
         });
