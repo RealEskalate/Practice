@@ -37,7 +37,7 @@ export class ArticleService {
   async deleteArticleById(id: string) {
     try {
       await this.getArticleById(id);
-      await this.articleModel.deleteOne({ _id: id });
+      await this.articleModel.findByIdAndDelete(id);
       return `success`;
     } catch (e) {
       throw e;
@@ -50,14 +50,12 @@ export class ArticleService {
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
-      if (newEntries.author) {
-        if (newEntries.author.firstName)
-          article.author.name = newEntries.author.firstName;
-        if (newEntries.author.lastName)
-          article.author.lastName = newEntries.author.lastName;
-        if (newEntries.author.bio) article.author.name = newEntries.author.bio;
+      if (newEntries.authorUserId) {
+        article.authorUserId = newEntries.authorUserId;
       }
+
       await article.save();
+
       return article;
     } catch (e) {
       throw e;

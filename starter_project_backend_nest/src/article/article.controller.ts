@@ -43,7 +43,8 @@ export class ArticleController {
     @Request() req,
     @Body() { title, content }: { title: string; content: string },
   ) {
-    let newArticle = { authorUserId: req.user.userId, title, content };
+    let authorUserId = req.user.userId;
+    let newArticle = { authorUserId, title, content };
     return this.articleService.addArticle(newArticle);
   }
 }
