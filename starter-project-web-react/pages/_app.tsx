@@ -5,8 +5,13 @@ import { SessionProvider } from "next-auth/react"
 import { Provider } from 'react-redux'
 
 function MyApp({ Component, pageProps }: AppProps) {
-    
-    return ()
+let store = undefined
+  store = useStore(pageProps.initialReduxState)
+  return (
+    <Layout>
+    <Component {...pageProps} />
+  </Layout>
+  )
   }
 export default MyApp
 
