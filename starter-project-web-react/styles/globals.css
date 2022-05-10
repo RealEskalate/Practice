@@ -14,3 +14,45 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+/* blog previews / list */
+.blog-list{
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right:auto;
+}
+.blog-preview {
+
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+}
+/* .blog-preview:hover {
+  box-shadow: 1px 3px 5px rgba(255, 0, 0, 0.1);
+} */
+.blog-preview h2 {
+  font-size: 20px;
+  color: #935aee;
+  margin-bottom: 8px;
+}
+.blog-preview h1 {
+  font-size: 20px;
+  color: #343a3b;
+  margin-bottom: 8px;
+  text-align: right;
+  
+}
+.blog-preview a{
+  text-decoration: none;
+}
+
+.comment-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.comment-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
