@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
+import 'package:starter_project_mobile_2022/blog_suha/widgets/postCard.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -10,39 +12,47 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      backgroundColor: mainBackground,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            PostCard(
+              created: '2d ago',
+              description:
+                  'Daily Facebook users up again after decline But Facebook owner Meta is struggling with',
+              heigth: height * 0.4,
+              width: width * 0.93,
+              padding: 10,
+              icon: Icons.person,
+              image: Icons.texture_sharp,
+              numOfComments: '16',
+              numOfStars: 4,
+              title: 'Adrian Smith',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const SizedBox(height: 12),
+            PostCard(
+              created: '2d ago',
+              description:
+                  'Daily Facebook users up again after decline But Facebook owner Meta is struggling with',
+              heigth: height * 0.4,
+              width: width * 0.93,
+              padding: 10,
+              icon: Icons.person,
+              image: Icons.texture_sharp,
+              numOfComments: '16',
+              numOfStars: 4,
+              title: 'Adrian Smith',
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
