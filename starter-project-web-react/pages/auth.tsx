@@ -8,7 +8,7 @@ const theme = createTheme({
         primary: {
             main: "#4caf50",
             contrastText: "#fff"
-        },
+        }, 
         
     },
     typography:{

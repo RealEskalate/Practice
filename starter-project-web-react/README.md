@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 1. Next, TypeScript, Redux, MUI, and Jest will be used in this project
 2. Add a page to the pages folder with your task on it (eg. auth.tsx)
-3. Add your page's component to the components folder with your name (eg . JohnLoginButton.tsx)
+3. Add your components to the components folder(eg . LoginButton.tsx)
 4. Use store folder to store your Redux files
 5. We will be using backend team api for the project
 
