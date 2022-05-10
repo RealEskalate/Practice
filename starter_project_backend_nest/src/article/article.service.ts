@@ -65,15 +65,15 @@ export class ArticleService {
   }
 
   async addArticle({
-    author,
+    authorUserId,
     title,
     content,
   }: {
-    author: { firstName: String; lastName: String; bio: String };
-    title: String;
+    authorUserId: string;
+    title: string;
     content: string;
   }) {
-    let newArticle = new this.articleModel({ author, title, content });
+    let newArticle = new this.articleModel({ authorUserId, title, content });
     await newArticle.save();
 
     return newArticle;

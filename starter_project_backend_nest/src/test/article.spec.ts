@@ -5,12 +5,7 @@ import { ArticleService } from '../article/article.service';
 import { ArticleSchema } from '../article/article.model';
 
 let sampleArticle = {
-  author: {
-    firstName: 'gzachew',
-    lastName: 'demeke',
-    bio: "I'm blah blah",
-  },
-
+  authorUserId: '324231234',
   title: 'how I got to do jobs using mars',
   content: 'blah blah blah mars blah blah',
 };
