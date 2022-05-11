@@ -18,32 +18,32 @@ export class TodoController {
   }
 
   @Post()
-  addTodo(
+  async addTodo(
     @Body('title') title: string,
     @Body('description') description: string,
     @Body('completed') completed: boolean,
   ) {
-    return this.todoService.createTodo(title, description, completed);
+    return await this.todoService.createTodo(title, description, completed);
   }
   @Get('/comp')
-  getCompleted() {
-    return this.todoService.getCompleted();
+  async getCompleted() {
+    return await this.todoService.getCompleted();
   }
   @Get(':id')
   getoneTodo(@Param('id') id: string) {
     return this.todoService.getTodo(id);
   }
   @Patch(':id')
-  updateTodo(
+  async updateTodo(
     @Param('id') todoId: string,
     @Body('title') title: string,
     @Body('description') desc: string,
     @Body('completed') completed: boolean,
   ) {
-    return this.todoService.updateTodo(todoId, title, desc, completed);
+    return await this.todoService.updateTodo(todoId, title, desc, completed);
   }
   @Delete(':id')
-  deleteTodo(@Param('id') todoId: string) {
-    return this.todoService.deleteTodo(todoId);
+  async deleteTodo(@Param('id') todoId: string) {
+    return await this.todoService.deleteTodo(todoId);
   }
 }
