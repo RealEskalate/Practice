@@ -10,13 +10,20 @@ const apiCall = ({ dispatch }) => next => async action => {
     next(action)
 
     try {
-        const response = await axios.request({
-            baseURL: 'our base url gooes heer',
-            url,
-            method,
-            data,
-            headers
-        })
+    //     const response = await axios.request({
+    //         baseURL: 'our base url gooes heer',
+    //         url,
+    //         method,
+    //         data,
+    //         headers
+    //     })
+        const response = {
+            data:{
+                json:{
+                    data
+                }
+            }
+        }
 
         dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
         if (onSuccess) dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
