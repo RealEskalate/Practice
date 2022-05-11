@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "store/configureStore.js", "store/middlware/apiCall.js", "store/slices/blogs.js", "store/api.js", "s, "store/entites.js"tore/reducer.js"],
   "exclude": ["node_modules"]
 }
