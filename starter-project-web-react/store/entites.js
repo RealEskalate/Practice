@@ -1,5 +1,5 @@
 import {combineReducers} from '@reduxjs/toolkit'
-import blogPost from './slices/blogs'
+import blog from './slices/blogs'
 export default combineReducers({
-    blogPost
+    blog
 })

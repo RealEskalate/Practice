@@ -1,9 +1,10 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import { userInfo } from "os";
 import * as actions from '../api'
+import { HYDRATE } from "next-redux-wrapper";
 const slice = createSlice({
     name:"posts",
-    inttialState : {
+    initialState : {
         value : [],
         loading:false,
         error:null
@@ -18,7 +19,8 @@ const slice = createSlice({
             posts.error = action.payload
         },
         postAdded: (posts, action) => {
-            posts.value.append(action.payload)
+            posts.value = [... posts.value , action.payload]
+            // posts.value.append(action.payload)
             posts.loading = false
             posts.error = null
         }
@@ -27,12 +29,13 @@ const slice = createSlice({
 
 
 const {requestFailed, requested, postAdded} = slice.actions
-export default slice.reducer;
+export default slice.reducer
 
 
-export const addPost = post => (dispatch, getState) => {
+
+
+export const addBlog = post => (dispatch, getState) => {
     // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-     
     dispatch(actions.apiCallBegan({
         url: 'this request url after the base url',
         onStart : requested.type, // before api request for let us now we are gonna call api call and we enable loading on that type of thing
@@ -41,4 +44,10 @@ export const addPost = post => (dispatch, getState) => {
         method: 'post' ,// type of the post,
         data: post
     }))
-}
+} 
+
+
+export const getBlogs = createSelector(
+    state => state.entities.blog.value,
+    blogs => blogs
+)
