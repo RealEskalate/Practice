@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { Public } from 'src/auth/constants';
 import { TodoService } from './todo.service';
 
 @Controller('todo')
