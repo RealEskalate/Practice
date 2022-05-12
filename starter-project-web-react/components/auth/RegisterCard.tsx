@@ -1,10 +1,10 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import { Typography, OutlinedInput, TextField} from '@mui/material';
 import AuthButton from './AuthButton';
 import Link from 'next/link';
-import { register } from '../../store/slices/auth';
-import { useDispatch, useStore} from 'react-redux';
+import { getAuth, register } from '../../store/slices/auth';
+import { useDispatch, useSelector, useStore} from 'react-redux';
 import {useRouter} from 'next/router';
 import { apiCallBegan } from '../../store/api';
 
@@ -86,6 +86,13 @@ const RegisterCard = ()=>{
     const dispatch: any = useDispatch();
     const router = useRouter();
     const store: any = useStore();
+    const authentication = useSelector((state: any) => getAuth(state));
+
+    useEffect(()=>{  
+        if(authentication.user){
+          router.push('/auth/login')
+        }
+      },[authentication])
 
     const handleClick = ()=>{
         if(lName == ""){
@@ -118,10 +125,8 @@ const RegisterCard = ()=>{
             setUsername("");
             setPassword("");
             setConfirmPassword("");
-
-            if(store.getState().entities.authentication.user){
-                router.push('/auth/login')
-              }
+            
+            
           }
     }
 

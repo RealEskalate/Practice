@@ -1,4 +1,4 @@
-import {Dispatch, createSlice} from "@reduxjs/toolkit";
+import {Dispatch, createSlice, createSelector} from "@reduxjs/toolkit";
 import { type } from "os";
 import { apiCallBegan } from "../api";
 
@@ -19,7 +19,7 @@ const slice = createSlice({
             state.isRegistered = true
             
         },
-        logoutSuccess: (state, action)=>{    
+        logout: (state, action)=>{    
             state.user = null;
             state.token = null;
             
@@ -28,7 +28,7 @@ const slice = createSlice({
     }
 })
 
-export const {loginSuccess, registerSuccess, logoutSuccess} = slice.actions;
+export const {loginSuccess, registerSuccess, logout} = slice.actions;
 
 export default slice.reducer;
 
@@ -38,7 +38,7 @@ interface UserLogin {
 }
 
 export const login = (data: UserLogin)=> (dispatch: Dispatch)=>{
-    dispatch({type:apiCallBegan.type, payload:{url: "/login", method: "post",onSuccess: slice.actions.loginSuccess.type,data}});
+    dispatch({type:apiCallBegan.type, payload:{url: "/login", method: "post",onSuccess: loginSuccess.type,data}});
 }
 
 interface UserRegister {
@@ -49,6 +49,10 @@ interface UserRegister {
     confirmPassword: String}
 
 export const register = (data: UserRegister) => (dispatch: Dispatch)=>{
-    dispatch({type:apiCallBegan.type, payload:{url: "/register", method: "post",onSuccess: slice.actions.registerSuccess.type, data}});
+    dispatch({type:apiCallBegan.type, payload:{url: "/register", method: "post",onSuccess: registerSuccess.type, data}});
 }
 
+export const getAuth = createSelector(
+    (state: any)  => state.entities.authentication,
+    auth => auth
+)
