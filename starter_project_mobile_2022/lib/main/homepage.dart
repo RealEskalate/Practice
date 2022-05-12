@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
         created: '2d ago',
         description:
             'Daily Facebook users up again after decline But Facebook owner Meta is struggling with',
-        heigth: height * 0.5,
+        heigth: height * 0.481,
         width: width * 0.93,
         padding: width * 0.03,
         icon: Icons.person,
@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
         created: '2d ago',
         description:
             'Daily Facebook users up again after decline But Facebook owner Meta is struggling with',
-        heigth: height * 0.5,
+        heigth: height * 0.481,
         width: width * 0.93,
         padding: width * 0.03,
         icon: Icons.person,

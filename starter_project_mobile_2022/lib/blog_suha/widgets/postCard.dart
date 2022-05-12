@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
+import 'package:starter_project_mobile_2022/blog_suha/widgets/starBar.dart';
 
 import 'circleIcon.dart';
 
@@ -132,19 +134,26 @@ class PostCard extends StatelessWidget {
               ),
               Expanded(
                 flex: 1,
-                child: Container(
-                  width: width * 0.1,
-                  height: heigth * 0.14,
-                  color: Colors.blue,
-                ),
+                child: SizedBox(
+                    width: width * 0.1,
+                    height: heigth * 0.14,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.star, size: width * 0.08, color: starYellow),
+                        const Text('4.5'),
+                      ],
+                    )),
               ),
               Expanded(
                 flex: 2,
-                child: Container(
-                  width: width * 0.1,
-                  height: heigth * 0.14,
-                  color: Colors.green,
-                ),
+                child: SizedBox(
+                    width: width * 0.1,
+                    height: heigth * 0.14,
+                    child: StarBar(
+                      width: width,
+                      numOfStars: 3,
+                    )),
               ),
             ],
           ),

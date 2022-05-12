@@ -10,5 +10,7 @@ Color tagBackgroundColor = Color.fromARGB(255, 55, 106, 237);
 // Figma: rgba(55, 106, 237, 1)
 
 Color white = Colors.white;
+Color grey = Colors.grey.shade300;
 Color black = Colors.black;
 Color transparent = Colors.transparent;
+Color starYellow = Colors.orangeAccent;
