@@ -36,7 +36,11 @@ const apiCall =
 
       // our passed success action will dispatch  heer if there is one
     } catch (error) {
-      console.log(error.message)
+      if (onFailed)
+        dispatch({
+          type: onFailed,
+          payload: error.response ? error.response.data.errors : error.message,
+        })
     }
   }
 export default apiCall
