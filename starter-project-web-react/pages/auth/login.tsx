@@ -10,7 +10,6 @@ const theme = createTheme({
             main: "#4caf50",
             contrastText: "#fff"
         },
-        
     },
     typography:{
         fontFamily:"Poppins",
@@ -30,3 +29,4 @@ const LoginPage: React.FC = ()=>{
 }
 
 export default LoginPage; 
+
