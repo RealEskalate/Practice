@@ -1,5 +1,8 @@
-import {combineReducers} from '@reduxjs/toolkit'
-import blogPost from './slices/blogs'
+import { combineReducers } from '@reduxjs/toolkit'
+import blog from './slices/blogs'
+import authentication from './slices/auth'
+
 export default combineReducers({
-    blogPost
+  blog,
+  authentication,
 })
