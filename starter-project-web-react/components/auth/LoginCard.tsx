@@ -71,12 +71,12 @@ const LoginCard = ()=>{
       }
       
       if(username && password){
-        dispatch({type:apiCallBegan.type, payload:{url: "/login", method: "post",onSuccess: login.type,data:{username,password}}});
+        dispatch(login({username,password}))
 
         setUsername("");
         setPassword("");
      
-        if(store.getState().entities.authentication.isLogin){
+        if(store.getState().entities.authentication.user){
           
           router.push('/')
         }

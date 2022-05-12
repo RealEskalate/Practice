@@ -26,14 +26,12 @@ const apiCall =
           },
         },
       }
+
       const { status, result } = routeFunc(data, url)
 
       if (status) {
+        dispatch(actions.apiCallSuccess())
         if (onSuccess) dispatch({ type: onSuccess, payload: result })
-      } else {
-        dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
-        if (onSuccess)
-          dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
       }
 
       // our passed success action will dispatch  heer if there is one

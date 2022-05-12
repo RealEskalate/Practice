@@ -111,7 +111,7 @@ const RegisterCard = ()=>{
         }
         if(fName && lName && username && password && confirmPassword){
            
-            dispatch({type:apiCallBegan.type, payload:{url: "/register", method: "post",onSuccess: register.type, data:{firstName: fName, lastName: lName, username, password, confirmPassword}}});
+            dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}))
         
             setFName("");
             setLName("");
@@ -119,8 +119,8 @@ const RegisterCard = ()=>{
             setPassword("");
             setConfirmPassword("");
 
-            if(store.getState().entities.authentication.isLogin){
-                router.push('/')
+            if(store.getState().entities.authentication.user){
+                router.push('/auth/login')
               }
           }
     }

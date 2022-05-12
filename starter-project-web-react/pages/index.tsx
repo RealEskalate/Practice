@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 
   useEffect(()=>{
     
-    if(!store.getState().entities.authentication.isLogin){
+    if(!store.getState().entities.authentication.user){
       router.push('/auth/login')
     }
   },[store,router]);
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Layout> <Bloglist/> </Layout>
+      <Bloglist/>
     </div>
 
   )

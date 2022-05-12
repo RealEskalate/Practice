@@ -2,10 +2,38 @@ import { configureStore, getDefaultMiddleware, Store } from '@reduxjs/toolkit'
 import reducer from './reducer'
 import apiCall from './middlware/apiCall'
 import { useMemo } from 'react'
+import { persistStore, persistReducer } from 'redux-persist'
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
+
+const createNoopStorage = () => {
+  return {
+    getItem(_key) {
+      return Promise.resolve(null)
+    },
+    setItem(_key, value) {
+      return Promise.resolve(value)
+    },
+    removeItem(_key) {
+      return Promise.resolve()
+    },
+  }
+}
+
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage()
+
+const persistConfig = { key: 'root', storage }
+const persistedReducer = persistReducer(persistConfig, reducer)
+
 const makeStore = (initialState) =>
   configureStore({
-    reducer,
-    middleware: [...getDefaultMiddleware(), apiCall],
+    reducer: persistedReducer,
+    middleware: [
+      ...getDefaultMiddleware({ serializableCheck: false }),
+      apiCall,
+    ],
     preloadedState: initialState,
   })
 
@@ -29,5 +57,6 @@ export const initailzeStore = (preloadedState) => {
 
 export function useStore(intialState) {
   const store = useMemo(() => initailzeStore(intialState), [intialState])
-  return store
+  const persistor = persistStore(store)
+  return { store, persistor }
 }

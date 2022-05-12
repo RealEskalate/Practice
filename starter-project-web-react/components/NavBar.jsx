@@ -20,7 +20,7 @@ export default function ButtonAppBar() {
   },[store])
 
   const logoutHandler = ()=>{
-    dispatch(logout({}));
+    dispatch(logout());
     router.push('/auth/login')
   }
 
@@ -31,7 +31,6 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blog App (React Demo)
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -42,9 +41,15 @@ export default function ButtonAppBar() {
               </Button>
             ))}
           </Box>
-
+          {user?
+          <>          
+          <Typography variant='h6'>{user.username}</Typography>
           <Button color="inherit" onClick={logoutHandler}>Logout</Button>
-          <Typography variant='h6'>{user? user.username: ""}</Typography>
+          
+          </> :""}
+
+
+
         </Toolbar>
       </AppBar>
     </Box>
