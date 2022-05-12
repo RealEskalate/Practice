@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginCard from "../../components/auth/LoginCard";
 import RegisterCard from '../../components/auth/RegisterCard';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
