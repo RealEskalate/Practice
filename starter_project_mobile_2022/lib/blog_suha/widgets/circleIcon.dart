@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-Widget CircleIcon(BuildContext context, IconData icon) {
+import '../constants/colors.dart';
+
+Widget CircleIcon(BuildContext context, IconData icon, double? radius) {
   return CircleAvatar(
-    radius: 20,
-    backgroundColor: Colors.blueAccent,
+    radius: radius,
+    backgroundColor: iconBackgroundColor,
     child: Icon(
       icon,
       size: 30,
+      color: Colors.white,
     ),
   );
 }
