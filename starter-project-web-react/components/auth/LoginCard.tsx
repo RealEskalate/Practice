@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import AuthButton from './AuthButton';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
-import { login, getAuth} from '../../store/slices/auth';
-import { useDispatch, useStore} from 'react-redux';
-import { useSelector } from 'react-redux';
+
 const style = {
   backgroundColor: "#607d8b",
   minHeight: "85vh",
@@ -42,8 +39,6 @@ const LoginCard = ()=>{
     const [usernameHelperText, setUsernameHelperText] = useState("");
     const [passwordHelperText, setPasswordHelperText] = useState("");
 
-    const router = useRouter();
-
     const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
       setUsername(event.target.value);
       setUsernameError(false);
@@ -55,16 +50,6 @@ const LoginCard = ()=>{
       setPasswordHelperText("");
     }
 
-    const dispatch: any = useDispatch();
-    const store: any = useStore();
-    const authentication = useSelector((state: any) => getAuth(state))
-    
-    useEffect(()=>{  
-      if(authentication.user){
-        router.push('/')
-      }
-    },[authentication])
-    
     const handleClick = ()=>{
       
       if(username == ""){
@@ -77,8 +62,7 @@ const LoginCard = ()=>{
       }
       
       if(username && password){
-        dispatch(login({username,password}))
-
+        alert(`user with username ${username} has successfully logged in`);
         setUsername("");
         setPassword("");
       }
