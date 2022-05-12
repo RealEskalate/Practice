@@ -50,9 +50,6 @@ export class ArticleService {
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
-      if (newEntries.authorUserId) {
-        article.authorUserId = newEntries.authorUserId;
-      }
 
       await article.save();
 

@@ -4,8 +4,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ArticleService } from '../article/article.service';
 import { ArticleSchema } from '../article/article.model';
 
-let sampleArticle = {
-  authorUserId: '324231234',
+let mockUser = {
+  userId: '324231234',
+};
+let mockingArticle = {
+  authorUserId: mockUser.userId,
   title: 'how I got to do jobs using mars',
   content: 'blah blah blah mars blah blah',
 };
@@ -29,7 +32,7 @@ describe('Article Testing', () => {
   });
 
   beforeEach(async () => {
-    await service.addArticle(sampleArticle);
+    await service.addArticle(mockingArticle);
   });
 
   describe('check if artilce seted up', () => {
@@ -40,7 +43,7 @@ describe('Article Testing', () => {
 
   describe('POST Article ', () => {
     test('POST article', async () => {
-      const res = await service.addArticle(sampleArticle);
+      const res = await service.addArticle(mockingArticle);
       expect(res).toBeDefined();
     });
   });
