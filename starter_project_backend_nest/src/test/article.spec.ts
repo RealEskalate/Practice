@@ -3,19 +3,16 @@ import { closeInMongodConnection, rootMongooseTestModule } from './db';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ArticleService } from '../article/article.service';
 import { ArticleSchema } from '../article/article.model';
-
-let mockUser = {
-  userId: '324231234',
-};
-let mockingArticle = {
-  authorUserId: mockUser.userId,
-  title: 'how I got to do jobs using mars',
-  content: 'blah blah blah mars blah blah',
-};
+import { UserService } from '../user/user.service';
+import { UserSchema } from '../user/user.model';
 
 describe('Article Testing', () => {
   let service: ArticleService;
+  let userService: UserService;
   let module: TestingModule;
+
+  let mockingUser;
+  let mockingArticle;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
@@ -24,15 +21,33 @@ describe('Article Testing', () => {
         MongooseModule.forFeature([
           { name: 'Article_Interface', schema: ArticleSchema },
         ]),
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
       ],
-      providers: [ArticleService],
+      providers: [ArticleService, UserService],
     }).compile();
 
     service = module.get<ArticleService>(ArticleService);
+    userService = module.get<UserService>(UserService);
   });
 
   beforeEach(async () => {
+    mockingUser = await userService.createUser(
+      'test_user_name',
+      'test_first_name',
+      'test_last_name',
+      'test_password',
+    );
+
+    mockingArticle = {
+      authorUserId: mockingUser._id,
+      title: 'how I got to do jobs using mars',
+      content: 'blah blah blah mars blah blah',
+    };
     await service.addArticle(mockingArticle);
+  });
+
+  afterEach(async () => {
+    await userService.deleteUser(mockingUser._id);
   });
 
   describe('check if artilce seted up', () => {
@@ -100,7 +115,7 @@ describe('Article Testing', () => {
     });
 
     test('it should be [400] for bad Id', async () => {
-      let invaliedId = 'lksjfklsd';
+      let invaliedId = 'invaliedidtesting';
       try {
         await service.deleteArticleById(invaliedId);
       } catch (e) {
@@ -141,6 +156,7 @@ describe('Article Testing', () => {
       }
     });
   });
+
   afterAll(async () => {
     if (module) {
       await module.close();
