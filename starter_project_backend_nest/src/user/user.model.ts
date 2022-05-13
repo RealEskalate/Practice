@@ -25,13 +25,3 @@ export const UserSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-let mockUser = {
-  authorUserId: '324231234',
-};
-
-let sampleArticle = {
-  authorUserId: mockUser.authorUserId,
-  title: 'titile of an article',
-  content: 'content of an article',
-};
