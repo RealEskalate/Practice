@@ -24,57 +24,5 @@ const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
       type: String,
       required: true,
     },
-    categories: {
-      type: [],
-      default: [],
-    },
-    content: {
-      type: String,
-      required: true,
-    },
-    imageUrls: [
-      {
-        type: String,
-        required: false,
-      },
-    ],
-
-    rating: {
-      1: {
-        type: Number,
-        default: 0,
-        required: false,
-      },
-      2: {
-        type: Number,
-        default: 0,
-        required: false,
-      },
-      3: {
-        type: Number,
-        default: 0,
-        required: false,
-      },
-      4: {
-        type: Number,
-        default: 0,
-        required: false,
-      },
-      5: {
-        type: Number,
-        default: 0,
-        required: false,
-      },
-    },
-
-    description: {
-      type: String,
-      required: true,
-    },
-  },
-
-  { timestamps: true },
-);
-
-ArticleSchema.index({ title: 'text', description: 'text' });
+   
 export { ArticleSchema };

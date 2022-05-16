@@ -33,69 +33,12 @@ export class ArticleController {
     return this.articleService.search(searchTerm);
   }
 
-  @Public()
-  @Get('/:id')
-  getArticleById(@Param('id') id: string) {
-    return this.articleService.getArticleById(id);
-  }
-
   @Delete('/:id')
   deleteArticleById(@Request() req: any, @Param('id') articleId: string) {
     return this.articleService.deleteArticleById(req.user.userId, articleId);
   }
 
-  @Patch('/:id')
-  updateArticleById(
-    @Request() req: any,
-    @Param('id') id: string,
-    @Body() body: any,
-  ) {
-    return this.articleService.updateArticleById(req.user.userId, id, body);
-  }
+ 
 
-  @Post('/')
-  @UseInterceptors(FilesInterceptor('image'))
-  addArticle(
-    @Request() req: any,
-    @Body()
-    {
-      title,
-      description,
-      content,
-      categories,
-    }: {
-      title: string;
-      description: string;
-      content: string;
-      categories: string[];
-    },
-    @UploadedFiles() images: Array<Express.Multer.File>,
-  ) {
-    const authorUserId = req.user.userId;
-    const newArticle = {
-      authorUserId,
-      title,
-      description,
-      content,
-      categories,
-    };
-    return this.articleService.addArticle(newArticle, images);
-  }
-
-  @Public()
-  @Post('/rating/:id')
-  rateArticleById(
-    @Request() req: any,
-    @Param('id') articleId: string,
-    @Body() { rating }: { rating: string },
-  ) {
-    if (!rating) throw new BadRequestException('rating feild is not provided');
-    return this.articleService.rateArticleById(articleId, rating);
-  }
-
-  @Public()
-  @Get('/rating/:id')
-  getAverageRatingById(@Param('id') id: string) {
-    return this.articleService.getAverageRatingById(id);
-  }
+ 
 }
