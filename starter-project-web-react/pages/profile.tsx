@@ -19,7 +19,7 @@ const theme = createTheme({
 const LoginPage: React.FC = ()=>{
     return (
         <ThemeProvider theme={theme}>
-            <Container maxWidth="sm">
+            <Container>
                 <ProfileCard/>
                 
             </Container>
