@@ -50,13 +50,16 @@ export class ArticleController {
 
   @Public()
   @Post('/rating/:id')
-  rate(@Param('id') id: string, @Body() { rating }: { rating: string }) {
-    return this.articleService.rateById(id, rating);
+  rateArticleById(
+    @Param('id') id: string,
+    @Body() { rating }: { rating: string },
+  ) {
+    return this.articleService.rateArticleById(id, rating);
   }
 
   @Public()
   @Get('/rating/:id')
-  getRatingById(@Param('id') id: string) {
+  getAverageRatingById(@Param('id') id: string) {
     return this.articleService.getAverageRatingById(id);
   }
 }

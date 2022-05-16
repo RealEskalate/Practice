@@ -74,7 +74,7 @@ export class ArticleService {
     return newArticle;
   }
 
-  async rateById(id: string, ratingValue: string) {
+  async rateArticleById(id: string, ratingValue: string) {
     try {
       let article = await this.getArticleById(id);
       article.rating[ratingValue] += 1;
