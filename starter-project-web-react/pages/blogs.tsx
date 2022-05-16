@@ -1,44 +1,13 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
-
+import {getBlogs} from '../store/slices/blogs'
 const Bloglist = () => {
-    const blogs = [
-              {
-                "title": "My First Blog",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "mario",
-                "id": 1
-              },
-              {
-                "title": "Opening Party!",
-                
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 2
-              },
-              {
-                "title": "Grand kalab",
-                "body": "is a truly amazing master of all",
-                "author": "Kalab",
-                "id": 12
-              },
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 2
-              },      
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 2
-              }, 
-        ]
+    const blogs = useSelector((state) => getBlogs(state))
     return (  
         <div className="blog-list">
             <h2>Blogs </h2>
-            {blogs.map((blog) => (
+            {blogs.map((blog:{id :number, author:string, title:string, body:string}) => (
             <div className="blog-preview" key={blog.id}>        
             <Box
               sx={{

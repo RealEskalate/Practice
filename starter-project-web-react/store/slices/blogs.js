@@ -1,7 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { userInfo } from "os";
 import * as actions from '../api'
-import { HYDRATE } from "next-redux-wrapper";
 const slice = createSlice({
     name:"posts",
     initialState : {
