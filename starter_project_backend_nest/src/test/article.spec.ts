@@ -155,6 +155,35 @@ describe('Article Testing', () => {
         expect(e.status).toEqual(400);
       }
     });
+
+    // rating test
+    describe('Rating of an article', () => {
+      test('rating an article, it should increament by one', async () => {
+        const sampleArt = await service.getAllArticle();
+        let sampleId = sampleArt[0]._id;
+
+        const ratingVal = '3';
+        let oldRating = sampleArt[0].rating[ratingVal];
+
+        const ratedArticle = await service.rateById(sampleId, ratingVal);
+
+        let newRatedVal = ratedArticle.rating[ratingVal];
+        expect(newRatedVal).toBeDefined();
+        expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
+      });
+
+      test('geting average of article', async () => {
+        const sampleArt = await service.getAllArticle();
+        let sampleId = sampleArt[0]._id;
+
+        await service.rateById(sampleId, '2');
+        await service.rateById(sampleId, '4');
+
+        let avgRating = await service.getAverageRatingById(sampleId);
+        expect(avgRating).toBeDefined();
+        expect(avgRating).toBe(2 / 2 + 4 / 2);
+      });
+    });
   });
 
   afterAll(async () => {

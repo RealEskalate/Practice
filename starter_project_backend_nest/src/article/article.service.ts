@@ -73,4 +73,34 @@ export class ArticleService {
 
     return newArticle;
   }
+
+  async rateById(id: string, ratingValue: string) {
+    try {
+      let article = await this.getArticleById(id);
+      article.rating[ratingValue] += 1;
+      await article.save();
+      return article;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async getAverageRatingById(id: string) {
+    try {
+      let article = await this.getArticleById(id);
+      let rating = article.rating;
+      let numOfPeople = Object.values(rating).reduce(
+        (a, b) => Number(a) + Number(b),
+      );
+
+      if (numOfPeople == 0) return 0;
+      let avgRating = 0;
+      for (let i of [1, 2, 3, 4, 5]) {
+        avgRating += (i * Number(rating[i])) / Number(numOfPeople);
+      }
+      return avgRating;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
