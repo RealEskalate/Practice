@@ -47,4 +47,19 @@ export class ArticleController {
     let newArticle = { authorUserId, title, content };
     return this.articleService.addArticle(newArticle);
   }
+
+  @Public()
+  @Post('/rating/:id')
+  rateArticleById(
+    @Param('id') id: string,
+    @Body() { rating }: { rating: string },
+  ) {
+    return this.articleService.rateArticleById(id, rating);
+  }
+
+  @Public()
+  @Get('/rating/:id')
+  getAverageRatingById(@Param('id') id: string) {
+    return this.articleService.getAverageRatingById(id);
+  }
 }
