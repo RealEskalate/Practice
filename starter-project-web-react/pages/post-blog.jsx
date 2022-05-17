@@ -23,6 +23,9 @@ export default function CreateBlog(props) {
         Post
       </Button>
       <BlogPostDialog open={open} handleClose={handleClose} />
+      <Link href="/blogs">
+          blogs
+        </Link>
     </div>
   );
 }

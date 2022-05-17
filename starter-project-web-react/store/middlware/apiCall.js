@@ -17,16 +17,10 @@ const apiCall = ({ dispatch }) => next => async action => {
     //         data,
     //         headers
     //     })
-        const response = {
-            data:{
-                json:{
-                    data
-                }
-            }
-        }
+        const response = data
 
-        dispatch(actions.apiCallSuccess(response.data.json)) // ourt general success action will dispatch heer
-        if (onSuccess) dispatch({ type: onSuccess, payload: response.data.json }) // our passed success action will dispatch  heer if there is one
+        dispatch(actions.apiCallSuccess(response)) // ourt general success action will dispatch heer
+        if (onSuccess) dispatch({ type: onSuccess, payload: response }) // our passed success action will dispatch  heer if there is one
     } catch (error) {
         dispatch(actions.apiCallFailed(error.message)) //ourt general onFailed action will dispatch heer
         if (onFailed) dispatch({

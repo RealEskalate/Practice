@@ -1,5 +1,6 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import * as actions from '../api'
+import { RootState } from "../entites";
 const slice = createSlice({
     name:"posts",
     initialState : {

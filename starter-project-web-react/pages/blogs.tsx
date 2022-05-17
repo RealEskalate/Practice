@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import {getBlogs} from '../store/slices/blogs'
 const Bloglist = () => {
-    const blogs = useSelector((state) => getBlogs(state))
+    const blogs = useSelector((state:object) => getBlogs(state))
+    console.log(blogs)
     return (  
         <div className="blog-list">
             <h2>Blogs </h2>
-            {blogs.map((blog:{id :number, author:string, title:string, body:string}) => (
-            <div className="blog-preview" key={blog.id}>        
+            {blogs.map((blog:{data:{tittle:string, author:string, body:string}}, index:number) => (
+            <div className="blog-preview" key={index}>        
             <Box
               sx={{
                 width: 500,
@@ -16,6 +17,7 @@ const Bloglist = () => {
                 '&:hover': {
                   boxShadow: 1,
                   backgroundColor: '',
+
                   opacity: [0.9, 0.8, 0.7],
                 },
               }}

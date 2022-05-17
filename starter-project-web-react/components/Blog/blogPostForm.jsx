@@ -55,6 +55,7 @@ export default function BlogPostForm({
         <Button type='submit' size='large' fullWidth variant="outlined">
           Post
         </Button>
+        
       </Form>
       </Formik>
     </Box>
