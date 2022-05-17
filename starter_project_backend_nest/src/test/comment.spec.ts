@@ -108,7 +108,6 @@ describe('CommentTesting', () => {
       const comment = await commentService.getComment(
         newComment._id.toString(),
       );
-      console.log(comment);
       expect(comment).toBeDefined();
     });
 
