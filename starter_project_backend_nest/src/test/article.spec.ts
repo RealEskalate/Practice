@@ -48,9 +48,15 @@ describe('Article Testing', () => {
     await userService.deleteUser(mockingUser._id);
   });
 
-  describe('check testing Module', () => {
+  describe('Check articleService', () => {
     it('check if service exist', async () => {
       expect(articleService).toBeDefined();
+    });
+  });
+
+  describe('Check userService', () => {
+    it('check if service exist', async () => {
+      expect(userService).toBeDefined();
     });
   });
 
@@ -153,40 +159,65 @@ describe('Article Testing', () => {
         expect(e.status).toEqual(400);
       }
     });
+  });
 
-    // rating test
-    describe('Rating of an article', () => {
-      test('rating an article, it should increament by one', async () => {
-        const sampleArt = await articleService.getAllArticle();
-        let sampleId = sampleArt[0]._id;
+  describe('PATCH Article Rating ', () => {
+    test('rating an article, it should increament by one', async () => {
+      const sampleArt = await articleService.getAllArticle();
+      let sampleId = sampleArt[0]._id;
 
-        const ratingVal = '3';
-        let oldRating = sampleArt[0].rating[ratingVal];
+      const ratingVal = '3';
+      let oldRating = sampleArt[0].rating[ratingVal];
 
-        const ratedArticle = await articleService.rateArticleById(
-          sampleId,
-          ratingVal,
-        );
+      const ratedArticle = await articleService.rateArticleById(
+        sampleId,
+        ratingVal,
+      );
 
-        let newRatedVal = ratedArticle.rating[ratingVal];
-        expect(newRatedVal).toBeDefined();
-        expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
-      });
+      let newRatedVal = ratedArticle.rating[ratingVal];
+      expect(newRatedVal).toBeDefined();
+      expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
+    });
 
-      test('geting average of article', async () => {
-        const sampleArt = await articleService.getAllArticle();
-        let sampleId = sampleArt[0]._id;
-
-        await articleService.rateArticleById(sampleId, '2');
-        await articleService.rateArticleById(sampleId, '4');
-
-        let avgRating = await articleService.getAverageRatingById(sampleId);
-        expect(avgRating).toBeDefined();
-        expect(avgRating).toBe(2 / 2 + 4 / 2);
-      });
+    test('rating an article that doesnot existe', async () => {
+      const ratingVal = '3';
+      let wrongId = '825d207b5bc4207cc0d80844';
+      try {
+        await articleService.rateArticleById(wrongId, ratingVal);
+      } catch (e) {
+        expect(e.status).toBe(404);
+      }
     });
   });
 
+  describe('GET Article Rating ', () => {
+    test('geting average of article', async () => {
+      const sampleArt = await articleService.getAllArticle();
+      let sampleId = sampleArt[0]._id;
+
+      await articleService.rateArticleById(sampleId, '2');
+      await articleService.rateArticleById(sampleId, '4');
+
+      let avgRating = await articleService.getAverageRatingById(sampleId);
+      expect(avgRating).toBeDefined();
+      expect(avgRating).toBe(2 / 2 + 4 / 2);
+    });
+
+    test('geting average of article for artilce that doesnot exist', async () => {
+      const sampleArt = await articleService.getAllArticle();
+      let sampleId = sampleArt[0]._id;
+
+      await articleService.rateArticleById(sampleId, '2');
+      await articleService.rateArticleById(sampleId, '4');
+
+      let wrongId = '825d207b5bc4207cc0d80844';
+      try {
+        let avgRating = await articleService.getAverageRatingById(wrongId);
+      } catch (e) {
+        expect(e.status).toBe(404);
+      }
+    });
+  });
   afterAll(async () => {
     if (module) {
       await module.close();
