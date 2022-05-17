@@ -10,7 +10,7 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ArticleService {
   constructor(
-    @InjectModel('Article_Interface')
+    @InjectModel('Article')
     private readonly articleModel: Model<Article_Interface>,
   ) {}
 
@@ -36,9 +36,9 @@ export class ArticleService {
 
   async deleteArticleById(id: string) {
     try {
-      await this.getArticleById(id);
+      let article = await this.getArticleById(id);
       await this.articleModel.findByIdAndDelete(id);
-      return `success`;
+      return article;
     } catch (e) {
       throw e;
     }
