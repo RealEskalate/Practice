@@ -1,8 +1,12 @@
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 import Box from '@mui/material/Box';
 import { Typography, OutlinedInput, TextField} from '@mui/material';
 import AuthButton from './AuthButton';
 import Link from 'next/link';
+import { getAuth, register } from '../../store/slices/auth';
+import { useDispatch, useSelector, useStore} from 'react-redux';
+import {useRouter} from 'next/router';
+import { apiCallBegan } from '../../store/api';
 
 const style = {
         backgroundColor: "#607d8b",
@@ -79,6 +83,17 @@ const RegisterCard = ()=>{
         setLNameHelperText("");
     }
 
+    const dispatch: any = useDispatch();
+    const router = useRouter();
+    const store: any = useStore();
+    const authentication = useSelector((state: any) => getAuth(state));
+
+    useEffect(()=>{  
+        if(authentication.user){
+          router.push('/auth/login')
+        }
+      },[authentication])
+
     const handleClick = ()=>{
         if(lName == ""){
             setLNameError(true);
@@ -102,12 +117,16 @@ const RegisterCard = ()=>{
             setConfirmPasswordHelperText("Confirm Password required");
         }
         if(fName && lName && username && password && confirmPassword){
-            alert(`user with username ${username} has successfully logged in`);
+           
+            dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}))
+        
             setFName("");
             setLName("");
             setUsername("");
             setPassword("");
             setConfirmPassword("");
+            
+            
           }
     }
 
