@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Delete,
+  Request,
   Patch,
   Post,
   Param,
@@ -9,15 +10,19 @@ import {
 } from '@nestjs/common';
 
 import { ArticleService } from './article.service';
+import { Public } from '../auth/constants';
 
 @Controller('/api/articles')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
-  @Get('/')
+
+  @Public()
+  @Get('/all')
   getAllArticle() {
     return this.articleService.getAllArticle();
   }
 
+  @Public()
   @Get('/:id')
   getArticleById(@Param('id') id: string) {
     return this.articleService.getArticleById(id);
@@ -34,7 +39,27 @@ export class ArticleController {
   }
 
   @Post('/')
-  addArticle(@Body() body: any) {
-    return this.articleService.addArticle(body);
+  addArticle(
+    @Request() req,
+    @Body() { title, content }: { title: string; content: string },
+  ) {
+    let authorUserId = req.user.userId;
+    let newArticle = { authorUserId, title, content };
+    return this.articleService.addArticle(newArticle);
+  }
+
+  @Public()
+  @Post('/rating/:id')
+  rateArticleById(
+    @Param('id') id: string,
+    @Body() { rating }: { rating: string },
+  ) {
+    return this.articleService.rateArticleById(id, rating);
+  }
+
+  @Public()
+  @Get('/rating/:id')
+  getAverageRatingById(@Param('id') id: string) {
+    return this.articleService.getAverageRatingById(id);
   }
 }

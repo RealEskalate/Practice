@@ -8,7 +8,7 @@ const Bloglist = () => {
     return (  
         <div className="blog-list">
             <h2>Blogs </h2>
-            {blogs.map((blog:{data:{tittle:string, author:string, body:string}}, index:number) => (
+            {blogs.map((blog:{title:string, author:string, body:string}, index:number) => (
             <div className="blog-preview" key={index}>        
             <Box
               sx={{
