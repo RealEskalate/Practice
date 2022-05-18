@@ -5,7 +5,6 @@ export default function BlogPostTextField({
     name,
     ...otherPorps
 }) {
-    // console.log('this here', name, otherPorps, 'this here')
     const [field, mata] = useField(name);
 
   const configTextfield = {
@@ -17,7 +16,7 @@ export default function BlogPostTextField({
     helperText :"",
     id:'fullwidth'
   };
-  // console.log(configTextfield)
+  // (configTextfield)
   if (mata && mata.touched && mata.error) {
     configTextfield.error = true;
     configTextfield.helperText = mata.error;

@@ -24,7 +24,6 @@ export default function ButtonAppBar() {
       router.push('/auth/login')
     }
   }
-  console.log(router.asPath ,typeof(router.asPath), 'this path')
 
 
   return (

@@ -19,7 +19,6 @@ const slice = createSlice({
       posts.error = action.payload
     },
     postAdded: (posts, action) => {
-      console.log('here 1')
       posts.value = [...posts.value, action.payload]
       posts.loading = false
       posts.error = null
@@ -32,7 +31,6 @@ export default slice.reducer
 
 export const addBlog = (post) => (dispatch, getState) => {
   // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-  console.log('here')
   dispatch(
     actions.apiCallBegan({
 
