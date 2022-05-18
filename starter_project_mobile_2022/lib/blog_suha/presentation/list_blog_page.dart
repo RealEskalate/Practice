@@ -26,7 +26,8 @@ class _MyHomePageState extends State<BlogListingPage> {
         created: '2d ago',
         description:
             'Daily Facebook users up again after decline But Facebook owner Meta is struggling with',
-        heigth: height * 0.37, // For IOS
+        // heigth: height * 0.37, // For IOS
+        heigth: height * 0.411,
         width: width * 0.93,
         padding: width * 0.03,
         icon: Icons.person,
