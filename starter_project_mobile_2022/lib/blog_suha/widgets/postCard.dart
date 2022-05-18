@@ -152,7 +152,7 @@ class PostCard extends StatelessWidget {
                     height: heigth * 0.14,
                     child: StarBar(
                       width: width,
-                      numOfStars: 3,
+                      numOfStars: numOfStars,
                     )),
               ),
             ],
