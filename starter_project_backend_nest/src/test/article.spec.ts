@@ -14,6 +14,10 @@ describe('Article Testing', () => {
   let mockingUser;
   let mockingArticle;
 
+  let sampleId;
+  let wrongId = '825d207b5bc4207cc0d80844';
+  let invaliedId = 'invaliedidtesting';
+
   beforeAll(async () => {
     module = await Test.createTestingModule({
       imports: [
@@ -42,6 +46,8 @@ describe('Article Testing', () => {
       content: 'blah blah blah mars blah blah',
     };
     await articleService.addArticle(mockingArticle);
+    const sampleArt = await articleService.getAllArticle();
+    sampleId = sampleArt[0]._id;
   });
 
   afterEach(async () => {
@@ -76,14 +82,11 @@ describe('Article Testing', () => {
 
   describe('GET Article By ID', () => {
     test('respose should be defined for valied Id', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
       const res = articleService.getArticleById(sampleId);
       expect(res).toBeDefined();
     });
 
     test("respose should be [404] for in Id that doesn't exist", async () => {
-      let wrongId = '825d207b5bc4207cc0d80844';
       try {
         await articleService.getArticleById(wrongId);
       } catch (e) {
@@ -103,35 +106,29 @@ describe('Article Testing', () => {
 
   describe('DELET Article API', () => {
     test('respose after deleting should be [success]', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
       const deletedArticle = await articleService.deleteArticleById(sampleId);
       expect(deletedArticle).toBeDefined();
     });
 
-    test('it should be [404] for id that doesnot exist', async () => {
-      let wrongId = '825d207b5bc4207cc0d80844';
+    test('it should be [null] for id that doesnot exist', async () => {
       try {
         await articleService.deleteArticleById(wrongId);
       } catch (e) {
-        expect(e.status).toEqual(404);
+        expect(e).toEqual(null);
       }
     });
 
-    test('it should be [400] for bad Id', async () => {
-      let invaliedId = 'invaliedidtesting';
+    test('it should be [null] for bad Id', async () => {
       try {
         await articleService.deleteArticleById(invaliedId);
       } catch (e) {
-        expect(e.status).toEqual(400);
+        expect(e.name).toEqual('CastError');
       }
     });
   });
 
   describe('PATCH Article API', () => {
     test('it should be 200', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
       const res = await articleService.updateArticleById(sampleId, {
         title: 'another',
       });
@@ -139,7 +136,6 @@ describe('Article Testing', () => {
     });
 
     test('it should be 404 if id is not found', async () => {
-      let wrongId = '825d207b5bc4207cc0d80844';
       try {
         await articleService.updateArticleById(wrongId, {
           title: 'another',
@@ -181,7 +177,6 @@ describe('Article Testing', () => {
 
     test('rating an article that doesnot existe', async () => {
       const ratingVal = '3';
-      let wrongId = '825d207b5bc4207cc0d80844';
       try {
         await articleService.rateArticleById(wrongId, ratingVal);
       } catch (e) {
@@ -192,9 +187,6 @@ describe('Article Testing', () => {
 
   describe('GET Article Rating ', () => {
     test('geting average of article', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
-
       await articleService.rateArticleById(sampleId, '2');
       await articleService.rateArticleById(sampleId, '4');
 
@@ -204,15 +196,9 @@ describe('Article Testing', () => {
     });
 
     test('geting average of article for artilce that doesnot exist', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
 
-      await articleService.rateArticleById(sampleId, '2');
-      await articleService.rateArticleById(sampleId, '4');
-
-      let wrongId = '825d207b5bc4207cc0d80844';
       try {
-        let avgRating = await articleService.getAverageRatingById(wrongId);
+        await articleService.getAverageRatingById(wrongId);
       } catch (e) {
         expect(e.status).toBe(404);
       }
