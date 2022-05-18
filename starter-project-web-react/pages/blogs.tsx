@@ -1,40 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { getBlogs } from '../store/slices/blogs';
+import { useSelector } from 'react-redux';
 
 const Bloglist = () => {
-    const blogs = [
-              {
-                "title": "My First Blog",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "mario",
-                "id": 1
-              },
-              {
-                "title": "Opening Party!",
-                
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 2
-              },
-              {
-                "title": "Grand kalab",
-                "body": "is a truly amazing master of all",
-                "author": "Kalab",
-                "id": 3
-              },
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 4
-              },      
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 5
-              }, 
-        ]
+    
+    const blogs = useSelector(state => getBlogs(state))
     return (  
         <div className="blog-list">
             <h2>Blogs </h2>
