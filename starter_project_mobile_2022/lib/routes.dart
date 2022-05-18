@@ -6,9 +6,7 @@ class PageRouter {
     switch (settings.name) {
       case "/":
         return MaterialPageRoute(builder: (context) {
-          return const MyHomePage(
-            title: "Test Project",
-          );
+          return const HomePage();
         });
     }
     return null;
