@@ -53,6 +53,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 * **Full-Time**
   * Lensa Billion
   * Natneam Mesele
+  * Elshadai Tegegn
 * **Part-Time**
   * Adona Tesfaye
     * Amir Mustefa

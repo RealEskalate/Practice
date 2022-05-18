@@ -196,6 +196,7 @@ describe('Article Testing', () => {
     });
 
     test('geting average of article for artilce that doesnot exist', async () => {
+
       try {
         await articleService.getAverageRatingById(wrongId);
       } catch (e) {
@@ -203,7 +204,6 @@ describe('Article Testing', () => {
       }
     });
   });
-
   afterAll(async () => {
     if (module) {
       await module.close();
