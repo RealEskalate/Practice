@@ -204,15 +204,9 @@ describe('Article Testing', () => {
     });
 
     test('geting average of article for artilce that doesnot exist', async () => {
-      const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
-
-      await articleService.rateArticleById(sampleId, '2');
-      await articleService.rateArticleById(sampleId, '4');
-
       let wrongId = '825d207b5bc4207cc0d80844';
       try {
-        let avgRating = await articleService.getAverageRatingById(wrongId);
+        await articleService.getAverageRatingById(wrongId);
       } catch (e) {
         expect(e.status).toBe(404);
       }
