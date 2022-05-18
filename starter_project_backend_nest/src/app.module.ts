@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import config from './config/config';
 import { UserModule } from './user/user.module';
 import { ArticleModule } from './article/article.module';
+import { CommentsModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ArticleModule } from './article/article.module';
     ArticleModule,
     AuthModule,
     UserModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
