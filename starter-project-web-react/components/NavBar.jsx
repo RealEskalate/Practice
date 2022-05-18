@@ -8,7 +8,8 @@ import {useDispatch,useStore} from 'react-redux';
 import { logout } from '../store/slices/auth';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
-
+import { getRouteMatcher } from 'next/dist/shared/lib/router/utils';
+import PostBlog from './Blog/post-blog'
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -23,6 +24,8 @@ export default function ButtonAppBar() {
       router.push('/auth/login')
     }
   }
+  console.log(router.asPath ,typeof(router.asPath), 'this path')
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -48,6 +51,8 @@ export default function ButtonAppBar() {
           <Button color="inherit" onClick={logoutHandler}>Logout</Button>
           
           </> :""}
+
+          {router.asPath==="/blogs"? <><PostBlog/></> : ""}
 
 
 

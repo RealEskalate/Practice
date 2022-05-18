@@ -12,29 +12,17 @@ const apiCall =
     //   if (onStart) dispatch({ type: onStart }) // loading before the api call
 
     try {
-      //     const response = await axios.request({
-      //         baseURL: 'our base url gooes heer',
-      //         url,
-      //         method,
-      //         data,
-      //         headers
-      //     })
-      const response = {
-        data: {
-          json: {
-            data,
-          },
-        },
-      }
+    //     const response = await axios.request({
+    //         baseURL: 'our base url gooes heer',
+    //         url,
+    //         method,
+    //         data,
+    //         headers
+    //     })
+        const response = data
 
-      const { status, result } = routeFunc(data, url)
-
-      if (status) {
-        dispatch(actions.apiCallSuccess())
-        if (onSuccess) dispatch({ type: onSuccess, payload: result })
-      }
-
-      // our passed success action will dispatch  heer if there is one
+        dispatch(actions.apiCallSuccess(response)) // ourt general success action will dispatch heer
+        if (onSuccess) dispatch({ type: onSuccess, payload: response }) // our passed success action will dispatch  heer if there is one
     } catch (error) {
       if (onFailed)
         dispatch({
