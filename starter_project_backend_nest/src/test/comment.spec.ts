@@ -40,7 +40,7 @@ describe('CommentTesting', () => {
     }).compile();
     userService = module.get<UserService>(UserService);
     articleService = module.get<ArticleService>(ArticleService);
-    commentService = await module.resolve<CommentService>(CommentService);
+    commentService = module.get<CommentService>(CommentService);
     nonexistingId = '62834a2f700d0f81d1153351';
   });
   beforeEach(async () => {
@@ -88,33 +88,35 @@ describe('CommentTesting', () => {
       expect(newComment).toBeDefined();
     });
 
-    test('response should be [400] if user has already commented', async () => {
-      const newComment = await commentService.createComment(
-        user._id,
-        article._id,
-        'good article',
-      );
-
+    test('response should be [400] for an empty text string', async () => {
       try {
-        await commentService.createComment(
-          user._id,
-          article._id,
-          'good article',
-        );
+        await commentService.createComment(user._id, article._id, '');
       } catch (e) {
         expect(e.status).toEqual(400);
       }
     });
 
-    test('response should be [400] for an ivalid user or article id', async () => {
+    test('response should be [404] for non existing user id', async () => {
       try {
         await commentService.createComment(
           nonexistingId,
+          article._id,
+          'good article',
+        );
+      } catch (e) {
+        expect(e.status).toEqual(404);
+      }
+    });
+
+    test('response should be [404] for non existing article id', async () => {
+      try {
+        await commentService.createComment(
+          user._id,
           nonexistingId,
           'good article',
         );
       } catch (error) {
-        expect(error.status).toEqual(400);
+        expect(error.status).toEqual(404);
       }
     });
   });
