@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
+import '../constants/colors.dart';
 
 class PostReviewCard extends StatelessWidget {
   final String title;

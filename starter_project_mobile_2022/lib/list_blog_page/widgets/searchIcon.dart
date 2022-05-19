@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
+import '../constants/colors.dart';
 
 class SearchIcon extends StatelessWidget {
   final double heigth;

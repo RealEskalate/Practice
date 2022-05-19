@@ -1,7 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
+import '../constants/colors.dart';
 
 class TagButton extends StatefulWidget {
   late double heigth;

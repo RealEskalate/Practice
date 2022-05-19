@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
 
 Widget Star(BuildContext context, double width, Color color) {
   return SizedBox(
