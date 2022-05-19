@@ -8,8 +8,102 @@ import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
 import { Button, CardHeader } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import { getAuth, register } from '../../store/slices/auth';
+import {ChangeEvent, useEffect, useState} from 'react';
+import { useDispatch, useSelector, useStore} from 'react-redux';
+import {useRouter} from 'next/router';
+
 
 const ProfileCard = () => {
+  const [fName,setFName] = useState("");
+  const [fNameError, setFNameError] = useState(false);
+  const [fNameHelperText, setFNameHelperText] = useState("");
+
+  const [lName,setLName] = useState("");
+  const [lNameError, setLNameError] = useState(false);
+  const [lNameHelperText, setLNameHelperText] = useState("");
+
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState(false);
+  const [usernameHelperText, setUsernameHelperText] = useState("");
+
+  const [password, setPassword]= useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState("");
+
+  const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
+    setUsername(event.target.value);
+    setUsernameError(false);
+    setUsernameHelperText("");
+  }
+  const passwordChange = (event: ChangeEvent<HTMLInputElement>)=>{
+    setPassword(event.target.value);
+    setPasswordError(false);
+    setPasswordHelperText("");
+  }
+  const confirmPasswordChange = (event: ChangeEvent<HTMLInputElement>)=>{
+      setConfirmPassword(event.target.value);
+      setConfirmPasswordError(false);
+      setConfirmPasswordHelperText("");
+    }
+  const fNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
+      setFName(event.target.value);
+      setFNameError(false);
+      setFNameHelperText("");
+  }
+  const lNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
+      setLName(event.target.value);
+      setLNameError(false);
+      setLNameHelperText("");
+  }
+
+  const dispatch: any = useDispatch();
+  const router = useRouter();
+  const store: any = useStore();
+  const authentication = useSelector((state: any) => getAuth(state));
+
+  useEffect(()=>{  
+      if(authentication.user){
+        router.push('/')
+      }
+    },[authentication])
+
+  const handleClick = ()=>{
+      if(lName == ""){
+          setLNameError(true);
+          setLNameHelperText("Last Name required");
+      }
+      if(fName == ""){
+          setFNameError(true);
+          setFNameHelperText("First Name required");
+      }
+      if(username == ""){
+          setUsernameError(true);
+          setUsernameHelperText("Username required");
+      }
+      
+      if(confirmPassword == "" && password != ""){
+          setConfirmPasswordError(true);
+          setConfirmPasswordHelperText("Confirm Password required");
+      }
+      if(fName && lName && username && password && confirmPassword){
+         
+          dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}))
+      
+          setFName("");
+          setLName("");
+          setUsername("");
+          setPassword("");
+          setConfirmPassword("");
+          
+          
+        }
+  }
+
   return (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Box sx={{ width: '25%', m: 10 }}>
@@ -46,7 +140,7 @@ const ProfileCard = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 2.5, width: '25ch' },
           width: '50%',
           m: 5
         }}
@@ -54,61 +148,61 @@ const ProfileCard = () => {
         autoComplete="off"
       >
         <div>
-          <TextField
-            required
-            id="standard-required"
-            label="Required"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            disabled
-            id="standard-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="standard"
-          />
-          <TextField
-            id="standard-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-search"
-            label="Search field"
-            type="search"
-            variant="standard"
-          />
-          <TextField
-            id="standard-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-            variant="standard"
-          />
+        <TextField  
+        label="first name" 
+        variant="standard"
+        InputProps={{
+          readOnly: true,
+        }}
+        error={fNameError} 
+        helperText={fNameHelperText} 
+        value={fName} onChange={fNameChange} />
+        
+        <TextField 
+        label="last name" 
+        variant="standard"
+        InputProps={{
+          readOnly: true,
+        }}
+        error={lNameError} 
+        helperText={lNameHelperText} 
+        value={lName} 
+        onChange={lNameChange} />           
+
+        <TextField 
+        label="username" 
+        variant="standard"
+        disabled
+        error={usernameError} 
+        helperText= {usernameHelperText} 
+        onChange={usernameChange} 
+        value={username}/>
+            
+          <TextField 
+          label="password change" 
+          id="standard-password-input"
+          type="password"
+          variant="standard"
+          error={passwordError} 
+          helperText={passwordHelperText} 
+          onChange={passwordChange} 
+          value={password} />
+          
+          <TextField 
+          label="confirm password change" 
+          id="standard-password-input-confirm"
+          type="password"
+          variant="standard"
+          error={confirmPasswordError} 
+          helperText={confirmPasswordHelperText} 
+          onChange={confirmPasswordChange} 
+          value={confirmPassword} />
+            
+            
+          
           
         </div>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" onClick={handleClick} sx={{ width: '25%', m: 3 }}>
             Update
           </Button>
       </Box>
