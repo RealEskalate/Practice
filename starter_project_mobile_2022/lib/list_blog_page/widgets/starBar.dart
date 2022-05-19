@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
-import 'package:starter_project_mobile_2022/blog_suha/widgets/star.dart';
+import '../constants/colors.dart';
+import '../widgets/star.dart';
 
 class StarBar extends StatefulWidget {
   late double width;

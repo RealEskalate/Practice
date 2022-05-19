@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
-import 'package:starter_project_mobile_2022/blog_suha/widgets/postCard.dart';
-import 'package:starter_project_mobile_2022/blog_suha/widgets/searchBar.dart';
-import 'package:starter_project_mobile_2022/blog_suha/widgets/topicButton.dart';
+import '../constants/colors.dart';
+import '../widgets/postCard.dart';
+import '../widgets/searchBar.dart';
+import '../widgets/topicButton.dart';
 
 class BlogListingPage extends StatefulWidget {
   const BlogListingPage({Key? key, required this.title}) : super(key: key);

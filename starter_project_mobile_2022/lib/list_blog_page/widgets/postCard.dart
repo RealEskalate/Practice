@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_suha/constants/colors.dart';
-import 'package:starter_project_mobile_2022/blog_suha/widgets/starBar.dart';
 
+import '../constants/colors.dart';
 import 'circleIcon.dart';
+import 'starBar.dart';
 
 class PostCard extends StatelessWidget {
   final double heigth;
