@@ -27,13 +27,13 @@ export class UserService {
       throw new ConflictException('User already Exist');
     }
 
-    const newUser = await this.usermodel.create({
+    const newUser: any = await this.usermodel.create({
       firstName: firstName,
       lastName: lastName,
       username: username,
       password: password,
     });
-    const { password: omit, ...user } = newUser;
+    const { password: omit, ...user } = newUser._doc;
     return user;
   }
 
@@ -61,7 +61,7 @@ export class UserService {
   async findOne(username: string) {
     const user = await this.usermodel.findOne(
       { username: username },
-      { username: 1, firstName: 1, lastName: 1 },
+      { username: 1, firstName: 1, lastName: 1, password: 1 },
     );
     return user;
   }
