@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
-import BlogPostDialog from '../components/blog/BlogPostDialog';
-import { addBlog } from '../store/slices/blogs'
+import BlogPostDialog from './BlogPostDialog';
+import { addBlog } from '../../store/slices/blogs'
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBlogs } from '../store/slices/blogs';
+import { getBlogs } from '../../store/slices/blogs';
 
-export default function CreateBlog(props) {
+export default function PostBlog(props) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
   const blogs = useSelector((state) => getBlogs(state))
@@ -19,12 +19,9 @@ export default function CreateBlog(props) {
   };
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Post
-      </Button>
+      <Button color="inherit" onClick={handleClickOpen}>Post</Button>
+
       <BlogPostDialog open={open} handleClose={handleClose} />
     </div>
   );
 }
-
-

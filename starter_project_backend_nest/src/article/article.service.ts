@@ -36,9 +36,8 @@ export class ArticleService {
 
   async deleteArticleById(id: string) {
     try {
-      let article = await this.getArticleById(id);
-      await this.articleModel.findByIdAndDelete(id);
-      return article;
+      let res = await this.articleModel.findByIdAndDelete(id);
+      return res;
     } catch (e) {
       throw e;
     }
