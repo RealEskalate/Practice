@@ -1,4 +1,8 @@
-import { NotFoundException, Injectable } from '@nestjs/common';
+import {
+  NotFoundException,
+  BadRequestException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
@@ -6,7 +10,7 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ArticleService {
   constructor(
-    @InjectModel('Article_Interface')
+    @InjectModel('Article')
     private readonly articleModel: Model<Article_Interface>,
   ) {}
 
@@ -22,7 +26,7 @@ export class ArticleService {
       article = await this.articleModel.findById(id);
     } catch (e) {
       // for invalied id
-      throw new NotFoundException(`Article with ${id} not found`);
+      throw new BadRequestException(`${id} is doesn't have valied format`);
     }
 
     if (!article) throw new NotFoundException(`Article with ${id} not found`);
@@ -31,49 +35,71 @@ export class ArticleService {
   }
 
   async deleteArticleById(id: string) {
-    let article = await this.getArticleById(id);
-    if (!article) throw new NotFoundException(`Article with ${id} not found`);
-    await this.articleModel.deleteOne({ _id: id });
-    return `Article with ${id} is now deleted`;
+    try {
+      let res = await this.articleModel.findByIdAndDelete(id);
+      return res;
+    } catch (e) {
+      throw e;
+    }
   }
 
-  async updateArticleById(
-    id: string,
-    {
-      author,
-      title,
-      content,
-    }: {
-      author: { name: any; lastName: any; bio: any };
-      title: any;
-      content: any;
-    },
-  ) {
-    let article = await this.getArticleById(id);
+  async updateArticleById(id: string, newEntries: any) {
+    try {
+      let article = await this.getArticleById(id);
 
-    if (author && author.name) article.author.name = author.name;
-    if (author && author.lastName) article.author.name = author.lastName;
-    if (author && author.bio) article.author.name = author.bio;
+      if (newEntries.title) article.title = newEntries.title;
+      if (newEntries.content) article.content = newEntries.content;
 
-    if (title) article.title = title;
-    if (content) article.content = content;
+      await article.save();
 
-    await article.save();
-    return article;
+      return article;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async addArticle({
-    author,
+    authorUserId,
     title,
     content,
   }: {
-    author: { name: String; lastName: String; bio: String };
-    title: String;
+    authorUserId: string;
+    title: string;
     content: string;
   }) {
-    let newArticle = new this.articleModel({ author, title, content });
+    let newArticle = new this.articleModel({ authorUserId, title, content });
     await newArticle.save();
 
     return newArticle;
+  }
+
+  async rateArticleById(id: string, ratingValue: string) {
+    try {
+      let article = await this.getArticleById(id);
+      article.rating[ratingValue] += 1;
+      await article.save();
+      return article;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async getAverageRatingById(id: string) {
+    try {
+      let article = await this.getArticleById(id);
+      let rating = article.rating;
+      let numOfPeople = Object.values(rating).reduce(
+        (a, b) => Number(a) + Number(b),
+      );
+
+      if (numOfPeople == 0) return 0;
+      let avgRating = 0;
+      for (let i of [1, 2, 3, 4, 5]) {
+        avgRating += (i * Number(rating[i])) / Number(numOfPeople);
+      }
+      return avgRating;
+    } catch (e) {
+      throw e;
+    }
   }
 }

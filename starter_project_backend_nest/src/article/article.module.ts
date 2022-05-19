@@ -6,9 +6,7 @@ import { ArticleSchema } from './article.model';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([
-      { name: 'Article_Interface', schema: ArticleSchema },
-    ]),
+    MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
   ],
   controllers: [ArticleController],
   providers: [ArticleService],
