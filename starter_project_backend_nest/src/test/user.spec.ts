@@ -101,7 +101,7 @@ describe('UserTesing', () => {
         'updateLast',
         'password',
       );
-
+      
       let response2: any = await controller.updateUser(
         response._id,
         'usernamechanged',
@@ -112,6 +112,7 @@ describe('UserTesing', () => {
 
       expect(response2).toBeDefined();
       expect(response2.username).toEqual('usernamechanged');
+
     });
 
     it('It should not update user', async () => {

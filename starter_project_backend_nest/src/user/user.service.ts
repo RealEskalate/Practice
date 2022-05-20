@@ -34,6 +34,7 @@ export class UserService {
       password: password,
     });
     const { password: omit, ...user } = newUser._doc;
+
     return user;
   }
 
