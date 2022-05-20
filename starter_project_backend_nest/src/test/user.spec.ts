@@ -37,7 +37,6 @@ describe('UserTesing', () => {
       'lastName2',
       'password',
     );
-    user1 = user1._doc;
   });
 
   afterAll(async () => {
@@ -71,9 +70,8 @@ describe('UserTesing', () => {
         'lastName2',
         'password',
       );
-      const user = response._doc;
       expect(response).toBeDefined();
-      expect(user.username).toEqual('username2');
+      expect(response.username).toEqual('username2');
     });
 
     it('It should not create user', async () => {
@@ -104,9 +102,8 @@ describe('UserTesing', () => {
         'password',
       );
 
-      const user = response._doc;
       let response2: any = await controller.updateUser(
-        user._id,
+        response._id,
         'usernamechanged',
         'firstName3',
         'lastName3',
@@ -114,7 +111,7 @@ describe('UserTesing', () => {
       );
 
       expect(response2).toBeDefined();
-      expect(response2._doc.username).toEqual('usernamechanged');
+      expect(response2.username).toEqual('usernamechanged');
     });
 
     it('It should not update user', async () => {
@@ -139,7 +136,7 @@ describe('UserTesing', () => {
         'password',
       );
 
-      const user = response._doc;
+      const user = response;
       const response1 = await controller.deleteUser(user._id);
 
       const exist = await controller.getUserById(user._id);

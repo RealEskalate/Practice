@@ -27,7 +27,11 @@ export class CategoryService {
         articles: articles,
       });
     }
-    return result;
+    let category = await this.categoryModel.findOne({
+      categeoryName: categoryName,
+    });
+    
+    return category;
   }
   async deleteCategoryById(id: string) {
     let category = await this.getCategoryByID(id);
