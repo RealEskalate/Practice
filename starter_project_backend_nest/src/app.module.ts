@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import config from './config/config';
 import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
+import { ArticleModule } from './article/article.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CategoryModule } from './category/category.module';
       }),
     }),
     TodosModule,
+    ArticleModule,
     AuthModule,
     UserModule,
     CategoryModule,
