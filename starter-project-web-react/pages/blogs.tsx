@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Container, Grid, Typography , Divider} from '@mui/material';
 import { getBlogs } from '../store/slices/blogs';
 import { useSelector } from 'react-redux';
-import BlogCard from '../components/Blog/blogCard'
+import BlogCard from "../components/Blog/BlogCard"
 import PostBlog from '../components/Blog/postBlogButton';
 const Bloglist = () => {
   interface blogType {
