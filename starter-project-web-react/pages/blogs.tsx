@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Box, Container, Grid, Typography , Divider} from '@mui/material';
 import { getBlogs } from '../store/slices/blogs';
 import { useSelector } from 'react-redux';
-import BlogCard from "../components/Blog/BlogCard"
+import BlogCard from "../components/Blog/BlogCard";
 import PostBlog from '../components/Blog/postBlogButton';
+import Link from 'next/link';
 const Bloglist = () => {
   interface blogType {
     id: number,
@@ -15,7 +16,6 @@ const Bloglist = () => {
   return (
 
     <Container   >
-
       <Grid container spacing={2} sx={{mt:4, }} >
         <Grid container xs={6} md={6} sx={{pl:2}}>
         <Typography gutterBottom fontWeight="fontWeightBold" variant="h5" component="div">
