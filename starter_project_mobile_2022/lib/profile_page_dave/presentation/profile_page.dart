@@ -22,9 +22,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       key: scaffoldKey,
-      drawer: const Drawer(
-        child: MainDrawer(),
-      ),
+      drawer: Container(
+          width: width * 0.6,
+          child: Drawer(
+            child: MainDrawer(),
+          )),
       backgroundColor: backgroundColor,
       body: Column(children: [
         Container(

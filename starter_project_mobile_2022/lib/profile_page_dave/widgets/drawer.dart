@@ -10,11 +10,13 @@ class MainDrawer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-          height: height * 0.35,
-          child: DrawerHeader(
+        // ignore: sized_box_for_blackspace
+
+        Padding(
+          padding: EdgeInsets.only(top: height * 0.06, left: height * 0.03),
+          child: Container(
+            height: height * 0.28,
             child: Column(
               children: [
                 ClipRRect(
@@ -27,7 +29,7 @@ class MainDrawer extends StatelessWidget {
                       width: height * 0.17),
                 ),
                 SizedBox(
-                  height: height * 0.04,
+                  height: height * 0.01,
                 ),
                 Text(
                   "Nati B",
@@ -48,66 +50,79 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
         ),
+
         Expanded(
-          child: ListView(
-            children: [
-              ListTile(
-                onTap: () {},
-                leading: const Icon(
-                  Icons.person,
-                  color: black,
-                ),
-                title: const Text(
-                  "Profile",
-                  style: TextStyle(
-                    color: black,
-                    fontWeight: FontWeight.bold,
+          child: Padding(
+            padding: EdgeInsets.only(),
+            child: Container(
+              color: backgrd,
+              child: ListView(
+                children: [
+                  ListTile(
+                    onTap: () {},
+                    leading: const Icon(
+                      Icons.person,
+                      color: white,
+                    ),
+                    title: const Text(
+                      "Profile",
+                      style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(
-                  Icons.settings,
-                  color: black,
-                ),
-                title: const Text(
-                  "Settings",
-                  style: TextStyle(
-                    color: black,
-                    fontWeight: FontWeight.bold,
+                  ListTile(
+                    onTap: () {},
+                    leading: const Icon(
+                      Icons.settings,
+                      color: white,
+                    ),
+                    title: const Text(
+                      "Settings",
+                      style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ListTile(
-                onTap: () {},
-                leading: const Icon(
-                  Icons.article_outlined,
-                  color: black,
-                ),
-                title: const Text(
-                  "Article",
-                  style: TextStyle(
-                    color: black,
-                    fontWeight: FontWeight.bold,
+                  Divider(),
+                  ListTile(
+                    onTap: () {},
+                    leading: const Icon(
+                      Icons.article_outlined,
+                      color: white,
+                    ),
+                    title: const Text(
+                      "Article",
+                      style: TextStyle(
+                        color: white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-        Container(
-          child: ListTile(
-            onTap: () {},
-            leading: const Icon(
-              Icons.logout,
-              color: black,
-            ),
-            title: const Text(
-              "Logout",
-              style: TextStyle(
-                color: black,
-                fontWeight: FontWeight.bold,
+
+        Padding(
+          padding: EdgeInsets.only(),
+          child: Container(
+            color: backgrd,
+            child: ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.logout,
+                color: white,
+              ),
+              title: const Text(
+                "Logout",
+                style: TextStyle(
+                  color: white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
