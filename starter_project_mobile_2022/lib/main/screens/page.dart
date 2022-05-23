@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 export 'page.dart';
-
+import '../pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -18,7 +18,7 @@ class Myslider extends StatelessWidget {
       //   title: Text('Carousel Slider'),
       // ),
       body: Container(
-        margin: EdgeInsets.all(30),
+        margin: EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -28,9 +28,8 @@ class Myslider extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 200,
-                      width: total * 0.20,
+                    Expanded(
+                      flex: 3,
                       child: Card(
                           elevation: 40,
                           margin: EdgeInsets.all(10),
@@ -43,9 +42,8 @@ class Myslider extends StatelessWidget {
                                 fit: BoxFit.cover),
                           )),
                     ),
-                    SizedBox(
-                      width: total * 0.55,
-                      height: 200,
+                    Expanded(
+                      flex: 6,
                       child: Card(
                           elevation: 40,
                           margin: EdgeInsets.all(10),
@@ -70,9 +68,8 @@ class Myslider extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 200,
-                      width: total * 0.55,
+                    Expanded(
+                      flex: 6,
                       child: Card(
                           elevation: 40,
                           margin: EdgeInsets.all(10),
@@ -86,9 +83,8 @@ class Myslider extends StatelessWidget {
                                 fit: BoxFit.cover),
                           )),
                     ),
-                    SizedBox(
-                      width: total * 0.20,
-                      height: 200,
+                    Expanded(
+                      flex: 3,
                       child: Card(
                           elevation: 40,
                           margin: EdgeInsets.all(10),
@@ -112,8 +108,8 @@ class Myslider extends StatelessWidget {
                 child: Text(
                   'Read the article you want instantly',
                   style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
+                      color: black,
+                      fontSize: total / 15,
                       fontWeight: FontWeight.w900),
                 ),
               ),
@@ -123,8 +119,8 @@ class Myslider extends StatelessWidget {
                 child: Text(
                   'You can read thousands of articles on Blog Club, save them in the application and share them with your loved ones.',
                   style: TextStyle(
-                    color: Color(0xFF2D4379),
-                    fontSize: 20,
+                    color: bb,
+                    fontSize: total / 26,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

@@ -6,39 +6,46 @@ import '../pallete.dart';
 import '../widgets/widgets.dart';
 
 class CreateNewAccount extends StatelessWidget {
+  var size, height, width;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: Color(0xFFF8FAFF),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Flexible(
-                child: Text(
-                  'Sign up',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700),
-                ),
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
+    return Scaffold(
+      backgroundColor: bk,
+      body: SingleChildScrollView(
+        reverse: true,
+        padding: EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: width * 0.2,
+              child: Text(
+                'Sign up',
+                style: TextStyle(
+                    color: black,
+                    fontSize: width * 0.12,
+                    fontWeight: FontWeight.w700),
               ),
-              Flexible(
-                child: Center(
-                  child: Text(
-                    'Enter your email and password and start discovering',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17.5,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
+            ),
+            Container(
+              height: width * 0.2,
+              child: Text(
+                'Enter your email and password and start discovering',
+                style: TextStyle(
+                    color: black,
+                    fontSize: width * 0.05,
+                    fontWeight: FontWeight.w400),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Card(
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  height: height * 0.12,
+                  child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
@@ -49,7 +56,10 @@ class CreateNewAccount extends StatelessWidget {
                       inputAction: TextInputAction.next,
                     ),
                   ),
-                  Card(
+                ),
+                Container(
+                  height: height * 0.12,
+                  child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
@@ -60,7 +70,10 @@ class CreateNewAccount extends StatelessWidget {
                       inputAction: TextInputAction.next,
                     ),
                   ),
-                  Card(
+                ),
+                Container(
+                  height: height * 0.12,
+                  child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
@@ -70,27 +83,31 @@ class CreateNewAccount extends StatelessWidget {
                       inputAction: TextInputAction.done,
                     ),
                   ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  RoundedButton(
-                    buttonName: 'Log in',
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                ],
-              ),
-              Flexible(
-                child: Text(
-                  'OR LOG IN WITH',
-                  style: TextStyle(
-                      color: Color(0xFF2D4379),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w900),
                 ),
+                SizedBox(
+                  height: height / 25,
+                ),
+                RoundedButton(
+                  buttonName: 'Log in',
+                ),
+                SizedBox(
+                  height: height / 25,
+                ),
+              ],
+            ),
+            Container(
+              height: width * 0.05,
+              child: Text(
+                'OR LOG IN WITH',
+                style: TextStyle(
+                    color: bb,
+                    fontSize: width * 0.035,
+                    fontWeight: FontWeight.w900),
               ),
-              Row(
+            ),
+            Container(
+              height: width * 0.17,
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -108,7 +125,10 @@ class CreateNewAccount extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
+            ),
+            Container(
+              height: width * 0.1,
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -116,13 +136,13 @@ class CreateNewAccount extends StatelessWidget {
                     child: Text(
                       'Do not have an account?',
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
+                          color: black,
+                          fontSize: width * 0.055,
                           fontWeight: FontWeight.w400),
                     ), // <-- Wrapped in Expanded.
                   ),
                   SizedBox(
-                    width: 5,
+                    width: width * 0.02,
                   ),
                   GestureDetector(
                     onTap: () =>
@@ -131,16 +151,16 @@ class CreateNewAccount extends StatelessWidget {
                       'Sign up',
                       style: TextStyle(
                           color: kBlue,
-                          fontSize: 20,
+                          fontSize: width * 0.055,
                           fontWeight: FontWeight.w700),
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
-        )
-      ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -6,14 +6,17 @@ import '../widgets/rounded-button.dart';
 import '../widgets/text-field-input.dart';
 
 class ForgotPassword extends StatelessWidget {
+  var size, height, width;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    size = MediaQuery.of(context).size;
+    height = size.height;
+    width = size.width;
     return Stack(
       children: [
         Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: tr,
             elevation: 0,
             leading: IconButton(
               onPressed: () {
@@ -24,49 +27,63 @@ class ForgotPassword extends StatelessWidget {
                 color: kWhite,
               ),
             ),
-            title: Text(
-              'Forgot Password',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700),
-            ),
             centerTitle: true,
           ),
-          body: Column(
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+          body: SingleChildScrollView(
+            reverse: true,
+            padding: EdgeInsets.all(32),
+            child: Column(
+              children: [
+                Center(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: height / 25,
                       ),
-                      elevation: 2,
-                      child: TextInputField(
-                        hint: 'Email',
-                        inputType: TextInputType.emailAddress,
-                        inputAction: TextInputAction.next,
+                      Text(
+                        'Forgot Password',
+                        style: TextStyle(
+                            color: black,
+                            fontSize: width * 0.12,
+                            fontWeight: FontWeight.w700),
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    RoundedButton(buttonName: 'Submit'),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      'Back to Log in',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                      SizedBox(
+                        height: height / 15,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        elevation: 2,
+                        child: TextInputField(
+                          hint: 'Email',
+                          inputType: TextInputType.emailAddress,
+                          inputAction: TextInputAction.next,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height / 30,
+                      ),
+                      RoundedButton(buttonName: 'Submit'),
+                      SizedBox(
+                        height: height / 15,
+                      ),
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, 'LoginScreen'),
+                        child: Text(
+                          'Back to Log in',
+                          style: TextStyle(
+                              color: blue,
+                              fontSize: width / 20,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         )
       ],
