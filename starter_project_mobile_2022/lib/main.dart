@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/routes.dart';
+import 'package:starter_project_mobile_2022/main/homepage.dart';
+
+import 'profile_page_dave/presentation/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: '/',
+      initialRoute: ProfilePage.routeName,
     );
   }
 }
