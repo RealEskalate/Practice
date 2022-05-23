@@ -8,20 +8,14 @@ import * as bcrypt from 'bcrypt';
 export class UserService {
   constructor(@InjectModel('User') private readonly usermodel: Model<UserI>) {}
 
-  async createUser(
-    username: string,
-    firstName: string,
-    lastName: string,
-    password: string,
-  ) {
+  async createUser(email: string, fullName: string, password: string) {
     const saltOrRounds = 10;
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
 
     const newUser = await this.usermodel.create({
-      firstName,
-      lastName,
-      username,
+      fullName,
+      email,
       password,
     });
     return newUser;
@@ -37,24 +31,22 @@ export class UserService {
     return user;
   }
 
-  async findOne(username: string) {
-    const user = await this.usermodel.findOne({ username: username });
+  async findOne(email: string) {
+    const user = await this.usermodel.findOne({ email: email });
     return user;
   }
 
   async updateUser(
     userId: string,
-    username: string,
-    firstName: string,
-    lastName: string,
+    email: string,
+    fullName: string,
     password: string,
   ) {
     try {
       const user = await this.usermodel.findById(userId);
 
-      user.username = username || user.username;
-      user.firstName = firstName || user.firstName;
-      user.lastName = lastName || user.lastName;
+      user.email = email || user.email;
+      user.fullName = fullName || user.fullName;
       user.password = password || user.password;
 
       await user.save();

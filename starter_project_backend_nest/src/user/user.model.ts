@@ -2,20 +2,16 @@ import mongoose from 'mongoose';
 import { Schema } from '@nestjs/mongoose';
 
 export default interface UserI extends mongoose.Document {
-  firstName: string;
-  lastName: string;
-  username: string;
+  fullName: string;
+  email: string;
   password: string;
 }
 
 export const UserSchema = new mongoose.Schema({
-  firstName: {
+  fullName: {
     type: String,
   },
-  lastName: {
-    type: String,
-  },
-  username: {
+  email: {
     type: String,
     unique: true,
     required: true,
