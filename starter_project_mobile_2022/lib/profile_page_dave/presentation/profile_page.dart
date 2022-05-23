@@ -24,6 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
       key: scaffoldKey,
       drawer: Container(
           width: width * 0.6,
+          // color: Color(0xffF02E65),
           child: Drawer(
             child: MainDrawer(),
           )),
