@@ -16,18 +16,19 @@ class _MYlandingState extends State<MYlanding> {
   @override
   Widget build(BuildContext context) {
     double total = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Carousel Slider'),
       // ),
       body: Container(
-        margin: EdgeInsets.all(30),
+        margin: EdgeInsets.all(total / 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: 500,
+              height: height * 0.75,
               width: total * 1,
               child: PageView(
                 controller: _contorller,
@@ -53,15 +54,15 @@ class _MYlandingState extends State<MYlanding> {
                     effect: ExpandingDotsEffect(
                       activeDotColor: blue,
                       dotColor: depPurple,
-                      dotHeight: 8,
-                      dotWidth: 8,
-                      spacing: 8,
+                      dotHeight: total / 49,
+                      dotWidth: total / 49,
+                      spacing: total / 49,
                     ),
                   ),
                   SizedBox(width: total / 30),
                   Container(
-                    width: 78,
-                    height: 50,
+                    width: total / 5,
+                    height: height * 0.075,
                     decoration: BoxDecoration(
                         color: blue, borderRadius: BorderRadius.circular(16)),
                     child: GestureDetector(

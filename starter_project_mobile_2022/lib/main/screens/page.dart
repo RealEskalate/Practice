@@ -13,12 +13,13 @@ class Myslider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double total = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text('Carousel Slider'),
       // ),
       body: Container(
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.all(height * 125 / 10000),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,13 +32,15 @@ class Myslider extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: Card(
-                          elevation: 40,
-                          margin: EdgeInsets.all(10),
+                          elevation: height * 5 / 100,
+                          margin: EdgeInsets.all(height * 125 / 10000),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius:
+                                BorderRadius.circular(height * 25 / 1000),
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius:
+                                BorderRadius.circular(height * 25 / 1000),
                             child: Image.asset('assets/images/elon.jpg',
                                 fit: BoxFit.cover),
                           )),
@@ -45,13 +48,15 @@ class Myslider extends StatelessWidget {
                     Expanded(
                       flex: 6,
                       child: Card(
-                          elevation: 40,
-                          margin: EdgeInsets.all(10),
+                          elevation: height * 5 / 100,
+                          margin: EdgeInsets.all(height * 125 / 10000),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius:
+                                BorderRadius.circular(height * 25 / 1000),
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius:
+                                BorderRadius.circular(height * 25 / 1000),
                             child: Image.asset(
                               'assets/images/virtual.webp',
                               fit: BoxFit.fill,
@@ -71,8 +76,8 @@ class Myslider extends StatelessWidget {
                     Expanded(
                       flex: 6,
                       child: Card(
-                          elevation: 40,
-                          margin: EdgeInsets.all(10),
+                          elevation: height * 5 / 100,
+                          margin: EdgeInsets.all(height * 125 / 10000),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24.0),
                           ),
@@ -86,8 +91,8 @@ class Myslider extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: Card(
-                          elevation: 40,
-                          margin: EdgeInsets.all(10),
+                          elevation: height * 5 / 100,
+                          margin: EdgeInsets.all(height * 125 / 10000),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24.0),
                           ),

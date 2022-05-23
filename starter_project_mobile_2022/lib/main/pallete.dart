@@ -13,4 +13,5 @@ const Color bk = Color(0xFFF8FAFF);
 const Color bb = Color(0xFF2D4379);
 const Color tr = Colors.transparent;
 const Color blue = Colors.blue;
+const Color white = Colors.white;
 Color depPurple = Colors.deepPurple.shade100;

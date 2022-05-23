@@ -31,7 +31,7 @@ class ForgotPassword extends StatelessWidget {
           ),
           body: SingleChildScrollView(
             reverse: true,
-            padding: EdgeInsets.all(32),
+            padding: EdgeInsets.all(height / 25),
             child: Column(
               children: [
                 Center(
@@ -52,7 +52,7 @@ class ForgotPassword extends StatelessWidget {
                       ),
                       Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
+                          borderRadius: BorderRadius.circular(height / 37),
                         ),
                         elevation: 2,
                         child: TextInputField(
