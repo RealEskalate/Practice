@@ -59,7 +59,9 @@ class MainDrawer extends StatelessWidget {
               child: ListView(
                 children: [
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     leading: const Icon(
                       Icons.person,
                       color: white,
