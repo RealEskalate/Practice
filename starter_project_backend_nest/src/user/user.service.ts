@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import UserI from './user.model';
@@ -18,27 +22,47 @@ export class UserService {
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
 
+    const exists = await this.findOne(username);
+    if (exists) {
+      throw new ConflictException('User already Exist');
+    }
+
     const newUser = await this.usermodel.create({
-      firstName,
-      lastName,
-      username,
-      password,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      password: password,
     });
-    return newUser;
+    const { password: omit, ...user } = newUser;
+    return user;
   }
 
   async getAllUser() {
-    const users = await this.usermodel.find();
+    const users = await this.usermodel.find(
+      {},
+      { username: 1, firstName: 1, lastName: 1 },
+    );
     return users;
   }
 
   async getUserById(id: string) {
-    const user = await this.usermodel.findById(id);
-    return user;
+    try {
+      const user = await this.usermodel.findById(id, {
+        username: 1,
+        firstName: 1,
+        lastName: 1,
+      });
+      return user;
+    } catch (e) {
+      throw new NotFoundException("User by that id doesn't exist");
+    }
   }
 
   async findOne(username: string) {
-    const user = await this.usermodel.findOne({ username: username });
+    const user = await this.usermodel.findOne(
+      { username: username },
+      { username: 1, firstName: 1, lastName: 1 },
+    );
     return user;
   }
 
@@ -58,16 +82,17 @@ export class UserService {
       user.password = password || user.password;
 
       await user.save();
+      return user;
     } catch (error) {
       throw new NotFoundException(error);
     }
   }
 
   async deleteUser(id: string) {
-    const user = await this.getUserById(id);
-    if (user) {
+    try {
+      const user = await this.getUserById(id);
       await this.usermodel.deleteOne({ _id: id });
-    } else {
+    } catch (e) {
       throw new NotFoundException(`user with ${id} not found`);
     }
   }
