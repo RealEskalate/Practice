@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
-import 'circleIcon.dart';
-import 'starBar.dart';
+import 'circle_icon.dart';
+import 'divider_line.dart';
+import 'star_bar.dart';
 
 class PostCard extends StatelessWidget {
   final double heigth;
@@ -54,7 +55,13 @@ class PostCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleIcon(context, icon, width * 0.06),
+                  CircleIcon(
+                    width,
+                    icon: icon,
+                    iconBackground: iconBackgroundColor,
+                    iconSize: width * 0.07,
+                    radius: width * 0.06,
+                  ),
                   SizedBox(
                     width: width * 0.02,
                   ),
@@ -112,9 +119,9 @@ class PostCard extends StatelessWidget {
               )
             ],
           ),
-          Divider(
+          DividerLine(
             thickness: width * 0.002, // thickness of the line
-            color: Colors.grey, // The color to use when painting the line.
+            color: grey, // The color to use when painting the line.
           ),
           Row(
             children: [

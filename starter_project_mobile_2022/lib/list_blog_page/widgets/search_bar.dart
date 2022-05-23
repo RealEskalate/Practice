@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'searchIcon.dart';
+import 'search_icon.dart';
 
 class SearchBar extends StatelessWidget {
   final double heigth;
