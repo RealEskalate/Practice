@@ -36,7 +36,15 @@ export class CommentController {
     const userId = req.user.userId;
     return await this.commentService.createComment(userId, articleId, text);
   }
-
+  @Patch('/:articleId/:id')
+  async updateComment(
+    @Request() req: any,
+    @Param('id') id: string,
+    @Body('text') text: string,
+  ) {
+    return await this.commentService.updateComment(req, id, text);
+  }
+  
   @Delete('/:id')
   async deleteComment(@Request() req: any, @Param('id') id: string) {
     return await this.commentService.deleteComment(req, id);
