@@ -27,7 +27,7 @@ export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
             }
           })
     ],
-    secret: 'jD2qJQ5LXxdpZH60z6ULRIMY/FrEs/8ZEEDPfB6rivg=',
+    secret: process.env.NEXT_AUTH_SECRET,
     pages: {
       signIn: '/auth/login',
     }
