@@ -9,7 +9,7 @@ import { logout } from '../store/slices/auth';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { getRouteMatcher } from 'next/dist/shared/lib/router/utils';
-import PostBlog from './Blog/post-blog'
+import PostBlog from './Blog/postBlogButton'
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -51,7 +51,6 @@ export default function ButtonAppBar() {
           
           </> :""}
 
-          {router.asPath==="/blogs"? <><PostBlog/></> : ""}
 
 
 
