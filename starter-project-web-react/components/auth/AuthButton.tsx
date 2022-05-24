@@ -1,32 +1,28 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { useFormikContext } from 'formik'
 
-interface Props{
-    text: String,
-    ClickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
 
-const AuthButton: React.FC<Props> = ({text,ClickHandler})=>{
-    const style = {
-        borderRadius: 0, 
-        minWidth:"200px",
-        fontWeight: "bold",
-        fontSize: 24,
-        margin: "30px 0px",
-        padding:"8px 0px"
-    };
+const ButtonWrapper= ({children, ...otherProps}: {children: string})=>{
+    const {submitForm} = useFormikContext()
+
+    const handleSubmit = ()=>{
+        submitForm()
+    }
+
+    const buttonProps = {
+        variant: 'contained',
+        fullWidth: true,
+        onClick: handleSubmit,
+        ...otherProps
+    }
 
     
 
     return (
-        <Button 
-            variant="contained" 
-            size="large" 
-            style={style} 
-            onClick={ClickHandler}
-            >{text}</Button>
+        <Button {...buttonProps}>{children}</Button>
     )
 }
 
 
-export default AuthButton;
+export default ButtonWrapper;

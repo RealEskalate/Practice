@@ -7,12 +7,6 @@ import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react';
 
 const theme = createTheme({
-    palette:{
-        primary: {
-            main: "#4caf50",
-            contrastText: "#fff"
-        },
-    },
     typography:{
         fontFamily:"Poppins",
         fontSize: 14,
@@ -24,8 +18,7 @@ const LoginPage: React.FC = ()=>{
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="sm">
-                <LoginCard />
-                
+                <LoginCard />            
             </Container>
         </ThemeProvider>
     )
