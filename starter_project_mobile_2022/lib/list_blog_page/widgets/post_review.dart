@@ -31,7 +31,7 @@ class PostReviewCard extends StatelessWidget {
       height: heigth,
       width: width,
       decoration: BoxDecoration(boxShadow: [
-        BoxShadow(color: Colors.grey.shade200, spreadRadius: 1, blurRadius: 5),
+        BoxShadow(color: grey2, spreadRadius: 1, blurRadius: width * 0.01),
       ], color: white, borderRadius: BorderRadius.circular(width * 0.05)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

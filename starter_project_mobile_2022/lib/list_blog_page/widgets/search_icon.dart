@@ -17,8 +17,8 @@ class SearchIcon extends StatelessWidget {
           color: iconBackgroundColor,
           borderRadius: BorderRadius.circular(width * 0.2)),
       child: IconButton(
-          iconSize: 25,
-          color: Colors.white,
+          iconSize: width * 0.6,
+          color: white,
           icon: const Icon(Icons.search),
           onPressed: () => {}),
     );

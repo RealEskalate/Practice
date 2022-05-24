@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../constants/colors.dart';
-import '../widgets/postCard.dart';
-import '../widgets/searchBar.dart';
-import '../widgets/topicButton.dart';
+import '../widgets/post_card.dart';
+import '../widgets/search_bar.dart';
+import '../widgets/topic_button.dart';
+import 'drawer.dart';
 
 class BlogListingPage extends StatefulWidget {
   const BlogListingPage({Key? key, required this.title}) : super(key: key);
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<BlogListingPage> {
         key: globalKey,
         backgroundColor: mainBackground,
         drawerEnableOpenDragGesture: false,
-        drawer: const Drawer(),
+        drawer: const DrawerSection(),
         appBar: AppBar(
             systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarIconBrightness:
