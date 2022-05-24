@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, import_of_legacy_library_into_null_safe
+
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/add_blog/widgets/body_text_field.dart';

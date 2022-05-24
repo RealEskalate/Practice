@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/routes.dart';
 
-import 'add_blog/presentation/add_blog.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: AddBlog.routeName,
+      initialRoute: "/",
     );
   }
 }
