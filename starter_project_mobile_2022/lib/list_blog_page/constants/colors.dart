@@ -14,6 +14,7 @@ Color drawerBackground = const Color.fromARGB(205, 68, 76, 91);
 
 Color white = Colors.white;
 Color grey = Colors.grey.shade300;
+Color grey2 = Colors.grey.shade200;
 Color black = Colors.black;
 Color transparent = Colors.transparent;
 Color starYellow = Colors.orangeAccent;

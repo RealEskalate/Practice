@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 class CircleIcon extends StatelessWidget {
   final IconData icon;
   final double? radius;
@@ -23,7 +25,7 @@ class CircleIcon extends StatelessWidget {
       child: Icon(
         icon,
         size: iconSize,
-        color: Colors.white,
+        color: white,
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/list_blog_page/constants/colors.dart';
+import '../constants/colors.dart';
 
 import '../widgets/circle_icon.dart';
 import '../widgets/divider_line.dart';
@@ -100,30 +100,25 @@ class DrawerSection extends StatelessWidget {
               closeDrawer(context);
             },
           ),
-          const Expanded(child: SizedBox()),
-          Column(
-            children: [
-              DividerLine(
-                thickness: width * 0.002, // thickness of the line
-                color: white, // The color to use when painting the line.
-              ),
-              ListTile(
-                leading: CircleIcon(
-                  width,
-                  icon: Icons.exit_to_app,
-                  iconBackground: transparent,
-                  iconSize: width * 0.075,
-                  radius: width * 0.06,
-                ),
-                title: Text(
-                  'Log Out',
-                  style: TextStyle(color: white, fontWeight: FontWeight.w400),
-                ),
-                onTap: () {
-                  closeDrawer(context);
-                },
-              ),
-            ],
+          DividerLine(
+            thickness: width * 0.002, // thickness of the line
+            color: white, // The color to use when painting the line.
+          ),
+          ListTile(
+            leading: CircleIcon(
+              width,
+              icon: Icons.exit_to_app,
+              iconBackground: transparent,
+              iconSize: width * 0.075,
+              radius: width * 0.06,
+            ),
+            title: Text(
+              'Log Out',
+              style: TextStyle(color: white, fontWeight: FontWeight.w400),
+            ),
+            onTap: () {
+              closeDrawer(context);
+            },
           ),
         ],
       ),
