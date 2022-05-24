@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'searchIcon.dart';
+import '../constants/colors.dart';
+import 'search_icon.dart';
 
 class SearchBar extends StatelessWidget {
   final double heigth;
@@ -13,13 +14,9 @@ class SearchBar extends StatelessWidget {
     return Container(
         height: heigth,
         width: width,
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.shade200, spreadRadius: 1, blurRadius: 5),
-            ],
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(width * 0.03)),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(color: grey2, spreadRadius: 1, blurRadius: width * 0.01),
+        ], color: white, borderRadius: BorderRadius.circular(width * 0.03)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { ChangeEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
-import { useRouter } from 'next/router'
-import Stack from '@mui/material/Stack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google'
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -37,9 +34,7 @@ const LoginCard = ()=>{
             validationSchema = {FORM_VALIDATION}
             onSubmit = {
               (value) =>{
-
-                signIn('credentials', {callbackUrl: `${window.location.origin}/`})
-                
+                signIn('credentials', {callbackUrl: `${window.location.origin}/`})   
               }
             }
           >

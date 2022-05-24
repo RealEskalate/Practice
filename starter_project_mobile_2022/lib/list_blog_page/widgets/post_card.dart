@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
-import 'circleIcon.dart';
-import 'starBar.dart';
+import 'circle_icon.dart';
+import 'divider_line.dart';
+import 'star_bar.dart';
 
 class PostCard extends StatelessWidget {
   final double heigth;
@@ -40,13 +41,9 @@ class PostCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: width * 0.03),
       height: heigth,
       width: width,
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade200, spreadRadius: 1, blurRadius: 5),
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(width * 0.05)),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(color: grey2, spreadRadius: 1, blurRadius: width * 0.01),
+      ], color: white, borderRadius: BorderRadius.circular(width * 0.05)),
       child: Column(
         children: [
           Row(
@@ -54,7 +51,13 @@ class PostCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleIcon(context, icon, width * 0.06),
+                  CircleIcon(
+                    width,
+                    icon: icon,
+                    iconBackground: iconBackgroundColor,
+                    iconSize: width * 0.07,
+                    radius: width * 0.06,
+                  ),
                   SizedBox(
                     width: width * 0.02,
                   ),
@@ -69,16 +72,16 @@ class PostCard extends StatelessWidget {
                       ),
                       Text(
                         created,
-                        style: const TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.w300),
+                        style:
+                            TextStyle(color: grey, fontWeight: FontWeight.w300),
                       ),
                     ],
                   ),
                 ],
               ),
-              const Icon(
+              Icon(
                 Icons.more_vert,
-                color: Colors.grey,
+                color: grey,
               )
             ],
           ),
@@ -112,9 +115,9 @@ class PostCard extends StatelessWidget {
               )
             ],
           ),
-          Divider(
+          DividerLine(
             thickness: width * 0.002, // thickness of the line
-            color: Colors.grey, // The color to use when painting the line.
+            color: grey, // The color to use when painting the line.
           ),
           Row(
             children: [
