@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { ChangeEvent, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import AuthButton from './AuthButton';
 import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import { login, getAuth} from '../../store/slices/auth';
-import { useDispatch, useStore} from 'react-redux';
-import { useSelector } from 'react-redux';
+import Stack from '@mui/material/Stack';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { signIn } from "next-auth/react"
+
+
 const style = {
   backgroundColor: "#607d8b",
   minHeight: "85vh",
@@ -44,6 +45,7 @@ const LoginCard = ()=>{
 
     const router = useRouter();
 
+
     const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
       setUsername(event.target.value);
       setUsernameError(false);
@@ -54,16 +56,6 @@ const LoginCard = ()=>{
       setPasswordError(false);
       setPasswordHelperText("");
     }
-
-    const dispatch: any = useDispatch();
-    const store: any = useStore();
-    const authentication = useSelector((state: any) => getAuth(state))
-    
-    useEffect(()=>{  
-      if(authentication.user){
-        router.push('/')
-      }
-    },[authentication])
     
     const handleClick = ()=>{
       
@@ -77,7 +69,7 @@ const LoginCard = ()=>{
       }
       
       if(username && password){
-        dispatch(login({username,password}))
+        signIn("credentials", {username, password,callbackUrl:`${window.location.origin}/`})
 
         setUsername("");
         setPassword("");
@@ -87,9 +79,15 @@ const LoginCard = ()=>{
     return (
     <Box sx={style}>
         <Typography variant="h3" sx={h1Style}>Sign in</Typography>
+        <Typography variant="h5" sx={{color: "#f00", m:"auto"}}>{router.query.error? router.query.error : ""}</Typography>
         <TextField  label="username" error={usernameError} helperText= {usernameHelperText} onChange={usernameChange} value={username} sx={inputStyle}/>
-        <TextField label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
+        <TextField type={"password"} label="password" error={passwordError} helperText={passwordHelperText} onChange={passwordChange} value={password} sx={inputStyle}/>  
         <AuthButton text="Login" ClickHandler={handleClick}/>
+        <Typography sx={{color:'#fff', mx:'auto', mb:'15px'}}>-------------OR------------</Typography>
+        <Stack sx={{color:'#fff', mx:'auto'}} spacing={1} direction="row">
+        <GitHubIcon onClick= {() => signIn("github",{callbackUrl:`${window.location.origin}/`})}></GitHubIcon>
+    
+        </Stack>
         <Typography variant="h6" color="#fff">
           you don&apos;t have account?{" "}
           <Link href="/auth/register">
@@ -99,6 +97,8 @@ const LoginCard = ()=>{
     </Box>
   );
 }
+
+
 
 
 export default LoginCard;
