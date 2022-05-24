@@ -25,12 +25,10 @@ class PostReviewCard extends StatelessWidget {
       margin: EdgeInsets.only(
         left: height * 0.06,
         right: height * 0.02,
-        // top: width * 0.02,
         bottom: 20,
       ),
       height: height * 0.5,
       width: width,
-      // width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           color: white,
           boxShadow: [
@@ -125,16 +123,14 @@ class PostReviewCard extends StatelessWidget {
                   itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                         const PopupMenuItem(
                           child: ListTile(
-                            leading:
-                                Icon(Icons.edit_note_outlined), // your icon
+                            leading: Icon(Icons.edit_note_outlined),
                             title: Text('Edit',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
                         ),
                         const PopupMenuItem(
                           child: ListTile(
-                            leading:
-                                Icon(Icons.delete_outline_sharp), // your icon
+                            leading: Icon(Icons.delete_outline_sharp),
                             title: Text('Delete',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
                           ),

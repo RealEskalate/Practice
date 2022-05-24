@@ -12,18 +12,16 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ignore: sized_box_for_blackspace
-
           Padding(
             padding: EdgeInsets.only(top: height * 0.06, left: height * 0.03),
-            child: Container(
+            child: SizedBox(
               height: height * 0.28,
               child: Column(
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(height),
                     child: Image(
-                        image: NetworkImage(
+                        image: const NetworkImage(
                           'https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/12/IMG_9127.jpg?itok=156LUKD5',
                         ),
                         height: height * 0.13,
@@ -40,7 +38,7 @@ class MainDrawer extends StatelessWidget {
                     "UX Designer",
                     style: TextStyle(color: black, fontSize: height * 0.024),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Text(
@@ -51,7 +49,6 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-
           Expanded(
             child: Container(
               color: backgrd,
@@ -88,7 +85,7 @@ class MainDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Divider(color: white),
+                    const Divider(color: white),
                     ListTile(
                       onTap: () {},
                       leading: const Icon(
@@ -108,7 +105,6 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-
           Container(
             color: backgrd,
             child: ListTile(

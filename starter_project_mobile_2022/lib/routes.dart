@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/main/homepage.dart';
-// import 'package:starter_project_mobile_2022/profile_page_dave/presentation/blog_ui.dart';
 import 'package:starter_project_mobile_2022/profile_page_dave/presentation/profile_page.dart';
 
 class PageRouter {

@@ -24,9 +24,11 @@ class _ProfilePageState extends State<ProfilePage> {
       key: scaffoldKey,
       drawer: Container(
           width: width * 0.6,
-          // color: Color(0xffF02E65),
-          child: Drawer(
-            child: MainDrawer(),
+          child: const Opacity(
+            opacity: 0.9,
+            child: Drawer(
+              child: MainDrawer(),
+            ),
           )),
       backgroundColor: backgroundColor,
       body: Column(children: [
@@ -63,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Center(
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.more_horiz),
+                  icon: const Icon(Icons.more_horiz),
                 ),
               ),
             ],
@@ -118,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.grid_view,
                               color: blue,
                             ),
@@ -135,9 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 1,
                   child: ListView(
-                    // padding: const EdgeInsets.all(8),
-                    //shrinkWrap: true,
-                    children: <Widget>[
+                    children: const <Widget>[
                       PostReviewCard(
                         title: "Big data",
                         subtitle:
@@ -244,7 +244,7 @@ class _buildHeaderWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Nati BC',
+                    'Nati B',
                     maxLines: 1,
                     style: TextStyle(
                       fontSize: width * 0.05,
