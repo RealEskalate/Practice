@@ -12,9 +12,14 @@ import { getAuth, register } from '../../store/slices/auth';
 import {ChangeEvent, useEffect, useState} from 'react';
 import { useDispatch, useSelector, useStore} from 'react-redux';
 import {useRouter} from 'next/router';
+import { useSession } from "next-auth/react"
 
 
 const ProfileCard = () => {
+
+  const {data: session} = useSession();
+  const sess_name = session?.user?.name;
+  const sess_email = session?.user?.email;
   const [fName,setFName] = useState("");
   const [fNameError, setFNameError] = useState(false);
   const [fNameHelperText, setFNameHelperText] = useState("");
@@ -23,9 +28,9 @@ const ProfileCard = () => {
   const [lNameError, setLNameError] = useState(false);
   const [lNameHelperText, setLNameHelperText] = useState("");
 
-  const [username, setUsername] = useState("");
-  const [usernameError, setUsernameError] = useState(false);
-  const [usernameHelperText, setUsernameHelperText] = useState("");
+  const [email, setemail] = useState("");
+  const [emailError, setemailError] = useState(false);
+  const [emailHelperText, setemailHelperText] = useState("");
 
   const [password, setPassword]= useState("");
   const [passwordError, setPasswordError] = useState(false);
@@ -35,10 +40,11 @@ const ProfileCard = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState("");
 
-  const usernameChange = (event: ChangeEvent<HTMLInputElement>)=>{
-    setUsername(event.target.value);
-    setUsernameError(false);
-    setUsernameHelperText("");
+
+  const emailChange = (event: ChangeEvent<HTMLInputElement>)=>{
+    setemail(event.target.value);
+    setemailError(false);
+    setemailHelperText("");
   }
   const passwordChange = (event: ChangeEvent<HTMLInputElement>)=>{
     setPassword(event.target.value);
@@ -81,22 +87,22 @@ const ProfileCard = () => {
           setFNameError(true);
           setFNameHelperText("First Name required");
       }
-      if(username == ""){
-          setUsernameError(true);
-          setUsernameHelperText("Username required");
+      if(email == ""){
+          setemailError(true);
+          setemailHelperText("email required");
       }
       
       if(confirmPassword == "" && password != ""){
           setConfirmPasswordError(true);
           setConfirmPasswordHelperText("Confirm Password required");
       }
-      if(fName && lName && username && password && confirmPassword){
+      if(fName && lName && email && password && confirmPassword){
          
-          dispatch(register({firstName: fName, lastName: lName, username, password, confirmPassword}))
+          dispatch(register({firstName: fName, lastName: lName, username: email, password, confirmPassword}))
       
           setFName("");
           setLName("");
-          setUsername("");
+          setemail("");
           setPassword("");
           setConfirmPassword("");
           
@@ -156,7 +162,7 @@ const ProfileCard = () => {
         }}
         error={fNameError} 
         helperText={fNameHelperText} 
-        value={fName} onChange={fNameChange} />
+        value={sess_name} onChange={fNameChange} />
         
         <TextField 
         label="last name" 
@@ -166,17 +172,17 @@ const ProfileCard = () => {
         }}
         error={lNameError} 
         helperText={lNameHelperText} 
-        value={lName} 
+        value={sess_name} 
         onChange={lNameChange} />           
 
         <TextField 
-        label="username" 
+        label="email" 
         variant="standard"
         disabled
-        error={usernameError} 
-        helperText= {usernameHelperText} 
-        onChange={usernameChange} 
-        value={username}/>
+        error={emailError} 
+        helperText= {emailHelperText} 
+        onChange={emailChange} 
+        value={sess_email}/>
             
           <TextField 
           label="password change" 
