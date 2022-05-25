@@ -102,4 +102,29 @@ export class ArticleService {
       throw e;
     }
   }
+
+  async searchTitle(searchTerm: string) {
+    //replace chars with escape the char
+    searchTerm = searchTerm.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+
+    let regexp = new RegExp(searchTerm, 'gi');
+    let result = await this.articleModel.find({ title: regexp });
+    return result;
+  }
+
+  async searchContent(searchTerm: string) {
+    //replace chars with escape the char
+    searchTerm = searchTerm.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+
+    let regexp = new RegExp(searchTerm, 'gi');
+    let result = await this.articleModel.find({ content: regexp });
+    return result;
+  }
+
+  async searchEveryThing(titleTerm: string) {
+    let regexp = new RegExp(titleTerm, 'gi');
+    return await this.articleModel.find({
+      $or: [{ title: regexp }, { content: regexp }],
+    });
+  }
 }
