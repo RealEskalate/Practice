@@ -1,28 +1,19 @@
-import {useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
-import {useDispatch,useStore} from 'react-redux';
-import { logout } from '../store/slices/auth';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { getRouteMatcher } from 'next/dist/shared/lib/router/utils';
-import PostBlog from './Blog/post-blog'
+import { useSession, signOut } from "next-auth/react"
+
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
-
-  const store = useStore();
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const authentication = useSelector((state)=> state.entities.authentication);
+  const {data: session} = useSession();
 
   const logoutHandler = ()=>{
-    dispatch(logout());
-    if(authentication.user){
-      router.push('/auth/login')
-    }
+    signOut({callbackUrl:`${window.location.origin}/auth/login`});
+    
   }
 
 
@@ -33,7 +24,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blog App (React Demo)
           </Typography>
-          {authentication.user?
+          {session?
           <> 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -46,15 +37,10 @@ export default function ButtonAppBar() {
             ))}
           </Box> 
                  
-          <Typography variant='h6' sx ={{margin: "5px"}}>{authentication.user.username}</Typography>
-          <Button color="inherit" onClick={logoutHandler}>Logout</Button>
-          
+          <Typography variant='h6' sx ={{margin: "5px"}}>{session.user.name}</Typography>
+          <Avatar alt="Remy Sharp" src={session.user.image} />
+          <LogoutIcon sx={{mx:"10px"}} onClick={logoutHandler}></LogoutIcon>
           </> :""}
-
-          {router.asPath==="/blogs"? <><PostBlog/></> : ""}
-
-
-
         </Toolbar>
       </AppBar>
     </Box>

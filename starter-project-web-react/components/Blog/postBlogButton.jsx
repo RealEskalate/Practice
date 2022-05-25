@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import BlogPostDialog from './BlogPostDialog';
 import { addBlog } from '../../store/slices/blogs'
 import Link from 'next/link';
@@ -19,7 +19,11 @@ export default function PostBlog(props) {
   };
   return (
     <div>
-      <Button color="inherit" onClick={handleClickOpen}>Post</Button>
+      <Button fontWeight="fontWeightBold"  variant="outlined" onClick={handleClickOpen}>
+      <Typography fontWeight="fontWeightBold"  color="text.secondary">
+          Post Blog
+        </Typography>
+      </Button>
 
       <BlogPostDialog open={open} handleClose={handleClose} />
     </div>

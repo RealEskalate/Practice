@@ -14,12 +14,12 @@ export default function BlogPostForm({
 
   const INITIAL_FORM_STATE ={
     title:"",
-    body:''
+    content:''
 
   }
   const FORM_VALIDATION = Yup.object().shape({
     title: Yup.string().min(3).required(),
-    body: Yup.string().required()
+    content: Yup.string().required()
   })
   return (
 
@@ -32,7 +32,7 @@ export default function BlogPostForm({
       onSubmit = {
         values => {
 
-          dispatch(addBlog({...values, author:'man', id :d.length}))
+          dispatch(addBlog({...values, author:'Jhon', id :d.length}))
           handleClose()
 
         }
@@ -50,7 +50,7 @@ export default function BlogPostForm({
             label="Content"
             multiline
             rows={4}
-            name = 'body'
+            name = 'content'
           />
         </Box>
         <Button type='submit' size='large'  fullWidth variant="outlined">
