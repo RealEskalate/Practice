@@ -24,8 +24,8 @@ class _ProfilePageState extends State<ProfilePage> {
       key: scaffoldKey,
       drawer: Container(
           width: width * 0.6,
-          child: const Opacity(
-            opacity: 0.9,
+          child: Opacity(
+            opacity: width * 0.0023,
             child: Drawer(
               child: MainDrawer(),
             ),
@@ -234,7 +234,8 @@ class _buildHeaderWidget extends StatelessWidget {
                     child: Positioned(
                       bottom: 0,
                       right: height * 0.001,
-                      child: buildEditIcon(edit_color),
+                      child: buildEditIcon(edit_color, height * 0.004,
+                          height * 0.023, height * 0.03),
                     ),
                   ),
                 ]),
@@ -280,16 +281,22 @@ class _buildHeaderWidget extends StatelessWidget {
   }
 }
 
-Widget buildEditIcon(Color color) => buildCircle(
+Widget buildEditIcon(
+  Color color,
+  double x,
+  double y,
+  double siz,
+) =>
+    buildCircle(
       color: white,
-      all: 3,
+      all: x,
       child: buildCircle(
         color: color,
-        all: 8,
-        child: const Icon(
+        all: y,
+        child: Icon(
           Icons.edit,
           color: white,
-          size: 10,
+          size: siz,
         ),
       ),
     );
@@ -300,7 +307,7 @@ Widget buildCircle({
 }) =>
     ClipOval(
       child: Container(
-        padding: EdgeInsets.all(all),
+        padding: EdgeInsets.all(all * 0.8),
         color: color,
         child: child,
       ),
