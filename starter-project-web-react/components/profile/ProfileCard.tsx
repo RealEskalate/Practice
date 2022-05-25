@@ -6,7 +6,7 @@ import LocationOn from '@mui/icons-material/LocationOn';
 import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
-import { Button, CardHeader } from '@mui/material';
+import { Alert, AlertTitle, Button, CardHeader } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { getAuth, register } from '../../store/slices/auth';
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -35,7 +35,7 @@ const INITIAL_STATE = {
 
 const ProfileCard = () => {
   const [INITIAL_STATE_VALUE, setInitialValue] = useState(INITIAL_STATE)
-  const [isUpdated, setIsRegistered] = useState(false)
+  const [isUpdated, setIsUpdated] = useState(false)
 
   const FORM_VALIDATION = yup.object().shape({
     firstname: yup.string().required("Required"),
@@ -45,56 +45,7 @@ const ProfileCard = () => {
     confirmPassword: yup.string().min(8).required("Required")
   })
 
-  const [fName, setFName] = useState("");
-  const [fNameError, setFNameError] = useState(false);
-  const [fNameHelperText, setFNameHelperText] = useState("");
-
-  const [lName, setLName] = useState("");
-  const [lNameError, setLNameError] = useState(false);
-  const [lNameHelperText, setLNameHelperText] = useState("");
-
-  const [email, setemail] = useState("");
-  const [emailError, setemailError] = useState(false);
-  const [emailHelperText, setemailHelperText] = useState("");
-
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordHelperText, setPasswordHelperText] = useState("");
-
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState("");
-
-
-  const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setemail(event.target.value);
-    setemailError(false);
-    setemailHelperText("");
-  }
-  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-    setPasswordError(false);
-    setPasswordHelperText("");
-  }
-  const confirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(event.target.value);
-    setConfirmPasswordError(false);
-    setConfirmPasswordHelperText("");
-  }
-  const fNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFName(event.target.value);
-    setFNameError(false);
-    setFNameHelperText("");
-  }
-  const lNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLName(event.target.value);
-    setLNameError(false);
-    setLNameHelperText("");
-  }
-
-  const dispatch: any = useDispatch();
   const router = useRouter();
-  const store: any = useStore();
   const authentication = useSelector((state: any) => getAuth(state));
 
   useEffect(() => {
@@ -102,38 +53,6 @@ const ProfileCard = () => {
       router.push('/')
     }
   }, [authentication])
-
-  const handleClick = () => {
-    if (lName == "") {
-      setLNameError(true);
-      setLNameHelperText("Last Name required");
-    }
-    if (fName == "") {
-      setFNameError(true);
-      setFNameHelperText("First Name required");
-    }
-    if (email == "") {
-      setemailError(true);
-      setemailHelperText("email required");
-    }
-
-    if (confirmPassword == "" && password != "") {
-      setConfirmPasswordError(true);
-      setConfirmPasswordHelperText("Confirm Password required");
-    }
-    if (fName && lName && email && password && confirmPassword) {
-
-      dispatch(register({ firstName: fName, lastName: lName, username: email, password, confirmPassword }))
-
-      setFName("");
-      setLName("");
-      setemail("");
-      setPassword("");
-      setConfirmPassword("");
-
-
-    }
-  }
 
   return (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
@@ -184,26 +103,26 @@ const ProfileCard = () => {
           onSubmit={
             (value) => {
               console.log(value);
-              setIsRegistered(true)
+              setIsUpdated(true)
             }
           }
         >
           <Form>
             <Grid container spacing={2} >
               <Grid >
-                <TextField name="firstname" label="First Name" error={fNameError} helperText={fNameHelperText} variant="standard" onChange={fNameChange}/>
+                <TextField name="firstname" label="First Name"  variant="standard"/>
               </Grid>
               <Grid >
-                <TextField name="lastname" label="Last Name" error={lNameError} helperText={lNameHelperText} variant="standard" onChange={lNameChange}/>
+                <TextField name="lastname" label="Last Name"  variant="standard"/>
               </Grid>
               <Grid >
-                <TextField name="username" label="Username"  error={emailError} helperText={emailHelperText} variant="standard" onChange={emailChange}/>
+                <TextField name="username" label="Username"   variant="standard"/>
               </Grid>
               <Grid>
-                <TextField name="password" label="Password" type="password" variant="standard" error={passwordError} helperText={passwordHelperText} onChange={passwordChange}/>
+                <TextField name="password" label="Password" type="password" variant="standard"/>
               </Grid>
               <Grid>
-                <TextField name="confirmPassword" label="Confirm Password" type="password"  variant="standard" error={confirmPasswordError} helperText={confirmPasswordHelperText} onChange={confirmPasswordChange}/>
+                <TextField name="confirmPassword" label="Confirm Password" type="password"  variant="standard"/>
               </Grid>
               <Grid item xs={12} sx={{ mt: 1 }}>
                 <Button variant="contained" color="success">Update</Button>
@@ -212,7 +131,12 @@ const ProfileCard = () => {
           </Form>
         </Formik>
       </Box>
-
+      {isUpdated?
+            <Alert severity="success">
+                <AlertTitle>Success</AlertTitle>
+                 <strong>User Successfully Registered!</strong>
+            </Alert>: ""
+          }
     </Grid>
 
 
