@@ -47,12 +47,18 @@ export class ArticleService {
     try {
       let article = await this.getArticleById(id);
 
-      if (newEntries.title) article.title = newEntries.title;
-      if (newEntries.content) article.content = newEntries.content;
+      const result = await this.articleModel.updateOne(
+        {
+          _id: article._id,
+          title: newEntries.title || article.title,
+          content: newEntries.content || article.content,
+        },
+        {
+          $push: { categories: newEntries.categories || article.categories },
+        },
+      );
 
-      await article.save();
-
-      return article;
+      return result;
     } catch (e) {
       throw e;
     }
@@ -62,12 +68,19 @@ export class ArticleService {
     authorUserId,
     title,
     content,
+    categories,
   }: {
     authorUserId: string;
     title: string;
     content: string;
+    categories: [];
   }) {
-    let newArticle = new this.articleModel({ authorUserId, title, content });
+    let newArticle = new this.articleModel({
+      authorUserId,
+      title,
+      content,
+      categories,
+    });
     await newArticle.save();
 
     return newArticle;

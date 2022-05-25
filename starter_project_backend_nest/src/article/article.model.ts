@@ -4,6 +4,7 @@ export default interface Article_Interface extends mongoose.Document {
   authorUserId: String;
   title: String;
   content: String;
+  categories: [];
   rating: { 1: Number; 2: Number; 3: Number; 4: Number; 5: Number };
 }
 
@@ -49,5 +50,9 @@ export const ArticleSchema: mongoose.Schema<Article_Interface> =
         default: 0,
         required: false,
       },
+    },
+    categories: {
+      type: [],
+      required: true,
     },
   });

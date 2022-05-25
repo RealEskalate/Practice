@@ -44,6 +44,7 @@ describe('Article Testing', () => {
       authorUserId: mockingUser._id,
       title: 'how I got to do jobs using mars',
       content: 'blah blah blah mars blah blah',
+      categories: [],
     };
     await articleService.addArticle(mockingArticle);
     const sampleArt = await articleService.getAllArticle();
@@ -131,6 +132,7 @@ describe('Article Testing', () => {
     test('it should be 200', async () => {
       const res = await articleService.updateArticleById(sampleId, {
         title: 'another',
+        categories: ['categoryid1'],
       });
       expect(res).toBeDefined();
     });
@@ -196,7 +198,6 @@ describe('Article Testing', () => {
     });
 
     test('geting average of article for artilce that doesnot exist', async () => {
-
       try {
         await articleService.getAverageRatingById(wrongId);
       } catch (e) {

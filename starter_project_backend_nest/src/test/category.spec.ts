@@ -5,7 +5,11 @@ import { CategoryController } from '../category/category.controller';
 import { CategoryService } from '../category/category.service';
 import { rootMongooseTestModule } from './db';
 import { NotFoundError } from 'rxjs';
-import { NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  NotFoundException,
+} from '@nestjs/common';
 
 describe('CategoryTesting', () => {
   let service: CategoryService;
@@ -35,7 +39,6 @@ describe('CategoryTesting', () => {
   beforeAll(async () => {
     category = await service.addCategory({
       categoryName: 'essay',
-      articles: ['articleid1', 'articleid2'],
     });
     category._id = category._id.toString();
   });
@@ -65,7 +68,6 @@ describe('CategoryTesting', () => {
   it('it should create category', async () => {
     let newCategory = await controller.addCategoryById({
       categoryName: 'philosophy',
-      articles: [],
     });
 
     expect(newCategory).toBeDefined();
@@ -74,20 +76,26 @@ describe('CategoryTesting', () => {
   it('it should update for exisiting category', async () => {
     let newCategory = await controller.addCategoryById({
       categoryName: 'new',
-      articles: ['articleid1'],
     });
 
-    let newCategory2 = await controller.addCategoryById({
-      categoryName: 'philosophy',
-      articles: ['articleid2'],
-    });
+    let newCategory2 = await controller.updateCategoryById(
+      newCategory._id,
+      'changed',
+    );
     expect(newCategory2).toBeDefined();
+  });
+
+  it('it should not update non exisiting category', async () => {
+    try {
+      await controller.updateCategoryById('null', 'changed');
+    } catch (e) {
+      expect(e).toBeInstanceOf(BadRequestException);
+    }
   });
 
   it('it should delete category using id', async () => {
     let newCategory = await controller.addCategoryById({
-      categoryName: 'new',
-      articles: ['articleid1'],
+      categoryName: 'tobedeleted',
     });
     let response = await controller.deleteCategoryById(newCategory._id);
     try {

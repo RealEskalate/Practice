@@ -11,9 +11,5 @@ export const CategorySchema : mongoose.Schema<CategoryI> = new mongoose.Schema({
         type: String,
         required : true,
         unique:true
-    },
-    articles: {
-        type : [],
-        required:true,
     }
 });
