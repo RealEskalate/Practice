@@ -9,22 +9,47 @@ import CardContent from '@mui/material/CardContent';
 import { Button, CardHeader } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { getAuth, register } from '../../store/slices/auth';
-import {ChangeEvent, useEffect, useState} from 'react';
-import { useDispatch, useSelector, useStore} from 'react-redux';
-import {useRouter} from 'next/router';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useRouter } from 'next/router';
+import * as yup from 'yup'
 import { useSession } from "next-auth/react"
+import { Form, Formik } from 'formik';
 
+const session = {
+  user: {
+
+  name: "",
+  email: ""
+  }
+}
+// const { data: session } = useSession() || user;
+
+const INITIAL_STATE = {
+  firstname: session?.user?.name || "",
+  lastname: session?.user?.name,
+  username: session?.user?.email,
+  password: '',
+  confirmPassword: ''
+}
 
 const ProfileCard = () => {
+  const [INITIAL_STATE_VALUE, setInitialValue] = useState(INITIAL_STATE)
+  const [isUpdated, setIsRegistered] = useState(false)
 
-  const {data: session} = useSession();
-  const sess_name = session?.user?.name;
-  const sess_email = session?.user?.email;
-  const [fName,setFName] = useState("");
+  const FORM_VALIDATION = yup.object().shape({
+    firstname: yup.string().required("Required"),
+    lastname: yup.string().required("Required"),
+    username: yup.string().required("Required"),
+    password: yup.string().min(8).required("Required"),
+    confirmPassword: yup.string().min(8).required("Required")
+  })
+
+  const [fName, setFName] = useState("");
   const [fNameError, setFNameError] = useState(false);
   const [fNameHelperText, setFNameHelperText] = useState("");
 
-  const [lName,setLName] = useState("");
+  const [lName, setLName] = useState("");
   const [lNameError, setLNameError] = useState(false);
   const [lNameHelperText, setLNameHelperText] = useState("");
 
@@ -32,7 +57,7 @@ const ProfileCard = () => {
   const [emailError, setemailError] = useState(false);
   const [emailHelperText, setemailHelperText] = useState("");
 
-  const [password, setPassword]= useState("");
+  const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
   const [passwordHelperText, setPasswordHelperText] = useState("");
 
@@ -41,30 +66,30 @@ const ProfileCard = () => {
   const [confirmPasswordHelperText, setConfirmPasswordHelperText] = useState("");
 
 
-  const emailChange = (event: ChangeEvent<HTMLInputElement>)=>{
+  const emailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setemail(event.target.value);
     setemailError(false);
     setemailHelperText("");
   }
-  const passwordChange = (event: ChangeEvent<HTMLInputElement>)=>{
+  const passwordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     setPasswordError(false);
     setPasswordHelperText("");
   }
-  const confirmPasswordChange = (event: ChangeEvent<HTMLInputElement>)=>{
-      setConfirmPassword(event.target.value);
-      setConfirmPasswordError(false);
-      setConfirmPasswordHelperText("");
-    }
-  const fNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
-      setFName(event.target.value);
-      setFNameError(false);
-      setFNameHelperText("");
+  const confirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(event.target.value);
+    setConfirmPasswordError(false);
+    setConfirmPasswordHelperText("");
   }
-  const lNameChange = (event: ChangeEvent<HTMLInputElement>)=>{
-      setLName(event.target.value);
-      setLNameError(false);
-      setLNameHelperText("");
+  const fNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFName(event.target.value);
+    setFNameError(false);
+    setFNameHelperText("");
+  }
+  const lNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setLName(event.target.value);
+    setLNameError(false);
+    setLNameHelperText("");
   }
 
   const dispatch: any = useDispatch();
@@ -72,42 +97,42 @@ const ProfileCard = () => {
   const store: any = useStore();
   const authentication = useSelector((state: any) => getAuth(state));
 
-  useEffect(()=>{  
-      if(authentication.user){
-        router.push('/')
-      }
-    },[authentication])
+  useEffect(() => {
+    if (authentication.user) {
+      router.push('/')
+    }
+  }, [authentication])
 
-  const handleClick = ()=>{
-      if(lName == ""){
-          setLNameError(true);
-          setLNameHelperText("Last Name required");
-      }
-      if(fName == ""){
-          setFNameError(true);
-          setFNameHelperText("First Name required");
-      }
-      if(email == ""){
-          setemailError(true);
-          setemailHelperText("email required");
-      }
-      
-      if(confirmPassword == "" && password != ""){
-          setConfirmPasswordError(true);
-          setConfirmPasswordHelperText("Confirm Password required");
-      }
-      if(fName && lName && email && password && confirmPassword){
-         
-          dispatch(register({firstName: fName, lastName: lName, username: email, password, confirmPassword}))
-      
-          setFName("");
-          setLName("");
-          setemail("");
-          setPassword("");
-          setConfirmPassword("");
-          
-          
-        }
+  const handleClick = () => {
+    if (lName == "") {
+      setLNameError(true);
+      setLNameHelperText("Last Name required");
+    }
+    if (fName == "") {
+      setFNameError(true);
+      setFNameHelperText("First Name required");
+    }
+    if (email == "") {
+      setemailError(true);
+      setemailHelperText("email required");
+    }
+
+    if (confirmPassword == "" && password != "") {
+      setConfirmPasswordError(true);
+      setConfirmPasswordHelperText("Confirm Password required");
+    }
+    if (fName && lName && email && password && confirmPassword) {
+
+      dispatch(register({ firstName: fName, lastName: lName, username: email, password, confirmPassword }))
+
+      setFName("");
+      setLName("");
+      setemail("");
+      setPassword("");
+      setConfirmPassword("");
+
+
+    }
   }
 
   return (
@@ -153,66 +178,41 @@ const ProfileCard = () => {
         noValidate
         autoComplete="off"
       >
-        <div>
-        <TextField  
-        label="first name" 
-        variant="standard"
-        InputProps={{
-          readOnly: true,
-        }}
-        error={fNameError} 
-        helperText={fNameHelperText} 
-        value={sess_name} onChange={fNameChange} />
-        
-        <TextField 
-        label="last name" 
-        variant="standard"
-        InputProps={{
-          readOnly: true,
-        }}
-        error={lNameError} 
-        helperText={lNameHelperText} 
-        value={sess_name} 
-        onChange={lNameChange} />           
-
-        <TextField 
-        label="email" 
-        variant="standard"
-        disabled
-        error={emailError} 
-        helperText= {emailHelperText} 
-        onChange={emailChange} 
-        value={sess_email}/>
-            
-          <TextField 
-          label="password change" 
-          id="standard-password-input"
-          type="password"
-          variant="standard"
-          error={passwordError} 
-          helperText={passwordHelperText} 
-          onChange={passwordChange} 
-          value={password} />
-          
-          <TextField 
-          label="confirm password change" 
-          id="standard-password-input-confirm"
-          type="password"
-          variant="standard"
-          error={confirmPasswordError} 
-          helperText={confirmPasswordHelperText} 
-          onChange={confirmPasswordChange} 
-          value={confirmPassword} />
-            
-            
-          
-          
-        </div>
-        <Button variant="contained" color="success" onClick={handleClick} sx={{ width: '25%', m: 3 }}>
-            Update
-          </Button>
+        <Formik
+          initialValues={{ INITIAL_STATE_VALUE }}
+          validationSchema={FORM_VALIDATION}
+          onSubmit={
+            (value) => {
+              console.log(value);
+              setIsRegistered(true)
+            }
+          }
+        >
+          <Form>
+            <Grid container spacing={2} >
+              <Grid >
+                <TextField name="firstname" label="First Name" error={fNameError} helperText={fNameHelperText} variant="standard" onChange={fNameChange}/>
+              </Grid>
+              <Grid >
+                <TextField name="lastname" label="Last Name" error={lNameError} helperText={lNameHelperText} variant="standard" onChange={lNameChange}/>
+              </Grid>
+              <Grid >
+                <TextField name="username" label="Username"  error={emailError} helperText={emailHelperText} variant="standard" onChange={emailChange}/>
+              </Grid>
+              <Grid>
+                <TextField name="password" label="Password" type="password" variant="standard" error={passwordError} helperText={passwordHelperText} onChange={passwordChange}/>
+              </Grid>
+              <Grid>
+                <TextField name="confirmPassword" label="Confirm Password" type="password"  variant="standard" error={confirmPasswordError} helperText={confirmPasswordHelperText} onChange={confirmPasswordChange}/>
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 1 }}>
+                <Button variant="contained" color="success">Update</Button>
+              </Grid>
+            </Grid>
+          </Form>
+        </Formik>
       </Box>
-      
+
     </Grid>
 
 
