@@ -24,6 +24,10 @@ export const cloud_api_key = registerAs('cloud_api_key', () => ({
   cloud_api_key: process.env.CLOUDINARY_API_SECRET,
 }));
 
+export const cloud_image_folder = registerAs('image_folder_name', () => ({
+  cloud_api_key: process.env.IMAGE_FOLDER_NAME,
+}));
+
 export const multerConfig = {
   dest: process.env.UPLOAD_LOCATION,
 };

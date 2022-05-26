@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import slugify from 'slugify';
 import multer from 'multer';
+import path from 'path';
 @Module({
   providers: [CloudinaryService, CloudinaryProvider],
   exports: [CloudinaryProvider, CloudinaryService],
@@ -22,15 +23,28 @@ import multer from 'multer';
         },
         storage: {
           filename: (_req, file, cb) => {
-            const file_extn = file.mimetype.substring(6);
-            const filename = `${file.originalname
-              .toString()
-              .substring(
-                0,
-                file.originalname.lastIndexOf('.'),
-              )}-${Date.now()}.${file_extn}`;
-            cb(null, slugify(filename.toLowerCase()));
+            // Allowed ext
+            const filetypes = /jpeg|jpg|png|gif/;
+            // Check ext
+            const extname = filetypes.test(
+              path.extname(file.originalname).toLowerCase(),
+            );
+            // Check mime
+            const mimetype = filetypes.test(file.mimetype);
+
+            if (mimetype && extname) {
+              return cb(null, true);
+            } else {
+              cb('Error: Images Only!');
+            }
           },
+        },
+        limits: {
+          fields: 5,
+          fieldNameSize: 50, // TODO: Check if this size is enough
+          fieldSize: 20000, //TODO: Check if this size is enough
+          // TODO: Change this line after compression
+          fileSize: 15000000, // 150 KB for a 1080x1080 JPG 90
         },
       }),
     }),

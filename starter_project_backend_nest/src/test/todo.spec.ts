@@ -11,7 +11,7 @@ import { UserService } from '../user/user.service';
 
 let service: TodoService;
 let module: TestingModule;
-let usersercice: UserService;
+let userservice: UserService;
 let userid;
 
 beforeAll(async () => {
@@ -32,7 +32,7 @@ beforeAll(async () => {
     providers: [TodoService, UserService],
   }).compile();
   service = module.get<TodoService>(TodoService);
-  usersercice = module.get<UserService>(UserService);
+  userservice = module.get<UserService>(UserService);
 });
 
 beforeEach(async () => {
@@ -41,10 +41,9 @@ beforeEach(async () => {
     'todo description 1',
     false,
   );
-  const user = await usersercice.createUser(
-    'username',
-    'firstname',
-    'lastname',
+  const user = await userservice.createUser(
+    'name@gmail.com',
+    'full name',
     'password',
   );
   userid = user._id;

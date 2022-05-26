@@ -53,6 +53,7 @@ export class TodoController {
   }
 
   // don't name parameter of file to be uploaded to 'file' user other names
+  @Public()
   @Post('upload')
   @UseInterceptors(FileInterceptor('image'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {

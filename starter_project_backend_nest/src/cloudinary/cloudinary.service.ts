@@ -7,11 +7,12 @@ import toStream = require('buffer-to-stream');
 
 @Injectable()
 export class CloudinaryService {
+  constructor(private configservice: ConfigService) {}
   async uploadImage(file: Express.Multer.File): Promise<any> {
     return new Promise((resolve, reject) => {
       const upload = cloudinary.uploader.upload_stream(
         {
-          folder: 'starter_project',
+          folder: this.configservice.get<string>('IMAGE_FOLDER_NAME'),
         },
         (error, result) => {
           if (error) {
