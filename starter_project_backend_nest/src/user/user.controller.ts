@@ -3,11 +3,13 @@ import {
   Controller,
   Delete,
   Get,
+  HttpStatus,
   Param,
   Patch,
   Post,
+  Res,
 } from '@nestjs/common';
-import { Public } from 'src/auth/constants';
+import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -40,12 +42,7 @@ export class UserController {
     @Body('fullName') fullName: string,
     @Body('password') password: string,
   ) {
-    return this.userService.updateUser(
-      userId,
-      email,
-      fullName,
-      password,
-    );
+    return this.userService.updateUser(userId, email, fullName, password);
   }
   @Delete(':id')
   deleteUser(@Param('id') userId: string) {

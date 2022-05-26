@@ -1,64 +1,49 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-
+import { Box, Container, Grid, Typography , Divider} from '@mui/material';
+import { getBlogs } from '../store/slices/blogs';
+import { useSelector } from 'react-redux';
+import BlogCard from "../components/Blog/BlogCard"
+import PostBlog from '../components/Blog/postBlogButton';
 const Bloglist = () => {
-    const blogs = [
-              {
-                "title": "My First Blog",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "mario",
-                "id": 1
-              },
-              {
-                "title": "Opening Party!",
-                
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 2
-              },
-              {
-                "title": "Grand kalab",
-                "body": "is a truly amazing master of all",
-                "author": "Kalab",
-                "id": 3
-              },
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 4
-              },      
-              {
-                "title": "good man!",
-                "body" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda a rerum quibusdam eligendi doloribus esse aspernatur sit dolorum? Id perferendis excepturi officia quia. Beatae porro natus aliquam deleniti perferendis illum!",
-                "author": "yoshi",
-                "id": 5
-              }, 
-        ]
-    return (  
-        <div className="blog-list">
-            <h2>Blogs </h2>
-            {blogs.map((blog) => (
-            <div className="blog-preview" key={blog.id}>        
-            <Box
-              sx={{
-                width: 500,
-                height: 180,
-                '&:hover': {
-                  boxShadow: 1,
-                  backgroundColor: '',
-                  opacity: [0.9, 0.8, 0.7],
-                },
-              }}
-            >
-                <h2>{blog.title}</h2>
-                <p>{blog.body}</p>
-                <h1>{blog.author}</h1>  
-            </Box> 
-            </div>
-        ))}
-        </div>
-    );
+  interface blogType {
+    id: number,
+    title: string,
+    content: string,
+    author: string
+  }
+  const blogs = useSelector(state => getBlogs(state))
+  return (
+
+    <Container   >
+
+      <Grid container spacing={2} sx={{mt:4, }} >
+        <Grid container xs={6} md={6} sx={{pl:2}}>
+        <Typography gutterBottom fontWeight="fontWeightBold" variant="h5" component="div">
+          Blogs
+        </Typography>
+        </Grid>
+        <Grid  container justifyContent="flex-end" xs={6} md={6}>
+        {/* <h2>Blogs </h2> */}
+        <PostBlog/>
+        </Grid>
+        <Grid  item  xs={12}>
+            <Divider variant="middle" />
+        </Grid>
+      </Grid>
+
+      <Box sx={{ width: "100%" , ml:0, px:0 }}
+        display="inline-block"
+        alignItems="center"
+        justifyContent="center">
+
+        {blogs.map((blog: blogType) => (
+          <BlogCard  {...blog} key={blog.id} />
+        ))
+
+        }
+      </Box>
+    </Container>
+  );
 }
- 
+
 export default Bloglist;
