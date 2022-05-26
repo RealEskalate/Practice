@@ -29,7 +29,7 @@ import { CommentsModule } from './comment/comment.module';
     ArticleModule,
     AuthModule,
     UserModule,
-//    CommentsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

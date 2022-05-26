@@ -32,7 +32,6 @@ export class ArticleController {
   @Public()
   @Get('/search-title')
   searchContent(@Query('search-term') searchTerm: string) {
-    console.log(searchTerm);
     return this.articleService.searchTitle(searchTerm);
   }
 
