@@ -14,7 +14,7 @@ describe('BlogCard', () => {
         };
     });
 
-    test('should render name, address, and image', () => {
+    test('should render title, content, and card', () => {
         const {getByText, getByAltText} = render(<BlogCard {...expectedProps} />);
         const title = getByText(expectedProps.title);
         const content = getByText(expectedProps.content);
