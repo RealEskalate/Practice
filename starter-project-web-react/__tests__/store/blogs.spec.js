@@ -10,7 +10,7 @@ describe('blogs slice' , () => {
         slicBlog = () => store.getState().entities.blog
 
     })
-    it("should handle", async() => {
+    it("should handel add new blog", async() => {
         const blog = {title:'title', id:'1', author:'man', content:'content'}
         
         // after api call intgrated

@@ -18,16 +18,14 @@ const Blogs = () => {
     <Container   >
       <Grid container spacing={2} sx={{ mt: 4, }} >
         <Grid item xs={6} md={6} sx={{ pl: 2 }}>
-          <Link href="/auth/login">
-          <div> try</div>
-          </Link>
           <Typography gutterBottom fontWeight="fontWeightBold" variant="h5" component="div">
             Blogs
           </Typography>
         </Grid>
-        <Grid item justifyContent="flex-end" xs={6} md={6}>
-          {/* <h2>Blogs </h2> */}
-          <PostBlog />
+        <Grid item justifyContent="flex-end" xs={6} md={6} sx={{  }}>
+          <Grid container justifyContent="flex-end" sx={{ m:0, p:0 }}>
+            <PostBlog />
+          </Grid>
         </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" />
