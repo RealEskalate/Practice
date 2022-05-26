@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { AuthModule } from './auth/auth.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import config from './config/config';
 import { UserModule } from './user/user.module';
 import { ArticleModule } from './article/article.module';
@@ -30,6 +31,7 @@ import { CommentsModule } from './comment/comment.module';
     AuthModule,
     UserModule,
     CommentsModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

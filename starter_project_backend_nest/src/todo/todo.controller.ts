@@ -12,6 +12,7 @@ import {
 import { Public } from 'src/auth/constants';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { TodoService } from './todo.service';
+import { multerConfig } from './../config/config';
 
 @Controller('todo')
 export class TodoController {
@@ -50,9 +51,11 @@ export class TodoController {
   async deleteTodo(@Param('id') todoId: string) {
     return await this.todoService.deleteTodo(todoId);
   }
+
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
+  @UseInterceptors(FileInterceptor('file', multerConfig))
+  uploadImage(@UploadedFile() file: Express.Multer.File) {
     console.log(file);
+    // return this.clod.uploadImageToCloudinary(file);
   }
 }

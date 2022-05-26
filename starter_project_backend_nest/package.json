@@ -32,6 +32,8 @@
     "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "buffer-to-stream": "^1.0.0",
+    "cloudinary": "^1.30.0",
     "joi": "^17.6.0",
     "mongoose": "^6.3.0",
     "node": "^17.7.2",
