@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import { useFormikContext } from 'formik'
 
 
-const ButtonWrapper= ({children, ...otherProps}: {children: string})=>{
+const ButtonWrapper= ({children, ...otherProps})=>{
     const {submitForm} = useFormikContext()
 
     const handleSubmit = ()=>{
