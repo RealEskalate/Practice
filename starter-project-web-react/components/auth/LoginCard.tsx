@@ -65,7 +65,7 @@ const LoginCard = ()=>{
           </Grid>
         </Grid>
         <Typography sx={{my: 4}}>
-          You don't have account?{' '} 
+          You don@apos;t have account?{' '} 
           <Link href="/auth/register">
                     <a>register</a>
           </Link>  
