@@ -52,10 +52,15 @@ export class TodoController {
     return await this.todoService.deleteTodo(todoId);
   }
 
+  // don't name parameter of file to be uploaded to 'file' user other names
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file', multerConfig))
-  uploadImage(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
-    // return this.clod.uploadImageToCloudinary(file);
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    try {
+      const result = await this.todoService.uploadImageToCloudinary(file);
+      console.log(result['url']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
