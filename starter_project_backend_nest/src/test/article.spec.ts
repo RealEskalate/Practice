@@ -42,18 +42,21 @@ describe('Article Testing', () => {
 
     mockingArticle = {
       authorUserId: mockingUser._doc._id,
-      title: 'how I got to do jobs using mars',
-      content: 'blah blah blah mars blah blah',
+      title: 'sample testing titile',
+      content: 'sample testing content',
     };
 
     await articleService.addArticle(mockingArticle);
 
-    const sampleArt = await articleService.getAllArticle();
-    sampleId = sampleArt[0]._id;
+    const allArticles = await articleService.getAllArticle();
+    sampleId = allArticles[0]._id;
   });
 
   afterEach(async () => {
     await userService.deleteUser(mockingUser._doc._id);
+    for (let article of await articleService.getAllArticle()) {
+      await articleService.deleteArticleById(article._id);
+    }
   });
 
   describe('Check articleService', () => {
@@ -211,10 +214,10 @@ describe('Article Testing', () => {
   });
 
   describe('GET Article Searching', () => {
-    test('search article with  term in content', async () => {
-      const searchTerm = mockingArticle.title.split()[0];
-      let searched = await articleService.search(searchTerm);
+    test('search article with one term', async () => {
+      const searchTerm = mockingArticle.content.split(' ')[0];
 
+      let searched = await articleService.search(searchTerm);
       for (let article of searched) {
         expect(
           article.content.includes(searchTerm) ||
@@ -223,15 +226,20 @@ describe('Article Testing', () => {
       }
     });
 
-    test('search article with term in title', async () => {
-      const searchTerm = mockingArticle.title.split()[0];
+    test('search article with two terms in ', async () => {
+      const term1 = mockingArticle.title.split(' ')[0];
+      const term2 = mockingArticle.content.split(' ')[0];
 
-      let searched = await articleService.search(searchTerm);
+      let searched = await articleService.search(term1 + ' ' + term2);
+
+      expect(searched.length).toBeGreaterThan(0);
 
       for (let article of searched) {
         expect(
-          article.content.includes(searchTerm) ||
-            article.title.includes(searchTerm),
+          article.content.includes(term1) ||
+            article.title.includes(term1) ||
+            article.content.includes(term2) ||
+            article.title.includes(term2),
         ).toBe(true);
       }
     });
@@ -240,28 +248,6 @@ describe('Article Testing', () => {
       const nonExistTerm = 'jjjjkkkkkkk';
 
       let searched = await articleService.search(nonExistTerm);
-      expect(searched.length).toBe(0);
-    });
-  });
-
-  describe('GET Article SearchingByTitle', () => {
-    test('search article by term in titile', async () => {
-      const searchTitleTerm = mockingArticle.title.split()[0];
-
-      let searched = await articleService.search(searchTitleTerm);
-
-      for (let article of searched) {
-        expect(
-          article.content.includes(searchTitleTerm) ||
-            article.title.includes(searchTitleTerm),
-        ).toBe(true);
-      }
-    });
-
-    test('search article with term that doesnot exist on title', async () => {
-      const noExistTerm = 'kkkkkkkjjjjjj';
-
-      let searched = await articleService.searchTitle(noExistTerm);
       expect(searched.length).toBe(0);
     });
   });

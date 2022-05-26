@@ -30,12 +30,6 @@ export class ArticleController {
   }
 
   @Public()
-  @Get('/search-title')
-  searchContent(@Query('search-term') searchTerm: string) {
-    return this.articleService.searchTitle(searchTerm);
-  }
-
-  @Public()
   @Get('/:id')
   getArticleById(@Param('id') id: string) {
     return this.articleService.getArticleById(id);
