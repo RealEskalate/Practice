@@ -7,10 +7,10 @@ const apiCall =
   async (action) => {
     if (action.type !== actions.apiCallBegan.type) return next(action)
 
-    const { url, method, onSuccess, data } = action.payload
+    const { url, method, onSuccess, data , onStart,onFailed} = action.payload
 
-    //   if (onStart) dispatch({ type: onStart }) // loading before the api call
-
+      if (onStart) dispatch({ type: onStart }) // loading before the api call
+      next(action)
     try {
     //     const response = await axios.request({
     //         baseURL: 'our base url gooes heer',
