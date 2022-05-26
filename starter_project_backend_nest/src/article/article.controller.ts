@@ -25,8 +25,8 @@ export class ArticleController {
 
   @Public()
   @Get('/search')
-  searchEveryThing(@Query('search-term') searchTerm: string) {
-    return this.articleService.searchEveryThing(searchTerm);
+  search(@Query('search-term') searchTerm: string) {
+    return this.articleService.search(searchTerm);
   }
 
   @Public()

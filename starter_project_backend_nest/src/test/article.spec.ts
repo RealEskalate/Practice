@@ -14,7 +14,7 @@ describe('Article Testing', () => {
   let mockingUser;
   let mockingArticle;
 
-  let sampleId;
+  let sampleId: string;
   let wrongId = '825d207b5bc4207cc0d80844';
   let invaliedId = 'invaliedidtesting';
 
@@ -41,17 +41,19 @@ describe('Article Testing', () => {
     );
 
     mockingArticle = {
-      authorUserId: mockingUser._id,
+      authorUserId: mockingUser._doc._id,
       title: 'how I got to do jobs using mars',
       content: 'blah blah blah mars blah blah',
     };
+
     await articleService.addArticle(mockingArticle);
+
     const sampleArt = await articleService.getAllArticle();
     sampleId = sampleArt[0]._id;
   });
 
   afterEach(async () => {
-    await userService.deleteUser(mockingUser._id);
+    await userService.deleteUser(mockingUser._doc._id);
   });
 
   describe('Check articleService', () => {
@@ -109,7 +111,9 @@ describe('Article Testing', () => {
       const deletedArticle = await articleService.deleteArticleById(sampleId);
       expect(deletedArticle).toBeDefined();
     });
+  });
 
+  describe('DELET Article API', () => {
     test('it should be [null] for id that doesnot exist', async () => {
       try {
         await articleService.deleteArticleById(wrongId);
@@ -117,7 +121,9 @@ describe('Article Testing', () => {
         expect(e).toEqual(null);
       }
     });
+  });
 
+  describe('DELET Article API', () => {
     test('it should be [null] for bad Id', async () => {
       try {
         await articleService.deleteArticleById(invaliedId);
@@ -196,7 +202,6 @@ describe('Article Testing', () => {
     });
 
     test('geting average of article for artilce that doesnot exist', async () => {
-
       try {
         await articleService.getAverageRatingById(wrongId);
       } catch (e) {
@@ -204,6 +209,63 @@ describe('Article Testing', () => {
       }
     });
   });
+
+  describe('GET Article Searching', () => {
+    test('search article with  term in content', async () => {
+      const searchTerm = mockingArticle.title.split()[0];
+      let searched = await articleService.search(searchTerm);
+
+      for (let article of searched) {
+        expect(
+          article.content.includes(searchTerm) ||
+            article.title.includes(searchTerm),
+        ).toBe(true);
+      }
+    });
+
+    test('search article with term in title', async () => {
+      const searchTerm = mockingArticle.title.split()[0];
+
+      let searched = await articleService.search(searchTerm);
+
+      for (let article of searched) {
+        expect(
+          article.content.includes(searchTerm) ||
+            article.title.includes(searchTerm),
+        ).toBe(true);
+      }
+    });
+
+    test('search article with term that doesnot exist', async () => {
+      const nonExistTerm = 'jjjjkkkkkkk';
+
+      let searched = await articleService.search(nonExistTerm);
+      expect(searched.length).toBe(0);
+    });
+  });
+
+  describe('GET Article SearchingByTitle', () => {
+    test('search article by term in titile', async () => {
+      const searchTitleTerm = mockingArticle.title.split()[0];
+
+      let searched = await articleService.search(searchTitleTerm);
+
+      for (let article of searched) {
+        expect(
+          article.content.includes(searchTitleTerm) ||
+            article.title.includes(searchTitleTerm),
+        ).toBe(true);
+      }
+    });
+
+    test('search article with term that doesnot exist on title', async () => {
+      const noExistTerm = 'kkkkkkkjjjjjj';
+
+      let searched = await articleService.searchTitle(noExistTerm);
+      expect(searched.length).toBe(0);
+    });
+  });
+
   afterAll(async () => {
     if (module) {
       await module.close();
