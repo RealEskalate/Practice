@@ -6,10 +6,38 @@ import LocationOn from '@mui/icons-material/LocationOn';
 import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
-import { Button, CardHeader } from '@mui/material';
-import TextField from '@mui/material/TextField';
+import { Alert, AlertTitle, Button, CardHeader } from '@mui/material';
+import TextField from '../auth/TextField';
+import { useState } from 'react';
+import * as yup from 'yup'
+import { useSession } from "next-auth/react"
+import { Form, Formik } from 'formik';
+
+
+
 
 const ProfileCard = () => {
+  const { data: session } = useSession();
+
+  const INITIAL_STATE = {
+    firstname: session?.user?.name || "",
+    lastname: session?.user?.name,
+    username: session?.user?.email,
+    password: '',
+    confirmPassword: ''
+  }
+
+  const [INITIAL_STATE_VALUE, setInitialValue] = useState(INITIAL_STATE)
+  const [isUpdated, setIsUpdated] = useState(false)
+
+  const FORM_VALIDATION = yup.object().shape({
+    firstname: yup.string().required("Required"),
+    lastname: yup.string().required("Required"),
+    username: yup.string().required("Required"),
+    password: yup.string().min(8).required("Required"),
+    confirmPassword: yup.string().min(8).required("Required")
+  })
+
   return (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Box sx={{ width: '25%', m: 10 }}>
@@ -46,73 +74,53 @@ const ProfileCard = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 2.5, width: '25ch' },
           width: '50%',
           m: 5
         }}
         noValidate
         autoComplete="off"
       >
-        <div>
-          <TextField
-            required
-            id="standard-required"
-            label="Required"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            disabled
-            id="standard-disabled"
-            label="Disabled"
-            defaultValue="Hello World"
-            variant="standard"
-          />
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            variant="standard"
-          />
-          <TextField
-            id="standard-read-only-input"
-            label="Read Only"
-            defaultValue="Hello World"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-number"
-            label="Number"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            variant="standard"
-          />
-          <TextField
-            id="standard-search"
-            label="Search field"
-            type="search"
-            variant="standard"
-          />
-          <TextField
-            id="standard-helperText"
-            label="Helper text"
-            defaultValue="Default Value"
-            helperText="Some important text"
-            variant="standard"
-          />
-          
-        </div>
-        <Button variant="contained" color="success">
-            Update
-          </Button>
+        <Formik
+          initialValues={{ INITIAL_STATE_VALUE }}
+          validationSchema={FORM_VALIDATION}
+          onSubmit={
+            (value) => {
+              console.log(value);
+              setIsUpdated(true)
+            }
+          }
+        >
+          <Form>
+            <Grid container spacing={2} >
+              <Grid >
+                <TextField name="firstname" label="First Name" />
+              </Grid>
+              <Grid >
+                <TextField name="lastname" label="Last Name" />
+              </Grid>
+              <Grid >
+                <TextField name="username" label="Username" />
+              </Grid>
+              <Grid>
+                <TextField name="password" label="Password" type="password"  />
+              </Grid>
+              <Grid>
+                <TextField name="confirmPassword" label="Confirm Password" type="password" />
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 1 }}>
+                <Button variant="contained" color="success">Update</Button>
+              </Grid>
+            </Grid>
+          </Form>
+        </Formik>
       </Box>
-      
+      {isUpdated ?
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          <strong>User Successfully Registered!</strong>
+        </Alert> : ""
+      }
     </Grid>
 
 

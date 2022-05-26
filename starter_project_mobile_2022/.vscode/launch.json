@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "starter_project_mobile_2022",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [ "--no-sound-null-safety" ]
+        }
+    ]
+}
