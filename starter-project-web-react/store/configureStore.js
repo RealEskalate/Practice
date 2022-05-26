@@ -1,54 +1,43 @@
-import { configureStore, getDefaultMiddleware, Store } from '@reduxjs/toolkit'
-import combinedReducer from './reducer'
-import apiCall from './middlware/apiCall'
-import { useMemo } from 'react'
-import { persistStore, persistReducer } from 'redux-persist'
-import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
-import { HYDRATE, createWrapper } from 'next-redux-wrapper'
-const createNoopStorage = () => {
-  return {
-    getItem(_key) {
-      return Promise.resolve(null)
-    },
-    setItem(_key, value) {
-      return Promise.resolve(value)
-    },
-    removeItem(_key) {
-      return Promise.resolve()
-    },
-  }
-}
-const reducer = (state, action) => {
-  if (action.type === HYDRATE) {
-    const nextState = {
-      ...state, // use previous state
-      ...action.payload, // apply delta from hydration
-    }
-    return nextState
-  } else {
-    return combinedReducer(state, action)
-  }
-}
-
-const storage =
-  typeof window !== 'undefined'
-    ? createWebStorage('local')
-    : createNoopStorage()
-
-const persistConfig = { key: 'root', storage }
-const persistedReducer = persistReducer(persistConfig, combinedReducer)
-
-
-
-const initStore = () => {
-  return configureStore({
-    reducer:persistedReducer,
+import { configureStore, getDefaultMiddleware, Store } from "@reduxjs/toolkit";
+import reducer from './reducer';
+import apiCall from "./middlware/apiCall";
+import { useMemo } from "react";
+const makeStore = (initialState) => configureStore({
+    reducer,
     middleware: [
-      ...getDefaultMiddleware({ serializableCheck: false }),
-      apiCall,
-    ]
-  })}
+        ...getDefaultMiddleware(),
+        apiCall
+    ],
+    preloadedState:initialState
 
-export const wrapper = createWrapper(initStore)
+});
 
 
+
+let store
+  
+  
+export const initailzeStore = (preloadedState) => {
+    let _store = store ?? makeStore(preloadedState)
+
+    if (preloadedState && store){
+        _store = makeStore({
+            ...store.getState(),
+            ...preloadedState,
+          })
+          store = undefined
+    }
+
+    if(typeof window == 'undefined') return _store
+    if (!store) store = _store
+    return _store
+}
+
+export function useStore(intialState){
+    const store= useMemo(() => initailzeStore(intialState), [intialState])
+    return store
+}
+export function useStoreTest(intialState){
+  const store=  initailzeStore(intialState)
+  return store
+}
