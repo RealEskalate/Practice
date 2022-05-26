@@ -31,6 +31,7 @@ const Blogs = () => {
           <Divider variant="middle" />
         </Grid>
       </Grid>
+      
 
       <Box sx={{ width: "100%", ml: 0, px: 0 }}
         display="inline-block"
