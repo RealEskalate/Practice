@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Delete,
+  Query,
   Request,
   Patch,
   Post,
@@ -20,6 +21,12 @@ export class ArticleController {
   @Get('/all')
   getAllArticle() {
     return this.articleService.getAllArticle();
+  }
+
+  @Public()
+  @Get('/search')
+  search(@Query('search-term') searchTerm: string) {
+    return this.articleService.search(searchTerm);
   }
 
   @Public()
@@ -43,8 +50,8 @@ export class ArticleController {
     @Request() req,
     @Body() { title, content }: { title: string; content: string },
   ) {
-    let authorUserId = req.user.userId;
-    let newArticle = { authorUserId, title, content };
+    const authorUserId = req.user.userId;
+    const newArticle = { authorUserId, title, content };
     return this.articleService.addArticle(newArticle);
   }
 
