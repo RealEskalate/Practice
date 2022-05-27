@@ -2,10 +2,10 @@
 
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/body_text_field.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/header_text_field.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/linear_flow_widget.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/multi_selection_form_field.dart';
+import '../widgets/body_text_field.dart';
+import '../widgets/header_text_field.dart';
+import '../widgets/linear_flow_widget.dart';
+import '../widgets/multi_selection_form_field.dart';
 
 class AddBlog extends StatefulWidget {
   static const routeName = "addBlog";
