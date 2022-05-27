@@ -2,6 +2,7 @@ import {
   Controller,
   Get,
   Delete,
+  Query,
   Request,
   Patch,
   Post,
@@ -20,6 +21,12 @@ export class ArticleController {
   @Get('/all')
   getAllArticle() {
     return this.articleService.getAllArticle();
+  }
+
+  @Public()
+  @Get('/search')
+  search(@Query('search-term') searchTerm: string) {
+    return this.articleService.search(searchTerm);
   }
 
   @Public()

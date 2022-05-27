@@ -102,4 +102,8 @@ export class ArticleService {
       throw e;
     }
   }
+
+  async search(searchTerm: string) {
+    return await this.articleModel.find({ $text: { $search: searchTerm } });
+  }
 }
