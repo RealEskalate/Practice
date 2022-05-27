@@ -85,13 +85,6 @@ describe('Article Testing', () => {
     });
   });
 
-  describe('POST Article with images', () => {
-    test('POST article', async () => {
-      const res = await articleService.addArticle(mockingArticle);
-      expect(res).toBeDefined();
-    });
-  });
-
   describe('GET all Article ', () => {
     test('GET all articles', async () => {
       const res = await articleService.getAllArticle();

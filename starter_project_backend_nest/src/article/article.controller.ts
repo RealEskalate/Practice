@@ -48,7 +48,6 @@ export class ArticleController {
     return this.articleService.updateArticleById(id, body);
   }
 
-  @Public()
   @Post('/')
   @UseInterceptors(FilesInterceptor('image'))
   addArticle(
