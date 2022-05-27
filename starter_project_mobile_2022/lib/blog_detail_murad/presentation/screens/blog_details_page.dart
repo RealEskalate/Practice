@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/blog_detail_murad/costants.dart/constants.dart';
@@ -14,28 +16,28 @@ class PostDetailpage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Center(
+        title: Center(
             child: Text(
           'Article Detail',
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
-            fontSize: 25,
-            fontWeight: FontWeight.w100,
-            height: 1.8,
+            color: black,
+            fontSize: width * 0.05,
+            fontWeight: FontWeight.w500,
+            height: height * 0.0025,
           ),
         )),
-        backgroundColor: Colors.transparent,
+        backgroundColor: transparent,
         elevation: 0,
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: black,
         ),
       ),
       body: SafeArea(
-        minimum: const EdgeInsets.symmetric(vertical: 12),
+        minimum: EdgeInsets.symmetric(vertical: width * 0.05),
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(width * 0.05),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -51,18 +53,18 @@ class PostDetailpage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Expanded(flex: 1, child: Icon(Icons.more_vert)),
+                  const Expanded(flex: 1, child: Icon(threeDotsIcon)),
                 ],
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.all(12.0),
+            Padding(
+              padding: EdgeInsets.all(width * 0.05),
               child: Text(
                 "Title goes here",
                 style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32,
+                  color: black,
+                  fontSize: height * 0.05,
                 ),
               ),
             ),
@@ -80,19 +82,19 @@ class PostDetailpage extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: SizedBox(
-                      width: 20,
-                      height: 45,
+                      width: width * 0.02,
+                      height: height * 0.05,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               Row(
-                                children: const [
-                                  Icon(Icons.star,
-                                      size: 20, color: Colors.yellowAccent),
-                                  Text('4.5'),
-                                  Text(
+                                children: [
+                                  Icon(starIcon,
+                                      size: height * 0.03, color: starYellow),
+                                  const Text('4.5'),
+                                  const Text(
                                     '/5',
                                     style: TextStyle(
                                       fontFeatures: [
@@ -111,22 +113,25 @@ class PostDetailpage extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: SizedBox(
-                      width: 20,
-                      height: 40,
+                      width: width * 0.10,
+                      height: height * 0.1,
                       child: StarBar(
-                        width: 60,
+                        width: width * 0.125,
                         numOfStars: 2,
                       )),
                 ),
               ],
             ),
+
             Padding(
               padding: EdgeInsets.all(width * 0.01),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Divider(color: black),
-
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
                   // comment header
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -160,7 +165,7 @@ class PostDetailpage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(width * 0.005),
                         boxShadow: [
                           BoxShadow(
-                              offset: const Offset(0, 3),
+                              offset: Offset(0, width * 0.001),
                               blurRadius: width * 0.005,
                               color: grey)
                         ],
@@ -171,7 +176,7 @@ class PostDetailpage extends StatelessWidget {
                             child: TextField(
                               decoration: InputDecoration(
                                   hintText: "Write a comment.",
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: grey),
                                   border: InputBorder.none),
                             ),
                           ),
@@ -180,15 +185,15 @@ class PostDetailpage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(width * 0.02),
+                    padding: EdgeInsets.all(width * 0.03),
                     decoration: BoxDecoration(
-                      color: Colors.blueAccent,
+                      color: sendButtonColor,
                       borderRadius: BorderRadius.circular(width * 0.01),
                     ),
                     child: InkWell(
                       child: const Icon(
-                        Icons.send,
-                        color: Colors.white,
+                        sendIcon,
+                        color: white,
                       ),
                       onLongPress: () {},
                     ),

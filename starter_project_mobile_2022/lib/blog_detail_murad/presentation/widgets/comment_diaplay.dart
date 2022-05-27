@@ -24,7 +24,7 @@ class CommentWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(width * 0.02),
         decoration: BoxDecoration(
-            color: bgColorCommentDisplay,
+            color: backgroundColorCommentDisplay,
             borderRadius: BorderRadius.all(Radius.circular(width * 0.02))),
         child: Column(
           children: [
@@ -48,7 +48,8 @@ class CommentWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(flex: 1, child: InkWell(child: Icon(Icons.more_vert))),
+                const Expanded(
+                    flex: 1, child: InkWell(child: Icon(threeDotsIcon))),
               ],
             ),
             Row(children: [
