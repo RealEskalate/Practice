@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 export default interface Article_Interface extends mongoose.Document {
-  authorUserId: String;
-  title: String;
-  content: String;
-  rating: { 1: Number; 2: Number; 3: Number; 4: Number; 5: Number };
+  authorUserId: string;
+  title: string;
+  content: string;
+  rating: { 1: number; 2: number; 3: number; 4: number; 5: number };
 }
 
 const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema({
