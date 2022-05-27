@@ -1,33 +1,16 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TodosModule } from './todo/todos.module';
+import { CloudinaryProvider } from './cloudinary.provider';
+import { CloudinaryService } from './cloudinary.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserController } from './user/user.controller';
-import { UserService } from './user/user.service';
-import { AuthModule } from './auth/auth.module';
-import { CloudinaryModule } from './cloudinary/cloudinary.module';
-import config from './config/config';
-import { UserModule } from './user/user.module';
-import { ArticleModule } from './article/article.module';
-import { CommentsModule } from './comment/comment.module';
 import { MulterModule } from '@nestjs/platform-express';
+import slugify from 'slugify';
+import multer from 'multer';
 import path from 'path';
-
 @Module({
+  providers: [CloudinaryService, CloudinaryProvider],
+  exports: [CloudinaryProvider, CloudinaryService],
   imports: [
-    ConfigModule.forRoot({
-      load: [config],
-      isGlobal: true,
-    }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        uri: config.get<string>('MONGO_URI'),
-      }),
-    }),
+    ConfigModule,
     MulterModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async () => ({
@@ -65,14 +48,6 @@ import path from 'path';
         },
       }),
     }),
-    TodosModule,
-    ArticleModule,
-    AuthModule,
-    UserModule,
-    CommentsModule,
-    CloudinaryModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
-export class AppModule {}
+export class CloudinaryModule {}

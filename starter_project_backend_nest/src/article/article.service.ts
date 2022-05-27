@@ -36,7 +36,7 @@ export class ArticleService {
 
   async deleteArticleById(id: string) {
     try {
-      let res = await this.articleModel.findByIdAndDelete(id);
+      const res = await this.articleModel.findByIdAndDelete(id);
       return res;
     } catch (e) {
       throw e;
@@ -45,7 +45,7 @@ export class ArticleService {
 
   async updateArticleById(id: string, newEntries: any) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
@@ -67,7 +67,7 @@ export class ArticleService {
     title: string;
     content: string;
   }) {
-    let newArticle = new this.articleModel({ authorUserId, title, content });
+    const newArticle = new this.articleModel({ authorUserId, title, content });
     await newArticle.save();
 
     return newArticle;
@@ -75,7 +75,7 @@ export class ArticleService {
 
   async rateArticleById(id: string, ratingValue: string) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
       article.rating[ratingValue] += 1;
       await article.save();
       return article;
@@ -86,15 +86,15 @@ export class ArticleService {
 
   async getAverageRatingById(id: string) {
     try {
-      let article = await this.getArticleById(id);
-      let rating = article.rating;
-      let numOfPeople = Object.values(rating).reduce(
+      const article = await this.getArticleById(id);
+      const rating = article.rating;
+      const numOfPeople = Object.values(rating).reduce(
         (a, b) => Number(a) + Number(b),
       );
 
       if (numOfPeople == 0) return 0;
       let avgRating = 0;
-      for (let i of [1, 2, 3, 4, 5]) {
+      for (const i of [1, 2, 3, 4, 5]) {
         avgRating += (i * Number(rating[i])) / Number(numOfPeople);
       }
       return avgRating;

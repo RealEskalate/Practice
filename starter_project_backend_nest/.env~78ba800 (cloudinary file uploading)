@@ -1,0 +1,5 @@
+MONGO_URI="mongodb+srv://riyad:root@cluster0.hnbgb.mongodb.net/starter_nestjs?retryWrites=true&w=majority"
+SECRET_KEY="secretKey"
+CLOUDINARY_API_SECRET=mE9jLeeP_PTzWXFjp2y9fadn
+CLOUDINARY_API_KEY=7393454228724
+CLOUDINARY_CLOUD_NAME=hakimHu

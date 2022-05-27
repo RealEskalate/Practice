@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ArticleService } from '../article/article.service';
 import { UserService } from '../user/user.service';
 import IComment from './comment.model';
 
@@ -14,16 +13,11 @@ export class CommentService {
   constructor(
     @InjectModel('Comment') private readonly commentModel: Model<IComment>,
     private readonly userService: UserService,
-    private readonly articleService: ArticleService,
   ) {}
 
   async createComment(userId: string, articleId: string, text: string) {
     const user = await this.userService.getUserById(userId);
     if (!user) {
-      throw new NotFoundException();
-    }
-    const article = await this.articleService.getArticleById(articleId);
-    if (!article) {
       throw new NotFoundException();
     }
 
