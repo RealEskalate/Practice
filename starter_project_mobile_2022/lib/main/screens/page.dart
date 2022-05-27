@@ -124,7 +124,7 @@ class Myslider extends StatelessWidget {
                 child: Text(
                   'You can read thousands of articles on Blog Club, save them in the application and share them with your loved ones.',
                   style: TextStyle(
-                    color: bb,
+                    color: blueblack,
                     fontSize: total / 26,
                     fontWeight: FontWeight.w700,
                   ),

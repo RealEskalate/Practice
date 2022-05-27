@@ -64,11 +64,12 @@ class _MYlandingState extends State<MYlanding> {
                     width: total / 5,
                     height: height * 0.075,
                     decoration: BoxDecoration(
-                        color: blue, borderRadius: BorderRadius.circular(16)),
+                        color: blue,
+                        borderRadius: BorderRadius.circular(height * 0.026)),
                     child: GestureDetector(
                       onTap: () => Navigator.pushNamed(context, 'LoginScreen'),
                       child: Icon(
-                        Icons.arrow_forward_sharp,
+                        DIcon,
                         size: total / 15,
                         color: kWhite,
                       ),

@@ -16,7 +16,7 @@ class ForgotPassword extends StatelessWidget {
       children: [
         Scaffold(
           appBar: AppBar(
-            backgroundColor: tr,
+            backgroundColor: Transpa,
             elevation: 0,
             leading: IconButton(
               onPressed: () {
@@ -54,7 +54,7 @@ class ForgotPassword extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(height / 37),
                         ),
-                        elevation: 2,
+                        elevation: height * 0.003,
                         child: TextInputField(
                           hint: 'Email',
                           inputType: TextInputType.emailAddress,

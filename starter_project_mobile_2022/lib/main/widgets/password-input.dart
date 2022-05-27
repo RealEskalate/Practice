@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../pallete.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class PasswordInput extends StatelessWidget {
   bool _passwordVisible = false;
   PasswordInput({
@@ -18,20 +20,20 @@ class PasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size; 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: EdgeInsets.symmetric(vertical:  size.height * 0.04),
       child: Container(
         height: size.height * 0.08,
         width: size.width * 0.8,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(size.height / 37),
         ),
         child: Center(
           child: TextField(
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.symmetric(horizontal:  size.height * 0.02),
               ),
               hintText: hint,
               suffixIcon: IconButton(
@@ -47,10 +49,12 @@ class PasswordInput extends StatelessWidget {
                   //  });
                 },
               ),
-              hintStyle: kBodyText,
+              hintStyle:  
+    TextStyle(fontSize: size.height*0.0355, color: gray, height:  size.height*0.00065),
             ),
             obscureText: true,
-            style: kBody,
+            style:  
+    TextStyle(fontSize: size.height*0.0355, color: black, height:  size.height*0.00065),
             keyboardType: inputType,
             textInputAction: inputAction,
           ),

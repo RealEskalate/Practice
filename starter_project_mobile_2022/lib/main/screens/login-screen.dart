@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
     height = size.height;
     width = size.width;
     return Scaffold(
-      backgroundColor: bk,
+      backgroundColor: Bwhite,
       body: SingleChildScrollView(
         reverse: true,
         padding: EdgeInsets.all(height / 25),
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(height / 37),
                       ),
-                      elevation: 2,
+                      elevation: height * 0.003,
                       child: TextInputField(
                         hint: 'Email',
                         inputType: TextInputType.emailAddress,
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(height / 37),
                       ),
-                      elevation: 2,
+                      elevation: height * 0.003,
                       child: PasswordInput(
                         hint: 'Password',
                         inputAction: TextInputAction.done,
@@ -92,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                       child: Text(
                         'Forgot your password?',
                         style: TextStyle(
-                            color: bb,
+                            color: blueblack,
                             fontSize: width * 0.04,
                             fontWeight: FontWeight.w900),
                       ),
@@ -118,7 +118,7 @@ class LoginScreen extends StatelessWidget {
               child: Text(
                 'OR LOG IN WITH',
                 style: TextStyle(
-                    color: bb,
+                    color: blueblack,
                     fontSize: width * 0.035,
                     fontWeight: FontWeight.w900),
               ),
