@@ -5,6 +5,13 @@ import { ArticleService } from '../article/article.service';
 import { ArticleSchema } from '../article/article.model';
 import { UserService } from '../user/user.service';
 import { UserSchema } from '../user/user.model';
+import { CloudinaryModule } from './../cloudinary/cloudinary.module';
+
+class MockingCloudinaryModule extends CloudinaryModule {
+  uploadImage(Image) {
+    return 'random/url' + Math.random();
+  }
+}
 
 describe('Article Testing', () => {
   let articleService: ArticleService;
@@ -24,6 +31,7 @@ describe('Article Testing', () => {
         rootMongooseTestModule(),
         MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
         MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MockingCloudinaryModule,
       ],
       providers: [ArticleService, UserService],
     }).compile();
@@ -34,9 +42,8 @@ describe('Article Testing', () => {
 
   beforeEach(async () => {
     mockingUser = await userService.createUser(
-      'test_user_name',
-      'test_first_name',
-      'test_last_name',
+      'test_email',
+      'test_fullName',
       'test_password',
     );
 
@@ -72,6 +79,13 @@ describe('Article Testing', () => {
   });
 
   describe('POST Article ', () => {
+    test('POST article', async () => {
+      const res = await articleService.addArticle(mockingArticle);
+      expect(res).toBeDefined();
+    });
+  });
+
+  describe('POST Article with images', () => {
     test('POST article', async () => {
       const res = await articleService.addArticle(mockingArticle);
       expect(res).toBeDefined();
