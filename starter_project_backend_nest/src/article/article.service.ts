@@ -6,12 +6,15 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CommentsModule } from '../comment/comment.module';
 
 @Injectable()
 export class ArticleService {
   constructor(
     @InjectModel('Article')
     private readonly articleModel: Model<Article_Interface>,
+    private cloudinary: CloudinaryService,
   ) {}
 
   async getAllArticle() {
@@ -58,16 +61,32 @@ export class ArticleService {
     }
   }
 
-  async addArticle({
-    authorUserId,
-    title,
-    content,
-  }: {
-    authorUserId: string;
-    title: string;
-    content: string;
-  }) {
-    const newArticle = new this.articleModel({ authorUserId, title, content });
+  async addArticle(
+    {
+      authorUserId,
+      title,
+      content,
+    }: {
+      authorUserId: string;
+      title: string;
+      content: string;
+    },
+    images: Express.Multer.File[] = [],
+  ) {
+    let imageUrls: Array<string> = [];
+
+    for (let image of images) {
+      const res = await this.cloudinary.uploadImage(image);
+      let url = res.url;
+      imageUrls.push(url);
+    }
+
+    const newArticle = new this.articleModel({
+      authorUserId,
+      title,
+      content,
+      imageUrls,
+    });
     await newArticle.save();
 
     return newArticle;
