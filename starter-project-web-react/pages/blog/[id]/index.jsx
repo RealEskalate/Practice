@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Comments from "../../../components/blog/Comments";
 import Details from "../../../components/blog/Details";
 
-const blogDetail = () => {
+const BlogDetail = () => {
   const router = useRouter()
   const { id } = router.query
   const blog = {
@@ -32,4 +32,4 @@ const blogDetail = () => {
   )
 }
 
-export default blogDetail
+export default BlogDetail

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Typography } from '@mui/material';
-import BlogPostDialog from './BlogPostDialog';
+import BlogPostDialog from './blogPostDialog';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBlogs } from '../../store/slices/blogs';
 
@@ -22,7 +22,6 @@ export default function PostBlog(props) {
           Post Blog
         </Typography>
       </Button>
-
       <BlogPostDialog open={open} handleClose={handleClose} />
     </div>
   );
