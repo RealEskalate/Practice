@@ -17,9 +17,11 @@ export const UserProfileSchema = new mongoose.Schema({
     required: false,
     default: '',
   },
-  imageUrls: {
-    type: String,
-    unique: true,
-    required: true,
-  },
+  imageUrls: [
+    {
+      type: String,
+      unique: true,
+      required: true,
+    },
+  ],
 });

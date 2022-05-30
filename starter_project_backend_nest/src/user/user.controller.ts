@@ -53,11 +53,11 @@ export class UserController {
   @UseInterceptors(FilesInterceptor('image'))
   addArticle(
     @Request() req: any,
-    @Body() { bio }: { bio: string; },
+    @Body() { bio }: { bio: string },
     @UploadedFiles() images: Array<Express.Multer.File>,
   ) {
     const userId = req.user.userId;
-  
+    
     return this.userService.addProfileImage(userId, bio, images);
   }
 
