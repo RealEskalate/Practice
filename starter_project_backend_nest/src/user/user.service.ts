@@ -6,11 +6,18 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import UserI from './user.model';
+import UserProfileI from './userProfile.model';
 import * as bcrypt from 'bcrypt';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
+
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly usermodel: Model<UserI>) {}
+  constructor(
+    @InjectModel('User') private readonly usermodel: Model<UserI>,
+    @InjectModel('UserProfile') private readonly userprofilemodel: Model<UserProfileI>,
+    private cloudinary: CloudinaryService,
+  ) {}
 
   async createUser(email: string, fullName: string, password: string) {
     const saltOrRounds = 10;
@@ -37,6 +44,25 @@ export class UserService {
       { username: 1, firstName: 1, lastName: 1 },
     );
     return users;
+  }
+
+  async addProfileImage(userId, bio, images: Express.Multer.File[] = []) {
+    let imageUrls: Array<string> = [];
+
+    for (let image of images) {
+      const res = await this.cloudinary.uploadImage(image);
+      let url = res.url;
+      imageUrls.push(url);
+    }
+
+    const userProfileImage = new this.userprofilemodel({
+      userId,
+      bio,
+      imageUrls,
+    });
+    await userProfileImage.save();
+
+    return userProfileImage;
   }
 
   async getUserById(id: string) {
