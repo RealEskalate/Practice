@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/profile_page/Presentation/Profile_Page.dart';
+import '../../routes.dart';
 import '../constants/colors.dart';
 
 import '../widgets/circle_icon.dart';
@@ -72,6 +74,11 @@ class DrawerSection extends StatelessWidget {
                 ),
                 onTap: () {
                   closeDrawer(context);
+
+                  if (ModalRoute.of(context)?.settings.name !=
+                      ProfilePage.routeName) {
+                    Navigator.pushNamed(context, ProfilePage.routeName);
+                  }
                 },
               ),
               ListTile(
