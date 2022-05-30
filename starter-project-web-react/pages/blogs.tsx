@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Container, Grid, Typography, Divider } from '@mui/material';
 import { getBlogs } from '../store/slices/blogs';
 import { useSelector } from 'react-redux';
-import BlogCard from "../components/Blog/BlogCard";
+import BlogCard from "../components/Blog/blogCard";
 import PostBlog from '../components/Blog/postBlogButton';
 import Link from 'next/link';
 const Blogs = () => {
@@ -12,7 +12,7 @@ const Blogs = () => {
     content: string,
     author: string
   }
-  const blogs = useSelector(state => getBlogs(state))
+  const blogs = useSelector((state:any) => getBlogs(state))
   return (
 
     <Container   >
@@ -31,6 +31,7 @@ const Blogs = () => {
           <Divider variant="middle" />
         </Grid>
       </Grid>
+      
 
       <Box sx={{ width: "100%", ml: 0, px: 0 }}
         display="inline-block"
