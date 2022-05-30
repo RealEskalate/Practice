@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export default interface Article_Interface extends mongoose.Document {
-  authorUserId: string;
+  authorUserId: mongoose.Schema.Types.ObjectId;
   title: string;
   content: string;
   rating: { 1: number; 2: number; 3: number; 4: number; 5: number };
@@ -10,8 +10,9 @@ export default interface Article_Interface extends mongoose.Document {
 
 const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema({
   authorUserId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: 'User',
   },
 
   title: {
