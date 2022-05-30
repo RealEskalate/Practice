@@ -43,20 +43,27 @@ export class ArticleController {
     return this.articleService.deleteArticleById(id);
   }
 
+  @Public()
   @Patch('/:id')
   updateArticleById(@Param('id') id: string, @Body() body: any) {
     return this.articleService.updateArticleById(id, body);
   }
 
+  @Public()
   @Post('/')
   @UseInterceptors(FilesInterceptor('image'))
   addArticle(
     @Request() req: any,
-    @Body() { title, content }: { title: string; content: string },
+    @Body()
+    {
+      title,
+      description,
+      content,
+    }: { title: string; description: string; content: string },
     @UploadedFiles() images: Array<Express.Multer.File>,
   ) {
-    const authorUserId = req.user.userId;
-    const newArticle = { authorUserId, title, content };
+    const authorUserId = '3243234434534'; //req.user.userId;
+    const newArticle = { authorUserId, title, description, content };
 
     return this.articleService.addArticle(newArticle, images);
   }

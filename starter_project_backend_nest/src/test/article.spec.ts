@@ -49,7 +49,8 @@ describe('Article Testing', () => {
 
     mockingArticle = {
       authorUserId: mockingUser._doc._id,
-      title: 'sample testing titile',
+      title: 'sample testing title',
+      description: 'sample testing description',
       content: 'sample testing content',
     };
 
@@ -93,12 +94,12 @@ describe('Article Testing', () => {
   });
 
   describe('GET Article By ID', () => {
-    test('respose should be defined for valied Id', async () => {
+    test('response should be defined for valid Id', async () => {
       const res = articleService.getArticleById(sampleId);
       expect(res).toBeDefined();
     });
 
-    test("respose should be [404] for in Id that doesn't exist", async () => {
+    test("response should be [404] for in Id that doesn't exist", async () => {
       try {
         await articleService.getArticleById(wrongId);
       } catch (e) {
@@ -106,7 +107,7 @@ describe('Article Testing', () => {
       }
     });
 
-    test('respose should be [400] for in invalied Id ', async () => {
+    test('response should be [400] for in invalid Id ', async () => {
       let invaliedId = 'slsjfskd';
       try {
         await articleService.getArticleById(invaliedId);
@@ -116,15 +117,15 @@ describe('Article Testing', () => {
     });
   });
 
-  describe('DELET Article API', () => {
-    test('respose after deleting should be [success]', async () => {
+  describe('DELETE Article API', () => {
+    test('response after deleting should be [success]', async () => {
       const deletedArticle = await articleService.deleteArticleById(sampleId);
       expect(deletedArticle).toBeDefined();
     });
   });
 
-  describe('DELET Article API', () => {
-    test('it should be [null] for id that doesnot exist', async () => {
+  describe('DELETE Article API', () => {
+    test('it should be [null] for id that does not exist', async () => {
       try {
         await articleService.deleteArticleById(wrongId);
       } catch (e) {
@@ -133,7 +134,7 @@ describe('Article Testing', () => {
     });
   });
 
-  describe('DELET Article API', () => {
+  describe('DELETE Article API', () => {
     test('it should be [null] for bad Id', async () => {
       try {
         await articleService.deleteArticleById(invaliedId);
@@ -146,7 +147,7 @@ describe('Article Testing', () => {
   describe('PATCH Article API', () => {
     test('it should be 200', async () => {
       const res = await articleService.updateArticleById(sampleId, {
-        title: 'another',
+        title: 'updated title',
       });
       expect(res).toBeDefined();
     });
@@ -174,7 +175,7 @@ describe('Article Testing', () => {
   });
 
   describe('PATCH Article Rating ', () => {
-    test('rating an article, it should increament by one', async () => {
+    test('rating an article, it should increment by one', async () => {
       const sampleArt = await articleService.getAllArticle();
       let sampleId = sampleArt[0]._id;
 
@@ -191,7 +192,7 @@ describe('Article Testing', () => {
       expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
     });
 
-    test('rating an article that doesnot existe', async () => {
+    test('rating an article that does not exist', async () => {
       const ratingVal = '3';
       try {
         await articleService.rateArticleById(wrongId, ratingVal);
@@ -202,7 +203,7 @@ describe('Article Testing', () => {
   });
 
   describe('GET Article Rating ', () => {
-    test('geting average of article', async () => {
+    test('getting average of article', async () => {
       await articleService.rateArticleById(sampleId, '2');
       await articleService.rateArticleById(sampleId, '4');
 
@@ -211,7 +212,7 @@ describe('Article Testing', () => {
       expect(avgRating).toBe(2 / 2 + 4 / 2);
     });
 
-    test('geting average of article for artilce that doesnot exist', async () => {
+    test('getting average of article for article that does not exist', async () => {
       try {
         await articleService.getAverageRatingById(wrongId);
       } catch (e) {
@@ -227,7 +228,7 @@ describe('Article Testing', () => {
       let searched = await articleService.search(searchTerm);
       for (let article of searched) {
         expect(
-          article.content.includes(searchTerm) ||
+          article.description.includes(searchTerm) ||
             article.title.includes(searchTerm),
         ).toBe(true);
       }
@@ -243,9 +244,9 @@ describe('Article Testing', () => {
 
       for (let article of searched) {
         expect(
-          article.content.includes(term1) ||
+          article.description.includes(term1) ||
             article.title.includes(term1) ||
-            article.content.includes(term2) ||
+            article.description.includes(term2) ||
             article.title.includes(term2),
         ).toBe(true);
       }
