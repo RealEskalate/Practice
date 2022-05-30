@@ -23,11 +23,6 @@ const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
       required: true,
     },
 
-    description: {
-      type: String,
-      required: true,
-    },
-
     content: {
       type: String,
       required: true,
@@ -67,7 +62,13 @@ const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
         required: false,
       },
     },
+
+    description: {
+      type: String,
+      required: true,
+    },
   },
+
   { timestamps: true },
 );
 
