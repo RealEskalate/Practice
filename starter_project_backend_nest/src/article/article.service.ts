@@ -6,12 +6,15 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CommentsModule } from '../comment/comment.module';
 
 @Injectable()
 export class ArticleService {
   constructor(
     @InjectModel('Article')
     private readonly articleModel: Model<Article_Interface>,
+    private cloudinary: CloudinaryService,
   ) {}
 
   async getAllArticle() {
@@ -36,7 +39,7 @@ export class ArticleService {
 
   async deleteArticleById(id: string) {
     try {
-      let res = await this.articleModel.findByIdAndDelete(id);
+      const res = await this.articleModel.findByIdAndDelete(id);
       return res;
     } catch (e) {
       throw e;
@@ -45,7 +48,7 @@ export class ArticleService {
 
   async updateArticleById(id: string, newEntries: any) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
 
       const result = await this.articleModel.updateOne({
         _id: article._id,
@@ -60,22 +63,34 @@ export class ArticleService {
     }
   }
 
-  async addArticle({
-    authorUserId,
-    title,
-    content,
-    categories,
-  }: {
-    authorUserId: string;
-    title: string;
-    content: string;
-    categories: [];
-  }) {
-    let newArticle = new this.articleModel({
+  async addArticle(
+    {
       authorUserId,
       title,
       content,
       categories,
+    }: {
+      authorUserId: string;
+      title: string;
+      content: string;                              
+      categories: [];
+    },
+    images: Express.Multer.File[] = [],
+  ) {
+    let imageUrls: Array<string> = [];
+
+    for (let image of images) {
+      const res = await this.cloudinary.uploadImage(image);
+      let url = res.url;
+      imageUrls.push(url);
+    }
+
+    const newArticle = new this.articleModel({
+      authorUserId,
+      title,
+      content,
+      categories,
+      imageUrls,
     });
     await newArticle.save();
 
@@ -84,7 +99,7 @@ export class ArticleService {
 
   async rateArticleById(id: string, ratingValue: string) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
       article.rating[ratingValue] += 1;
       await article.save();
       return article;
@@ -95,20 +110,24 @@ export class ArticleService {
 
   async getAverageRatingById(id: string) {
     try {
-      let article = await this.getArticleById(id);
-      let rating = article.rating;
-      let numOfPeople = Object.values(rating).reduce(
+      const article = await this.getArticleById(id);
+      const rating = article.rating;
+      const numOfPeople = Object.values(rating).reduce(
         (a, b) => Number(a) + Number(b),
       );
 
       if (numOfPeople == 0) return 0;
       let avgRating = 0;
-      for (let i of [1, 2, 3, 4, 5]) {
+      for (const i of [1, 2, 3, 4, 5]) {
         avgRating += (i * Number(rating[i])) / Number(numOfPeople);
       }
       return avgRating;
     } catch (e) {
       throw e;
     }
+  }
+
+  async search(searchTerm: string) {
+    return await this.articleModel.find({ $text: { $search: searchTerm } });
   }
 }

@@ -2,13 +2,17 @@ import {
   Controller,
   Get,
   Delete,
+  Query,
   Request,
   Patch,
   Post,
   Param,
   Body,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { ArticleService } from './article.service';
 import { Public } from '../auth/constants';
 
@@ -20,6 +24,12 @@ export class ArticleController {
   @Get('/all')
   getAllArticle() {
     return this.articleService.getAllArticle();
+  }
+
+  @Public()
+  @Get('/search')
+  search(@Query('search-term') searchTerm: string) {
+    return this.articleService.search(searchTerm);
   }
 
   @Public()
@@ -39,13 +49,16 @@ export class ArticleController {
   }
 
   @Post('/')
+  @UseInterceptors(FilesInterceptor('image'))
   addArticle(
-    @Request() req,
+    @Request() req: any,
     @Body() { title, content }: { title: string; content: string },
+    @UploadedFiles() images: Array<Express.Multer.File>,
   ) {
-    let authorUserId = req.user.userId;
-    let newArticle = { authorUserId, title, content };
-    return this.articleService.addArticle(newArticle);
+    const authorUserId = req.user.userId;
+    const newArticle = { authorUserId, title, content };
+
+    return this.articleService.addArticle(newArticle, images);
   }
 
   @Public()

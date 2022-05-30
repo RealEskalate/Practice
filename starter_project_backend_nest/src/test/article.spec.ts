@@ -5,6 +5,13 @@ import { ArticleService } from '../article/article.service';
 import { ArticleSchema } from '../article/article.model';
 import { UserService } from '../user/user.service';
 import { UserSchema } from '../user/user.model';
+import { CloudinaryModule } from './../cloudinary/cloudinary.module';
+
+class MockingCloudinaryModule extends CloudinaryModule {
+  uploadImage(Image) {
+    return 'random/url' + Math.random();
+  }
+}
 
 describe('Article Testing', () => {
   let articleService: ArticleService;
@@ -14,7 +21,7 @@ describe('Article Testing', () => {
   let mockingUser;
   let mockingArticle;
 
-  let sampleId;
+  let sampleId: string;
   let wrongId = '825d207b5bc4207cc0d80844';
   let invaliedId = 'invaliedidtesting';
 
@@ -24,6 +31,7 @@ describe('Article Testing', () => {
         rootMongooseTestModule(),
         MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
         MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MockingCloudinaryModule,
       ],
       providers: [ArticleService, UserService],
     }).compile();
@@ -34,9 +42,8 @@ describe('Article Testing', () => {
 
   beforeEach(async () => {
     mockingUser = await userService.createUser(
-      'test_user_name',
-      'test_first_name',
-      'test_last_name',
+      'test_email',
+      'test_fullName',
       'test_password',
     );
 
@@ -46,13 +53,18 @@ describe('Article Testing', () => {
       content: 'blah blah blah mars blah blah',
       categories: [],
     };
+
     await articleService.addArticle(mockingArticle);
-    const sampleArt = await articleService.getAllArticle();
-    sampleId = sampleArt[0]._id;
+
+    const allArticles = await articleService.getAllArticle();
+    sampleId = allArticles[0]._id;
   });
 
   afterEach(async () => {
-    await userService.deleteUser(mockingUser._id);
+    await userService.deleteUser(mockingUser._doc._id);
+    for (let article of await articleService.getAllArticle()) {
+      await articleService.deleteArticleById(article._id);
+    }
   });
 
   describe('Check articleService', () => {
@@ -110,7 +122,9 @@ describe('Article Testing', () => {
       const deletedArticle = await articleService.deleteArticleById(sampleId);
       expect(deletedArticle).toBeDefined();
     });
+  });
 
+  describe('DELET Article API', () => {
     test('it should be [null] for id that doesnot exist', async () => {
       try {
         await articleService.deleteArticleById(wrongId);
@@ -118,7 +132,9 @@ describe('Article Testing', () => {
         expect(e).toEqual(null);
       }
     });
+  });
 
+  describe('DELET Article API', () => {
     test('it should be [null] for bad Id', async () => {
       try {
         await articleService.deleteArticleById(invaliedId);
@@ -205,6 +221,46 @@ describe('Article Testing', () => {
       }
     });
   });
+
+  describe('GET Article Searching', () => {
+    test('search article with one term', async () => {
+      const searchTerm = mockingArticle.content.split(' ')[0];
+
+      let searched = await articleService.search(searchTerm);
+      for (let article of searched) {
+        expect(
+          article.content.includes(searchTerm) ||
+            article.title.includes(searchTerm),
+        ).toBe(true);
+      }
+    });
+
+    test('search article with two terms in ', async () => {
+      const term1 = mockingArticle.title.split(' ')[0];
+      const term2 = mockingArticle.content.split(' ')[0];
+
+      let searched = await articleService.search(term1 + ' ' + term2);
+
+      expect(searched.length).toBeGreaterThan(0);
+
+      for (let article of searched) {
+        expect(
+          article.content.includes(term1) ||
+            article.title.includes(term1) ||
+            article.content.includes(term2) ||
+            article.title.includes(term2),
+        ).toBe(true);
+      }
+    });
+
+    test('search article with term that doesnot exist', async () => {
+      const nonExistTerm = 'jjjjkkkkkkk';
+
+      let searched = await articleService.search(nonExistTerm);
+      expect(searched.length).toBe(0);
+    });
+  });
+
   afterAll(async () => {
     if (module) {
       await module.close();

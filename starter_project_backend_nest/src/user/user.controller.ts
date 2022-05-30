@@ -25,12 +25,11 @@ export class UserController {
   @Public()
   @Post()
   createUser(
-    @Body('username') username: string,
-    @Body('firstName') firstName: string,
-    @Body('lastName') lastName: string,
+    @Body('email') email: string,
+    @Body('fullName') fullName: string,
     @Body('password') password: string,
   ) {
-    return this.userService.createUser(username, firstName, lastName, password);
+    return this.userService.createUser(fullName, email, password);
   }
   @Get(':id')
   getUserById(@Param('id') id: string) {
@@ -39,18 +38,11 @@ export class UserController {
   @Patch(':id')
   updateUser(
     @Param('id') userId: string,
-    @Body('username') username: string,
-    @Body('firstName') firstName: string,
-    @Body('lastName') lastName: string,
+    @Body('email') email: string,
+    @Body('fullName') fullName: string,
     @Body('password') password: string,
   ) {
-    return this.userService.updateUser(
-      userId,
-      username,
-      firstName,
-      lastName,
-      password,
-    );
+    return this.userService.updateUser(userId, email, fullName, password);
   }
   @Delete(':id')
   deleteUser(@Param('id') userId: string) {

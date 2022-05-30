@@ -3,10 +3,10 @@ import '../constants/colors.dart';
 import '../widgets/star.dart';
 
 class StarBar extends StatefulWidget {
-  late double width;
+  final double width;
   final int numOfStars;
 
-  StarBar({
+  const StarBar({
     Key? key,
     required this.width,
     required this.numOfStars,
@@ -32,9 +32,9 @@ Widget buildStarBar(BuildContext context, double width, int numOfStars) {
         return Row(
           children: [
             if (index < numOfStars)
-              Star(context, width, starYellow)
+              Star(width: width, color: starYellow)
             else
-              Star(context, width, grey),
+              Star(width: width, color: grey),
           ],
         );
       });
