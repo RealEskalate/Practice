@@ -53,6 +53,6 @@ export const ArticleSchema: mongoose.Schema<Article_Interface> =
     },
     categories: {
       type: [],
-      required: true,
+      default: [],
     },
   });

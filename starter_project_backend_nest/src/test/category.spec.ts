@@ -53,20 +53,20 @@ describe('CategoryTesting', () => {
   });
 
   it('it should get category by id', async () => {
-    let response = await controller.getCategoryByID(category._id);
+    const response = await controller.getCategoryByID(category._id);
     expect(response.categoryName).toEqual(category.categoryName);
   });
 
   it('it should not get for unknown id', async () => {
     try {
-      let response = await controller.getCategoryByID(category._id);
+      const response = await controller.getCategoryByID(category._id);
     } catch (e) {
       expect(e).toBeInstanceOf(NotFoundException);
     }
   });
 
   it('it should create category', async () => {
-    let newCategory = await controller.addCategoryById({
+    const newCategory = await controller.addCategoryById({
       categoryName: 'philosophy',
     });
 
@@ -74,11 +74,11 @@ describe('CategoryTesting', () => {
   });
 
   it('it should update for exisiting category', async () => {
-    let newCategory = await controller.addCategoryById({
+    const newCategory = await controller.addCategoryById({
       categoryName: 'new',
     });
 
-    let newCategory2 = await controller.updateCategoryById(
+    const newCategory2 = await controller.updateCategoryById(
       newCategory._id,
       'changed',
     );
@@ -94,12 +94,12 @@ describe('CategoryTesting', () => {
   });
 
   it('it should delete category using id', async () => {
-    let newCategory = await controller.addCategoryById({
+    const newCategory = await controller.addCategoryById({
       categoryName: 'tobedeleted',
     });
-    let response = await controller.deleteCategoryById(newCategory._id);
+    const response = await controller.deleteCategoryById(newCategory._id);
     try {
-      let getDeleted = await controller.getCategoryByID(newCategory._id);
+      const getDeleted = await controller.getCategoryByID(newCategory._id);
     } catch (e) {
       expect(e).toBeInstanceOf(NotFoundException);
     }
@@ -107,7 +107,7 @@ describe('CategoryTesting', () => {
 
   it("it should not delete category that doesn't exist", async () => {
     try {
-      let response = await controller.deleteCategoryById(null);
+      const response = await controller.deleteCategoryById(null);
     } catch (e) {
       expect(e).toBeInstanceOf(NotFoundException);
     }

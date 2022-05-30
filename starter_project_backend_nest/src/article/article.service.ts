@@ -47,16 +47,12 @@ export class ArticleService {
     try {
       let article = await this.getArticleById(id);
 
-      const result = await this.articleModel.updateOne(
-        {
-          _id: article._id,
-          title: newEntries.title || article.title,
-          content: newEntries.content || article.content,
-        },
-        {
-          $push: { categories: newEntries.categories || article.categories },
-        },
-      );
+      const result = await this.articleModel.updateOne({
+        _id: article._id,
+        title: newEntries.title || article.title,
+        content: newEntries.content || article.content,
+        categories: newEntries.categories || article.categories,
+      });
 
       return result;
     } catch (e) {

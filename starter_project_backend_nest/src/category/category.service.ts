@@ -15,6 +15,7 @@ export class CategoryService {
     private readonly categoryModel: Model<CategoryI>,
   ) {}
   async addCategory({ categoryName }) {
+    categoryName = categoryName.toLowerCase();
     let categoryExists = await this.categoryModel.findOne({
       categoryName: categoryName,
     });
