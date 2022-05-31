@@ -57,11 +57,23 @@ export class ArticleController {
       title,
       description,
       content,
-    }: { title: string; description: string; content: string },
+      categories,
+    }: {
+      title: string;
+      description: string;
+      content: string;
+      categories: string[];
+    },
     @UploadedFiles() images: Array<Express.Multer.File>,
   ) {
     const authorUserId = req.user.userId;
-    const newArticle = { authorUserId, title, description, content };
+    const newArticle = {
+      authorUserId,
+      title,
+      description,
+      content,
+      categories,
+    };
 
     return this.articleService.addArticle(newArticle, images);
   }

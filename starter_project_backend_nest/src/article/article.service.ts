@@ -76,7 +76,7 @@ export class ArticleService {
       description: string;
       title: string;
       content: string;
-      categories: [];
+      categories: string[];
     },
     images: Express.Multer.File[] = [],
   ) {
