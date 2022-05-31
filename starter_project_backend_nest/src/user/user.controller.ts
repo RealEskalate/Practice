@@ -4,11 +4,16 @@ import {
   Delete,
   Get,
   HttpStatus,
+  Request,
   Param,
   Patch,
   Post,
   Res,
+  UploadedFiles,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
@@ -44,6 +49,19 @@ export class UserController {
   ) {
     return this.userService.updateUser(userId, email, fullName, password);
   }
+
+  @Post('/uploadprofile')
+  @UseInterceptors(FileInterceptor('image'))
+  addArticle(
+    @Request() req: any,
+    @Body() { bio }: { bio: string },
+    @UploadedFile() image: Express.Multer.File,
+  ) {
+    const userId = req.user.userId;
+
+    return this.userService.addProfileImage(userId, bio, image);
+  }
+
   @Delete(':id')
   deleteUser(@Param('id') userId: string) {
     return this.userService.deleteUser(userId);
