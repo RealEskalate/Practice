@@ -18,7 +18,10 @@ export class ArticleService {
   ) {}
 
   async getAllArticle() {
-    const allModels = await this.articleModel.find();
+    const allModels = await this.articleModel
+      .find()
+      .populate('authorUserId', '-password')
+      .lean();
     return allModels;
   }
 
@@ -76,11 +79,11 @@ export class ArticleService {
     },
     images: Express.Multer.File[] = [],
   ) {
-    let imageUrls: Array<string> = [];
+    const imageUrls: Array<string> = [];
 
-    for (let image of images) {
+    for (const image of images) {
       const res = await this.cloudinary.uploadImage(image);
-      let url = res.url;
+      const url = res.url;
       imageUrls.push(url);
     }
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export default interface Article_Interface extends mongoose.Document {
-  authorUserId: string;
+  authorUserId: mongoose.Schema.Types.ObjectId;
   title: string;
   description: string;
   content: string;
@@ -14,8 +14,9 @@ export default interface Article_Interface extends mongoose.Document {
 const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
   {
     authorUserId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: 'User',
     },
 
     title: {
@@ -27,7 +28,6 @@ const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
       type: String,
       required: true,
     },
-
     imageUrls: [
       {
         type: String,
