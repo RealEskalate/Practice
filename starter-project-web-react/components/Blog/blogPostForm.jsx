@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, TextField, Button } from '@mui/material'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import BlogPostTextField from  './BlogPostTextField.jsx'
+import BlogPostTextField from  './blogPostTextField'
 import { addBlog , getBlogs} from '../../store/slices/blogs'
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';

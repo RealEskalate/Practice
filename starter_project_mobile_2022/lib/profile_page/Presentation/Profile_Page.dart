@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/profile_page/constants/colors.dart';
-
+import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import '../constants/colors.dart';
 import '../widget/drawer.dart';
 import '../widget/postCard.dart';
 
@@ -22,14 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       key: scaffoldKey,
-      drawer: Container(
-          width: width * 0.6,
-          child: Opacity(
-            opacity: width * 0.0023,
-            child: const Drawer(
-              child: MainDrawer(),
-            ),
-          )),
+      drawer: const DrawerSection(),
       backgroundColor: backgroundColor,
       body: Column(children: [
         Container(

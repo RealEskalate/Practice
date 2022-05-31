@@ -55,6 +55,7 @@ export class ArticleService {
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
+      if (newEntries.description) article.description = newEntries.description;
 
       await article.save();
 
@@ -68,9 +69,11 @@ export class ArticleService {
     {
       authorUserId,
       title,
+      description,
       content,
     }: {
       authorUserId: string;
+      description: string;
       title: string;
       content: string;
     },
@@ -87,6 +90,7 @@ export class ArticleService {
     const newArticle = new this.articleModel({
       authorUserId,
       title,
+      description,
       content,
       imageUrls,
     });
