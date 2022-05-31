@@ -7,7 +7,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { CommentsModule } from '../comment/comment.module';
 
 @Injectable()
 export class ArticleService {
@@ -18,7 +17,10 @@ export class ArticleService {
   ) {}
 
   async getAllArticle() {
-    const allModels = await this.articleModel.find();
+    const allModels = await this.articleModel
+      .find()
+      .populate('authorUserId', '-password')
+      .lean();
     return allModels;
   }
 
@@ -50,14 +52,13 @@ export class ArticleService {
     try {
       const article = await this.getArticleById(id);
 
-      const result = await this.articleModel.updateOne({
-        _id: article._id,
-        title: newEntries.title || article.title,
-        content: newEntries.content || article.content,
-        categories: newEntries.categories || article.categories,
-      });
+      if (newEntries.title) article.title = newEntries.title;
+      if (newEntries.content) article.content = newEntries.content;
+      if (newEntries.description) article.description = newEntries.description;
 
-      return result;
+      await article.save();
+
+      return article;
     } catch (e) {
       throw e;
     }
@@ -67,27 +68,30 @@ export class ArticleService {
     {
       authorUserId,
       title,
+      description,
       content,
       categories,
     }: {
       authorUserId: string;
+      description: string;
       title: string;
-      content: string;                              
+      content: string;
       categories: [];
     },
     images: Express.Multer.File[] = [],
   ) {
-    let imageUrls: Array<string> = [];
+    const imageUrls: Array<string> = [];
 
-    for (let image of images) {
+    for (const image of images) {
       const res = await this.cloudinary.uploadImage(image);
-      let url = res.url;
+      const url = res.url;
       imageUrls.push(url);
     }
 
     const newArticle = new this.articleModel({
       authorUserId,
       title,
+      description,
       content,
       categories,
       imageUrls,
