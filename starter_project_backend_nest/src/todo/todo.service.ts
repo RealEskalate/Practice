@@ -1,11 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 import Todo from './todos.model';
 
 @Injectable()
 export class TodoService {
-  constructor(@InjectModel('Todo') private readonly todomodel: Model<Todo>) {}
+  constructor(
+    @InjectModel('Todo') private readonly todomodel: Model<Todo>,
+    private cloudinary: CloudinaryService,
+  ) {}
 
   async createTodo(title: string, description: string, completed: boolean) {
     const newTodo = await this.todomodel.create({
@@ -75,5 +83,10 @@ export class TodoService {
     } else {
       throw new NotFoundException(`todo with ${id} not found`);
     }
+  }
+
+  async uploadImageToCloudinary(file: Express.Multer.File) {
+    const service = await this.cloudinary.uploadImage(file);
+    return service;
   }
 }

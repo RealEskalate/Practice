@@ -2,22 +2,37 @@ import {
   Controller,
   Get,
   Delete,
+  Query,
+  Request,
   Patch,
   Post,
   Param,
   Body,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { ArticleService } from './article.service';
+import { Public } from '../auth/constants';
 
 @Controller('/api/articles')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
-  @Get('/')
+
+  @Public()
+  @Get('/all')
   getAllArticle() {
     return this.articleService.getAllArticle();
   }
 
+  @Public()
+  @Get('/search')
+  search(@Query('search-term') searchTerm: string) {
+    return this.articleService.search(searchTerm);
+  }
+
+  @Public()
   @Get('/:id')
   getArticleById(@Param('id') id: string) {
     return this.articleService.getArticleById(id);
@@ -34,7 +49,35 @@ export class ArticleController {
   }
 
   @Post('/')
-  addArticle(@Body() body: any) {
-    return this.articleService.addArticle(body);
+  @UseInterceptors(FilesInterceptor('image'))
+  addArticle(
+    @Request() req: any,
+    @Body()
+    {
+      title,
+      description,
+      content,
+    }: { title: string; description: string; content: string },
+    @UploadedFiles() images: Array<Express.Multer.File>,
+  ) {
+    const authorUserId = req.user.userId;
+    const newArticle = { authorUserId, title, description, content };
+
+    return this.articleService.addArticle(newArticle, images);
+  }
+
+  @Public()
+  @Post('/rating/:id')
+  rateArticleById(
+    @Param('id') id: string,
+    @Body() { rating }: { rating: string },
+  ) {
+    return this.articleService.rateArticleById(id, rating);
+  }
+
+  @Public()
+  @Get('/rating/:id')
+  getAverageRatingById(@Param('id') id: string) {
+    return this.articleService.getAverageRatingById(id);
   }
 }
