@@ -18,7 +18,10 @@ export class ArticleService {
   ) {}
 
   async getAllArticle() {
-    const allModels = await this.articleModel.find();
+    const allModels = await this.articleModel
+      .find()
+      .populate('authorUserId', '-password')
+      .lean();
     return allModels;
   }
 
@@ -52,6 +55,7 @@ export class ArticleService {
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
+      if (newEntries.description) article.description = newEntries.description;
 
       await article.save();
 
@@ -65,25 +69,28 @@ export class ArticleService {
     {
       authorUserId,
       title,
+      description,
       content,
     }: {
       authorUserId: string;
+      description: string;
       title: string;
       content: string;
     },
     images: Express.Multer.File[] = [],
   ) {
-    let imageUrls: Array<string> = [];
+    const imageUrls: Array<string> = [];
 
-    for (let image of images) {
+    for (const image of images) {
       const res = await this.cloudinary.uploadImage(image);
-      let url = res.url;
+      const url = res.url;
       imageUrls.push(url);
     }
 
     const newArticle = new this.articleModel({
       authorUserId,
       title,
+      description,
       content,
       imageUrls,
     });

@@ -17,6 +17,7 @@ import { multerConfig } from './../config/config';
 @Controller('todo')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
+  @Public()
   @Get('/all')
   getAllTodos() {
     return this.todoService.getTodos();

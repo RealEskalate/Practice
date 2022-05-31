@@ -84,9 +84,12 @@ class _MyHomePageState extends State<BlogListingPage> {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(height * 0.15),
+              preferredSize: Size.fromHeight(height * 0.14),
               child: Padding(
-                padding: EdgeInsets.all(width * 0.035),
+                padding: EdgeInsets.only(
+                    left: width * 0.035,
+                    right: width * 0.035,
+                    bottom: width * 0.035),
                 child: Column(
                   children: [
                     SearchBar(heigth: height * 0.07, width: width),
@@ -97,28 +100,6 @@ class _MyHomePageState extends State<BlogListingPage> {
               ),
             )),
         body: listPosts(height, width, posts));
-    // body: ListView(
-    //   children: [
-    //     PostReviewCard(
-    //       heigth: height * 0.35,
-    //       width: width * 1,
-    //       imageURL: '',
-    //       padding: width * 0.03,
-    //       created: '1h ago',
-    //       subtitle: 'Why Big Data Sucks?',
-    //       title: 'BIG DATA',
-    //     ),
-    //     PostReviewCard(
-    //       heigth: height * 0.35,
-    //       width: width * 1,
-    //       imageURL: '',
-    //       padding: 1,
-    //       created: '1h ago',
-    //       subtitle: 'Why Big Data Sucks?',
-    //       title: 'BIG DATA',
-    //     )
-    //   ],
-    // ));
   }
 
   ListView listPosts(double height, double width, List<PostCard> posts) {
