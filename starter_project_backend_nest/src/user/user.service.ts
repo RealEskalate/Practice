@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import UserI from './user.model';
 import UserProfileI from './userProfile.model';
 import * as bcrypt from 'bcrypt';
@@ -43,22 +43,23 @@ export class UserService {
     return users;
   }
 
-  async addProfileImage(userId, bio, images: Express.Multer.File[] = []) {
-    let imageUrls: Array<string> = [];
-    for (let image of images) {
-      const res = await this.cloudinary.uploadImage(image);
-      let url = res.url;
-      imageUrls.push(url);
-    }
-
-    const userProfileImage = new this.userprofilemodel({
-      userId,
-      bio,
-      imageUrls,
-    });
-    await userProfileImage.save();
-
-    return userProfileImage;
+  async addProfileImage(userId, bio, image: Express.Multer.File) {
+    const res = await this.cloudinary.uploadImage(image);
+    const url = res.url;
+    const id = new mongo.ObjectId(userId);
+    const userProfileImage = await this.userprofilemodel.updateOne(
+      { userId: id },
+      {
+        $set: {
+          userId: id,
+          bio: bio,
+          imageUrl: url,
+        },
+      },
+      { upsert: true },
+    );
+    const userprofile = await this.userprofilemodel.find({ userId: id });
+    return userprofile;
   }
 
   async getUserById(id: string) {

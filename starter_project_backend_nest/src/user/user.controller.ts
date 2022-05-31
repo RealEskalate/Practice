@@ -11,8 +11,9 @@ import {
   Res,
   UploadedFiles,
   UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
@@ -50,15 +51,15 @@ export class UserController {
   }
 
   @Post('/uploadprofile')
-  @UseInterceptors(FilesInterceptor('image'))
+  @UseInterceptors(FileInterceptor('image'))
   addArticle(
     @Request() req: any,
     @Body() { bio }: { bio: string },
-    @UploadedFiles() images: Array<Express.Multer.File>,
+    @UploadedFile() image: Express.Multer.File,
   ) {
     const userId = req.user.userId;
-    
-    return this.userService.addProfileImage(userId, bio, images);
+
+    return this.userService.addProfileImage(userId, bio, image);
   }
 
   @Delete(':id')

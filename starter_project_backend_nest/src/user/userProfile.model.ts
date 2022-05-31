@@ -2,26 +2,24 @@ import mongoose from 'mongoose';
 import { Schema } from '@nestjs/mongoose';
 
 export default interface UserProfileI extends mongoose.Document {
-  userId: string;
+  userId: object;
   bio: string;
-  imageUrls: string[];
+  imageUrl: string;
 }
 
 export const UserProfileSchema = new mongoose.Schema({
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: 'UserSchema',
   },
   bio: {
     type: String,
     required: false,
     default: '',
   },
-  imageUrls: [
-    {
-      type: String,
-      unique: true,
-      required: true,
-    },
-  ],
+  imageUrl: {
+    type: String,
+    required: true,
+  },
 });
