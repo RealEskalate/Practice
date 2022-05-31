@@ -4,15 +4,22 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import UserI from './user.model';
+import UserProfileI from './userProfile.model';
 import * as bcrypt from 'bcrypt';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly usermodel: Model<UserI>) {}
+  constructor(
+    @InjectModel('User') private readonly usermodel: Model<UserI>,
+    @InjectModel('UserProfile')
+    private readonly userprofilemodel: Model<UserProfileI>,
+    private cloudinary: CloudinaryService,
+  ) {}
 
-  async createUser(email: string, fullName: string, password: string) {
+  async createUser(fullName: string, email: string, password: string) {
     const saltOrRounds = 10;
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
@@ -22,31 +29,44 @@ export class UserService {
       throw new ConflictException('User already Exist');
     }
 
-
-    const newUser = await this.usermodel.create({
-      fullName,
-      email,
-      password,
+    const newUser: any = await this.usermodel.create({
+      fullName: fullName,
+      email: email,
+      password: password,
     });
     const { password: omit, ...user } = newUser._doc;
-
     return user;
   }
 
   async getAllUser() {
-    const users = await this.usermodel.find(
-      {},
-      { username: 1, firstName: 1, lastName: 1 },
-    );
+    const users = await this.usermodel.find({}, { fullname: 1, email: 1 });
     return users;
+  }
+
+  async addProfileImage(userId, bio, image: Express.Multer.File) {
+    const res = await this.cloudinary.uploadImage(image);
+    const url = res.url;
+    const id = new mongo.ObjectId(userId);
+    const userProfileImage = await this.userprofilemodel.updateOne(
+      { userId: id },
+      {
+        $set: {
+          userId: id,
+          bio: bio,
+          imageUrl: url,
+        },
+      },
+      { upsert: true },
+    );
+    const userprofile = await this.userprofilemodel.find({ userId: id });
+    return userprofile;
   }
 
   async getUserById(id: string) {
     try {
       const user = await this.usermodel.findById(id, {
-        username: 1,
-        firstName: 1,
-        lastName: 1,
+        email: 1,
+        fullName: 1,
       });
       return user;
     } catch (e) {
