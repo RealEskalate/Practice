@@ -1,12 +1,13 @@
 import 'package:sign_button/sign_button.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../pallete.dart';
+import '../constants.dart';
 import '../widgets/widgets.dart';
 
-class CreateNewAccount extends StatelessWidget {
-  var size, height, width;
+class LoginScreen extends StatelessWidget {
+  static const routename = "login";
+
+  late double height, width;
+  var size;
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -20,77 +21,61 @@ class CreateNewAccount extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: height / 25),
-              child: Container(
-                height: width * 0.2,
-                child: Text(
-                  'Sign up',
-                  style: TextStyle(
-                      color: black,
-                      fontSize: width * 0.12,
-                      fontWeight: FontWeight.w700),
-                ),
+            SizedBox(
+              height: height / 25,
+            ),
+            SizedBox(
+              height: width * 0.2,
+              child: Text(
+                'Log in',
+                style: TextStyle(
+                    color: black,
+                    fontSize: width * 0.12,
+                    fontWeight: FontWeight.w700),
               ),
             ),
             Container(
               height: width * 0.2,
               child: Text(
-                'Enter your email and password and start discovering',
+                'Welcome',
                 style: TextStyle(
                     color: black,
-                    fontSize: width * 0.05,
+                    fontSize: width * 0.06,
                     fontWeight: FontWeight.w400),
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  height: height * 0.12,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height / 37),
-                    ),
-                    elevation: height * 0.003,
-                    child: TextInputField(
-                      hint: 'Full name',
-                      inputType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: height * 0.12,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height / 37),
-                    ),
-                    elevation: height * 0.003,
-                    child: TextInputField(
-                      hint: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: height * 0.12,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(height / 37),
-                    ),
-                    elevation: height * 0.003,
-                    child: PasswordInput(
-                      hint: 'Password',
-                      inputAction: TextInputAction.done,
-                    ),
-                  ),
-                ),
+                SizedBox(
+                    height: height * 0.12,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(height / 37),
+                      ),
+                      elevation: height * 0.003,
+                      child: const TextInputField(
+                        hint: 'Email',
+                        inputType: TextInputType.emailAddress,
+                        inputAction: TextInputAction.next,
+                      ),
+                    )),
+                SizedBox(
+                    height: height * 0.12,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(height / 37),
+                      ),
+                      elevation: height * 0.003,
+                      child: PasswordInput(
+                        hint: 'Password',
+                        inputAction: TextInputAction.done,
+                      ),
+                    )),
                 SizedBox(
                   height: height / 25,
                 ),
-                RoundedButton(
+                const RoundedButton(
                   buttonName: 'Log in',
                 ),
                 SizedBox(
@@ -98,7 +83,39 @@ class CreateNewAccount extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
+            SizedBox(
+                height: height * 0.05,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: height * 0.03,
+                      child: Text(
+                        'Forgot your password?',
+                        style: TextStyle(
+                            color: blueblack,
+                            fontSize: width * 0.04,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, 'ForgotPassword'),
+                      child: Text(
+                        'Reset here',
+                        style: TextStyle(
+                            color: kBlue,
+                            fontSize: width * 0.03,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                )),
+            SizedBox(
               height: width * 0.05,
               child: Text(
                 'OR LOG IN WITH',
@@ -108,7 +125,7 @@ class CreateNewAccount extends StatelessWidget {
                     fontWeight: FontWeight.w900),
               ),
             ),
-            Container(
+            SizedBox(
               height: width * 0.17,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -149,6 +166,7 @@ class CreateNewAccount extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () =>
+                        // TODO
                         Navigator.pushNamed(context, 'CreateNewAccount'),
                     child: Text(
                       'Sign up',

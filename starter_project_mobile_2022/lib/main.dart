@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'main/screens/screens.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/landing-page.dart';
+import 'package:starter_project_mobile_2022/routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Log in',
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme:
-            GoogleFonts.josefinSansTextTheme(Theme.of(context).textTheme),
-        fontFamily: 'Poppins',
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => MYlanding(),
-        'ForgotPassword': (context) => ForgotPassword(),
-        'CreateNewAccount': (context) => CreateNewAccount(),
-        'LoginScreen': (context) => LoginScreen(),
-      },
+      onGenerateRoute: PageRouter.generateRoute,
+      // initialRoute: "/",
+      initialRoute: LandingPage.routename,
     );
   }
 }

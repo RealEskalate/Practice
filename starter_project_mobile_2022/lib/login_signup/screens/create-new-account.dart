@@ -1,10 +1,11 @@
-import 'package:sign_button/sign_button.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../pallete.dart';
+import 'package:sign_button/sign_button.dart';
+import '../constants.dart';
 import '../widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+class CreateNewAccount extends StatelessWidget {
   var size, height, width;
   @override
   Widget build(BuildContext context) {
@@ -19,26 +20,26 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(
-              height: height / 25,
-            ),
-            Container(
-              height: width * 0.2,
-              child: Text(
-                'Log in',
-                style: TextStyle(
-                    color: black,
-                    fontSize: width * 0.12,
-                    fontWeight: FontWeight.w700),
+            Padding(
+              padding: EdgeInsets.only(top: height / 25),
+              child: Container(
+                height: width * 0.2,
+                child: Text(
+                  'Sign up',
+                  style: TextStyle(
+                      color: black,
+                      fontSize: width * 0.12,
+                      fontWeight: FontWeight.w700),
+                ),
               ),
             ),
             Container(
               height: width * 0.2,
               child: Text(
-                'Welcome',
+                'Enter your email and password and start discovering',
                 style: TextStyle(
                     color: black,
-                    fontSize: width * 0.06,
+                    fontSize: width * 0.05,
                     fontWeight: FontWeight.w400),
               ),
             ),
@@ -46,30 +47,46 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                    height: height * 0.12,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(height / 37),
-                      ),
-                      elevation: height * 0.003,
-                      child: TextInputField(
-                        hint: 'Email',
-                        inputType: TextInputType.emailAddress,
-                        inputAction: TextInputAction.next,
-                      ),
-                    )),
+                  height: height * 0.12,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(height / 37),
+                    ),
+                    elevation: height * 0.003,
+                    child: TextInputField(
+                      hint: 'Full name',
+                      inputType: TextInputType.emailAddress,
+                      inputAction: TextInputAction.next,
+                    ),
+                  ),
+                ),
                 Container(
-                    height: height * 0.12,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(height / 37),
-                      ),
-                      elevation: height * 0.003,
-                      child: PasswordInput(
-                        hint: 'Password',
-                        inputAction: TextInputAction.done,
-                      ),
-                    )),
+                  height: height * 0.12,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(height / 37),
+                    ),
+                    elevation: height * 0.003,
+                    child: TextInputField(
+                      hint: 'Email',
+                      inputType: TextInputType.emailAddress,
+                      inputAction: TextInputAction.next,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: height * 0.12,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(height / 37),
+                    ),
+                    elevation: height * 0.003,
+                    child: PasswordInput(
+                      hint: 'Password',
+                      inputAction: TextInputAction.done,
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: height / 25,
                 ),
@@ -81,38 +98,6 @@ class LoginScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-                height: height * 0.05,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: height * 0.03,
-                      child: Text(
-                        'Forgot your password?',
-                        style: TextStyle(
-                            color: blueblack,
-                            fontSize: width * 0.04,
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                    SizedBox(
-                      width: width * 0.05,
-                    ),
-                    GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, 'ForgotPassword'),
-                      child: Text(
-                        'Reset here',
-                        style: TextStyle(
-                            color: kBlue,
-                            fontSize: width * 0.03,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ],
-                )),
             Container(
               height: width * 0.05,
               child: Text(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pallete.dart';
+import '../constants.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({

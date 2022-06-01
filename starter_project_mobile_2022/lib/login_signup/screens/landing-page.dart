@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:starter_project_mobile_2022/main/pallete.dart';
+import 'package:starter_project_mobile_2022/login_signup/constants.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/login-screen.dart';
 import '../screens/page.dart';
 
-class MYlanding extends StatefulWidget {
+class LandingPage extends StatefulWidget {
+  static const routename = "landing";
+
   @override
-  State<MYlanding> createState() => _MYlandingState();
+  State<LandingPage> createState() => _LandingPageState();
 }
 
-class _MYlandingState extends State<MYlanding> {
+class _LandingPageState extends State<LandingPage> {
   final _contorller = PageController();
   // _contorller.
 
@@ -18,9 +20,6 @@ class _MYlandingState extends State<MYlanding> {
     double total = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Carousel Slider'),
-      // ),
       body: Container(
         margin: EdgeInsets.all(total / 20),
         child: Column(
@@ -48,8 +47,6 @@ class _MYlandingState extends State<MYlanding> {
                   SmoothPageIndicator(
                     controller: _contorller, // PageController
                     count: 4,
-
-                    // forcing the indicator to use a specific direction
                     textDirection: TextDirection.ltr,
                     effect: ExpandingDotsEffect(
                       activeDotColor: blue,
@@ -67,7 +64,8 @@ class _MYlandingState extends State<MYlanding> {
                         color: blue,
                         borderRadius: BorderRadius.circular(height * 0.026)),
                     child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'LoginScreen'),
+                      onTap: () =>
+                          Navigator.pushNamed(context, LoginScreen.routename),
                       child: Icon(
                         DIcon,
                         size: total / 15,
