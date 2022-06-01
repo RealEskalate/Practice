@@ -97,9 +97,12 @@ export class ArticleService {
       content,
       imageUrls,
     });
-    await newArticle.save();
-
-    return newArticle;
+    const new_artilce = await newArticle.save();
+    if (!new_artilce) {
+      return new NotFoundException();
+    }
+    console.log(await this.getArticleById(new_artilce._id));
+    return await this.getArticleById(new_artilce._id);
   }
 
   async rateArticleById(id: string, ratingValue: string) {
