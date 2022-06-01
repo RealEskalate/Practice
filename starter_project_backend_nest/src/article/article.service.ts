@@ -2,6 +2,7 @@ import {
   NotFoundException,
   BadRequestException,
   Injectable,
+  ForbiddenException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
@@ -40,8 +41,12 @@ export class ArticleService {
     return article;
   }
 
-  async deleteArticleById(id: string) {
+  async deleteArticleById(req: any, id: string) {
     try {
+      const article = await this.getArticleById(id);
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       const res = await this.articleModel.findByIdAndDelete(id);
       return res;
     } catch (e) {
@@ -49,10 +54,12 @@ export class ArticleService {
     }
   }
 
-  async updateArticleById(id: string, newEntries: any) {
+  async updateArticleById(req: any, id: string, newEntries: any) {
     try {
       const article = await this.getArticleById(id);
-
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
       if (newEntries.description) article.description = newEntries.description;
@@ -99,9 +106,12 @@ export class ArticleService {
     return newArticle;
   }
 
-  async rateArticleById(id: string, ratingValue: string) {
+  async rateArticleById(req: any, id: string, ratingValue: string) {
     try {
       const article = await this.getArticleById(id);
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       article.rating[ratingValue] += 1;
       await article.save();
       return article;
