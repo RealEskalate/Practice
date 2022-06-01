@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()
@@ -42,7 +42,6 @@ export class ArticleService {
   async deleteArticleById(id: string) {
     try {
       const res = await this.articleModel.findByIdAndDelete(id);
-      return res;
     } catch (e) {
       throw e;
     }
@@ -55,6 +54,7 @@ export class ArticleService {
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
       if (newEntries.description) article.description = newEntries.description;
+      if (newEntries.categories) article.categories = newEntries.categories;
 
       await article.save();
 
@@ -67,8 +67,8 @@ export class ArticleService {
   async addArticle(
     {
       authorUserId,
-      title,
       description,
+      title,
       content,
       categories,
     }: {
@@ -80,25 +80,29 @@ export class ArticleService {
     },
     images: Express.Multer.File[] = [],
   ) {
-    const imageUrls: Array<string> = [];
+    try {
+      const imageUrls: Array<string> = [];
 
-    for (const image of images) {
-      const res = await this.cloudinary.uploadImage(image);
-      const url = res.url;
-      imageUrls.push(url);
+      for (const image of images) {
+        const res = await this.cloudinary.uploadImage(image);
+        const url = res.url;
+        imageUrls.push(url);
+      }
+
+      const newArticle = new this.articleModel({
+        authorUserId: new mongo.ObjectId(authorUserId),
+        title: title,
+        content: content,
+        categories: categories,
+        imageUrls: imageUrls,
+        description: description,
+      });
+      await newArticle.save();
+
+      return newArticle;
+    } catch (e) {
+      throw new BadRequestException(e);
     }
-
-    const newArticle = new this.articleModel({
-      authorUserId,
-      title,
-      description,
-      content,
-      categories,
-      imageUrls,
-    });
-    await newArticle.save();
-
-    return newArticle;
   }
 
   async rateArticleById(id: string, ratingValue: string) {

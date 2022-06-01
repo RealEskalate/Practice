@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Body,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -34,15 +35,13 @@ export class CategoryService {
     return category;
   }
 
-  async updateCategoryById(id: string, body: any) {
+  async updateCategoryById(id: string, categoryName) {
     try {
       let category = await this.getCategoryByID(id);
+      category.categoryName = categoryName || category.categoryName;
+      await category.save();
 
-      const result = await this.categoryModel.updateOne({
-        _id: category._id,
-        categoryName: body.categoryName,
-      });
-      return result;
+      return await this.getCategoryByID(id);
     } catch (e) {
       throw e;
     }
@@ -57,6 +56,9 @@ export class CategoryService {
   async getCategoryByID(id: string) {
     try {
       const category = await this.categoryModel.findById(id);
+      if (!category) {
+        throw new NotFoundException(`${id} doesn't exist`);
+      }
       return category;
     } catch (e) {
       throw new BadRequestException(`${id} is not a valid id`);

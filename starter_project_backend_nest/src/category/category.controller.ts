@@ -1,10 +1,20 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { Public } from '../auth/constants';
 import { CategoryService } from './category.service';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @Public()
   @Get('/')
   getAllCategories() {
     return this.categoryService.getAllCategories();
@@ -16,8 +26,11 @@ export class CategoryController {
   }
 
   @Patch('/:id')
-  updateCategoryById(@Param('id') id: string, @Body('CategoryName') categoryName: string) {
-    return this.categoryService.updateCategoryById(id, {categoryName:categoryName});
+  updateCategoryById(
+    @Param('id') id: string,
+    @Body('categoryName') categoryName: string,
+  ) {
+    return this.categoryService.updateCategoryById(id, categoryName);
   }
 
   @Delete('/:id')

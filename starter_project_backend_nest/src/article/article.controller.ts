@@ -74,7 +74,7 @@ export class ArticleController {
       content,
       categories,
     };
-
+    console.log('new article: ', newArticle);
     return this.articleService.addArticle(newArticle, images);
   }
 
