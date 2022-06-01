@@ -87,13 +87,17 @@ export class UserService {
   ) {
     try {
       const user = await this.usermodel.findById(userId);
-
       user.email = email || user.email;
       user.fullName = fullName || user.fullName;
-      user.password = password || user.password;
+      if (password) {
+        const saltOrRounds = 10;
+        const hashed_password = await bcrypt.hash(password, saltOrRounds);
+        user.password = hashed_password;
+      }
 
       await user.save();
-      return user;
+      const result = await this.usermodel.findById(userId);
+      return result;
     } catch (error) {
       throw new NotFoundException(error);
     }
