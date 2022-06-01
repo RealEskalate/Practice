@@ -6,16 +6,22 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
 import { Model } from 'mongoose';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CommentsModule } from '../comment/comment.module';
 
 @Injectable()
 export class ArticleService {
   constructor(
     @InjectModel('Article')
     private readonly articleModel: Model<Article_Interface>,
+    private cloudinary: CloudinaryService,
   ) {}
 
   async getAllArticle() {
-    const allModels = await this.articleModel.find();
+    const allModels = await this.articleModel
+      .find()
+      .populate('authorUserId', '-password')
+      .lean();
     return allModels;
   }
 
@@ -23,7 +29,10 @@ export class ArticleService {
     let article: any;
 
     try {
-      article = await this.articleModel.findById(id);
+      article = await this.articleModel
+        .findById(id)
+        .populate('authorUserId', '-password')
+        .lean();
     } catch (e) {
       // for invalied id
       throw new BadRequestException(`${id} is doesn't have valied format`);
@@ -36,7 +45,7 @@ export class ArticleService {
 
   async deleteArticleById(id: string) {
     try {
-      let res = await this.articleModel.findByIdAndDelete(id);
+      const res = await this.articleModel.findByIdAndDelete(id);
       return res;
     } catch (e) {
       throw e;
@@ -45,10 +54,11 @@ export class ArticleService {
 
   async updateArticleById(id: string, newEntries: any) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
 
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
+      if (newEntries.description) article.description = newEntries.description;
 
       await article.save();
 
@@ -58,24 +68,46 @@ export class ArticleService {
     }
   }
 
-  async addArticle({
-    authorUserId,
-    title,
-    content,
-  }: {
-    authorUserId: string;
-    title: string;
-    content: string;
-  }) {
-    let newArticle = new this.articleModel({ authorUserId, title, content });
-    await newArticle.save();
+  async addArticle(
+    {
+      authorUserId,
+      title,
+      description,
+      content,
+    }: {
+      authorUserId: string;
+      description: string;
+      title: string;
+      content: string;
+    },
+    images: Express.Multer.File[] = [],
+  ) {
+    const imageUrls: Array<string> = [];
 
-    return newArticle;
+    for (const image of images) {
+      const res = await this.cloudinary.uploadImage(image);
+      const url = res.url;
+      imageUrls.push(url);
+    }
+
+    const newArticle = new this.articleModel({
+      authorUserId,
+      title,
+      description,
+      content,
+      imageUrls,
+    });
+    const new_artilce = await newArticle.save();
+    if (!new_artilce) {
+      return new NotFoundException();
+    }
+    console.log(await this.getArticleById(new_artilce._id));
+    return await this.getArticleById(new_artilce._id);
   }
 
   async rateArticleById(id: string, ratingValue: string) {
     try {
-      let article = await this.getArticleById(id);
+      const article = await this.getArticleById(id);
       article.rating[ratingValue] += 1;
       await article.save();
       return article;
@@ -86,20 +118,24 @@ export class ArticleService {
 
   async getAverageRatingById(id: string) {
     try {
-      let article = await this.getArticleById(id);
-      let rating = article.rating;
-      let numOfPeople = Object.values(rating).reduce(
+      const article = await this.getArticleById(id);
+      const rating = article.rating;
+      const numOfPeople = Object.values(rating).reduce(
         (a, b) => Number(a) + Number(b),
       );
 
       if (numOfPeople == 0) return 0;
       let avgRating = 0;
-      for (let i of [1, 2, 3, 4, 5]) {
+      for (const i of [1, 2, 3, 4, 5]) {
         avgRating += (i * Number(rating[i])) / Number(numOfPeople);
       }
       return avgRating;
     } catch (e) {
       throw e;
     }
+  }
+
+  async search(searchTerm: string) {
+    return await this.articleModel.find({ $text: { $search: searchTerm } });
   }
 }

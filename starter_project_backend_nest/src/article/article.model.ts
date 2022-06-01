@@ -1,17 +1,22 @@
 import mongoose from 'mongoose';
 
 export default interface Article_Interface extends mongoose.Document {
-  authorUserId: String;
-  title: String;
-  content: String;
-  rating: { 1: Number; 2: Number; 3: Number; 4: Number; 5: Number };
+  authorUserId: mongoose.Schema.Types.ObjectId;
+  title: string;
+  description: string;
+  content: string;
+  rating: { 1: number; 2: number; 3: number; 4: number; 5: number };
+  imageUrls: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export const ArticleSchema: mongoose.Schema<Article_Interface> =
-  new mongoose.Schema({
+const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
+  {
     authorUserId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: 'User',
     },
 
     title: {
@@ -23,6 +28,13 @@ export const ArticleSchema: mongoose.Schema<Article_Interface> =
       type: String,
       required: true,
     },
+    imageUrls: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+
     rating: {
       1: {
         type: Number,
@@ -50,4 +62,15 @@ export const ArticleSchema: mongoose.Schema<Article_Interface> =
         required: false,
       },
     },
-  });
+
+    description: {
+      type: String,
+      required: true,
+    },
+  },
+
+  { timestamps: true },
+);
+
+ArticleSchema.index({ title: 'text', description: 'text' });
+export { ArticleSchema };

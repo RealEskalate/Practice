@@ -36,8 +36,8 @@ class BodyTextField extends StatelessWidget {
               const TextStyle(color: labelColor, fontSize: labelFontSize),
           counterText: "",
         ),
-        maxLength: 10000,
-        maxLines: 15,
+        maxLength: bodyTextMaxLength,
+        maxLines: bodyTextMaxLines,
       ),
     );
   }

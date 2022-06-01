@@ -2,10 +2,13 @@
 
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/body_text_field.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/header_text_field.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/linear_flow_widget.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/multi_selection_form_field.dart';
+import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import '../../list_blog_page/constants/colors.dart';
+import '../constants/constants.dart';
+import '../widgets/add_button.dart';
+import '../widgets/body_text_field.dart';
+import '../widgets/header_text_field.dart';
+import '../widgets/multi_selection_form_field.dart';
 
 class AddBlog extends StatefulWidget {
   static const routeName = "addBlog";
@@ -17,21 +20,32 @@ class AddBlog extends StatefulWidget {
 }
 
 class _AddBlogState extends State<AddBlog> {
+  final globalKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   List? _tags = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
+      drawer: const DrawerSection(),
       appBar: AppBar(
         title: Text(
           widget.label,
           style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+              fontSize: titleFontSize,
+              fontWeight: titleFontWeight,
+              color: titleFontColor),
         ),
-        backgroundColor: Colors.white54,
+        backgroundColor: pageBackground,
         elevation: 0,
-        leading: const IconButton(icon: Icon(Icons.menu), onPressed: null),
+        leading: IconButton(
+          color: black,
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            globalKey.currentState?.openDrawer();
+          },
+        ),
       ),
       body: Stack(
         children: [
@@ -40,31 +54,28 @@ class _AddBlogState extends State<AddBlog> {
             child: Column(
               children: [
                 Expanded(
-                  flex: 12,
                   child: ListView(
                     children: <Widget>[
-                      const HeaderTextField(label: "Add title"),
-                      const HeaderTextField(label: "Add subtitle"),
+                      const HeaderTextField(label: titleLabel),
+                      const HeaderTextField(label: subtitleLabel),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 10),
+                        padding: outerWidgetPadding,
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 5,
+                              flex: tagFormFieldFlex,
                               child: MultiSelectionFormField(
                                 decoration: const InputDecoration(
                                     border: InputBorder.none),
-                                validator: (tags) => (tags?.length ?? 0) < 1
-                                    ? 'Please add a tag'
-                                    : null,
+                                validator: (tags) =>
+                                    (tags?.length ?? 0) < 1 ? tagLabel : null,
                                 onSaved: (tags) {
                                   _tags = tags;
                                 },
                               ),
                             ),
                             Expanded(
-                              flex: 1,
+                              flex: tagAddButtonFlex,
                               child: IconButton(
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
@@ -72,34 +83,25 @@ class _AddBlogState extends State<AddBlog> {
                                           () => _formKey.currentState!.save());
                                     }
                                   },
-                                  color: const Color(0xff3B71FD),
-                                  icon: const Icon(
-                                      Icons.add_circle_outline_outlined)),
+                                  color: tagBackgroundColor,
+                                  icon: const Icon(addTagButtonIcon)),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      const BodyTextField(label: "Article Content"),
-                      const SizedBox(height: 10),
-                      // SizedBox(
-                      // child: LinearFlowWidget(
-                      // context: context,
-                      // )),
-                      const SizedBox(height: 20),
-                      addButton(),
+                      const SizedBox(height: innerWidgetPadding),
+                      const BodyTextField(label: bodyTextLabel),
+                      const SizedBox(height: innerWidgetPadding),
+                      const SizedBox(height: innerWidgetPadding * 2),
+                      const AddButton(),
                     ],
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: LinearFlowWidget(
-                    context: context,
                   ),
                 ),
               ],
             ),
           ),
+
+          //TEMPORARY DEPENDENCY WIDGET
           FloatBoxPanel(
             backgroundColor: Colors.blue,
             contentColor: Colors.white,
@@ -119,26 +121,6 @@ class _AddBlogState extends State<AddBlog> {
             ],
           )
         ],
-      ),
-    );
-  }
-
-  Widget addButton() {
-    return Center(
-      child: Container(
-        height: 50,
-        width: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(60),
-          color: Colors.blue,
-        ),
-        child: const Center(
-          child: Text(
-            'Publish',
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
       ),
     );
   }

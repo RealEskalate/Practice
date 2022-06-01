@@ -32,7 +32,7 @@ class HeaderTextField extends StatelessWidget {
           hintStyle: const TextStyle(fontSize: hintTextSize, color: hintColor),
           counterText: "",
         ),
-        maxLength: 100,
+        maxLength: headerTextFieldMaxLength,
         maxLines: null,
       ),
     );
