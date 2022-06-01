@@ -7,28 +7,30 @@ const apiCall =
   async (action) => {
     if (action.type !== actions.apiCallBegan.type) return next(action)
 
-    const { url, method, onSuccess, data , onStart,onFailed} = action.payload
+    const { url, method, onSuccess, data , onStart,onFailed, headers} = action.payload
 
       if (onStart) dispatch({ type: onStart }) // loading before the api call
       next(action)
     try {
-    //     const response = await axios.request({
-    //         baseURL: 'our base url gooes heer',
-    //         url,
-    //         method,
-    //         data,
-    //         headers
-    //     })
-        const response = data
-
-        dispatch(actions.apiCallSuccess(response)) // ourt general success action will dispatch heer
-        if (onSuccess) dispatch({ type: onSuccess, payload: response }) // our passed success action will dispatch  heer if there is one
-    } catch (error) {
-      if (onFailed)
-        dispatch({
-          type: onFailed,
-          payload: error.response ? error.response.data.errors : error.message,
+        const response = await axios.request({
+            baseURL: "https://blog-app-backend.onrender.com/api",
+            url,
+            method,
+            data,
+            headers
         })
+        // response = data
+        console.log(response.data)
+
+        dispatch(actions.apiCallSuccess(response.data)) // ourt general success action will dispatch heer
+        if (onSuccess) dispatch({ type: onSuccess, payload: response.data }) // our passed success action will dispatch  heer if there is one
+    } catch (error) {
+      console.log(error.response)
+      // if (onFailed)
+      //   dispatch({
+      //     type: onFailed,
+      //     payload: error.response ? error.response.data.errors : error.message,
+      //   })
     }
   }
 export default apiCall
