@@ -29,7 +29,10 @@ export class ArticleService {
     let article: any;
 
     try {
-      article = await this.articleModel.findById(id);
+      article = await this.articleModel
+        .findById(id)
+        .populate('authorUserId', '-password')
+        .lean();
     } catch (e) {
       // for invalied id
       throw new BadRequestException(`${id} is doesn't have valied format`);
