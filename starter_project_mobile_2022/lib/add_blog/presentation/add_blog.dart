@@ -2,9 +2,10 @@
 
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/add_blog/constants/constants.dart';
-import 'package:starter_project_mobile_2022/add_blog/widgets/add_button.dart';
-import 'package:starter_project_mobile_2022/list_blog_page/constants/colors.dart';
+import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import '../../list_blog_page/constants/colors.dart';
+import '../constants/constants.dart';
+import '../widgets/add_button.dart';
 import '../widgets/body_text_field.dart';
 import '../widgets/header_text_field.dart';
 import '../widgets/multi_selection_form_field.dart';
@@ -19,21 +20,32 @@ class AddBlog extends StatefulWidget {
 }
 
 class _AddBlogState extends State<AddBlog> {
+  final globalKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   List? _tags = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
+      drawer: const DrawerSection(),
       appBar: AppBar(
         title: Text(
           widget.label,
           style: const TextStyle(
-              fontSize: titleFontSize, fontWeight: titleFontWeight, color: titleFontColor),
+              fontSize: titleFontSize,
+              fontWeight: titleFontWeight,
+              color: titleFontColor),
         ),
         backgroundColor: pageBackground,
         elevation: 0,
-        leading: const IconButton(icon: Icon(menuIcon), onPressed: null),
+        leading: IconButton(
+          color: black,
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            globalKey.currentState?.openDrawer();
+          },
+        ),
       ),
       body: Stack(
         children: [
@@ -72,8 +84,7 @@ class _AddBlogState extends State<AddBlog> {
                                     }
                                   },
                                   color: tagBackgroundColor,
-                                  icon: const Icon(
-                                      addTagButtonIcon)),
+                                  icon: const Icon(addTagButtonIcon)),
                             ),
                           ],
                         ),
