@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/profile_page/Presentation/Profile_Page.dart';
+import '../../add_blog/presentation/add_blog.dart';
 import '../constants/colors.dart';
 
 import '../widgets/circle_icon.dart';
@@ -73,7 +74,6 @@ class DrawerSection extends StatelessWidget {
                 ),
                 onTap: () {
                   closeDrawer(context);
-
                   if (ModalRoute.of(context)?.settings.name !=
                       ProfilePage.routeName) {
                     Navigator.pushNamed(context, ProfilePage.routeName);
@@ -115,6 +115,30 @@ class DrawerSection extends StatelessWidget {
                 onTap: () {
                   closeDrawer(context);
                 },
+              ),
+              ListTile(
+                leading: CircleIcon(
+                  width,
+                  icon: Icons.new_label,
+                  iconBackground: transparent,
+                  iconSize: width * 0.075,
+                  radius: width * 0.06,
+                ),
+                title: Text(
+                  'Add Article',
+                  style: TextStyle(color: white, fontWeight: FontWeight.w400),
+                ),
+                onTap: () {
+                  closeDrawer(context);
+                  if (ModalRoute.of(context)?.settings.name !=
+                      AddBlog.routeName) {
+                    Navigator.pushNamed(context, AddBlog.routeName);
+                  }
+                },
+              ),
+              DividerLine(
+                thickness: width * 0.002, // thickness of the line
+                color: white, // The color to use when painting the line.
               ),
             ],
           ),
