@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/costants.dart/constants.dart';
+import 'package:starter_project_mobile_2022/blog_detail/costants.dart/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CommentWidget extends StatelessWidget {

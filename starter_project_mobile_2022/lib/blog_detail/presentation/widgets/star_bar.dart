@@ -1,15 +1,12 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/presentation/widgets/star.dart';
-
 import '../../costants.dart/constants.dart';
+import '../widgets/star.dart';
 
-// ignore: must_be_immutable
 class StarBar extends StatefulWidget {
-  late double width;
+  final double width;
   final int numOfStars;
 
-  StarBar({
+  const StarBar({
     Key? key,
     required this.width,
     required this.numOfStars,
@@ -35,9 +32,9 @@ Widget buildStarBar(BuildContext context, double width, int numOfStars) {
         return Row(
           children: [
             if (index < numOfStars)
-              Star(context, width, starYellow)
+              Star(width: width, color: starYellow)
             else
-              Star(context, width, grey),
+              Star(width: width, color: grey),
           ],
         );
       });

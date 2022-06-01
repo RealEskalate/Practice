@@ -2,11 +2,13 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/costants.dart/constants.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/presentation/widgets/article_detail.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/presentation/widgets/comment_diaplay.dart';
-import 'package:starter_project_mobile_2022/blog_detail_murad/presentation/widgets/starBar.dart';
+import 'package:starter_project_mobile_2022/blog_detail/costants.dart/constants.dart';
+import 'package:starter_project_mobile_2022/blog_detail/presentation/widgets/article_detail.dart';
+import 'package:starter_project_mobile_2022/blog_detail/presentation/widgets/comment_diaplay.dart';
 
+import '../../../list_blog_page/widgets/star_bar.dart';
+
+// ignore: use_key_in_widget_constructors
 class PostDetailpage extends StatelessWidget {
   static const routeName = 'postdetail';
   @override
@@ -83,7 +85,7 @@ class PostDetailpage extends StatelessWidget {
                   flex: 1,
                   child: SizedBox(
                       width: width * 0.02,
-                      height: height * 0.05,
+                      height: height * 0.06,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -116,7 +118,7 @@ class PostDetailpage extends StatelessWidget {
                       width: width * 0.10,
                       height: height * 0.1,
                       child: StarBar(
-                        width: width * 0.125,
+                        width: width * 1,
                         numOfStars: 2,
                       )),
                 ),
