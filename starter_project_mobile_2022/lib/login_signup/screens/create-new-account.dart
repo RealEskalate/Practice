@@ -2,10 +2,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sign_button/sign_button.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/initial_screens.dart';
 import '../constants.dart';
 import '../widgets/widgets.dart';
 
 class CreateNewAccount extends StatelessWidget {
+  static const routename = "create_new_acccount";
+
   var size, height, width;
   @override
   Widget build(BuildContext context) {
@@ -148,8 +151,13 @@ class CreateNewAccount extends StatelessWidget {
                     width: width * 0.02,
                   ),
                   GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, 'CreateNewAccount'),
+                    onTap: () {
+                      if (ModalRoute.of(context)?.settings.name !=
+                          CreateNewAccount.routename) {
+                        Navigator.pushNamed(
+                            context, CreateNewAccount.routename);
+                      }
+                    },
                     child: Text(
                       'Sign up',
                       style: TextStyle(

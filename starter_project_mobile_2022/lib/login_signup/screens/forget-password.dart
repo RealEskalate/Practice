@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/initial_screens.dart';
 import '../constants.dart';
 import '../widgets/background-image.dart';
 import '../widgets/rounded-button.dart';
 import '../widgets/text-field-input.dart';
 
 class ForgotPassword extends StatelessWidget {
+  static const routename = "forgot_password";
+
   var size, height, width;
   @override
   Widget build(BuildContext context) {
@@ -70,7 +73,7 @@ class ForgotPassword extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () =>
-                            Navigator.pushNamed(context, 'LoginScreen'),
+                            Navigator.pushNamed(context, LoginScreen.routename),
                         child: Text(
                           'Back to Log in',
                           style: TextStyle(

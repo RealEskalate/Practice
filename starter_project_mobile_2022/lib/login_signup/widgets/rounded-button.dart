@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/main/homepage.dart';
 import '../constants.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -20,7 +21,9 @@ class RoundedButton extends StatelessWidget {
         color: kBlue,
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/");
+        },
         child: Text(
           buttonName,
           style: TextStyle(

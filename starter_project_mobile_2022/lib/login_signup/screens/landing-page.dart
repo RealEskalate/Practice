@@ -13,7 +13,6 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final _contorller = PageController();
-  // _contorller.
 
   @override
   Widget build(BuildContext context) {

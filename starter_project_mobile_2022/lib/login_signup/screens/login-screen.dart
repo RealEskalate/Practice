@@ -1,5 +1,7 @@
 import 'package:sign_button/sign_button.dart';
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/create-new-account.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/forget-password.dart';
 import '../constants.dart';
 import '../widgets/widgets.dart';
 
@@ -103,8 +105,8 @@ class LoginScreen extends StatelessWidget {
                       width: width * 0.05,
                     ),
                     GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, 'ForgotPassword'),
+                      onTap: () => Navigator.pushNamed(
+                          context, ForgotPassword.routename),
                       child: Text(
                         'Reset here',
                         style: TextStyle(
@@ -165,9 +167,8 @@ class LoginScreen extends StatelessWidget {
                     width: width * 0.02,
                   ),
                   GestureDetector(
-                    onTap: () =>
-                        // TODO
-                        Navigator.pushNamed(context, 'CreateNewAccount'),
+                    onTap: () => Navigator.pushNamed(
+                        context, CreateNewAccount.routename),
                     child: Text(
                       'Sign up',
                       style: TextStyle(

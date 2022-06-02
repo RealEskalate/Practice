@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/add_blog/presentation/add_blog.dart';
-import 'package:starter_project_mobile_2022/login_signup/screens/landing-page.dart';
-import 'package:starter_project_mobile_2022/login_signup/screens/login-screen.dart';
-import 'package:starter_project_mobile_2022/main/homepage.dart';
 
+import 'add_blog/presentation/add_blog.dart';
 import 'blog_detail/presentation/screens/blog_details_page.dart';
+import 'login_signup/screens/initial_screens.dart';
+import 'main/homepage.dart';
 import 'profile_page/Presentation/Profile_Page.dart';
 
 class PageRouter {
@@ -34,6 +33,8 @@ class PageRouter {
             builder: (context) {
               return PostDetailpage();
             });
+
+      // Routes For Initial Landing Pages
       case LandingPage.routename:
         return MaterialPageRoute(
             settings: settings,
@@ -45,6 +46,18 @@ class PageRouter {
             settings: settings,
             builder: (context) {
               return LoginScreen();
+            });
+      case CreateNewAccount.routename:
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (context) {
+              return CreateNewAccount();
+            });
+      case ForgotPassword.routename:
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (context) {
+              return ForgotPassword();
             });
     }
     return null;

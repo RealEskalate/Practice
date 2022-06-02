@@ -1,20 +1,16 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/profile_page/constants/colors.dart';
+import '../constants/colors.dart';
 
 class PostReviewCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final String created;
-  final String imageURL;
 
   const PostReviewCard({
     Key? key,
     required this.title,
     required this.subtitle,
     required this.created,
-    required this.imageURL,
   }) : super(key: key);
 
   @override
@@ -50,9 +46,7 @@ class PostReviewCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   height: height * 0.5,
                   width: width * 0.3,
-                  image: NetworkImage(
-                    imageURL,
-                  ),
+                  image: const AssetImage('assets/image.jpg'),
                 )),
           ),
           SizedBox(width: width * 0.05),
