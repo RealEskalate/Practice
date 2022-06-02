@@ -43,27 +43,34 @@ export class ArticleService {
     return article;
   }
 
-  async deleteArticleById(req: any, id: string) {
+  async deleteArticleById(userId: string, articleId: string) {
     try {
-      const article = await this.getArticleById(id);
-      if (article.authorUserId.toString() != req.user.userId) {
+      const article = await this.articleModel.findById(articleId);
+      if (!article)
+        throw new NotFoundException(`Article with ${articleId} not found`);
+
+      if (article.authorUserId.toString() != userId) {
+        console.log(article.authorUserId.toString(), userId);
         throw new ForbiddenException(
           'Only the Author article can delete the article',
         );
       }
-      const res = await this.articleModel.findByIdAndDelete(id);
+      const res = await this.articleModel.findByIdAndDelete(articleId);
+      return res; // deleted article as success respose
     } catch (e) {
       throw e;
     }
   }
 
-  async updateArticleById(req: any, id: string, newEntries: any) {
+  async updateArticleById(userId: string, articleId: string, newEntries: any) {
     try {
       //const article = await this.getArticleById(id);
       // you can't use save() for populated one
-      const article = await this.articleModel.findById(id);
+      const article = await this.articleModel.findById(articleId);
+      if (!article)
+        throw new NotFoundException(`Article with ${articleId} not found`);
 
-      if (article.authorUserId.toString() != req.user.userId.toString()) {
+      if (article.authorUserId.toString() != userId) {
         throw new ForbiddenException(
           'Only the Author of the article can update the article',
         );
@@ -88,7 +95,7 @@ export class ArticleService {
       }
 
       if (updated == false)
-        throw new BadRequestException('no valied field to updated');
+        throw new BadRequestException('no valied field to update');
 
       await article.save();
 
@@ -142,18 +149,9 @@ export class ArticleService {
     }
   }
 
-  async rateArticleById(req: any, id: string, ratingValue: string) {
+  async rateArticleById(articleId: string, ratingValue: string) {
     try {
-      //const article = await this.getArticleById(id);
-      // can't use save() if its populated
-
-      const article = await this.articleModel.findById(id);
-
-      // rate article is public there is no user in req
-      // if (article.authorUserId.toString() == req.user.userId) {
-      //   throw new ForbiddenException();
-      // }
-
+      const article = await this.articleModel.findById(articleId);
       if (Number(ratingValue) > 5 || Number(ratingValue) < 0) {
         throw new BadRequestException('rating value  should be 0 - 5');
       }
