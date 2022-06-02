@@ -28,7 +28,10 @@ export class ArticleService {
     let article: any;
 
     try {
-      article = await this.articleModel.findById(id);
+      article = await this.articleModel
+        .findById(id)
+        .populate('authorUserId', '-password')
+        .lean();
     } catch (e) {
       // for invalied id
       throw new BadRequestException(`${id} is doesn't have valied format`);
@@ -97,9 +100,12 @@ export class ArticleService {
         imageUrls: imageUrls,
         description: description,
       });
-      await newArticle.save();
 
-      return newArticle;
+      const new_artilce = await newArticle.save();
+      if (!new_artilce) {
+        return new NotFoundException();
+      }
+      return await this.getArticleById(new_artilce._id);
     } catch (e) {
       throw new BadRequestException(e);
     }
