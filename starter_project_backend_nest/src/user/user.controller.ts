@@ -17,7 +17,7 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
-@Controller('user')
+@Controller('/api/user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
