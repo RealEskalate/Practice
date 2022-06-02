@@ -39,13 +39,17 @@ export class ArticleController {
   }
 
   @Delete('/:id')
-  deleteArticleById(@Param('id') id: string) {
-    return this.articleService.deleteArticleById(id);
+  deleteArticleById(@Request() req: any, @Param('id') id: string) {
+    return this.articleService.deleteArticleById(id, req);
   }
 
   @Patch('/:id')
-  updateArticleById(@Param('id') id: string, @Body() body: any) {
-    return this.articleService.updateArticleById(id, body);
+  updateArticleById(
+    @Request() req: any,
+    @Param('id') id: string,
+    @Body() body: any,
+  ) {
+    return this.articleService.updateArticleById(req, id, body);
   }
 
   @Post('/')
@@ -80,10 +84,11 @@ export class ArticleController {
   @Public()
   @Post('/rating/:id')
   rateArticleById(
+    @Request() req: any,
     @Param('id') id: string,
     @Body() { rating }: { rating: string },
   ) {
-    return this.articleService.rateArticleById(id, rating);
+    return this.articleService.rateArticleById(req, id, rating);
   }
 
   @Public()
