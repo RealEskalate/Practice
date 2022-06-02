@@ -152,6 +152,8 @@ export class ArticleService {
   async rateArticleById(articleId: string, ratingValue: string) {
     try {
       const article = await this.articleModel.findById(articleId);
+      if (!article) return new NotFoundException();
+
       if (Number(ratingValue) > 5 || Number(ratingValue) < 0) {
         throw new BadRequestException('rating value  should be 0 - 5');
       }
