@@ -35,7 +35,7 @@ export class ArticleService {
         .lean();
     } catch (e) {
       // for invalied id
-      throw new BadRequestException(`${id} is doesn't have valied format`);
+      throw new BadRequestException(`${id} doesn't have valied format`);
     }
 
     if (!article) throw new NotFoundException(`Article with ${id} not found`);
@@ -47,7 +47,9 @@ export class ArticleService {
     try {
       const article = await this.getArticleById(id);
       if (article.authorUserId.toString() != req.user.userId) {
-        throw new ForbiddenException();
+        throw new ForbiddenException(
+          'Only the Author article can delete the article',
+        );
       }
       const res = await this.articleModel.findByIdAndDelete(id);
     } catch (e) {
@@ -57,14 +59,36 @@ export class ArticleService {
 
   async updateArticleById(req: any, id: string, newEntries: any) {
     try {
-      const article = await this.getArticleById(id);
-      if (article.authorUserId.toString() != req.user.userId) {
-        throw new ForbiddenException();
+      //const article = await this.getArticleById(id);
+      // you can't use save() for populated one
+      const article = await this.articleModel.findById(id);
+
+      if (article.authorUserId.toString() != req.user.userId.toString()) {
+        throw new ForbiddenException(
+          'Only the Author of the article can update the article',
+        );
       }
-      if (newEntries.title) article.title = newEntries.title;
-      if (newEntries.content) article.content = newEntries.content;
-      if (newEntries.description) article.description = newEntries.description;
-      if (newEntries.categories) article.categories = newEntries.categories;
+
+      let updated = false;
+      if (newEntries.title) {
+        article.title = newEntries.title;
+        updated = true;
+      }
+      if (newEntries.content) {
+        article.content = newEntries.content;
+        updated = true;
+      }
+      if (newEntries.description) {
+        article.description = newEntries.description;
+        updated = true;
+      }
+      if (newEntries.categories) {
+        article.categories = newEntries.categories;
+        updated = true;
+      }
+
+      if (updated == false)
+        throw new BadRequestException('no valied field to updated');
 
       await article.save();
 
@@ -120,13 +144,23 @@ export class ArticleService {
 
   async rateArticleById(req: any, id: string, ratingValue: string) {
     try {
-      const article = await this.getArticleById(id);
-      if (article.authorUserId.toString() != req.user.userId) {
-        throw new ForbiddenException();
+      //const article = await this.getArticleById(id);
+      // can't use save() if its populated
+
+      const article = await this.articleModel.findById(id);
+
+      // rate article is public there is no user in req
+      // if (article.authorUserId.toString() == req.user.userId) {
+      //   throw new ForbiddenException();
+      // }
+
+      if (Number(ratingValue) > 5 || Number(ratingValue) < 0) {
+        throw new BadRequestException('rating value  should be 0 - 5');
       }
+
       article.rating[ratingValue] += 1;
       await article.save();
-      return article;
+      return article.rating;
     } catch (e) {
       throw e;
     }
