@@ -5,6 +5,7 @@ export default interface Article_Interface extends mongoose.Document {
   title: string;
   description: string;
   content: string;
+  categories: [];
   rating: { 1: number; 2: number; 3: number; 4: number; 5: number };
   imageUrls: string[];
   createdAt: Date;
@@ -23,7 +24,10 @@ const ArticleSchema: mongoose.Schema<Article_Interface> = new mongoose.Schema(
       type: String,
       required: true,
     },
-
+    categories: {
+      type: [],
+      default: [],
+    },
     content: {
       type: String,
       required: true,
