@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
@@ -13,15 +13,15 @@ import TextField from './TextField'
 import Button from './AuthButton';
 
 
-const LoginCard = ()=>{
+const LoginCard = (props)=>{
     
-    const INITIAL_STATE_VALUE = {
-      username: '',
+    const [INITIAL_STATE_VALUE, setValue] = useState({
+      email: '',
       password: ''
-    }
+    })
 
     const FORM_VALIDATION = yup.object().shape({
-      username: yup.string().required("Required"),
+      email: yup.string().required("Required").email("Invalid"),
       password: yup.string().min(8).required("Required")
     })
 
@@ -30,18 +30,19 @@ const LoginCard = ()=>{
         <Typography sx={{my: 1}} variant="h3">SignIn</Typography>
         <Grid container>
           <Formik
-            initialValues={{INITIAL_STATE_VALUE}}
+            initialValues={INITIAL_STATE_VALUE}
             validationSchema = {FORM_VALIDATION}
             onSubmit = {
               (value) =>{
-                signIn('credentials', {callbackUrl: `${window.location.origin}/`})   
+                // props.handleSubmit(value)
+                signIn('credentials', {callbackUrl: `${window.location.origin}/`, email: value.email, password: value.password})   
               }
             }
           >
             <Form>
               <Grid container spacing={2} >
                 <Grid item xs={12}>
-                  <TextField  name="username" label="Username"/>
+                  <TextField  name="email" label="Email" type='email'/>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField  name="password" label="Password" type = "password"/>
@@ -65,7 +66,7 @@ const LoginCard = ()=>{
           </Grid>
         </Grid>
         <Typography sx={{my: 4}}>
-          You don@apos;t have account?{' '} 
+          You don&apos;t have account?{' '} 
           <Link href="/auth/register">
                     <a>register</a>
           </Link>  

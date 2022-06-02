@@ -9,23 +9,21 @@ import TextField from './TextField'
 import Button from './AuthButton';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import axios from 'axios';
 
-const INITIAL_STATE =  {
-    firstname: '',
-    lastname: '',
-    username: '',
-    password: '',
-    confirmPassword: ''
-  }
-
-const RegisterCard = ()=>{
-    const [INITIAL_STATE_VALUE, setInitialValue] = useState(INITIAL_STATE)
+const RegisterCard = ({handleSubmit})=>{
+    const [INITIAL_STATE_VALUE, setInitialValue] = useState({
+      fullname: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    })
     const [isRegistered, setIsRegistered] = useState(false)
+    const [registerFail, setRegisterFail] = useState('')
   
       const FORM_VALIDATION = yup.object().shape({
-        firstname: yup.string().required("Required"),
-        lastname: yup.string().required("Required"),
-        username: yup.string().required("Required"),
+        fullname: yup.string().required("Required"),
+        email: yup.string().required("Required").email("Invalid Email"),
         password: yup.string().min(8).required("Required"),
         confirmPassword: yup.string().min(8).required("Required")
       })
@@ -35,25 +33,38 @@ const RegisterCard = ()=>{
           <Typography sx={{mb: 2}} variant="h3">SignUp</Typography>
           <Grid container>
             <Formik
-              initialValues={{INITIAL_STATE_VALUE}}
+              initialValues={INITIAL_STATE_VALUE}
               validationSchema = {FORM_VALIDATION}
               onSubmit = {
-                (value) =>{
-                    console.log(value);
-                    setIsRegistered(true)
-                }
+                async (value) =>{
+                  
+                  if( value.password !== value.confirmPassword){
+                    setRegisterFail("Password don't match")
+                  }else{             
+                    try {
+                        
+                        const result = await axios.post(`${API_BASE_URL}/user`,{fullName: value.fullname, email: value.email, password: value.password})
+                        if(result.status === 201 || result.status == 200){
+                          setIsRegistered(true)
+                        }else{
+                          setRegisterFail("Register Failed")
+                        }
+
+                    } catch (error) {
+                      console.log(error.message)
+                    }
+                    
+                  }
+                } 
               }
             >
               <Form>
                 <Grid container spacing={2} >
                     <Grid item xs={12}>
-                        <TextField  name="firstname" label="First Name"/>
+                        <TextField  name="fullname" label="Full Name"/>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField  name="lastname" label="Last Name"/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField  name="username" label="Username"/>
+                        <TextField  name="email" label="Email" type='email'/>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField  name="password" label="Password" type = "password"/>
@@ -72,7 +83,7 @@ const RegisterCard = ()=>{
             <Alert severity="success">
                 <AlertTitle>Success</AlertTitle>
                  <strong>User Successfully Registered!</strong>
-            </Alert>: ""
+            </Alert>: ''
           }
           <Typography sx={{my: 4}}>
             already have an account?{' '} 
