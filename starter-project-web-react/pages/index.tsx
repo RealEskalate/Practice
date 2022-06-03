@@ -1,14 +1,24 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Bloglist from './blogs';
+import { getSession } from "next-auth/react"
 
 const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      
-    </div>
-  )
+  return (   
+    <Bloglist/>
+)
 }
-
 export default Home
+export async function getServerSideProps(context:any) {
+  const session = await getSession(context)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session }
+  }
+}

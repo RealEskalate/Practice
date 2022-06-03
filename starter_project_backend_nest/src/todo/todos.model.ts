@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Interface } from 'readline';
 import { Schema } from '@nestjs/mongoose';
+import { text } from 'stream/consumers';
 
 export default interface Todo extends mongoose.Document {
   title: string;
