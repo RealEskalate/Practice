@@ -27,7 +27,7 @@ export class AuthService {
 
     if (user && isCorrect) {
       const { password, ...result } = user;
-      return result;
+      return user;
     }
     return null;
   }

@@ -2,12 +2,12 @@ import {
   NotFoundException,
   BadRequestException,
   Injectable,
+  ForbiddenException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import Article_Interface from './article.model';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { CommentsModule } from '../comment/comment.module';
 
 @Injectable()
 export class ArticleService {
@@ -43,22 +43,28 @@ export class ArticleService {
     return article;
   }
 
-  async deleteArticleById(id: string) {
+  async deleteArticleById(req: any, id: string) {
     try {
+      const article = await this.getArticleById(id);
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       const res = await this.articleModel.findByIdAndDelete(id);
-      return res;
     } catch (e) {
       throw e;
     }
   }
 
-  async updateArticleById(id: string, newEntries: any) {
+  async updateArticleById(req: any, id: string, newEntries: any) {
     try {
       const article = await this.getArticleById(id);
-
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       if (newEntries.title) article.title = newEntries.title;
       if (newEntries.content) article.content = newEntries.content;
       if (newEntries.description) article.description = newEntries.description;
+      if (newEntries.categories) article.categories = newEntries.categories;
 
       await article.save();
 
@@ -71,43 +77,53 @@ export class ArticleService {
   async addArticle(
     {
       authorUserId,
-      title,
       description,
+      title,
       content,
+      categories,
     }: {
       authorUserId: string;
       description: string;
       title: string;
       content: string;
+      categories: string[];
     },
     images: Express.Multer.File[] = [],
   ) {
-    const imageUrls: Array<string> = [];
+    try {
+      const imageUrls: Array<string> = [];
 
-    for (const image of images) {
-      const res = await this.cloudinary.uploadImage(image);
-      const url = res.url;
-      imageUrls.push(url);
-    }
+      for (const image of images) {
+        const res = await this.cloudinary.uploadImage(image);
+        const url = res.url;
+        imageUrls.push(url);
+      }
 
-    const newArticle = new this.articleModel({
-      authorUserId,
-      title,
-      description,
-      content,
-      imageUrls,
-    });
-    const new_artilce = await newArticle.save();
-    if (!new_artilce) {
-      return new NotFoundException();
+      const newArticle = new this.articleModel({
+        authorUserId: new mongo.ObjectId(authorUserId),
+        title: title,
+        content: content,
+        categories: categories,
+        imageUrls: imageUrls,
+        description: description,
+      });
+
+      const new_artilce = await newArticle.save();
+      if (!new_artilce) {
+        return new NotFoundException();
+      }
+      return await this.getArticleById(new_artilce._id);
+    } catch (e) {
+      throw new BadRequestException(e);
     }
-    console.log(await this.getArticleById(new_artilce._id));
-    return await this.getArticleById(new_artilce._id);
   }
 
-  async rateArticleById(id: string, ratingValue: string) {
+  async rateArticleById(req: any, id: string, ratingValue: string) {
     try {
       const article = await this.getArticleById(id);
+      if (article.authorUserId.toString() != req.user.userId) {
+        throw new ForbiddenException();
+      }
       article.rating[ratingValue] += 1;
       await article.save();
       return article;

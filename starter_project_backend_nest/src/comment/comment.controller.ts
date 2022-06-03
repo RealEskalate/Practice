@@ -38,12 +38,16 @@ export class CommentController {
   }
 
   @Patch('/:articleId/comments/:id')
-  async updateComment(@Param('id') id: string, @Body('text') text: string) {
-    return await this.commentService.updateComment(id, text);
+  async updateComment(
+    @Request() req: any,
+    @Param('id') id: string,
+    @Body('text') text: string,
+  ) {
+    return await this.commentService.updateComment(req, id, text);
   }
 
   @Delete('/:articleId/comments/:id')
-  async deleteComment(@Param('id') id: string) {
-    return await this.commentService.deleteComment(id);
+  async deleteComment(@Request() req: any, @Param('id') id: string) {
+    return await this.commentService.deleteComment(req, id);
   }
 }

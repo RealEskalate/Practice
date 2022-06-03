@@ -48,10 +48,17 @@ describe('Article Testing', () => {
     );
 
     mockingArticle = {
+<<<<<<< HEAD
+      authorUserId: mockingUser._id,
+      title: 'how I got to do jobs using mars',
+      content: 'blah blah blah mars blah blah',
+      categories: [],
+=======
       authorUserId: mockingUser._doc._id,
       title: 'sample testing title',
       description: 'sample testing description',
       content: 'sample testing content',
+>>>>>>> ca5b6792715d6f6e6f228e58d7773d77c00495c7
     };
 
     await articleService.addArticle(mockingArticle);
@@ -147,7 +154,12 @@ describe('Article Testing', () => {
   describe('PATCH Article API', () => {
     test('it should be 200', async () => {
       const res = await articleService.updateArticleById(sampleId, {
+<<<<<<< HEAD
+        title: 'another',
+        categories: ['categoryid1'],
+=======
         title: 'updated title',
+>>>>>>> ca5b6792715d6f6e6f228e58d7773d77c00495c7
       });
       expect(res).toBeDefined();
     });
