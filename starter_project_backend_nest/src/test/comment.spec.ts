@@ -7,6 +7,8 @@ import { ArticleService } from '../article/article.service';
 import Article_Interface, { ArticleSchema } from '../article/article.model';
 import UserI, { UserSchema } from '../user/user.model';
 import { CommentSchema } from '../comment/comment.model';
+import { UserProfileSchema } from '../user/userProfile.model';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 describe('CommentTesting', () => {
   let commentService: CommentService;
@@ -34,9 +36,18 @@ describe('CommentTesting', () => {
             name: 'User',
             schema: UserSchema,
           },
+          {
+            name: 'UserProfile',
+            schema: UserProfileSchema,
+          },
         ]),
       ],
-      providers: [CommentService, UserService, ArticleService],
+      providers: [
+        CommentService,
+        UserService,
+        ArticleService,
+        CloudinaryService,
+      ],
     }).compile();
     userService = module.get<UserService>(UserService);
     articleService = module.get<ArticleService>(ArticleService);
@@ -44,19 +55,15 @@ describe('CommentTesting', () => {
     nonexistingId = '62834a2f700d0f81d1153351';
   });
   beforeEach(async () => {
-    user = await userService.createUser('_john', 'John', 'Doe', '12345678');
+    user = await userService.createUser('John', 'jhon@email.com', '12345678');
 
     article = await articleService.addArticle({
       authorUserId: user._id,
       title: 'how I got to do jobs using mars',
       content: 'blah blah blah mars blah blah',
-      categories: [],
+      description: 'decription of the content',
+      categories: ['Tech'],
     });
-  });
-
-  afterEach(async () => {
-    await userService.deleteUser(user._id);
-    await articleService.deleteArticleById(article._id);
   });
 
   describe('check if all services are defined', () => {
@@ -172,13 +179,13 @@ describe('CommentTesting', () => {
         article._id,
         'good article',
       );
-      const res = await commentService.deleteComment(comment._id);
+      const res = await commentService.deleteComment(user._id, comment._id);
       expect(res).toBeDefined();
     });
 
     test('response should be [400] for an invalid id', async () => {
       try {
-        await commentService.deleteComment('3');
+        await commentService.deleteComment(user._id, '3');
       } catch (error) {
         expect(error.status).toEqual(400);
       }
@@ -186,7 +193,7 @@ describe('CommentTesting', () => {
 
     test('response should be [404] for a non-existing id', async () => {
       try {
-        await commentService.deleteComment(nonexistingId);
+        await commentService.deleteComment(user._id, nonexistingId);
       } catch (error) {
         expect(error.status).toEqual(400);
       }
