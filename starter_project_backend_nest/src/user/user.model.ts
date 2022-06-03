@@ -5,6 +5,7 @@ export default interface UserI extends mongoose.Document {
   fullName: string;
   email: string;
   password: string;
+  profile: string;
 }
 
 export const UserSchema = new mongoose.Schema({
@@ -19,5 +20,9 @@ export const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  profile: {
+    type: String,
+    required: false,
   },
 });
