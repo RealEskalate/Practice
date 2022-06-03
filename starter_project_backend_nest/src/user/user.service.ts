@@ -1,6 +1,7 @@
 import {
   ConflictException,
   Injectable,
+  ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
@@ -19,7 +20,15 @@ export class UserService {
     private cloudinary: CloudinaryService,
   ) {}
 
-  async createUser(fullName: string, email: string, password: string) {
+  async createUser({
+    fullName,
+    email,
+    password,
+  }: {
+    fullName: string;
+    email: string;
+    password: string;
+  }) {
     const saltOrRounds = 10;
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
@@ -39,8 +48,16 @@ export class UserService {
   }
 
   async getAllUser() {
-    const users = await this.usermodel.find({}, { fullname: 1, email: 1 });
+    const users = await this.usermodel.find(
+      {},
+      { fullname: 1, email: 1, profile: 1 },
+    );
     return users;
+  }
+
+  async getAllUserProfiles() {
+    const profiles = await this.userprofilemodel.find({});
+    return profiles;
   }
 
   async addProfileImage(userId, bio, image: Express.Multer.File) {
@@ -58,8 +75,35 @@ export class UserService {
       },
       { upsert: true },
     );
-    const userprofile = await this.userprofilemodel.find({ userId: id });
+
+    const userprofile = await this.userprofilemodel.findOne({ userId: id });
+
+    //userprofile._id // this should be inserted to user
+    let user = await this.usermodel.findById(userId);
+
+    user.profile = userprofile._id;
+
+    await user.save();
+    console.log(user);
     return userprofile;
+  }
+
+  async deleteProfileById(userId, profileId) {
+    try {
+      const userProfile = await this.userprofilemodel.findById(profileId);
+      if (!userProfile)
+        throw new NotFoundException(`Article with ${profileId} not found`);
+
+      if (userProfile.userId.toString() != userId) {
+        throw new ForbiddenException(
+          'Only the the user can delete his profile',
+        );
+      }
+      const res = await this.userprofilemodel.findByIdAndDelete(profileId);
+      return res; // deleted as success respose
+    } catch (e) {
+      throw e;
+    }
   }
 
   async getUserById(id: string) {
@@ -67,13 +111,13 @@ export class UserService {
       const user = await this.usermodel.findById(id, {
         email: 1,
         fullName: 1,
+        profile: 1,
       });
       return user;
     } catch (e) {
       throw new NotFoundException("User by that id doesn't exist");
     }
   }
-
 
   async findOne(email: string) {
     const user = await this.usermodel.findOne({ email: email });
@@ -106,10 +150,19 @@ export class UserService {
 
   async deleteUser(id: string) {
     try {
-      const user = await this.getUserById(id);
+      // this one is populated
+      // const user = await this.getUserById(id);
+      const user = await this.usermodel.findById(id);
+      if (!user) throw new NotFoundException(`user with ${id} not found`);
+
       await this.usermodel.deleteOne({ _id: id });
+      try {
+        this.deleteProfileById(id, user.profile);
+      } catch (e) {} //do nothing//
+
+      return user;
     } catch (e) {
-      throw new NotFoundException(`user with ${id} not found`);
+      throw e;
     }
   }
 }

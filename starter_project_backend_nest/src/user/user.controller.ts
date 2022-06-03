@@ -3,19 +3,15 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
   Request,
   Param,
   Patch,
   Post,
-  Res,
-  UploadedFiles,
   UseInterceptors,
   UploadedFile,
-  UnauthorizedException,
   ForbiddenException,
 } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
@@ -30,14 +26,21 @@ export class UserController {
   }
 
   @Public()
+  @Get('/profiles/all')
+  getAllUserProfiles() {
+    return this.userService.getAllUserProfiles();
+  }
+
+  @Public()
   @Post()
   createUser(
     @Body('email') email: string,
     @Body('fullName') fullName: string,
     @Body('password') password: string,
   ) {
-    return this.userService.createUser(fullName, email, password);
+    return this.userService.createUser({ fullName, email, password });
   }
+
   @Get(':id')
   getUserById(@Param('id') id: string) {
     return this.userService.getUserById(id);
@@ -74,5 +77,10 @@ export class UserController {
       throw new ForbiddenException();
     }
     return this.userService.deleteUser(userId);
+  }
+
+  @Delete(':id')
+  deleteUserProfile(@Request() req: any, @Param('id') profileId: string) {
+    return this.userService.deleteProfileById(req.userId, profileId);
   }
 }
