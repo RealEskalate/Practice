@@ -11,23 +11,23 @@ import {
 import { Public } from 'src/auth/constants';
 import { CommentService } from './comment.service';
 
-@Controller('/api/articles/')
+@Controller('/api/comments')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Public()
-  @Get('/:articleId/comments')
+  @Get('/:articleId')
   async getAllComments(@Param('articleId') articleId: string) {
     return this.commentService.getComments(articleId);
   }
 
   @Public()
-  @Get('/:articleId/comments/:id')
+  @Get('/:articleId/:id')
   async getComment(@Param('id') id: string) {
     return this.commentService.getComment(id);
   }
 
-  @Post('/:articleId/comments')
+  @Post('/:articleId')
   async createComment(
     @Param('articleId') articleId: string,
     @Body('text') text: string,
@@ -37,7 +37,7 @@ export class CommentController {
     return await this.commentService.createComment(userId, articleId, text);
   }
 
-  @Patch('/:articleId/comments/:id')
+  @Patch('/:articleId/:id')
   async updateComment(
     @Request() req: any,
     @Param('id') id: string,
@@ -46,7 +46,7 @@ export class CommentController {
     return await this.commentService.updateComment(req, id, text);
   }
 
-  @Delete('/:articleId/comments/:id')
+  @Delete('/:id')
   async deleteComment(@Request() req: any, @Param('id') id: string) {
     return await this.commentService.deleteComment(req, id);
   }
