@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import '../../list_blog_page/presentation/drawer.dart';
 import '../constants/colors.dart';
-import '../widget/drawer.dart';
 import '../widget/postCard.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -136,15 +135,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         subtitle:
                             "Why big data suhakjjljklkvhgfhjhgkhhjgkjhgkjgkjghjhgkjgfhfhgh",
                         created: "1 hr ago",
-                        imageURL:
-                            "https://miro.medium.com/max/645/1*QSDBne0uwCD7chzSt6EvKQ.jpeg",
                       ),
                       PostReviewCard(
                         title: "UX Design",
                         subtitle: "step design sprint for UX beginner",
                         created: "2 hrs ago",
-                        imageURL:
-                            "https://thisisglance.com/wp-content/uploads/2020/03/10-what-is-ux-design.jpg",
                       ),
                     ],
                   ),
@@ -201,25 +196,12 @@ class _buildHeaderWidget extends StatelessWidget {
                 child: Stack(children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(height * 0.07),
-                    child: Image.network(
-                        "https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/12/IMG_9127.jpg?itok=156LUKD5",
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
+                    child: Image(
+                        alignment: Alignment.center,
                         fit: BoxFit.cover,
-                        width: width * 0.28,
-                        height: height * 0.3),
+                        height: width * 0.2,
+                        width: width * 0.2,
+                        image: const AssetImage('assets/mark.png')),
                   ),
                   Padding(
                     padding: EdgeInsets.only(

@@ -10,6 +10,7 @@ import {
   Body,
   UseInterceptors,
   UploadedFiles,
+  BadRequestException,
 } from '@nestjs/common';
 
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -39,8 +40,8 @@ export class ArticleController {
   }
 
   @Delete('/:id')
-  deleteArticleById(@Request() req: any, @Param('id') id: string) {
-    return this.articleService.deleteArticleById(id, req);
+  deleteArticleById(@Request() req: any, @Param('id') articleId: string) {
+    return this.articleService.deleteArticleById(req.user.userId, articleId);
   }
 
   @Patch('/:id')
@@ -49,7 +50,7 @@ export class ArticleController {
     @Param('id') id: string,
     @Body() body: any,
   ) {
-    return this.articleService.updateArticleById(req, id, body);
+    return this.articleService.updateArticleById(req.user.userId, id, body);
   }
 
   @Post('/')
@@ -85,10 +86,11 @@ export class ArticleController {
   @Post('/rating/:id')
   rateArticleById(
     @Request() req: any,
-    @Param('id') id: string,
+    @Param('id') articleId: string,
     @Body() { rating }: { rating: string },
   ) {
-    return this.articleService.rateArticleById(req, id, rating);
+    if (!rating) throw new BadRequestException('rating feild is not provided');
+    return this.articleService.rateArticleById(articleId, rating);
   }
 
   @Public()
