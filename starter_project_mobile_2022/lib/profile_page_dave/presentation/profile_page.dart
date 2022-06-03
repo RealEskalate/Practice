@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
           width: width * 0.6,
           child: Opacity(
             opacity: width * 0.0023,
-            child: Drawer(
+            child: const Drawer(
               child: MainDrawer(),
             ),
           )),
@@ -81,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 top: height * 0.12,
                 left: height * 0.025,
                 right: height * 0.035),
-            height: height * 0.45,
+            height: height * 0.5,
             width: width,
             decoration: BoxDecoration(
               color: white,
@@ -178,7 +178,7 @@ class _buildHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height / 1.5,
+      height: height / 1.1,
       width: width,
       margin: EdgeInsets.only(left: height * 0.04, right: height * 0.04),
       padding: EdgeInsets.only(
@@ -266,10 +266,32 @@ class _buildHeaderWidget extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("About me", maxLines: 1),
-                    Text("I’m a a software engineer and UX designer",
-                        maxLines: 1, overflow: TextOverflow.ellipsis),
+                  children: [
+                    Row(children: [
+                      Text(
+                        "About me",
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: height * 0.054,
+                          color: black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Center(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.border_color, color: darkBlue),
+                        ),
+                      ),
+                    ]),
+                    SizedBox(
+                      height: height * 0.137,
+                      width: width * 0.7,
+                      child: Text(
+                          "I’m a a software engineer and UX designer at Eskalate with a passion working with them.",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ],
                 )
               ],
