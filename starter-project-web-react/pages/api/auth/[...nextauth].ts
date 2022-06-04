@@ -2,6 +2,9 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode';
 import {NextApiRequest, NextApiResponse } from 'next'
 import NextAuth from 'next-auth/next'
+import CredentialsProvider  from 'next-auth/providers/credentials'
+import GitHubProvider from 'next-auth/providers/github'
+import AuthApiCall from '../../../util/AuthApiCall';
 
 export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
     providers: [
@@ -25,6 +28,28 @@ export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
             }
           })
     ],
+    secret: process.env.NEXT_PUBLIC_SECRET,
+    pages: {
+      signIn: '/auth/login',
+    },
+    callbacks: {
+      jwt: async ({ user, token }) => {
+          user && (token.user = user)
+          return token
+      },
+      session: async ({ session, token }) => {
+        session.access_token = token.user
+        const _token: any = token.user;
+        var decoded: any = jwt_decode(_token)
+        session.id = decoded.sub
+
+        const res = await AuthApiCall.GetUserDetail(decoded.sub, _token)
+        if(res){
+          session.user = res
+        }
+        return session
+    }
+  }
 
     
 })
