@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
   ForbiddenException,
+  BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
@@ -31,9 +32,19 @@ export class UserController {
     return this.userService.getAllUserProfiles();
   }
 
-  @Delete('profile/:id')
-  deleteUserProfile(@Request() req: any, @Param('id') profileId: string) {
-    return this.userService.deleteProfileById(req.user.userId, profileId);
+  @Get('')
+  getUser(@Request() req: any) {
+    return this.userService.getUserById(req.user.userId);
+  }
+
+  @Get('profile')
+  getUserProfile(@Request() req: any) {
+    return this.userService.getUserProfile(req.user.userId);
+  }
+
+  @Delete('profile')
+  deleteUserProfile(@Request() req: any) {
+    return this.userService.deleteUserProfile(req.user.userId);
   }
 
   @Public()
@@ -44,11 +55,6 @@ export class UserController {
     @Body('password') password: string,
   ) {
     return this.userService.createUser({ fullName, email, password });
-  }
-
-  @Get('profile/:id')
-  getUserProfileById(@Param('id') id: string) {
-    return this.userService.getUserProfileById(id);
   }
 
   @Get(':id')

@@ -5,7 +5,7 @@ export default interface UserI extends mongoose.Document {
   fullName: string;
   email: string;
   password: string;
-  profile: string;
+  profileId: string;
 }
 
 export const UserSchema = new mongoose.Schema({
@@ -21,7 +21,7 @@ export const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  profile: {
+  profileId: {
     type: String,
     ref: 'UserProfileSchema',
     required: false,

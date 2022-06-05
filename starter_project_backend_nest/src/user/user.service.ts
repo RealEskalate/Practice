@@ -3,6 +3,7 @@ import {
   Injectable,
   ForbiddenException,
   NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, mongo } from 'mongoose';
@@ -50,14 +51,9 @@ export class UserService {
   async getAllUser() {
     const users = await this.usermodel.find(
       {},
-      { fullname: 1, email: 1, profile: 1 },
+      { fullname: 1, email: 1, profileId: 1 },
     );
     return users;
-  }
-
-  async getAllUserProfiles() {
-    const profiles = await this.userprofilemodel.find({});
-    return profiles;
   }
 
   async addProfileImage(
@@ -84,27 +80,9 @@ export class UserService {
 
     //adding profile id to user
     let user = await this.usermodel.findById(userId);
-    user.profile = userprofile._id;
+    user.profileId = userprofile._id;
     await user.save();
     return userprofile;
-  }
-
-  async deleteProfileById(userId: string, profileId: string) {
-    try {
-      const userProfile = await this.userprofilemodel.findById(profileId);
-      if (!userProfile)
-        throw new NotFoundException(`profile with ${profileId} not found`);
-      console.log(userProfile.userId, userId);
-      if (userProfile.userId.toString() != userId) {
-        throw new ForbiddenException(
-          'Only the the user can delete his profile',
-        );
-      }
-      const res = await this.userprofilemodel.findByIdAndDelete(profileId);
-      return res; // deleted as success respose
-    } catch (e) {
-      throw e;
-    }
   }
 
   async getUserById(id: string) {
@@ -112,24 +90,12 @@ export class UserService {
       const user = await this.usermodel.findById(id, {
         email: 1,
         fullName: 1,
-        profile: 1,
+        profileId: 1,
       });
       if (!user) {
         throw new NotFoundException("User by that id doesn't exist");
       }
       return user;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  async getUserProfileById(profileId: string) {
-    try {
-      const profile = await this.userprofilemodel.findById(profileId);
-      if (!profile)
-        throw new NotFoundException("profile by that id doesn't exist");
-
-      return profile;
     } catch (e) {
       throw e;
     }
@@ -169,12 +135,50 @@ export class UserService {
       const user = await this.usermodel.findById(id);
       if (!user) throw new NotFoundException(`user with ${id} not found`);
 
-      await this.usermodel.deleteOne({ _id: id });
       try {
-        this.deleteProfileById(id, user.profile);
+        this.deleteUserProfile(id);
       } catch (e) {} //do nothing//
 
-      return user;
+      await this.usermodel.deleteOne({ _id: id });
+
+      const { _id, email, fullName } = user;
+      return { _id, email, fullName };
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async getAllUserProfiles() {
+    const profiles = await this.userprofilemodel.find({});
+    return profiles;
+  }
+
+  async getUserProfile(userId: string) {
+    try {
+      const user = await this.usermodel.findById(userId);
+      if (!user || !user.profileId)
+        throw new BadRequestException("user don't have profile");
+      const profileId = user.profileId;
+
+      const profile = await this.userprofilemodel.findById(profileId);
+      if (!profile) throw new NotFoundException("user don't have profile");
+      return profile;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async deleteUserProfile(userId: string) {
+    try {
+      const user = await this.usermodel.findById(userId);
+      if (!user.profileId)
+        throw new BadRequestException("user don't have profile");
+      const profileId = user.profileId;
+
+      const profile = await this.userprofilemodel.findByIdAndDelete(profileId);
+      user.profileId = null;
+      user.save();
+      return profile;
     } catch (e) {
       throw e;
     }
