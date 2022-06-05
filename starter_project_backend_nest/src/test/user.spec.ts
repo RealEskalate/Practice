@@ -12,6 +12,28 @@ describe('UserTesing', () => {
   let module: TestingModule;
   let user1;
 
+  const userOne = {
+    email: 'user@email',
+    fullName: 'fullName',
+    password: '123',
+  };
+  const userTwo = {
+    email: 'usertwo@email',
+    fullName: 'fullName',
+    password: '123',
+  };
+
+  const userThree = {
+    email: 'userthree@email',
+    fullName: 'fullName',
+    password: '123',
+  };
+  const updatedUser = {
+    email: 'updateUser',
+    fullName: 'updateFullName',
+    password: '123',
+  };
+
   beforeAll(async () => {
     module = await Test.createTestingModule({
       imports: [
@@ -31,12 +53,7 @@ describe('UserTesing', () => {
   });
 
   beforeAll(async () => {
-    user1 = await service.createUser(
-      'user',
-      'firstName1',
-      'lastName2',
-      'password',
-    );
+    user1 = await service.createUser(userOne);
   });
 
   afterAll(async () => {
@@ -64,44 +81,24 @@ describe('UserTesing', () => {
     });
 
     it('It should create user', async () => {
-      let response: any = await controller.createUser(
-        'username2',
-        'firstName2',
-        'lastName2',
-        'password',
-      );
+      let response: any = await controller.createUser(userTwo);
       expect(response).toBeDefined();
       expect(response.username).toEqual('username2');
     });
 
     it('It should not create user', async () => {
-      let response = await controller.createUser(
-        'username3',
-        'firstName3',
-        'lastName3',
-        'password',
-      );
+      let response = await controller.createUser(userThree);
 
       try {
-        await controller.createUser(
-          'username3',
-          'firstName3',
-          'lastName3',
-          'password',
-        );
+        await controller.createUser(userThree);
       } catch (e) {
         expect(e).toBeInstanceOf(ConflictException);
       }
     });
 
     it('It should update user', async () => {
-      let response: any = await controller.createUser(
-        'updateUser',
-        'updateFirst',
-        'updateLast',
-        'password',
-      );
-      
+      let response: any = await controller.createUser(updatedUser);
+
       let response2: any = await controller.updateUser(
         response._id,
         'usernamechanged',
@@ -112,7 +109,6 @@ describe('UserTesing', () => {
 
       expect(response2).toBeDefined();
       expect(response2.username).toEqual('usernamechanged');
-
     });
 
     it('It should not update user', async () => {
@@ -130,12 +126,7 @@ describe('UserTesing', () => {
     });
 
     it('It should delete user', async () => {
-      let response: any = await controller.createUser(
-        'updateUser',
-        'updateFirst',
-        'updateLast',
-        'password',
-      );
+      let response: any = await controller.createUser(updatedUser);
 
       const user = response;
       const response1 = await controller.deleteUser(user._id);
