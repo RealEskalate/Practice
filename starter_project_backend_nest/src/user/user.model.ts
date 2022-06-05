@@ -23,6 +23,7 @@ export const UserSchema = new mongoose.Schema({
   },
   profile: {
     type: String,
+    ref: 'UserProfileSchema',
     required: false,
   },
 });

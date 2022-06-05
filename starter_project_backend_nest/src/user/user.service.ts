@@ -60,7 +60,11 @@ export class UserService {
     return profiles;
   }
 
-  async addProfileImage(userId, bio, image: Express.Multer.File) {
+  async addProfileImage(
+    userId: string,
+    bio: string,
+    image: Express.Multer.File,
+  ) {
     const res = await this.cloudinary.uploadImage(image);
     const url = res.url;
     const id = new mongo.ObjectId(userId);
@@ -78,22 +82,19 @@ export class UserService {
 
     const userprofile = await this.userprofilemodel.findOne({ userId: id });
 
-    //userprofile._id // this should be inserted to user
+    //adding profile id to user
     let user = await this.usermodel.findById(userId);
-
     user.profile = userprofile._id;
-
     await user.save();
-    console.log(user);
     return userprofile;
   }
 
-  async deleteProfileById(userId, profileId) {
+  async deleteProfileById(userId: string, profileId: string) {
     try {
       const userProfile = await this.userprofilemodel.findById(profileId);
       if (!userProfile)
-        throw new NotFoundException(`Article with ${profileId} not found`);
-
+        throw new NotFoundException(`profile with ${profileId} not found`);
+      console.log(userProfile.userId, userId);
       if (userProfile.userId.toString() != userId) {
         throw new ForbiddenException(
           'Only the the user can delete his profile',
@@ -113,9 +114,24 @@ export class UserService {
         fullName: 1,
         profile: 1,
       });
+      if (!user) {
+        throw new NotFoundException("User by that id doesn't exist");
+      }
       return user;
     } catch (e) {
-      throw new NotFoundException("User by that id doesn't exist");
+      throw e;
+    }
+  }
+
+  async getUserProfileById(profileId: string) {
+    try {
+      const profile = await this.userprofilemodel.findById(profileId);
+      if (!profile)
+        throw new NotFoundException("profile by that id doesn't exist");
+
+      return profile;
+    } catch (e) {
+      throw e;
     }
   }
 
@@ -150,8 +166,6 @@ export class UserService {
 
   async deleteUser(id: string) {
     try {
-      // this one is populated
-      // const user = await this.getUserById(id);
       const user = await this.usermodel.findById(id);
       if (!user) throw new NotFoundException(`user with ${id} not found`);
 
