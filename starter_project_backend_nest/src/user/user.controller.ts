@@ -50,9 +50,16 @@ export class UserController {
   @Public()
   @Post()
   createUser(
-    @Body('email') email: string,
-    @Body('fullName') fullName: string,
-    @Body('password') password: string,
+    @Body()
+    {
+      fullName,
+      email,
+      password,
+    }: {
+      fullName: string;
+      email: string;
+      password: string;
+    },
   ) {
     return this.userService.createUser({ fullName, email, password });
   }
