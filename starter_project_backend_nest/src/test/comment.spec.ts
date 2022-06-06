@@ -50,6 +50,7 @@ describe('CommentTesting', () => {
       authorUserId: user._id,
       title: 'how I got to do jobs using mars',
       content: 'blah blah blah mars blah blah',
+      categories: [],
     });
   });
 

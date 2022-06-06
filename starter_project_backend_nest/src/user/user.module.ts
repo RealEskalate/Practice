@@ -4,7 +4,7 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserSchema } from './user.model';
 import { UserProfileSchema } from './userProfile.model';
-import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
   imports: [

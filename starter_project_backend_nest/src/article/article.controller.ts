@@ -10,6 +10,7 @@ import {
   Body,
   UseInterceptors,
   UploadedFiles,
+  BadRequestException,
 } from '@nestjs/common';
 
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -39,13 +40,17 @@ export class ArticleController {
   }
 
   @Delete('/:id')
-  deleteArticleById(@Param('id') id: string) {
-    return this.articleService.deleteArticleById(id);
+  deleteArticleById(@Request() req: any, @Param('id') articleId: string) {
+    return this.articleService.deleteArticleById(req.user.userId, articleId);
   }
 
   @Patch('/:id')
-  updateArticleById(@Param('id') id: string, @Body() body: any) {
-    return this.articleService.updateArticleById(id, body);
+  updateArticleById(
+    @Request() req: any,
+    @Param('id') id: string,
+    @Body() body: any,
+  ) {
+    return this.articleService.updateArticleById(req.user.userId, id, body);
   }
 
   @Post('/')
@@ -57,22 +62,35 @@ export class ArticleController {
       title,
       description,
       content,
-    }: { title: string; description: string; content: string },
+      categories,
+    }: {
+      title: string;
+      description: string;
+      content: string;
+      categories: string[];
+    },
     @UploadedFiles() images: Array<Express.Multer.File>,
   ) {
     const authorUserId = req.user.userId;
-    const newArticle = { authorUserId, title, description, content };
-
+    const newArticle = {
+      authorUserId,
+      title,
+      description,
+      content,
+      categories,
+    };
     return this.articleService.addArticle(newArticle, images);
   }
 
   @Public()
   @Post('/rating/:id')
   rateArticleById(
-    @Param('id') id: string,
+    @Request() req: any,
+    @Param('id') articleId: string,
     @Body() { rating }: { rating: string },
   ) {
-    return this.articleService.rateArticleById(id, rating);
+    if (!rating) throw new BadRequestException('rating feild is not provided');
+    return this.articleService.rateArticleById(articleId, rating);
   }
 
   @Public()

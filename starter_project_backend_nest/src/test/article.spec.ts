@@ -6,6 +6,7 @@ import { ArticleSchema } from '../article/article.model';
 import { UserService } from '../user/user.service';
 import { UserSchema } from '../user/user.model';
 import { CloudinaryModule } from './../cloudinary/cloudinary.module';
+import { UserProfileSchema } from '../user/userProfile.model';
 
 class MockingCloudinaryModule extends CloudinaryModule {
   uploadImage(Image) {
@@ -21,7 +22,9 @@ describe('Article Testing', () => {
   let mockingUser;
   let mockingArticle;
 
-  let sampleId: string;
+  let sampleArticleId: string;
+  let mockingUserId: string;
+
   let wrongId = '825d207b5bc4207cc0d80844';
   let invaliedId = 'invaliedidtesting';
 
@@ -31,6 +34,9 @@ describe('Article Testing', () => {
         rootMongooseTestModule(),
         MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
         MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MongooseModule.forFeature([
+          { name: 'UserProfile', schema: UserProfileSchema },
+        ]),
         MockingCloudinaryModule,
       ],
       providers: [ArticleService, UserService],
@@ -42,13 +48,13 @@ describe('Article Testing', () => {
 
   beforeEach(async () => {
     mockingUser = await userService.createUser(
-      'test_email',
       'test_fullName',
+      'test_email@gmai.com',
       'test_password',
     );
-
+    mockingUserId = mockingUser._id;
     mockingArticle = {
-      authorUserId: mockingUser._doc._id,
+      authorUserId: mockingUserId,
       title: 'sample testing title',
       description: 'sample testing description',
       content: 'sample testing content',
@@ -57,13 +63,13 @@ describe('Article Testing', () => {
     await articleService.addArticle(mockingArticle);
 
     const allArticles = await articleService.getAllArticle();
-    sampleId = allArticles[0]._id;
+    sampleArticleId = allArticles[0]._id;
   });
 
   afterEach(async () => {
-    await userService.deleteUser(mockingUser._doc._id);
+    await userService.deleteUser(mockingUserId);
     for (let article of await articleService.getAllArticle()) {
-      await articleService.deleteArticleById(article._id);
+      await articleService.deleteArticleById(mockingUserId, article._id);
     }
   });
 
@@ -95,7 +101,7 @@ describe('Article Testing', () => {
 
   describe('GET Article By ID', () => {
     test('response should be defined for valid Id', async () => {
-      const res = articleService.getArticleById(sampleId);
+      const res = articleService.getArticleById(sampleArticleId);
       expect(res).toBeDefined();
     });
 
@@ -119,17 +125,20 @@ describe('Article Testing', () => {
 
   describe('DELETE Article API', () => {
     test('response after deleting should be [success]', async () => {
-      const deletedArticle = await articleService.deleteArticleById(sampleId);
+      const deletedArticle = await articleService.deleteArticleById(
+        mockingUserId,
+        sampleArticleId,
+      );
       expect(deletedArticle).toBeDefined();
     });
   });
 
   describe('DELETE Article API', () => {
-    test('it should be [null] for id that does not exist', async () => {
+    test('it should be [NotFound] for id that does not exist', async () => {
       try {
-        await articleService.deleteArticleById(wrongId);
+        await articleService.deleteArticleById(mockingUserId, wrongId);
       } catch (e) {
-        expect(e).toEqual(null);
+        expect(e.status).toEqual(404);
       }
     });
   });
@@ -137,7 +146,7 @@ describe('Article Testing', () => {
   describe('DELETE Article API', () => {
     test('it should be [null] for bad Id', async () => {
       try {
-        await articleService.deleteArticleById(invaliedId);
+        await articleService.deleteArticleById(mockingUserId, invaliedId);
       } catch (e) {
         expect(e.name).toEqual('CastError');
       }
@@ -146,15 +155,20 @@ describe('Article Testing', () => {
 
   describe('PATCH Article API', () => {
     test('it should be 200', async () => {
-      const res = await articleService.updateArticleById(sampleId, {
-        title: 'updated title',
-      });
+      const res = await articleService.updateArticleById(
+        mockingUserId,
+        sampleArticleId,
+        {
+          title: 'another',
+          categories: ['categoryid1'],
+        },
+      );
       expect(res).toBeDefined();
     });
 
     test('it should be 404 if id is not found', async () => {
       try {
-        await articleService.updateArticleById(wrongId, {
+        await articleService.updateArticleById(mockingUserId, wrongId, {
           title: 'another',
         });
       } catch (e) {
@@ -165,11 +179,11 @@ describe('Article Testing', () => {
     test('it should be 400 for bad id', async () => {
       let invaliedId = 'jjkljdfsdfd';
       try {
-        await articleService.updateArticleById(invaliedId, {
+        await articleService.updateArticleById(mockingUserId, invaliedId, {
           title: 'another',
         });
       } catch (e) {
-        expect(e.status).toEqual(400);
+        expect(e.name).toEqual('CastError');
       }
     });
   });
@@ -177,22 +191,22 @@ describe('Article Testing', () => {
   describe('PATCH Article Rating ', () => {
     test('rating an article, it should increment by one', async () => {
       const sampleArt = await articleService.getAllArticle();
-      let sampleId = sampleArt[0]._id;
+      let sampleArticleId = sampleArt[0]._id;
 
       const ratingVal = '3';
       let oldRating = sampleArt[0].rating[ratingVal];
 
-      const ratedArticle = await articleService.rateArticleById(
-        sampleId,
+      const newRating = await articleService.rateArticleById(
+        sampleArticleId,
         ratingVal,
       );
 
-      let newRatedVal = ratedArticle.rating[ratingVal];
+      let newRatedVal = newRating[ratingVal];
       expect(newRatedVal).toBeDefined();
       expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
     });
 
-    test('rating an article that does not exist', async () => {
+    test('rating an article that does not exist should be 404', async () => {
       const ratingVal = '3';
       try {
         await articleService.rateArticleById(wrongId, ratingVal);
@@ -204,10 +218,12 @@ describe('Article Testing', () => {
 
   describe('GET Article Rating ', () => {
     test('getting average of article', async () => {
-      await articleService.rateArticleById(sampleId, '2');
-      await articleService.rateArticleById(sampleId, '4');
+      await articleService.rateArticleById(sampleArticleId, '2');
+      await articleService.rateArticleById(sampleArticleId, '4');
 
-      let avgRating = await articleService.getAverageRatingById(sampleId);
+      let avgRating = await articleService.getAverageRatingById(
+        sampleArticleId,
+      );
       expect(avgRating).toBeDefined();
       expect(avgRating).toBe(2 / 2 + 4 / 2);
     });

@@ -4,7 +4,6 @@ import { CommentController } from './comment.controller';
 import { CommentService } from './comment.service';
 import { CommentSchema } from './comment.model';
 import { UserModule } from '../user/user.module';
-import { ArticleModule } from '../article/article.module';
 
 @Module({
   imports: [
