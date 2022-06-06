@@ -7,6 +7,14 @@ import { ArticleService } from '../article/article.service';
 import Article_Interface, { ArticleSchema } from '../article/article.model';
 import UserI, { UserSchema } from '../user/user.model';
 import { CommentSchema } from '../comment/comment.model';
+import { UserProfileSchema } from '../user/userProfile.model';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
+
+class MockingCloudinaryModule extends CloudinaryModule {
+  uploadImage(Image) {
+    return 'random/url' + Math.random();
+  }
+}
 
 describe('CommentTesting', () => {
   let commentService: CommentService;
@@ -21,52 +29,41 @@ describe('CommentTesting', () => {
     module = await Test.createTestingModule({
       imports: [
         rootMongooseTestModule(),
+        MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MongooseModule.forFeature([{ name: 'Comment', schema: CommentSchema }]),
         MongooseModule.forFeature([
-          {
-            name: 'Comment',
-            schema: CommentSchema,
-          },
-          {
-            name: 'Article',
-            schema: ArticleSchema,
-          },
-          {
-            name: 'User',
-            schema: UserSchema,
-          },
+          { name: 'UserProfile', schema: UserProfileSchema },
         ]),
+        MockingCloudinaryModule,
       ],
-      providers: [CommentService, UserService, ArticleService],
+      providers: [ArticleService, UserService, CommentService],
     }).compile();
-    userService = module.get<UserService>(UserService);
+
     articleService = module.get<ArticleService>(ArticleService);
+    userService = module.get<UserService>(UserService);
     commentService = module.get<CommentService>(CommentService);
     nonexistingId = '62834a2f700d0f81d1153351';
+    user = await userService.createUser('John', 'jhon@email.com', '12345678');
   });
-  beforeEach(async () => {
-    user = await userService.createUser('_john', 'John', 'Doe', '12345678');
 
+  beforeEach(async () => {
     article = await articleService.addArticle({
       authorUserId: user._id,
       title: 'how I got to do jobs using mars',
       content: 'blah blah blah mars blah blah',
-      categories: [],
+      description: 'decription of the content',
+      categories: ['Tech'],
     });
-  });
-
-  afterEach(async () => {
-    await userService.deleteUser(user._id);
-    await articleService.deleteArticleById(article._id);
+    const mock_comment = {
+      userId: user._id,
+      articleId: article._id,
+      text: 'comment on this article',
+    };
   });
 
   describe('check if all services are defined', () => {
     it('comment service should be defined', async () => {
-      expect(commentService).toBeDefined();
-    });
-    it('user service should be defined', async () => {
-      expect(commentService).toBeDefined();
-    });
-    it('article service should be defined', async () => {
       expect(commentService).toBeDefined();
     });
   });
@@ -158,6 +155,7 @@ describe('CommentTesting', () => {
         'good article',
       );
       const updated = await commentService.updateComment(
+        user._id,
         comment._id,
         'very good article',
       );
@@ -172,13 +170,13 @@ describe('CommentTesting', () => {
         article._id,
         'good article',
       );
-      const res = await commentService.deleteComment(comment._id);
+      const res = await commentService.deleteComment(user._id, comment._id);
       expect(res).toBeDefined();
     });
 
     test('response should be [400] for an invalid id', async () => {
       try {
-        await commentService.deleteComment('3');
+        await commentService.deleteComment(user._id, '3');
       } catch (error) {
         expect(error.status).toEqual(400);
       }
@@ -186,7 +184,7 @@ describe('CommentTesting', () => {
 
     test('response should be [404] for a non-existing id', async () => {
       try {
-        await commentService.deleteComment(nonexistingId);
+        await commentService.deleteComment(user._id, nonexistingId);
       } catch (error) {
         expect(error.status).toEqual(400);
       }

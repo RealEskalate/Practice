@@ -14,7 +14,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { TodoService } from './todo.service';
 import { multerConfig } from './../config/config';
 
-@Controller('todo')
+@Controller('/api/todo')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
   @Public()

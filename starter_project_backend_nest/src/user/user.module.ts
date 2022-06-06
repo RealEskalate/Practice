@@ -8,8 +8,8 @@ import { CloudinaryModule } from '../cloudinary/cloudinary.module';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     MongooseModule.forFeature([
+      { name: 'User', schema: UserSchema },
       { name: 'UserProfile', schema: UserProfileSchema },
     ]),
     CloudinaryModule,

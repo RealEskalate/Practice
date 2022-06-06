@@ -55,13 +55,13 @@ export class CommentService {
     }
   }
 
-  async updateComment(req: any, id: string, text: string) {
+  async updateComment(userId: string, id: string, text?: string) {
     try {
       const comment = await this.commentModel.findById(id);
       if (!comment) {
         throw new NotFoundException();
       }
-      if (comment.user.toString() != req.user.userId) {
+      if (comment.user.toString() != userId) {
         throw new ForbiddenException();
       }
       if (text) {
@@ -74,14 +74,14 @@ export class CommentService {
     }
   }
 
-  async deleteComment(req: any, id: string) {
+  async deleteComment(userId: string, id: string) {
     try {
       const comment = await this.commentModel.findById(id);
       if (!comment) {
         throw new NotFoundException();
       }
 
-      if (comment.user.toString() != req.user.userId) {
+      if (comment.user.toString() != userId) {
         throw new ForbiddenException();
       }
       await this.commentModel.deleteOne({ _id: id });

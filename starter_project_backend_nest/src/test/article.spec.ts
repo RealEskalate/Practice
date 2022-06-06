@@ -25,8 +25,8 @@ describe('Article Testing', () => {
   let sampleArticleId: string;
   let mockingUserId: string;
 
-  let wrongId = '825d207b5bc4207cc0d80844';
-  let invaliedId = 'invaliedidtesting';
+  const wrongId = '825d207b5bc4207cc0d80844';
+  const invaliedId = 'invaliedidtesting';
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
@@ -68,7 +68,7 @@ describe('Article Testing', () => {
 
   afterEach(async () => {
     await userService.deleteUser(mockingUserId);
-    for (let article of await articleService.getAllArticle()) {
+    for (const article of await articleService.getAllArticle()) {
       await articleService.deleteArticleById(mockingUserId, article._id);
     }
   });
@@ -114,7 +114,7 @@ describe('Article Testing', () => {
     });
 
     test('response should be [400] for in invalid Id ', async () => {
-      let invaliedId = 'slsjfskd';
+      const invaliedId = 'slsjfskd';
       try {
         await articleService.getArticleById(invaliedId);
       } catch (e) {
@@ -177,7 +177,7 @@ describe('Article Testing', () => {
     });
 
     test('it should be 400 for bad id', async () => {
-      let invaliedId = 'jjkljdfsdfd';
+      const invaliedId = 'jjkljdfsdfd';
       try {
         await articleService.updateArticleById(mockingUserId, invaliedId, {
           title: 'another',
@@ -191,17 +191,17 @@ describe('Article Testing', () => {
   describe('PATCH Article Rating ', () => {
     test('rating an article, it should increment by one', async () => {
       const sampleArt = await articleService.getAllArticle();
-      let sampleArticleId = sampleArt[0]._id;
+      const sampleArticleId = sampleArt[0]._id;
 
       const ratingVal = '3';
-      let oldRating = sampleArt[0].rating[ratingVal];
+      const oldRating = sampleArt[0].rating[ratingVal];
 
       const newRating = await articleService.rateArticleById(
         sampleArticleId,
         ratingVal,
       );
 
-      let newRatedVal = newRating[ratingVal];
+      const newRatedVal = newRating[ratingVal];
       expect(newRatedVal).toBeDefined();
       expect(Number(newRatedVal) - Number(oldRating)).toBe(1);
     });
@@ -221,7 +221,7 @@ describe('Article Testing', () => {
       await articleService.rateArticleById(sampleArticleId, '2');
       await articleService.rateArticleById(sampleArticleId, '4');
 
-      let avgRating = await articleService.getAverageRatingById(
+      const avgRating = await articleService.getAverageRatingById(
         sampleArticleId,
       );
       expect(avgRating).toBeDefined();
@@ -241,8 +241,8 @@ describe('Article Testing', () => {
     test('search article with one term', async () => {
       const searchTerm = mockingArticle.content.split(' ')[0];
 
-      let searched = await articleService.search(searchTerm);
-      for (let article of searched) {
+      const searched = await articleService.search(searchTerm);
+      for (const article of searched) {
         expect(
           article.description.includes(searchTerm) ||
             article.title.includes(searchTerm),
@@ -254,11 +254,11 @@ describe('Article Testing', () => {
       const term1 = mockingArticle.title.split(' ')[0];
       const term2 = mockingArticle.content.split(' ')[0];
 
-      let searched = await articleService.search(term1 + ' ' + term2);
+      const searched = await articleService.search(term1 + ' ' + term2);
 
       expect(searched.length).toBeGreaterThan(0);
 
-      for (let article of searched) {
+      for (const article of searched) {
         expect(
           article.description.includes(term1) ||
             article.title.includes(term1) ||
@@ -271,7 +271,7 @@ describe('Article Testing', () => {
     test('search article with term that doesnot exist', async () => {
       const nonExistTerm = 'jjjjkkkkkkk';
 
-      let searched = await articleService.search(nonExistTerm);
+      const searched = await articleService.search(nonExistTerm);
       expect(searched.length).toBe(0);
     });
   });
