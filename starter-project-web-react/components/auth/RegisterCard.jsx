@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { Typography, Grid } from '@mui/material';
 import Link from 'next/link';
-import {useRouter} from 'next/router';
+import {Signup} from '../../util/AuthApiCall'
 import * as yup from 'yup'
 import { Formik, Form } from 'formik';
 import TextField from './TextField'
@@ -11,7 +11,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
-const RegisterCard = ({handleSubmit})=>{
+const RegisterCard = ()=>{
     const [INITIAL_STATE_VALUE, setInitialValue] = useState({
       fullname: '',
       email: '',
@@ -41,19 +41,7 @@ const RegisterCard = ({handleSubmit})=>{
                   if( value.password !== value.confirmPassword){
                     setRegisterFail("Password don't match")
                   }else{             
-                    try {
-                        
-                        const result = await axios.post(`${API_BASE_URL}/user`,{fullName: value.fullname, email: value.email, password: value.password})
-                        if(result.status === 201 || result.status == 200){
-                          setIsRegistered(true)
-                        }else{
-                          setRegisterFail("Register Failed")
-                        }
-
-                    } catch (error) {
-                      console.log(error.message)
-                    }
-                    
+                    Signup(value)? isRegistered(true): setRegisterFail("Register Failed!")                 
                   }
                 } 
               }
@@ -83,7 +71,10 @@ const RegisterCard = ({handleSubmit})=>{
             <Alert severity="success">
                 <AlertTitle>Success</AlertTitle>
                  <strong>User Successfully Registered!</strong>
-            </Alert>: ''
+            </Alert>: registerFail? <Alert severity="success">
+                <AlertTitle>Success</AlertTitle>
+                 <strong>User Successfully Registered!</strong>
+            </Alert>:''
           }
           <Typography sx={{my: 4}}>
             already have an account?{' '} 

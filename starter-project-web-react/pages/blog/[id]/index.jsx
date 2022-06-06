@@ -3,6 +3,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Comments from "../../../components/blog/Comments";
 import Details from "../../../components/blog/Details";
+import { getSession } from 'next-auth/react'
+import axios from 'axios'
 
 const BlogDetail = () => {
   const router = useRouter()
@@ -33,3 +35,17 @@ const BlogDetail = () => {
 }
 
 export default BlogDetail
+export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: { session },
+  }
+}

@@ -4,6 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
  import NextAuth from 'next-auth/next'
 import CredentialsProvider  from 'next-auth/providers/credentials'
 import GitHubProvider from 'next-auth/providers/github'
+import AuthApiCall from '../../../util/AuthApiCall';
 
 export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
     providers: [
@@ -18,16 +19,12 @@ export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
                 password: {  label: "Password", type: "password" }             
             },
             async authorize(credentials, req) {
-              try {
-                const result = await axios.post(`${process.env.API_BASE_URL}/auth/login`,{email: credentials?.email, password: credentials?.password})               
-                if (result.status === 200 || result.status == 201) { 
+                const result = await AuthApiCall.Signin({email: credentials?.email, password: credentials?.password})              
+                if (result && (result.status === 200 || result.status == 201)) { 
                   return result.data.access_token 
                 } else {
                   return null
                 }
-              } catch (error: any) {
-                return null
-              }
             }
           })
     ],
