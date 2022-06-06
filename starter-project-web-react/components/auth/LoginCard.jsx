@@ -34,7 +34,8 @@ const LoginCard = (props)=>{
             validationSchema = {FORM_VALIDATION}
             onSubmit = {
               (value) =>{
-                  signIn('credentials', {callbackUrl: `${window.location.origin}/`, email: value.email, password: value.password})   
+                signIn('credentials', {callbackUrl: `${window.location.origin}/`, email: value.email, password: value.password})   
+
               }
             }
           >
