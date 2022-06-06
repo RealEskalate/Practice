@@ -106,12 +106,17 @@ export class UserService {
     return user;
   }
 
-  async updateUser(
-    userId: string,
-    email: string,
-    fullName: string,
-    password: string,
-  ) {
+  async updateUser({
+    userId,
+    email,
+    fullName,
+    password,
+  }: {
+    userId?: string;
+    email?: string;
+    fullName?: string;
+    password?: string;
+  }) {
     try {
       const user = await this.usermodel.findById(userId);
       user.email = email || user.email;
@@ -135,9 +140,8 @@ export class UserService {
       const user = await this.usermodel.findById(id);
       if (!user) throw new NotFoundException(`user with ${id} not found`);
 
-      try {
-        this.deleteUserProfile(id);
-      } catch (e) {} //do nothing//
+      if (user.profileId)
+        await this.userprofilemodel.findByIdAndDelete(user.profileId);
 
       await this.usermodel.deleteOne({ _id: id });
 
@@ -171,7 +175,7 @@ export class UserService {
   async deleteUserProfile(userId: string) {
     try {
       const user = await this.usermodel.findById(userId);
-      if (!user.profileId)
+      if (!user || !user.profileId)
         throw new BadRequestException("user don't have profile");
       const profileId = user.profileId;
 
