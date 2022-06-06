@@ -18,14 +18,13 @@ async function Signin(credentials: Credentials|any){
         const result = await axios.post(`${API_BASE_URL}/auth/login`,credentials) 
         return result
     } catch (error: any) {
-        
         return null
     }
 
 }
 
 async function Signup(user: User): Promise<boolean> {
-   
+
     try {                
         const result = await axios.post(`${API_BASE_URL}/user`,{fullName: user.fullname, email: user.email, password: user.password})
         if(result.status === 201 || result.status == 200){
@@ -33,6 +32,7 @@ async function Signup(user: User): Promise<boolean> {
         }else{
           return false
         }
+
     } catch (error) {
         return false
     }
