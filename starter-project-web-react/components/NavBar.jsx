@@ -6,16 +6,25 @@ import Avatar from '@mui/material/Avatar';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
 import { useSession, signOut } from "next-auth/react"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getServerSideProps } from '../pages';
 
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
   const {data: session} = useSession();
+  const [user, setUser] = useState({email: "", fullname: "", image: ""})
 
   const logoutHandler = ()=>{
     signOut({callbackUrl:`${window.location.origin}/auth/login`});
     
   }
 
+  useEffect(()=>{
+    if(session){
+      setUser({...user, fullname: session.user.name, email: session.user.email})
+    }
+  },[])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -37,8 +46,8 @@ export default function ButtonAppBar() {
             ))}
           </Box> 
                  
-          <Typography variant='h6' sx ={{margin: "5px"}}>{session.user.name}</Typography>
-          <Avatar alt="Remy Sharp" src={session.user.image} />
+          <Typography variant='h6' sx ={{margin: "5px"}}>{user.fullname}</Typography>
+          <Avatar alt="Remy Sharp" src={user.image} />
           <LogoutIcon sx={{mx:"10px"}} onClick={logoutHandler}></LogoutIcon>
           </> :""}
         </Toolbar>
@@ -46,3 +55,4 @@ export default function ButtonAppBar() {
     </Box>
   );
 }
+
