@@ -22,8 +22,8 @@ export const UserSchema = new mongoose.Schema({
     required: true,
   },
   profileId: {
-    type: String,
-    ref: 'UserProfileSchema',
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserProfile',
     required: false,
   },
 });

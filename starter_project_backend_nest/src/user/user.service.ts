@@ -49,10 +49,10 @@ export class UserService {
   }
 
   async getAllUser() {
-    const users = await this.usermodel.find(
-      {},
-      { fullname: 1, email: 1, profileId: 1 },
-    );
+    const users = await this.usermodel
+      .find({}, { fullname: 1, email: 1, profileId: 1 })
+      .populate('profileId', '-userId')
+      .lean();
     return users;
   }
 
@@ -87,11 +87,14 @@ export class UserService {
 
   async getUserById(id: string) {
     try {
-      const user = await this.usermodel.findById(id, {
-        email: 1,
-        fullName: 1,
-        profileId: 1,
-      });
+      const user = await this.usermodel
+        .findById(id, {
+          email: 1,
+          fullName: 1,
+          profileId: 1,
+        })
+        .populate('profileId', '-userId')
+        .lean();
       if (!user) {
         throw new NotFoundException("User by that id doesn't exist");
       }

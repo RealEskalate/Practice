@@ -16,6 +16,6 @@ import { CloudinaryModule } from '../cloudinary/cloudinary.module';
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService, UserController],
+  exports: [UserService],
 })
 export class UserModule {}
