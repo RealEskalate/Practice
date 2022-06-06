@@ -70,6 +70,7 @@ export class CommentService {
       await comment.save();
       return comment;
     } catch (e) {
+      console.log(e);
       throw new BadRequestException();
     }
   }

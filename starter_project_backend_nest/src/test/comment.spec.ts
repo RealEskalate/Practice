@@ -8,7 +8,13 @@ import Article_Interface, { ArticleSchema } from '../article/article.model';
 import UserI, { UserSchema } from '../user/user.model';
 import { CommentSchema } from '../comment/comment.model';
 import { UserProfileSchema } from '../user/userProfile.model';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CloudinaryModule } from '../cloudinary/cloudinary.module';
+
+class MockingCloudinaryModule extends CloudinaryModule {
+  uploadImage(Image) {
+    return 'random/url' + Math.random();
+  }
+}
 
 describe('CommentTesting', () => {
   let commentService: CommentService;
@@ -23,40 +29,25 @@ describe('CommentTesting', () => {
     module = await Test.createTestingModule({
       imports: [
         rootMongooseTestModule(),
+        MongooseModule.forFeature([{ name: 'Article', schema: ArticleSchema }]),
+        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+        MongooseModule.forFeature([{ name: 'Comment', schema: CommentSchema }]),
         MongooseModule.forFeature([
-          {
-            name: 'Comment',
-            schema: CommentSchema,
-          },
-          {
-            name: 'Article',
-            schema: ArticleSchema,
-          },
-          {
-            name: 'User',
-            schema: UserSchema,
-          },
-          {
-            name: 'UserProfile',
-            schema: UserProfileSchema,
-          },
+          { name: 'UserProfile', schema: UserProfileSchema },
         ]),
+        MockingCloudinaryModule,
       ],
-      providers: [
-        CommentService,
-        UserService,
-        ArticleService,
-        CloudinaryService,
-      ],
+      providers: [ArticleService, UserService, CommentService],
     }).compile();
-    userService = module.get<UserService>(UserService);
+
     articleService = module.get<ArticleService>(ArticleService);
+    userService = module.get<UserService>(UserService);
     commentService = module.get<CommentService>(CommentService);
     nonexistingId = '62834a2f700d0f81d1153351';
-  });
-  beforeEach(async () => {
     user = await userService.createUser('John', 'jhon@email.com', '12345678');
+  });
 
+  beforeEach(async () => {
     article = await articleService.addArticle({
       authorUserId: user._id,
       title: 'how I got to do jobs using mars',
@@ -64,16 +55,15 @@ describe('CommentTesting', () => {
       description: 'decription of the content',
       categories: ['Tech'],
     });
+    const mock_comment = {
+      userId: user._id,
+      articleId: article._id,
+      text: 'comment on this article',
+    };
   });
 
   describe('check if all services are defined', () => {
     it('comment service should be defined', async () => {
-      expect(commentService).toBeDefined();
-    });
-    it('user service should be defined', async () => {
-      expect(commentService).toBeDefined();
-    });
-    it('article service should be defined', async () => {
       expect(commentService).toBeDefined();
     });
   });
@@ -165,6 +155,7 @@ describe('CommentTesting', () => {
         'good article',
       );
       const updated = await commentService.updateComment(
+        user._id,
         comment._id,
         'very good article',
       );
