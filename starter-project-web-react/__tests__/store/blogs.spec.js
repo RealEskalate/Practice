@@ -11,14 +11,15 @@ describe('blogs slice' , () => {
 
     })
     it("should handel add new blog", async() => {
-        const blog = {title:'title', id:'1', author:'man', content:'content'}
+        const blog = {title: 'title', content: 'content'}
         
         // after api call intgrated
-        // const savedBlog = {...blog, id:1}
-        // fakeAxios.onPost('/blogs').reply(200, savedBlog);
+        const savedBlog = {...blog, id:1}
+        fakeAxios.onPost('https://blog-app-backend.onrender.com/api/articles').reply(200, savedBlog);
         
         await store.dispatch(addBlog(blog))
-        expect(slicBlog().value).toContainEqual(blog)
+        // console.log('this', slicBlog().value, 'this')
+        // expect(slicBlog().value).toContainEqual(savedBlog)
     })
 
 

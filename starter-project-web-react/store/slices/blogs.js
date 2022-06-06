@@ -3,7 +3,7 @@ import { userInfo } from 'os'
 import * as actions from '../api'
 import { HYDRATE } from 'next-redux-wrapper'
 const slice = createSlice({
-  name: 'posts',
+  name: 'blogs',
   initialState: {
     value: [],
     loading: false,
@@ -23,43 +23,52 @@ const slice = createSlice({
       posts.loading = false
       posts.error = null
     },
+    blogsRecived: (posts, action) => {
+      posts.value = action.payload
+      posts.loading = false
+      posts.error = null
+
+    }
   },
 })
 
-const { requestFailed, requested, postAdded } = slice.actions
+const { requestFailed, requested, postAdded , blogsRecived} = slice.actions
 export default slice.reducer
 
 export const addBlog = (post) => (dispatch, getState) => {
   // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0NDkwMzYyLCJleHAiOjE2NTQ0OTM5NjJ9.RI5Wamlrt12FDlj8bNhidgcdSIJH2DhL5VcuHzs7EBM"
+  const data = {title:post.title, content: post.content,description: post.content, }
   dispatch(
     actions.apiCallBegan({
-
-      url: 'this request url after the base url',
+      url: 'articles',
       onStart: requested.type, // before api request for let us now we are gonna call api call and we enable loading on that type of thing
       onSuccess: postAdded.type, // if it successeded this action will be dispatch
       onFailed: requestFailed.type, // if it failed this action will be dispatch
       method: 'post', // type of the post,
-      data: post,
+      data,
+      headers: { Authorization: `Bearer ${token}` }
     })
   )
 }
 
+export const loadBlogs = () => (dispatch, getState) => {
+  dispatch(
+    actions.apiCallBegan({
+      url: "articles/all",
+      onStart: requested.type,
+      onSuccess: blogsRecived.type,
+      onFailed: requestFailed.type,
+      method:'get'
+    })
+  )
+}
 export const getBlogs = createSelector(
   (state) => state.entities.blog.value,
   (blogs) => blogs
 )
 
-export const addPost = (post) => (dispatch, getState) => {
-  // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-
-  dispatch(
-    actions.apiCallBegan({
-      url: 'this request url after the base url',
-      onStart: requested.type, // before api request for let us now we are gonna call api call and we enable loading on that type of thing
-      onSuccess: postAdded.type, // if it successeded this action will be dispatch
-      onFailed: requestFailed.type, // if it failed this action will be dispatch
-      method: 'post', // type of the post,
-      data: post,
-    })
-  )
-}
+export const isBlogLoading = createSelector(
+  state => state.entities.blog.loading,
+  isLoading => isLoading
+)
