@@ -10,7 +10,7 @@ describe('BlogCard', () => {
             title: 'title',
             content: 'content',
             id: 1,
-            author: 'Segni'
+            authorUserId :{fullName: 'Segni'}
         };
     });
 
@@ -18,7 +18,6 @@ describe('BlogCard', () => {
         const {getByText, getByAltText} = render(<BlogCard {...expectedProps} />);
         const title = getByText(expectedProps.title);
         const content = getByText(expectedProps.content);
-        const au = expectedProps.author.charAt(0).toUpperCase() + expectedProps.author.slice(1)
 
         expect(title).toBeVisible();
         expect(content).toBeVisible();

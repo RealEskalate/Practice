@@ -31,8 +31,8 @@ export default function BlogPostForm({
       validationSchema = {FORM_VALIDATION}
       onSubmit = {
         values => {
-
-          dispatch(addBlog({...values, author:'Jhon', id :d.length}))
+          console.log(values)
+          dispatch(addBlog({...values}))
           handleClose()
 
         }

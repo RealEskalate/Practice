@@ -4,7 +4,6 @@ import { getBlogs, loadBlogs, isBlogLoading } from '../store/slices/blogs';
 import { useSelector, useDispatch } from 'react-redux';
 import BlogCard from "../components/Blog/blogCard";
 import PostBlog from '../components/Blog/postBlogButton';
-import Link from 'next/link';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const Blogs = () => {
@@ -15,17 +14,13 @@ const Blogs = () => {
     author: string
   }
   const dispatch = useDispatch()
-  // const load = () => {dispatch(addBlog({}))}
   const blogs = useSelector((state: any) => getBlogs(state))
   const isLoading = useSelector((state: any) => isBlogLoading(state))
   useEffect(() => {
-    // load()
     dispatch(loadBlogs())
 
   }, [])
-  console.log('this', isLoading, this)
   return (
-
     <Container   >
       <Grid container spacing={2} sx={{ mt: 4, }} >
         <Grid item xs={6} md={6} sx={{ pl: 2 }}>

@@ -37,8 +37,8 @@ export default slice.reducer
 
 export const addBlog = (post) => (dispatch, getState) => {
   // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0MDk1NzU5LCJleHAiOjE2NTQwOTkzNTl9.-WPvKbZ1LDNkhl_aWVW4y21G-UD4UGobXMe3tVutA-M"
-     const data = {title:post.title, content: post.content,description: post.content, }
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0NDkwMzYyLCJleHAiOjE2NTQ0OTM5NjJ9.RI5Wamlrt12FDlj8bNhidgcdSIJH2DhL5VcuHzs7EBM"
+  const data = {title:post.title, content: post.content,description: post.content, }
   dispatch(
     actions.apiCallBegan({
       url: 'articles',
@@ -72,20 +72,3 @@ export const isBlogLoading = createSelector(
   state => state.entities.blog.loading,
   isLoading => isLoading
 )
-
-// export const addPost = (post) => (dispatch, getState) => {
-//   // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-//   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0MDg3NTk3LCJleHAiOjE2NTQwOTExOTd9.ip8QXndJW41QoeSTwX2zBCUKrlUxcodtuxFayPRhp5Q"
-//   const data = {title:post.title, content: post.content,description: post.content, }
-//   dispatch(
-//     actions.apiCallBegan({
-//       url: 'articles',
-//       onStart: requested.type, // before api request for let us now we are gonna call api call and we enable loading on that type of thing
-//       onSuccess: postAdded.type, // if it successeded this action will be dispatch
-//       onFailed: requestFailed.type, // if it failed this action will be dispatch
-//       method: 'post', // type of the post,
-//       data,
-//       headers: { Authorization: `Bearer ${token}` }
-//     })
-//   )
-// }

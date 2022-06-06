@@ -3,36 +3,33 @@ import axios from 'axios'
 // this api middleware to handle api call the api call will be made only heer
 const apiCall =
   ({ dispatch }) =>
-  (next) =>
-  async (action) => {
-    if (action.type !== actions.apiCallBegan.type) return next(action)
+    (next) =>
+      async (action) => {
+        if (action.type !== actions.apiCallBegan.type) return next(action)
 
-    const { url, method, onSuccess, data , onStart,onFailed, headers} = action.payload
+        const { url, method, onSuccess, data, onStart, onFailed, headers } = action.payload
 
-      if (onStart) dispatch({ type: onStart }) // loading before the api call
-      next(action)
-    try {
-        const response = await axios.request({
+        if (onStart) dispatch({ type: onStart }) // loading before the api call
+        next(action)
+        try {
+          const response = await axios.request({
             baseURL: "https://blog-app-backend.onrender.com/api",
             url,
             method,
             data,
             headers
-        })
-        // response = data
-        console.log(response.data)
-
-        dispatch(actions.apiCallSuccess(response.data)) // ourt general success action will dispatch heer
-        if (onSuccess) dispatch({ type: onSuccess, payload: response.data }) // our passed success action will dispatch  heer if there is one
-    } catch (error) {
-      console.log(error.response)
-      // if (onFailed)
-      //   dispatch({
-      //     type: onFailed,
-      //     payload: error.response ? error.response.data.errors : error.message,
-      //   })
-    }
-  }
+          })
+          dispatch(actions.apiCallSuccess(response.data)) // ourt general success action will dispatch heer
+          if (onSuccess) dispatch({ type: onSuccess, payload: response.data }) // our passed success action will dispatch  heer if there is one
+        } catch (error) {
+          dispatch(actions.apiCallFailed(error.message))
+          if (onFailed)
+            dispatch({
+              type: onFailed,
+              payload: error.response ? error.response.data : error.message,
+            })
+        }
+      }
 export default apiCall
 
 const routeFunc = (input, url) => {
