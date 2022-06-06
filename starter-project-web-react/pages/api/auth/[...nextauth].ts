@@ -19,6 +19,7 @@ export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
                 password: {  label: "Password", type: "password" }             
             },
             async authorize(credentials, req) {
+              
                 const result = await AuthApiCall.Signin({email: credentials?.email, password: credentials?.password})              
                 if (result && (result.status === 200 || result.status == 201)) { 
                   return result.data.access_token 

@@ -11,6 +11,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
+
 const RegisterCard = ()=>{
     const [INITIAL_STATE_VALUE, setInitialValue] = useState({
       fullname: '',
@@ -75,7 +76,7 @@ const RegisterCard = ()=>{
                 <AlertTitle>Success</AlertTitle>
                  <strong>User Successfully Registered!</strong>
             </Alert>:''
-          }
+            }
           <Typography sx={{my: 4}}>
             already have an account?{' '} 
             <Link href="/auth/login">
