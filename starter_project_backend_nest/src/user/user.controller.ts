@@ -33,12 +33,12 @@ export class UserController {
   }
 
   @Get('')
-  getUser(@Request() req: any) {
+  getLogedUser(@Request() req: any) {
     return this.userService.getUserById(req.user.userId);
   }
 
   @Get('profile')
-  getUserProfile(@Request() req: any) {
+  getLogedUserProfile(@Request() req: any) {
     return this.userService.getUserProfile(req.user.userId);
   }
 
@@ -80,7 +80,7 @@ export class UserController {
     if (userId != req.user.userId) {
       throw new ForbiddenException();
     }
-    return this.userService.updateUser(userId, email, fullName, password);
+    return this.userService.updateUser({ userId, email, fullName, password });
   }
 
   @Post('/uploadprofile')
