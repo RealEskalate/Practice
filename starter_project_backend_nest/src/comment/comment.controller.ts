@@ -16,15 +16,15 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Public()
-  @Get('/:articleId')
-  async getAllComments(@Param('articleId') articleId: string) {
-    return this.commentService.getComments(articleId);
+  @Get('comment/:id')
+  async getComment(@Param('id') id: string) {
+    return this.commentService.getComment(id);
   }
 
   @Public()
-  @Get('/:articleId/:id')
-  async getComment(@Param('id') id: string) {
-    return this.commentService.getComment(id);
+  @Get('/:articleId')
+  async getAllComments(@Param('articleId') articleId: string) {
+    return this.commentService.getComments(articleId);
   }
 
   @Post('/:articleId')
