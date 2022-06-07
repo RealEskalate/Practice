@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:starter_project_mobile_2022/profile_page/constants/colors.dart';
+
+import '../presentation/constants/constants.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class MainDrawer extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              color: some_backgrd,
+              color: backgrd,
               child: Expanded(
                 child: ListView(
                   children: [
@@ -105,7 +106,7 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           Container(
-            color: some_backgrd,
+            color: backgrd,
             child: ListTile(
               onTap: () {},
               leading: const Icon(

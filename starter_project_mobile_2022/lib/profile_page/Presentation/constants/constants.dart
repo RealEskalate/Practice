@@ -10,4 +10,4 @@ const Color grey = Colors.grey;
 const Color shadow = Color.fromARGB(20, 82, 130, 255);
 const Color edit_color = Color.fromARGB(200, 67, 154, 229);
 const Color backgroundColor = Color.fromARGB(255, 248, 250, 255);
-const Color some_backgrd = Color.fromARGB(255, 68, 76, 91);
+const Color backgrd = Color.fromARGB(255, 68, 76, 91);
