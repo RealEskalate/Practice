@@ -1,28 +1,64 @@
 import React from 'react'
 import { Box, TextField, Button } from '@mui/material'
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import BlogPostTextField from  './blogPostTextField'
+import { addBlog , getBlogs} from '../../store/slices/blogs'
+import Link from 'next/link';
+import { useSelector, useDispatch } from 'react-redux';
 export default function BlogPostForm({
   handleClose
 }) {
+  const dispatch = useDispatch()
+  const d = useSelector((state)=> getBlogs(state))
+
+  const INITIAL_FORM_STATE ={
+    title:"",
+    content:''
+
+  }
+  const FORM_VALIDATION = Yup.object().shape({
+    title: Yup.string().min(3).required(),
+    content: Yup.string().required()
+  })
   return (
+
     <Box mb={5} mx={3}>
-      <form>
-        <Box pb={4} >
-          <TextField fullWidth label="Title" id="fullWidth" />
+      <Formik
+      initialValues={{
+        ...INITIAL_FORM_STATE
+      }}
+      validationSchema = {FORM_VALIDATION}
+      onSubmit = {
+        values => {
+          console.log(values)
+          dispatch(addBlog({...values}))
+          handleClose()
+
+        }
+        
+      }
+      >
+        <Form>
+        <Box py={4} >
+          <BlogPostTextField   name="title" label="Title"  />
         </Box>
         <Box pb={4} >
-          <TextField
+          <BlogPostTextField
             fullWidth
             id="outlined-multiline-static"
             label="Content"
             multiline
             rows={4}
+            name = 'content'
           />
         </Box>
-        <Button size='large' fullWidth variant="outlined" onClick={handleClose} autoFocus >
+        <Button type='submit' size='large'  fullWidth variant="outlined">
           Post
         </Button>
-      </form>
-
+        
+      </Form>
+      </Formik>
     </Box>
   )
 }

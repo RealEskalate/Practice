@@ -6,12 +6,18 @@ import {
   Param,
   Patch,
   Post,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+import { Public } from 'src/auth/constants';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { TodoService } from './todo.service';
+import { multerConfig } from './../config/config';
 
-@Controller('todo')
+@Controller('/api/todo')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
+  @Public()
   @Get('/all')
   getAllTodos() {
     return this.todoService.getTodos();
@@ -45,5 +51,18 @@ export class TodoController {
   @Delete(':id')
   async deleteTodo(@Param('id') todoId: string) {
     return await this.todoService.deleteTodo(todoId);
+  }
+
+  // don't name parameter of file to be uploaded to 'file' user other names
+  @Public()
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('image'))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    try {
+      const result = await this.todoService.uploadImageToCloudinary(file);
+      console.log(result['url']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

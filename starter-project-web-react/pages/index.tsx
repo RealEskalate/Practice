@@ -1,14 +1,34 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Bloglist from './blogs'
+import { getSession } from 'next-auth/react'
+import axios from 'axios'
 
 const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      
-    </div>
-  )
+  return <Bloglist />
 }
-
 export default Home
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    }
+  } else {
+    try {
+      const res = await axios.get(
+        `${process.env.API_BASE_URL}/user/${session.id}`,
+        { headers: { Authorization: 'Bearer ' + session.access_token } }
+      )
+
+      if (res.status === 200) {
+        session.user = { name: res.data.fullName, email: res.data.email }
+      }
+    } catch (error: any) {}
+  }
+  return {
+    props: { session },
+  }
+}

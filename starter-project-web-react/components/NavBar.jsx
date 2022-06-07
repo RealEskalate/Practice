@@ -1,14 +1,31 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useSession, signOut } from "next-auth/react"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getServerSideProps } from '../pages';
 
 export default function ButtonAppBar() {
   const pages = ['Products', 'Pricing', 'Blog'];
+  const {data: session} = useSession();
+  const [user, setUser] = useState({email: "", fullname: "", image: ""})
+
+  const logoutHandler = ()=>{
+    signOut({callbackUrl:`${window.location.origin}/auth/login`});
+    
+  }
+
+  useEffect(()=>{
+    if(session){
+      setUser({...user, fullname: session.user.name, email: session.user.email})
+    }
+  },[])
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -16,7 +33,8 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Blog App (React Demo)
           </Typography>
-
+          {session?
+          <> 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -26,12 +44,15 @@ export default function ButtonAppBar() {
                 {page}
               </Button>
             ))}
-          </Box>
-
-          <Button color="inherit">Sign Up</Button>
-          <Button color="inherit">Login</Button>
+          </Box> 
+                 
+          <Typography variant='h6' sx ={{margin: "5px"}}>{user.fullname}</Typography>
+          <Avatar alt="Remy Sharp" src={user.image} />
+          <LogoutIcon sx={{mx:"10px"}} onClick={logoutHandler}></LogoutIcon>
+          </> :""}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+

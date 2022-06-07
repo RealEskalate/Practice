@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starter_project_mobile_2022/login_signup/screens/landing-page.dart';
 import 'package:starter_project_mobile_2022/routes.dart';
 import 'package:starter_project_mobile_2022/main/homepage.dart';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       onGenerateRoute: PageRouter.generateRoute,
-      initialRoute: ProfilePage.routeName,
+      // initialRoute: "/",
+      initialRoute: LandingPage.routename,
     );
   }
 }
