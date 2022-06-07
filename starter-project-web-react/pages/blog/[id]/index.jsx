@@ -1,23 +1,20 @@
+import react, { useEffect } from 'react';
 import { useRouter } from "next/router"
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Comments from "../../../components/blog/Comments";
 import Details from "../../../components/blog/Details";
+import { useSelector, useDispatch } from 'react-redux';
+import { getSingleBlog, loadSingleBlog } from '../../../store/slices/blogs';
 
-const BlogDetail = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const blog = {
-    id: router.query.id,
-    title: "Trial title for a blog",
-    created_at: "Jan 1, 2022",
-    author: "This guy",
-    img: "/img/trial-img.jpg",
-    content: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-    blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-    neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-    quasi quidem quibusdam.`
-  }
+const BlogDetail = ({ id }) => {
+  const blog = useSelector(state => getSingleBlog(state))
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadSingleBlog(id))
+  }, [])
+
   return (
     <Container sx={{mt: 5}} mt={5}>
       <Grid container spacing={4}>
@@ -33,3 +30,9 @@ const BlogDetail = () => {
 }
 
 export default BlogDetail
+
+export async function getServerSideProps(context) {
+  return {
+    props: { id: context.query.id }
+  }
+}

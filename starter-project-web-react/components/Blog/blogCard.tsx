@@ -15,13 +15,13 @@ interface ExpandMoreProps extends IconButtonProps {
 }
 
 interface props {
-  id: number,
+  _id: number,
   title: string,
   content: string,
   authorUserId: any
 }
 export default function BlogCard({
-  id,
+  _id,
   title,
   content,
   authorUserId
@@ -31,8 +31,8 @@ export default function BlogCard({
     <Link
       href={{
         pathname: '/blog/[id]',
-        query: { id: 5 },
-      }} passHref >
+        query: { _id },
+      }} passHref as={'/blog/' + _id}>
       <a>
         <Card sx={{ bgcolor: '#cfe8fc', width: '100%', my: 4, mx: 0 }}>
           <Box display="inline-block" sx={{ m: 3 }}>

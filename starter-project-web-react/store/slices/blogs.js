@@ -8,31 +8,59 @@ const slice = createSlice({
     value: [],
     loading: false,
     error: null,
+    singleBlog: {
+      id: 32,
+      title: "Trial title for a blog",
+      createdAt: "2022-06-01T12:33:43.544Z",
+      author: "This guy",
+      "authorUserId": {
+        "_id": "629618fad2f52861b8b30182",
+        "fullName": "yohans hailu",
+        "email": "yohanshailu@gmail.com",
+        "__v": 0
+      },
+      img: "/img/trial-img.jpg",
+      "imageUrls": [
+        "http://res.cloudinary.com/hakimhub/image/upload/v1654086909/starter_project/pcen6idszptplrwluiym.png",
+        "http://res.cloudinary.com/hakimhub/image/upload/v1654086911/starter_project/lx1fniji88ml2wtakvza.jpg"
+      ],
+      content: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
+      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+      quasi quidem quibusdam.`
+    }
   },
   reducers: {
     requested: (posts, action) => {
       posts.loading = true
       posts.error = null
+      console.log("request started")
     },
     requestFailed: (posts, action) => {
       posts.loading = false
       posts.error = action.payload
+      console.log("request has failed")
     },
     postAdded: (posts, action) => {
       posts.value = [...posts.value, action.payload]
       posts.loading = false
       posts.error = null
     },
-    blogsRecived: (posts, action) => {
+    blogsReceived: (posts, action) => {
       posts.value = action.payload
       posts.loading = false
       posts.error = null
 
+    }, 
+    singleLoaded: (state, action) => {
+      state.singleBlog = action.payload
+      state.loading = false
+      state.error = null
     }
   },
 })
 
-const { requestFailed, requested, postAdded , blogsRecived} = slice.actions
+const { requestFailed, requested, postAdded , blogsReceived, singleLoaded} = slice.actions
 export default slice.reducer
 
 export const addBlog = (post) => (dispatch, getState) => {
@@ -57,12 +85,30 @@ export const loadBlogs = () => (dispatch, getState) => {
     actions.apiCallBegan({
       url: "articles/all",
       onStart: requested.type,
-      onSuccess: blogsRecived.type,
+      onSuccess: blogsReceived.type,
       onFailed: requestFailed.type,
       method:'get'
     })
   )
 }
+
+export const loadSingleBlog = (id) => (dispatch, getState) => {
+  dispatch(
+    actions.apiCallBegan({
+      url: "articles/" + id,
+      onStart: requested.type,
+      onSuccess: singleLoaded.type,
+      onFailed: requestFailed.type,
+      method:'get'
+    })
+  )
+}
+
+export const getSingleBlog = createSelector(
+  (state) => state.entities.blog.singleBlog,
+  (blog) => blog
+)
+
 export const getBlogs = createSelector(
   (state) => state.entities.blog.value,
   (blogs) => blogs
