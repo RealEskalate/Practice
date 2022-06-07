@@ -6,6 +6,7 @@ import Comments from "../../../components/blog/Comments";
 import Details from "../../../components/blog/Details";
 import { useSelector, useDispatch } from 'react-redux';
 import { getSingleBlog, loadSingleBlog } from '../../../store/slices/blogs';
+import { getSession } from 'next-auth/react'
 
 const BlogDetail = ({ id }) => {
   const blog = useSelector(state => getSingleBlog(state))
@@ -14,6 +15,7 @@ const BlogDetail = ({ id }) => {
   useEffect(() => {
     dispatch(loadSingleBlog(id))
   }, [])
+
 
   return (
     <Container sx={{mt: 5}} mt={5}>
@@ -32,7 +34,17 @@ const BlogDetail = ({ id }) => {
 export default BlogDetail
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context)
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    }
+  }
   return {
-    props: { id: context.query.id }
+    props: { session: session, id: context.query.id },
   }
 }
+
