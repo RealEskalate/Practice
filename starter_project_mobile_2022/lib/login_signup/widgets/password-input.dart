@@ -18,11 +18,11 @@ class PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; 
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical:  size.height * 0.04),
+      padding: EdgeInsets.symmetric(vertical: size.height * 0),
       child: Container(
-        height: size.height * 0.08,
+        // height: size.height * 0.08,
         width: size.width * 0.8,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -33,10 +33,11 @@ class PasswordInput extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal:  size.height * 0.02),
+                padding: EdgeInsets.symmetric(horizontal: size.height * 0.04),
               ),
               hintText: hint,
               suffixIcon: IconButton(
+                padding: EdgeInsets.only(bottom: size.height * 0.002),
                 icon: Icon(
                   // Based on passwordVisible state choose the icon
                   _passwordVisible ? Icons.visibility : Icons.visibility_off,
@@ -49,12 +50,17 @@ class PasswordInput extends StatelessWidget {
                   //  });
                 },
               ),
-              hintStyle:  
-    TextStyle(fontSize: size.height*0.0355, color: gray, height:  size.height*0.00065),
+              hintStyle: TextStyle(
+                  fontSize: size.height * 0.0355,
+                  color: gray,
+                  height: size.height * 0.00065),
             ),
             obscureText: true,
-            style:  
-    TextStyle(fontSize: size.height*0.0355, color: black, height:  size.height*0.00065),
+            style: TextStyle(
+              fontSize: size.height * 0.0355,
+              color: black,
+              //height: size.height * 0.00065
+            ),
             keyboardType: inputType,
             textInputAction: inputAction,
           ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../list_blog_page/presentation/drawer.dart';
-import '../constants/colors.dart';
-import '../widget/postCard.dart';
+import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import 'package:starter_project_mobile_2022/profile_page/Presentation/constants/constants.dart';
+
+import '../widgets/drawer.dart';
+import '../widgets/postCard.dart';
 
 class ProfilePage extends StatefulWidget {
-  static const routeName = 'ProfilePage';
+  static const routeName = 'profile';
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +23,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       key: scaffoldKey,
-      drawer: const DrawerSection(),
+      drawer: Container(
+          width: width * 0.6,
+          child: Opacity(
+            opacity: width * 0.0023,
+            child: const DrawerSection(),
+          )),
       backgroundColor: backgroundColor,
       body: Column(children: [
         Container(
@@ -73,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 top: height * 0.12,
                 left: height * 0.025,
                 right: height * 0.035),
-            height: height * 0.45,
+            height: height * 0.5,
             width: width,
             decoration: BoxDecoration(
               color: white,
@@ -135,11 +142,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         subtitle:
                             "Why big data suhakjjljklkvhgfhjhgkhhjgkjhgkjgkjghjhgkjgfhfhgh",
                         created: "1 hr ago",
+                        imageURL:
+                            "https://miro.medium.com/max/645/1*QSDBne0uwCD7chzSt6EvKQ.jpeg",
                       ),
                       PostReviewCard(
                         title: "UX Design",
                         subtitle: "step design sprint for UX beginner",
                         created: "2 hrs ago",
+                        imageURL:
+                            "https://thisisglance.com/wp-content/uploads/2020/03/10-what-is-ux-design.jpg",
                       ),
                     ],
                   ),
@@ -166,7 +177,7 @@ class _buildHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height / 1.5,
+      height: height / 1.1,
       width: width,
       margin: EdgeInsets.only(left: height * 0.04, right: height * 0.04),
       padding: EdgeInsets.only(
@@ -196,12 +207,25 @@ class _buildHeaderWidget extends StatelessWidget {
                 child: Stack(children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(height * 0.07),
-                    child: Image(
-                        alignment: Alignment.center,
+                    child: Image.network(
+                        "https://www.princeton.edu/sites/default/files/styles/half_2x/public/images/2018/12/IMG_9127.jpg?itok=156LUKD5",
+                        loadingBuilder: (BuildContext context, Widget child,
+                            ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
                         fit: BoxFit.cover,
-                        height: width * 0.2,
-                        width: width * 0.2,
-                        image: const AssetImage('assets/mark.png')),
+                        width: width * 0.28,
+                        height: height * 0.3),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -241,10 +265,32 @@ class _buildHeaderWidget extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("About me", maxLines: 1),
-                    Text("I’m a a software engineer and UX designer",
-                        maxLines: 1, overflow: TextOverflow.ellipsis),
+                  children: [
+                    Row(children: [
+                      Text(
+                        "About me",
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: height * 0.054,
+                          color: black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Center(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.border_color, color: darkBlue),
+                        ),
+                      ),
+                    ]),
+                    SizedBox(
+                      height: height * 0.137,
+                      width: width * 0.7,
+                      child: Text(
+                          "I’m a a software engineer and UX designer at Eskalate with a passion working with them.",
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ],
                 )
               ],
