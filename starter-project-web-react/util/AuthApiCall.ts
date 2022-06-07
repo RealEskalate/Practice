@@ -1,5 +1,5 @@
 import axios from "axios"
-
+const API_BASE_URL = "https://blog-app-backend.onrender.com/api"
 type User = {
     fullname: string,
     email: string,
@@ -13,24 +13,29 @@ type Credentials = {
 
 async function Signin(credentials: Credentials|any){
     try {
-        const result = await axios.post(`${process.env.API_BASE_URL}/auth/login`,credentials) 
+        const result = await axios.post(`${API_BASE_URL}/auth/login`,credentials) 
         return result
     } catch (error: any) {
+        
         return null
     }
 
 }
 
 async function Signup(user: User): Promise<boolean> {
+   
     try {                
-        const result = await axios.post(`${process.env.API_BASE_URL}/user`,{fullName: user.fullname, email: user.email, password: user.password})
+        const result = await axios.post(`${API_BASE_URL}/user`,{fullName: user.fullname, email: user.email, password: user.password})
+        console.log(result)
         if(result.status === 201 || result.status == 200){
           return true
         }else{
           return false
         }
 
-    } catch (error) {
+    } catch (error:any) {
+        console.log(error.message);
+
         return false
     }
 }

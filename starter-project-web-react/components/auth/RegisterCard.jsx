@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Typography, Grid } from '@mui/material';
 import Link from 'next/link';
-import {Signup} from '../../util/AuthApiCall'
+import AuthApiCall from '../../util/AuthApiCall'
 import * as yup from 'yup'
 import { Formik, Form } from 'formik';
 import TextField from './TextField'
 import Button from './AuthButton';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
-import axios from 'axios';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const RegisterCard = ()=>{
@@ -22,6 +23,12 @@ const RegisterCard = ()=>{
     const [isRegistered, setIsRegistered] = useState(false)
     const [registerFail, setRegisterFail] = useState('')
   
+      useEffect(() => {
+        setTimeout(() => {
+          setIsRegistered(false);
+          setRegisterFail('')
+        }, 3000);
+      }, []); 
       const FORM_VALIDATION = yup.object().shape({
         fullname: yup.string().required("Required"),
         email: yup.string().required("Required").email("Invalid Email"),
@@ -41,8 +48,14 @@ const RegisterCard = ()=>{
                   
                   if( value.password !== value.confirmPassword){
                     setRegisterFail("Password don't match")
-                  }else{             
-                    Signup(value)? isRegistered(true): setRegisterFail("Register Failed!")                 
+                  }else{     
+                         
+                    const result = await AuthApiCall.Signup(value)
+                    if(result){
+                      setIsRegistered(true)
+                    }else{
+                      setRegisterFail("Register Failed!")  
+                    }                
                   }
                 } 
               }
@@ -69,12 +82,43 @@ const RegisterCard = ()=>{
             </Formik>
           </Grid>
           {isRegistered?
-            <Alert severity="success">
+             <Alert
+                severity="success"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setIsRegistered(false)
+                    }}
+               >
+                 <CloseIcon fontSize="inherit" />
+               </IconButton>
+             }
+             sx={{ mb: 2 }}
+           >
                 <AlertTitle>Success</AlertTitle>
-                 <strong>User Successfully Registered!</strong>
-            </Alert>: registerFail? <Alert severity="success">
-                <AlertTitle>Success</AlertTitle>
-                 <strong>User Successfully Registered!</strong>
+                <strong>User Registered Successfully!</strong>
+           </Alert>: registerFail? <Alert
+            severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setRegisterFail('');
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2 }}
+              >
+                <AlertTitle>Failed</AlertTitle>
+                <strong>User Failed to register!</strong>
+                
             </Alert>:''
           }
           <Typography sx={{my: 4}}>
