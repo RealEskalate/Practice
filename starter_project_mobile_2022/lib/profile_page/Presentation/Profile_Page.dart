@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:starter_project_mobile_2022/list_blog_page/presentation/drawer.dart';
+import 'package:starter_project_mobile_2022/profile_page/Presentation/constants/constants.dart';
 
 import '../widgets/drawer.dart';
 import '../widgets/postCard.dart';
-import 'constants/constants.dart';
 
 class ProfilePage extends StatefulWidget {
   static const routeName = 'profile';

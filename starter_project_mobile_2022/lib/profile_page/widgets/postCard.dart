@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../presentation/constants/constants.dart';
+import 'package:starter_project_mobile_2022/profile_page/Presentation/constants/constants.dart';
 
 class PostReviewCard extends StatelessWidget {
   final String title;
