@@ -4,6 +4,7 @@ import {
   ForbiddenException,
   NotFoundException,
   BadRequestException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, mongo } from 'mongoose';
@@ -34,7 +35,7 @@ export class UserService {
     const hashed_password = await bcrypt.hash(password, saltOrRounds);
     password = hashed_password;
 
-    const exists = await this.findOne(email);
+    const exists = await this.findByEmail(email);
     if (exists) {
       throw new ConflictException('User already Exist');
     }
@@ -61,28 +62,32 @@ export class UserService {
     bio: string,
     image: Express.Multer.File,
   ) {
-    const res = await this.cloudinary.uploadImage(image);
-    const url = res.url;
-    const id = new mongo.ObjectId(userId);
-    const userProfileImage = await this.userprofilemodel.updateOne(
-      { userId: id },
-      {
-        $set: {
-          userId: id,
-          bio: bio,
-          imageUrl: url,
+    try {
+      const res = await this.cloudinary.uploadImage(image);
+      const url = res.url;
+      const id = new mongo.ObjectId(userId);
+      await this.userprofilemodel.updateOne(
+        { userId: id },
+        {
+          $set: {
+            userId: id,
+            bio: bio,
+            imageUrl: url,
+          },
         },
-      },
-      { upsert: true },
-    );
+        { upsert: true },
+      );
 
-    const userprofile = await this.userprofilemodel.findOne({ userId: id });
+      const userprofile = await this.userprofilemodel.findOne({ userId: id });
 
-    //adding profile id to user
-    let user = await this.usermodel.findById(userId);
-    user.profileId = userprofile._id;
-    await user.save();
-    return userprofile;
+      //adding profile id to user
+      const user = await this.usermodel.findById(userId);
+      user.profileId = userprofile._id;
+      await user.save();
+      return userprofile;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async getUserById(id: string) {
@@ -104,9 +109,16 @@ export class UserService {
     }
   }
 
-  async findOne(email: string) {
-    const user = await this.usermodel.findOne({ email: email });
-    return user;
+  async findByEmail(email: string) {
+    try {
+      const user = await this.usermodel.findOne({ email: email });
+      if (!user) {
+        throw new NotFoundException("User by that email doesn't exist");
+      }
+      return user;
+    } catch (e) {
+      throw e;
+    }
   }
 
   async updateUser({
@@ -147,17 +159,19 @@ export class UserService {
         await this.userprofilemodel.findByIdAndDelete(user.profileId);
 
       await this.usermodel.deleteOne({ _id: id });
-
-      const { _id, email, fullName } = user;
-      return { _id, email, fullName };
+      return {};
     } catch (e) {
-      throw e;
+      throw new InternalServerErrorException();
     }
   }
 
   async getAllUserProfiles() {
-    const profiles = await this.userprofilemodel.find({});
-    return profiles;
+    try {
+      const profiles = await this.userprofilemodel.find({});
+      return profiles;
+    } catch (e) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async getUserProfile(userId: string) {
