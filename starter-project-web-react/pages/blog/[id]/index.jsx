@@ -16,6 +16,7 @@ const BlogDetail = ({ id }) => {
     dispatch(loadSingleBlog(id))
   }, [])
 
+
   return (
     <Container sx={{mt: 5}} mt={5}>
       <Grid container spacing={4}>
@@ -46,3 +47,4 @@ export async function getServerSideProps(context) {
     props: { session: session, id: context.query.id },
   }
 }
+
