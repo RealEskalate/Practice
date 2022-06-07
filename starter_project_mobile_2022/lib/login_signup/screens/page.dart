@@ -30,7 +30,7 @@ class Myslider extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: Card(
                           elevation: height * 5 / 100,
                           margin: EdgeInsets.all(height * 125 / 10000),

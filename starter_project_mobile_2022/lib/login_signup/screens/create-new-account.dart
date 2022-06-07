@@ -37,12 +37,12 @@ class CreateNewAccount extends StatelessWidget {
               ),
             ),
             Container(
-              height: width * 0.2,
+              height: width * 0.12,
               child: Text(
                 'Enter your email and password and start discovering',
                 style: TextStyle(
                     color: black,
-                    fontSize: width * 0.05,
+                    fontSize: width * 0.04,
                     fontWeight: FontWeight.w400),
               ),
             ),

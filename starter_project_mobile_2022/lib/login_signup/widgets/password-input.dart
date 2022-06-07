@@ -33,11 +33,11 @@ class PasswordInput extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.height * 0.0),
+                padding: EdgeInsets.symmetric(horizontal: size.height * 0.04),
               ),
               hintText: hint,
               suffixIcon: IconButton(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: EdgeInsets.only(bottom: size.height * 0.002),
                 icon: Icon(
                   // Based on passwordVisible state choose the icon
                   _passwordVisible ? Icons.visibility : Icons.visibility_off,
