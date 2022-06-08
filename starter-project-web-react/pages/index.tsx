@@ -17,16 +17,6 @@ export async function getServerSideProps(context: any) {
       },
     }
   } else {
-    try {
-      const res = await axios.get(
-        `${process.env.API_BASE_URL}/user/${session.id}`,
-        { headers: { Authorization: 'Bearer ' + session.access_token } }
-      )
-
-      if (res.status === 200) {
-        session.user = { name: res.data.fullName, email: res.data.email }
-      }
-    } catch (error: any) {}
   }
   return {
     props: { session },

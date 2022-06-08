@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Auth } from 'firebase-admin/lib/auth/auth';
 import jwt_decode from "jwt-decode";
 import { NextApiRequest, NextApiResponse } from 'next'
  import NextAuth from 'next-auth/next'
@@ -42,6 +43,11 @@ export default (req: NextApiRequest,res:  NextApiResponse)=> NextAuth(req,res,{
         const _token: any = token.user;
         var decoded: any = jwt_decode(_token)
         session.id = decoded.sub
+
+        const res = await AuthApiCall.GetUserDetail(decoded.sub, _token)
+        if(res){
+          session.user = res
+        }
         return session
     }
   }
