@@ -45,7 +45,8 @@ export class CommentService {
     try {
       const comment = await this.commentModel
         .findById(id)
-        .populate('user', '-password');
+        .populate('user', '-password')
+        .populate('articleId');
       if (!comment) {
         throw new NotFoundException('Not found');
       }

@@ -3,19 +3,16 @@ import {
   Controller,
   Delete,
   Get,
-  HttpStatus,
   Request,
   Param,
   Patch,
   Post,
-  Res,
-  UploadedFiles,
   UseInterceptors,
   UploadedFile,
-  UnauthorizedException,
   ForbiddenException,
+  BadRequestException,
 } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from '../auth/constants';
 import { UserService } from './user.service';
 
@@ -30,18 +27,48 @@ export class UserController {
   }
 
   @Public()
+  @Get('/profiles/all')
+  getAllUserProfiles() {
+    return this.userService.getAllUserProfiles();
+  }
+
+  @Get('')
+  getLogedUser(@Request() req: any) {
+    return this.userService.getUserById(req.user.userId);
+  }
+
+  @Get('profile')
+  getLogedUserProfile(@Request() req: any) {
+    return this.userService.getUserProfile(req.user.userId);
+  }
+
+  @Delete('profile')
+  deleteUserProfile(@Request() req: any) {
+    return this.userService.deleteUserProfile(req.user.userId);
+  }
+
+  @Public()
   @Post()
   createUser(
-    @Body('email') email: string,
-    @Body('fullName') fullName: string,
-    @Body('password') password: string,
+    @Body()
+    {
+      fullName,
+      email,
+      password,
+    }: {
+      fullName: string;
+      email: string;
+      password: string;
+    },
   ) {
-    return this.userService.createUser(fullName, email, password);
+    return this.userService.createUser({ fullName, email, password });
   }
+
   @Get(':id')
   getUserById(@Param('id') id: string) {
     return this.userService.getUserById(id);
   }
+
   @Patch(':id')
   updateUser(
     @Request() req: any,
@@ -53,12 +80,12 @@ export class UserController {
     if (userId != req.user.userId) {
       throw new ForbiddenException();
     }
-    return this.userService.updateUser(userId, email, fullName, password);
+    return this.userService.updateUser({ userId, email, fullName, password });
   }
 
   @Post('/uploadprofile')
   @UseInterceptors(FileInterceptor('image'))
-  addArticle(
+  addProfileImage(
     @Request() req: any,
     @Body() { bio }: { bio: string },
     @UploadedFile() image: Express.Multer.File,

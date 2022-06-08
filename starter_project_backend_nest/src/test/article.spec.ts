@@ -47,11 +47,12 @@ describe('Article Testing', () => {
   });
 
   beforeEach(async () => {
-    mockingUser = await userService.createUser(
-      'test_fullName',
-      'test_email@gmai.com',
-      'test_password',
-    );
+    mockingUser = await userService.createUser({
+      fullName: 'test_fullName',
+      email: 'test_email@gmai.com',
+      password: 'test_password',
+    });
+
     mockingUserId = mockingUser._id;
     mockingArticle = {
       authorUserId: mockingUserId,
