@@ -36,8 +36,19 @@ export class CommentService {
 
   async getComments(articleId: string) {
     const comments = await this.commentModel
-      .find({ articleId })
-      .populate('user', '-password');
+      .find({ articleId: articleId })
+      .populate({
+        path: 'user',
+        populate: {
+          path: 'profileId',
+          model: 'UserProfile',
+          select: '-userId -_id',
+        },
+        select: '-password -_id',
+      })
+      .sort({ created_at: -1 })
+      .select('-articleId')
+      .lean();
     return comments;
   }
 
@@ -45,8 +56,17 @@ export class CommentService {
     try {
       const comment = await this.commentModel
         .findById(id)
-        .populate('user', '-password')
-        .populate('articleId');
+        .populate({
+          path: 'user',
+          populate: {
+            path: 'profileId',
+            model: 'UserProfile',
+            select: '-userId -_id',
+          },
+          select: '-password -_id',
+        })
+        .select('-articleId')
+        .lean();
       if (!comment) {
         throw new NotFoundException('Not found');
       }

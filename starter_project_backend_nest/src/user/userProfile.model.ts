@@ -20,6 +20,8 @@ export const UserProfileSchema = new mongoose.Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: false,
+    default:
+      'http://res.cloudinary.com/hakimhub/image/upload/v1654695757/starter_project/co4vhtyxggimo9aalbf4.png',
   },
 });
