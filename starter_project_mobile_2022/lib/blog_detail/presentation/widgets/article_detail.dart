@@ -31,7 +31,7 @@ class ArticleDetail extends StatelessWidget {
                   text: article.substring(1),
                   style: TextStyle(
                     color: black,
-                    fontSize: width * 0.05,
+                    fontSize: width * 0.035,
                     height: height * 0.002,
                     wordSpacing: width * 0.01,
                   ),
