@@ -6,12 +6,6 @@ import { getSession } from 'next-auth/react'
 import axios from 'axios'
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#4caf50',
-      contrastText: '#fff',
-    },
-  },
   typography: {
     fontFamily: 'Poppins',
     fontSize: 14,

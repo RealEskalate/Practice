@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import { Typography, Grid } from '@mui/material'
 import Link from 'next/link'
-import AuthApiCall from '../../util/AuthApiCall'
+import { useRouter } from 'next/router'
 import * as yup from 'yup'
 import { Formik, Form } from 'formik'
 import TextField from './TextField'
 import Button from './AuthButton'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
+import AuthApiCall from '../../util/AuthApiCall'
+import CircularProgress from '@mui/material/CircularProgress'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
-const RegisterCard = () => {
+const RegisterCard = ({ handleSubmit }) => {
   const [INITIAL_STATE_VALUE, setInitialValue] = useState({
     fullname: '',
     email: '',
@@ -21,13 +23,8 @@ const RegisterCard = () => {
   })
   const [isRegistered, setIsRegistered] = useState(false)
   const [registerFail, setRegisterFail] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsRegistered(false)
-      setRegisterFail('')
-    }, 3000)
-  }, [])
   const FORM_VALIDATION = yup.object().shape({
     fullname: yup.string().required('Required'),
     email: yup.string().required('Required').email('Invalid Email'),
@@ -54,6 +51,7 @@ const RegisterCard = () => {
           initialValues={INITIAL_STATE_VALUE}
           validationSchema={FORM_VALIDATION}
           onSubmit={async (value) => {
+            setLoading(true)
             if (value.password !== value.confirmPassword) {
               setRegisterFail("Password don't match")
             } else {
@@ -64,6 +62,7 @@ const RegisterCard = () => {
                 setRegisterFail('Register Failed!')
               }
             }
+            setLoading(false)
           }}
         >
           <Form>
@@ -85,7 +84,13 @@ const RegisterCard = () => {
                 />
               </Grid>
               <Grid item xs={12} sx={{ mt: 1 }}>
-                <Button>Submit</Button>
+                <Button>
+                  {!loading ? (
+                    'Submit'
+                  ) : (
+                    <CircularProgress sx={{ color: '#fff' }} />
+                  )}
+                </Button>
               </Grid>
             </Grid>
           </Form>

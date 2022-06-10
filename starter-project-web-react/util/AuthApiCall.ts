@@ -31,9 +31,41 @@ async function Signup(user: User): Promise<boolean> {
         }else{
           return false
         }
-    } catch (error) {
+
+    } catch (error:any) {
         return false
     }
 }
 
-export default {Signin, Signup}
+async function UpdateUser(user: any, id: any, access_token: any){
+  try {                
+      const result = await axios.patch(`${API_BASE_URL}/user/${id}`,user,{ headers: { Authorization: 'Bearer ' + access_token }})
+      if(result.status === 201 || result.status == 200){
+        return result
+      }else{
+        return null
+      }
+  } catch (error) {
+      return null
+  }
+}
+
+async function GetUserDetail(id: string, access_token: string) {
+
+    try {
+        const res = await axios.get(
+          `${API_BASE_URL}/user/${id}`,
+          { headers: { Authorization: 'Bearer ' + access_token } }
+        )
+  
+        if (res.status === 200) {
+          const user = { name: res.data.fullName, email: res.data.email }
+          return user
+        }else{
+            return null
+        }
+      } catch (error: any) {            
+        return null
+      }
+}
+export default {Signin, Signup, GetUserDetail, UpdateUser}
