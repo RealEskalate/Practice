@@ -6,7 +6,7 @@ import LocationOn from '@mui/icons-material/LocationOn'
 import Switch from '@mui/material/Switch'
 import Grid from '@mui/material/Grid'
 import CardContent from '@mui/material/CardContent'
-import { Alert, AlertTitle, CardHeader } from '@mui/material'
+import { Alert, AlertTitle, CardHeader, CircularProgress } from '@mui/material'
 import TextField from '../auth/TextField'
 import { useState, useEffect } from 'react'
 import * as yup from 'yup'
@@ -33,6 +33,7 @@ const ProfileCard = () => {
   const [INITIAL_STATE_VALUE, setInitialValue] = useState(INITIAL_STATE)
   const [isUpdated, setIsUpdated] = useState(false)
   const [updateFail, setUpdateFailed] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const FORM_VALIDATION = yup.object().shape({
     firstname: yup.string().required('Required'),
@@ -83,6 +84,7 @@ const ProfileCard = () => {
           initialValues={INITIAL_STATE_VALUE}
           validationSchema={FORM_VALIDATION}
           onSubmit={async (value) => {
+            setLoading(true)
             if (value.password !== value.confirmPassword) {
               setUpdateFailed("Password don't match")
             } else {
@@ -127,7 +129,14 @@ const ProfileCard = () => {
                 />
               </Grid>
               <Grid item xs={12} sx={{ mt: 1 }}>
-                <Button sx={{ fullWidth: false, width: 'auto' }}>Update</Button>
+                <Button sx={{ fullWidth: false, width: 'auto' }}>
+                  {' '}
+                  {!loading ? (
+                    'Update'
+                  ) : (
+                    <CircularProgress sx={{ color: '#fff' }} />
+                  )}
+                </Button>
               </Grid>
             </Grid>
           </Form>

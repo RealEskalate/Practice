@@ -24,7 +24,6 @@ async function Signin(credentials: Credentials|any){
 }
 
 async function Signup(user: User): Promise<boolean> {
-
     try {                
         const result = await axios.post(`${API_BASE_URL}/user`,{fullName: user.fullname, email: user.email, password: user.password})
         if(result.status === 201 || result.status == 200){
@@ -33,7 +32,7 @@ async function Signup(user: User): Promise<boolean> {
           return false
         }
 
-    } catch (error) {
+    } catch (error:any) {
         return false
     }
 }

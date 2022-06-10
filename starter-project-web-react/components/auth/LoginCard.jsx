@@ -11,12 +11,15 @@ import * as yup from 'yup'
 import { Formik, Form } from 'formik'
 import TextField from './TextField'
 import Button from './AuthButton'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const LoginCard = (props) => {
   const [INITIAL_STATE_VALUE, setValue] = useState({
     email: '',
     password: '',
   })
+
+  const [loading, setLoading] = useState(false)
 
   const FORM_VALIDATION = yup.object().shape({
     email: yup.string().required('Required').email('Invalid'),
@@ -41,6 +44,7 @@ const LoginCard = (props) => {
           initialValues={INITIAL_STATE_VALUE}
           validationSchema={FORM_VALIDATION}
           onSubmit={(value) => {
+            setLoading(true)
             signIn('credentials', {
               callbackUrl: `${window.location.origin}/`,
               email: value.email,
@@ -57,7 +61,13 @@ const LoginCard = (props) => {
                 <TextField name="password" label="Password" type="password" />
               </Grid>
               <Grid item xs={12} sx={{ mt: 1 }}>
-                <Button>Submit</Button>
+                <Button>
+                  {!loading ? (
+                    'Submit'
+                  ) : (
+                    <CircularProgress sx={{ color: '#fff' }} />
+                  )}
+                </Button>
               </Grid>
             </Grid>
           </Form>
