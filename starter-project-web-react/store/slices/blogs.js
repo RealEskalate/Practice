@@ -7,6 +7,7 @@ const slice = createSlice({
   initialState: {
     value: [],
     loading: false,
+    commentLoading: false,
     error: null,
     singleBlog: {
       id: 32,
@@ -28,18 +29,21 @@ const slice = createSlice({
       blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
       neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
       quasi quidem quibusdam.`
-    }
+    },
+    comments: []
   },
   reducers: {
     requested: (posts, action) => {
       posts.loading = true
       posts.error = null
-      console.log("request started")
+    },
+    commentRequested: (posts, action) => {
+      posts.commentLoading = true
     },
     requestFailed: (posts, action) => {
       posts.loading = false
+      posts.commentLoading = false
       posts.error = action.payload
-      console.log("request has failed")
     },
     postAdded: (posts, action) => {
       posts.value = [...posts.value, action.payload]
@@ -56,11 +60,19 @@ const slice = createSlice({
       state.singleBlog = action.payload
       state.loading = false
       state.error = null
+    }, 
+    commentsLoaded: (state, action) => {
+      state.comments = action.payload
+      state.commentLoading = false
+    },
+    commentAdded: (state, action) => {
+      state.commentLoading = false
     }
   },
 })
 
-const { requestFailed, requested, postAdded , blogsReceived, singleLoaded} = slice.actions
+const { requestFailed, requested, commentRequested, postAdded, 
+    commentAdded , blogsReceived, singleLoaded, commentsLoaded } = slice.actions
 export default slice.reducer
 
 export const addBlog = (post) => (dispatch, getState) => {
@@ -92,7 +104,7 @@ export const loadBlogs = () => (dispatch, getState) => {
   )
 }
 
-export const loadSingleBlog = (id) => (dispatch, getState) => {
+export const loadSingleBlog = (id) => (dispatch) => {
   dispatch(
     actions.apiCallBegan({
       url: "articles/" + id,
@@ -102,6 +114,35 @@ export const loadSingleBlog = (id) => (dispatch, getState) => {
       method:'get'
     })
   )
+  dispatch(loadComments(id))
+}
+
+export const loadComments = (id) => (dispatch) => {
+  dispatch(
+    actions.apiCallBegan({
+      url: "comments/" + id,
+      onStart: commentRequested.type,
+      onSuccess: commentsLoaded.type,
+      onFailed: requestFailed.type,
+      method:'get'
+    })
+  )
+}
+
+export const addComment = ({id, text, token}) => (dispatch, getState) => {
+  const data = { text: text }
+  dispatch(
+    actions.apiCallBegan({
+      url: "comments/" + id,
+      onStart: commentRequested.type, // before api request for let us now we are gonna call api call and we enable loading on that type of thing
+      onSuccess: commentAdded.type, // if it succeeded this action will be dispatch
+      onFailed: requestFailed.type, // if it failed this action will be dispatch
+      method: 'post', // type of the post,
+      data,
+      headers: { Authorization: `Bearer ${token}` }
+    })
+  )
+  dispatch(loadComments(id))
 }
 
 export const getSingleBlog = createSelector(
@@ -114,7 +155,17 @@ export const getBlogs = createSelector(
   (blogs) => blogs
 )
 
+export const getComments = createSelector(
+  (state) => state.entities.blog.comments,
+  (blogs) => blogs
+)
+
 export const isBlogLoading = createSelector(
   state => state.entities.blog.loading,
+  isLoading => isLoading
+)
+
+export const isCommentLoading = createSelector(
+  state => state.entities.blog.commentLoading,
   isLoading => isLoading
 )

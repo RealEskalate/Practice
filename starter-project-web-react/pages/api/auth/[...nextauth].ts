@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { Auth } from 'firebase-admin/lib/auth/auth';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 import { NextApiRequest, NextApiResponse } from 'next'
- import NextAuth from 'next-auth/next'
+import NextAuth from 'next-auth/next'
 import CredentialsProvider  from 'next-auth/providers/credentials'
 import GitHubProvider from 'next-auth/providers/github'
 import AuthApiCall from '../../../util/AuthApiCall';
