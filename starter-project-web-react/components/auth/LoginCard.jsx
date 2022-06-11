@@ -13,7 +13,7 @@ import TextField from './TextField'
 import Button from './AuthButton'
 import CircularProgress from '@mui/material/CircularProgress'
 
-const LoginCard = (props) => {
+const LoginCard = () => {
   const [INITIAL_STATE_VALUE, setValue] = useState({
     email: '',
     password: '',
