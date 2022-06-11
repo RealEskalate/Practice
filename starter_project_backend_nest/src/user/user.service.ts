@@ -31,22 +31,20 @@ export class UserService {
     email: string;
     password: string;
   }) {
-    const saltOrRounds = 10;
-    const hashed_password = await bcrypt.hash(password, saltOrRounds);
-    password = hashed_password;
-
-    const exists = await this.findByEmail(email);
-    if (exists) {
-      throw new ConflictException('User already Exist');
+    try {
+      const saltOrRounds = 10;
+      const hashed_password = await bcrypt.hash(password, saltOrRounds);
+      password = hashed_password;
+      const newUser: any = await this.usermodel.create({
+        fullName: fullName,
+        email: email,
+        password: password,
+      });
+      const { password: omit, ...user } = newUser._doc;
+      return user;
+    } catch (e) {
+      throw new BadRequestException();
     }
-
-    const newUser: any = await this.usermodel.create({
-      fullName: fullName,
-      email: email,
-      password: password,
-    });
-    const { password: omit, ...user } = newUser._doc;
-    return user;
   }
 
   async getAllUser() {

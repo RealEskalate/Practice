@@ -19,45 +19,28 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AddCommentOutlined from '@mui/icons-material/AddCommentOutlined';
 
 
+import { getComments, isCommentLoading, addComment } from '../../store/slices/blogs';
+import { useSelector, useDispatch } from 'react-redux'
+import { useSession } from 'next-auth/react'
+
+
 export default function Comments({blog}) {
-  const comments = [
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "this is the guy that comments", 
-      img: '/img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
-    },
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "Example Commenter", 
-      img: '/img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
-    },
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "Example Commenter", 
-      img: '/img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
-    },
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "Example Commenter", 
-      img: 'img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
-    },
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "Example Commenter", 
-      img: '/img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
-    },
-    {
-      comment: "this is a comment text that is an example for all", 
-      commenter: "Example Commenter", 
-      img: 'img/trial-avatar.jpg',
-      created_at: "Jan 1, 2022"
+  const dispatch = useDispatch()
+  const { data: session } = useSession()
+  const onComment = (event) => {
+    if (event.keyCode == 13) {
+      const payload = {id: blog._id, text: event.target.value, token: session.access_token}
+      if (payload.text.length > 3) {
+        dispatch(addComment(payload))
+        event.target.value = null
+      }
+      else console.log("not enough length")
     }
-  ]
+    
+  };
+
+  const comments = useSelector((state) => getComments(state))
+
   return (
     <Card sx={{ minWidth: 275 }} variant="outlined">
       <CardContent>
@@ -65,8 +48,9 @@ export default function Comments({blog}) {
           <TextField 
             fullWidth 
             label="Leave a comment!" 
-            id="commentForm" 
+            id="commentForm"
             variant="standard" 
+            onKeyUp={onComment}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

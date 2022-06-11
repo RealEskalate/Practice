@@ -6,17 +6,19 @@ import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import Moment from 'moment';
 
 
 export default function SingleComment({comment, divider}) {
+  const formattedDate = Moment(comment.created_at).fromNow()
   return (
     <Box>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt={comment.commenter} src={comment.img} />
+          <Avatar alt={comment.user.fullName} src={comment.img} />
         </ListItemAvatar>
         <ListItemText
-          primary={comment.commenter}
+          primary={comment.user.fullName}
           secondary={
             <React.Fragment>
               <Typography
@@ -25,9 +27,9 @@ export default function SingleComment({comment, divider}) {
                   variant="body2"
                   color="text.primary"
               >
-                  {comment.created_at}
+                  {formattedDate}
               </Typography>
-              {' — ' + comment.comment}
+              {' — ' + comment.text}
             </React.Fragment>
           }
         />

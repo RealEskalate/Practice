@@ -14,7 +14,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
-const RegisterCard = () => {
+const RegisterCard = ({ handleSubmit }) => {
   const [INITIAL_STATE_VALUE, setInitialValue] = useState({
     fullname: '',
     email: '',
