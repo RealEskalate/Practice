@@ -33,6 +33,21 @@ export class ArticleController {
     return this.articleService.search(searchTerm);
   }
 
+  @Public()
+  @Get('/:id')
+  getArticleById(@Param('id') id: string) {
+    return this.articleService.getArticleById(id);
+  }
+
+  @Patch('/:id')
+  updateArticleById(
+    @Request() req: any,
+    @Param('id') id: string,
+    @Body() body: any,
+  ) {
+    return this.articleService.updateArticleById(req.user.userId, id, body);
+  }
+  
   @Delete('/:id')
   deleteArticleById(@Request() req: any, @Param('id') articleId: string) {
     return this.articleService.deleteArticleById(req.user.userId, articleId);
