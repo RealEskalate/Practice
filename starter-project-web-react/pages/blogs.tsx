@@ -19,7 +19,7 @@ const Blogs = () => {
   const blogs = useSelector((state: any) => getBlogs(state))
   const isLoading = useSelector((state: any) => isBlogLoading(state))
   useEffect(() => {
-    dispatch(loadBlogs())
+    dispatch(loadBlogs() as any)
   }, [])
   return (
     <Container>
@@ -61,7 +61,7 @@ const Blogs = () => {
           justifyContent="center"
         >
           {blogs.map((blog: blogType) => (
-            <BlogCard {...blog} key={blog._id} />
+            <BlogCard blog={blog} key={blog._id} />
           ))}
         </Box>
       )}

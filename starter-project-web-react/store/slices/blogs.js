@@ -75,9 +75,9 @@ const { requestFailed, requested, commentRequested, postAdded,
     commentAdded , blogsReceived, singleLoaded, commentsLoaded } = slice.actions
 export default slice.reducer
 
-export const addBlog = (post) => (dispatch, getState) => {
+export const addBlog = (post, token) => (dispatch, getState) => {
   // when apiCallBegan dispached the middleware(api middleware) we have configured in the configureStore will handle it first
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0NDkwMzYyLCJleHAiOjE2NTQ0OTM5NjJ9.RI5Wamlrt12FDlj8bNhidgcdSIJH2DhL5VcuHzs7EBM"
+  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZW5AZ21haWwuY29tIiwic3ViIjoiNjI5NjE5OWE5NWI3ZGIyMmRlMzY1MDdmIiwiaWF0IjoxNjU0NDkwMzYyLCJleHAiOjE2NTQ0OTM5NjJ9.RI5Wamlrt12FDlj8bNhidgcdSIJH2DhL5VcuHzs7EBM"
   const data = {title:post.title, content: post.content,description: post.content, }
   dispatch(
     actions.apiCallBegan({

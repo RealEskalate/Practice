@@ -21,11 +21,13 @@ interface props {
   authorUserId: any
 }
 export default function BlogCard({
-  _id,
-  title,
-  content,
-  authorUserId
-}: props) {
+  blog
+}: any) {
+  const {
+    _id,
+    title,
+    content,
+    authorUserId } = blog
   const author = authorUserId.fullName
   return (
     <Link

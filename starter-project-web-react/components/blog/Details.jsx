@@ -18,8 +18,9 @@ const Details = ({blog}) => {
             {blog.content}
         </Typography>
 
-        {blog.imageUrls.map((url) => (
+        {blog.imageUrls.map((url,  index) => (
             <Image 
+              key ={index}
               src={url} 
               layout='responsive'
               width={'100%'}

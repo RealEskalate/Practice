@@ -6,9 +6,11 @@ import BlogPostTextField from  './blogPostTextField'
 import { addBlog , getBlogs} from '../../store/slices/blogs'
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSession } from "next-auth/react"                                                          
 export default function BlogPostForm({
   handleClose
 }) {
+  const {data: session} = useSession()                 
   const dispatch = useDispatch()
   const d = useSelector((state)=> getBlogs(state))
 
@@ -32,9 +34,8 @@ export default function BlogPostForm({
       onSubmit = {
         values => {
           console.log(values)
-          dispatch(addBlog({...values}))
+          dispatch(addBlog({...values}, session.access_token))
           handleClose()
-
         }
         
       }
