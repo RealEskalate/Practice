@@ -27,11 +27,20 @@ import path from 'path';
         uri: config.get<string>('MONGO_URI'),
       }),
     }),
-    
-        
+    MulterModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async () => ({
+        fileFilter: (req, file, cb) => {
+          if (!file.mimetype.match(/png||jpeg||jpg||gif$i/)) {
+            cb(new Error('File does not support'), true);
+            return;
+          }
+          cb(null, true);
+        },
         
       }),
-    }),
+    })
+    
     TodosModule,
     ArticleModule,
     AuthModule,

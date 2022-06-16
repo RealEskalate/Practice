@@ -47,13 +47,26 @@ export class ArticleController {
   ) {
     return this.articleService.updateArticleById(req.user.userId, id, body);
   }
-  
+
   @Delete('/:id')
   deleteArticleById(@Request() req: any, @Param('id') articleId: string) {
     return this.articleService.deleteArticleById(req.user.userId, articleId);
   }
+  @Public()
+  @Post('/rating/:id')
+  rateArticleById(
+    @Request() req: any,
+    @Param('id') articleId: string,
+    @Body() { rating }: { rating: string },
+  ) {
+    if (!rating) throw new BadRequestException('rating feild is not provided');
+    return this.articleService.rateArticleById(articleId, rating);
+  }
 
- 
-
- 
+  @Public()
+  @Get('/rating/:id')
+  getAverageRatingById(@Param('id') id: string) {
+    return this.articleService.getAverageRatingById(id);
+  }
+}
 }
