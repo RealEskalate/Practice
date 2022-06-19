@@ -98,6 +98,7 @@ const RegisterCard = () => {
       </Grid>
       {isRegistered ? (
         <Alert
+          name="successAlert"
           severity="success"
           action={
             <IconButton

@@ -100,10 +100,10 @@ const ProfileCard = () => {
               )
               if (res) {
                 setIsUpdated(true)
-                router.reload()
               } else {
                 setUpdateFailed('User Update Failed!')
               }
+              setLoading(false)
             }
           }}
         >
@@ -144,6 +144,7 @@ const ProfileCard = () => {
       </Box>
       {isUpdated ? (
         <Alert
+          name="successAlert"
           severity="success"
           action={
             <IconButton
