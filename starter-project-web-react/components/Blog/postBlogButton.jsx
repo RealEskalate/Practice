@@ -17,7 +17,7 @@ export default function PostBlog(props) {
   };
   return (
     <div>
-      <Button fontWeight="fontWeightBold"  variant="outlined" onClick={handleClickOpen}>
+      <Button  fontWeight="fontWeightBold"  variant="outlined" onClick={handleClickOpen}>
       <Typography fontWeight="fontWeightBold"  color="text.secondary">
           Post Blog
         </Typography>
