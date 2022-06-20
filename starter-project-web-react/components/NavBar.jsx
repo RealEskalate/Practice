@@ -63,7 +63,12 @@ export default function ButtonAppBar() {
               <Typography variant="h6" sx={{ margin: '5px' }}>
                 {user.fullname}
               </Typography>
-              <Avatar alt="Remy Sharp" src={user.image} onClick={openProfile} />
+              <Avatar
+                name="profile"
+                alt="Remy Sharp"
+                src={user.image}
+                onClick={openProfile}
+              />
               <LogoutIcon
                 sx={{ mx: '10px' }}
                 onClick={logoutHandler}
