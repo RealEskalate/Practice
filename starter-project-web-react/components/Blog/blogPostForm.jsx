@@ -55,7 +55,7 @@ export default function BlogPostForm({
           />
         </Box>
         <Button type='submit' size='large'  fullWidth variant="outlined">
-          Post
+          POST
         </Button>
         
       </Form>
