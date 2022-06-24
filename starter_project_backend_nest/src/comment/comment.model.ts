@@ -8,4 +8,28 @@ export default interface IComment extends Document {
   updatedAt: Date;
 }
 
+export const CommentSchema: Schema<IComment> = new Schema(
+  {
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    articleId: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Article',
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  },
+);
 

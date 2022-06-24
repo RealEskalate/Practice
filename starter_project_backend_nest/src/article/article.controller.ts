@@ -39,6 +39,35 @@ export class ArticleController {
     return this.articleService.getArticleById(id);
   }
 
+  @Post('/')
+  @UseInterceptors(FilesInterceptor('image'))
+  addArticle(
+    @Request() req: any,
+    @Body()
+    {
+      title,
+      description,
+      content,
+      categories,
+    }: {
+      title: string;
+      description: string;
+      content: string;
+      categories: string[];
+    },
+    @UploadedFiles() images: Array<Express.Multer.File>,
+  ) {
+    const authorUserId = req.user.userId;
+    const newArticle = {
+      authorUserId,
+      title,
+      description,
+      content,
+      categories,
+    };
+    return this.articleService.addArticle(newArticle, images);
+  }
+
   @Patch('/:id')
   updateArticleById(
     @Request() req: any,
