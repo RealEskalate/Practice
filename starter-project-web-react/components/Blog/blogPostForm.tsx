@@ -28,8 +28,8 @@ export default function BlogPostForm({
 
   }
   const FORM_VALIDATION = Yup.object().shape({
-    title: Yup.string().min(1).required().matches(/^(\S+$)/, 'Title can not be only space'),
-    content: Yup.string().required().matches(/^(\S+$)/, 'content can not be only space')
+    title: Yup.string().min(1).required(),
+    content: Yup.string().required()
   })
   return (
 
