@@ -60,7 +60,7 @@ const Blogs = () => {
           alignItems="center"
           justifyContent="center"
         >
-          {blogs.map((blog: blogType) => (
+          {blogs.map((blog: any) => (
             <BlogCard blog={blog} key={blog._id} />
           ))}
         </Box>
