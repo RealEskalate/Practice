@@ -4,10 +4,10 @@ import BlogPostDialog from './blogPostDialog';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBlogs } from '../../store/slices/blogs';
 
-export default function PostBlog(props) {
+export default function PostBlog(props:any) {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
-  const blogs = useSelector((state) => getBlogs(state))
+  const blogs = useSelector((state) => getBlogs(state as any))
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -17,7 +17,7 @@ export default function PostBlog(props) {
   };
   return (
     <div>
-      <Button  fontWeight="fontWeightBold"  variant="outlined" onClick={handleClickOpen}>
+      <Button    variant="outlined" onClick={handleClickOpen}>
       <Typography fontWeight="fontWeightBold"  color="text.secondary">
           Post Blog
         </Typography>

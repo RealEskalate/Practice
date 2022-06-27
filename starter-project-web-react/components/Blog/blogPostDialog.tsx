@@ -12,7 +12,7 @@ import BlogPostForm from './blogPostForm';
 export default function BlogPostDialog({
     open,
     handleClose
-}) {
+}:any) {
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));

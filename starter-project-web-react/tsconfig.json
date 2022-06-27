@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "store/configureStore.js", "store/middlware/apiCall.js", "store/slices/blogs.js", "store/api.js", "store/entites.js","store/reducer.js", "components/profile/UserCard.js", "components/auth/AuthButton.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "store/configureStore.ts", "store/middlware/apiCall.ts", "store/slices/blogs.ts", "store/api.ts", "store/entites.ts","store/reducer.ts", "components/profile/UserCard.js", "components/auth/AuthButton.jsx", "components/Blog/blogPostTextField.tsx"],
   "exclude": ["node_modules"]
 }
