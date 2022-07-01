@@ -9,7 +9,7 @@
       <v-toolbar-title>{{ title }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
+      <AddBlog />
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+import AddBlog from './AddBlog.vue'
 export default {
   name: 'NavigationBar',
   data() {
@@ -28,6 +29,7 @@ export default {
       title: 'The Blog Posts Website',
     }
   },
+  components: { AddBlog },
 }
 </script>
 

@@ -4,21 +4,34 @@
       v-for="blog in blogs"
       :key="blog.id"
       dense
-      class="pa-6 py-2 mx-6 dark mb-6"
+      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
       sm="6"
       md="3"
     >
       <v-col cols="12">
-        <v-card color="black">
-          <v-card-title class="mx-auto text-center black--text">
-            <p>
-              {{ blog.title }}
-            </p>
-          </v-card-title>
-
-          <v-card-subtitle class="black--text">
-            {{ blog.description }}
-          </v-card-subtitle>
+        <v-card color="white">
+          <v-row>
+            <v-col cols="10">
+              <v-card-title class="mx-auto text-center black--text">
+                <p>
+                  {{ blog.title }}
+                </p>
+              </v-card-title>
+              <v-card-text class="black--text">
+                {{ blog.description }}
+              </v-card-text>
+            </v-col>
+            <v-col cols="1">
+              <v-btn left text class="grey--text">
+                <v-icon> mdi-pencil </v-icon>
+              </v-btn>
+            </v-col>
+            <v-col cols="1">
+              <v-btn left text class="grey--text">
+                <v-icon> mdi-delete </v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
