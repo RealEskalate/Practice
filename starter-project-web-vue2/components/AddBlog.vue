@@ -6,20 +6,45 @@
         Add Blog</v-btn
       >
     </template>
-
     <v-card>
       <v-card-title>
         <h2>Add a New Blog</h2>
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field v-model="BlogTitle" label="Title"></v-text-field>
-          <v-textarea v-model="content" label="Content"></v-textarea>
+          <v-text-field v-model="blogTitle" label="Title" />
+          <v-textarea v-model="blogContent" label="Content" />
           <v-spacer></v-spacer>
-          <v-btn flat @click="submit" class="success mx-0 mt-3">Add Blog</v-btn>
+          <v-btn @click="onSubmit" class="success mx-0 mt-3">Add Blog</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
-<script></script>
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'AddBlog',
+  data() {
+    return {
+      blogTitle: '',
+      blogContent: '',
+      blogPost: {},
+    }
+  },
+  methods: {
+    ...mapActions(['addBlog']),
+    onSubmit(e) {
+      e.preventDefault()
+      this.blogPost = {
+        title: this.blogTitle,
+        body: this.blogContent,
+        userId: 1,
+      }
+      this.addBlog(this.blogPost)
+      this.blogTitle = ''
+      this.blogContent = ''
+    },
+  },
+}
+</script>
