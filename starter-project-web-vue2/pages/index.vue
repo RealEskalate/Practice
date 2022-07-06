@@ -1,5 +1,9 @@
 <template>
-  <BlogPost />
+  <v-app>
+    <v-main class="white">
+      <BlogPost />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -9,3 +13,8 @@ export default {
   components: { BlogPost },
 }
 </script>
+<style>
+.padd {
+  padding-top: 5rem;
+}
+</style>
