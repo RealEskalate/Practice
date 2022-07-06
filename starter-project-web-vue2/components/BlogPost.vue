@@ -1,22 +1,22 @@
 <template>
   <v-container class="font">
-    <v-container v-if="edit_area" dark class="px-0 black--text">
+    <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
-        filled
+        outlined
         class="text-black"
         :value="current.title"
         label="Title"
         v-model="blog_title"
       />
       <v-text-field
-        filled
+        outlined
         class="text-black"
         :value="current.body"
         label="Content"
         v-model="blog_content"
       />
-      <v-btn @click="update" class="success pa-2 mb-2 mx-7 mt-3">Save</v-btn>
+      <v-btn @click="update" class="pa-2 mb-2 mx-7 mt-3" dark>Save</v-btn>
     </v-container>
 
     <v-row
@@ -30,17 +30,21 @@
       <v-col cols="12">
         <v-card color="white">
           <v-row>
-            
-              <v-col cols="10">
-                <v-card-title class="mx-auto text-center black--text">
+            <v-col cols="10">
+              <v-card-title class="mx-auto text-center black--text">
+                <nuxt-link
+                  style="text-decoration: none; color: inherit"
+                  :to="'/' + blog.id"
+                >
                   <p>
                     {{ blog.title }}
                   </p>
-                </v-card-title>
-                <v-card-text class="black--text">
-                  {{ blog.body }}
-                </v-card-text>
-              </v-col> 
+                </nuxt-link>
+              </v-card-title>
+              <v-card-text class="black--text">
+                {{ blog.body }}
+              </v-card-text>
+            </v-col>
             <v-col cols="1">
               <v-btn
                 left
