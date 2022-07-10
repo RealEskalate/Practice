@@ -36,17 +36,18 @@
 //   }
 // }
 
-Cypress.Commands.add('login', (email, password) => { 
-    cy.session([email, password], ()=>{  
-        cy.visit('/auth/login')
-        cy.get('[name="email"]').type(email)
-        cy.get('[name="password"]').type(password)
-        cy.contains('Submit').click()
-        cy.wait(5000)
-    
-        cy.url().should('eq', 'http://localhost:3000/')
-    })
-    
- })
+ Cypress.Commands.add("login", () => {
+	cy.intercept("/api/auth/session", { fixture: "session.json" }).as("session");
+
+	cy.setCookie("next-auth.session-token", Cypress.env('TEST_TOKEN'));
+	
+});
+
+Cypress.Commands.add("register", () => {
+	cy.intercept("https://blog-app-backend.onrender.com/api/user", { fixture: "register.json" }).as("register");
+	
+});
+
+
 
  export {}
