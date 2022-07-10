@@ -1,15 +1,19 @@
 import React from 'react'
 import { TextField } from '@mui/material'
 import { useField } from 'formik'
+interface props {
+  name:string,
+  otherProps:any
+}
 export default function BlogPostTextField({
     name,
-    ...otherPorps
-}) {
-    const [field, mata] = useField(name);
+    otherProps
+}:props) {
+    const [field, mata]:any = useField(name);
 
   const configTextfield = {
     ...field,
-    ...otherPorps,
+    ...otherProps,
     fullWidth: true,
     variant: 'outlined',
     error:false,

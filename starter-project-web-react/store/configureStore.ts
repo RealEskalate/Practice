@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware, Store } from "@reduxjs/toolkit";
 import reducer from './reducer';
 import apiCall from "./middlware/apiCall";
 import { useMemo } from "react";
-const makeStore = (initialState) => configureStore({
+const makeStore = (initialState:any) => configureStore({
     reducer,
     middleware: [
         ...getDefaultMiddleware(),
@@ -14,11 +14,11 @@ const makeStore = (initialState) => configureStore({
 
 
 
-let store
+let store:any
   
   
-export const initailzeStore = (preloadedState) => {
-    let _store = store ?? makeStore(preloadedState)
+export const initailzeStore = (preloadedState:any) => {
+    let _store:any = store ?? makeStore(preloadedState)
 
     if (preloadedState && store){
         _store = makeStore({
@@ -33,11 +33,14 @@ export const initailzeStore = (preloadedState) => {
     return _store
 }
 
-export function useStore(intialState){
+export function useStore(intialState:any){
     const store= useMemo(() => initailzeStore(intialState), [intialState])
     return store
 }
-export function useStoreTest(intialState){
+const s:any = makeStore({})
+export type AppDispatch = typeof s.dispatch;
+export type RootState = ReturnType<typeof s.getState>;
+export function useStoreTest(intialState:any):any{
   const store=  initailzeStore(intialState)
   return store
 }
