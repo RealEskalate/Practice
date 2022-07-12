@@ -36,6 +36,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 - **Full-Time**
   - Miruts Hadush
   - Henok Adane
+  - Daniel Tefera
   - Kaleab Girma
   - Natnael Awel
   - Selamawit Elias
