@@ -38,8 +38,8 @@ export default {
       e.preventDefault()
       this.blogPost = {
         title: this.blogTitle,
-        body: this.blogContent,
-        userId: 1,
+        content: this.blogContent,
+        description: 'description',
       }
       this.addBlog(this.blogPost)
       this.blogTitle = ''

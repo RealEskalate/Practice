@@ -29,12 +29,12 @@ export default {
     }
     try {
       const res = await axios.get(
-        `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`,
+        `https://blog-app-backend.onrender.com/api/articles/${this.$route.params.id}`,
         config
       )
       console.log(res)
 
-      this.content = res.data.body
+      this.content = res.data.content
       this.title = res.data.title
     } catch (err) {
       console.log(err)
