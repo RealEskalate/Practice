@@ -1,33 +1,17 @@
 {
   "name": "starter-project-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend Team starter project for nodejs, mongodb, express stack",
+  "main": "index.ts",
   "scripts": {
-    "test": "jest --runInBand --detectOpenHandles",
-    "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts",
-    "build": "tsc -p ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mongodb-memory-server": "^7.6.3",
-    "mongoose": "^5.13.4"
-  },
-  "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.13",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^16.4.6",
-    "@types/supertest": "^2.0.11",
-    "nodemon": "^2.0.12",
-    "supertest": "^6.2.2",
-    "ts-jest": "^27.0.4",
-    "ts-node": "^10.1.0",
-    "typescript": "^4.3.5"
-  }
+  "keywords": [
+    "nodejs",
+    "mongodb",
+    "express",
+    "cloudinary"
+  ],
+  "author": "Backend Team",
+  "license": "ISC"
 }
