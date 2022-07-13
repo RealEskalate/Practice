@@ -1,5 +1,8 @@
 <template>
   <v-container class="font">
+    <v-container class="pa-2 mb-6 mx-7 mt-3">
+      <AbrahamAddBlog />
+    </v-container>
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
@@ -34,7 +37,7 @@
               <v-card-title class="mx-auto text-center black--text">
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="'/' + blog.id"
+                  :to="'/' + blog._id"
                 >
                   <p>
                     {{ blog.title }}
@@ -42,7 +45,7 @@
                 </nuxt-link>
               </v-card-title>
               <v-card-text class="black--text">
-                {{ blog.body }}
+                {{ blog.content }}
               </v-card-text>
             </v-col>
             <v-col cols="1">
@@ -69,6 +72,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import AbrahamAddBlog from './AbrahamAddBlog.vue'
 export default {
   name: 'BlogPost',
   data() {
@@ -99,6 +103,7 @@ export default {
   created() {
     this.fetchBlogs()
   },
+  components: { AbrahamAddBlog },
 }
 </script>
 
