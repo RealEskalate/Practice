@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const ratingController = require("./controllers/rating.controller");
+const ratingRouter = require("./routes/rating.router");
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -13,12 +13,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
-
-app.get("/api/rating", ratingController.getMany);
-app.get("/api/rating/:id", ratingController.getOne);
-app.post("/api/rating", ratingController.createOne);
-app.put("/api/rating/:id", ratingController.updateOne);
-app.delete("/api/rating/:id", ratingController.removeOne);
+app.use("/api/rating", ratingRouter);
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
