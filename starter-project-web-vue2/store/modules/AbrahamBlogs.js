@@ -11,35 +11,28 @@ const getters = {
 const actions = {
   async fetchBlogs({ commit }) {
     const response = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
+      'https://blog-app-backend.onrender.com/api/articles/all'
     )
     commit('setBlogs', response.data)
   },
   async addBlog({ commit }, blogPost) {
     const response = await axios.post(
-      'https://jsonplaceholder.typicode.com/posts/',
+      'https://blog-app-backend.onrender.com/api/articles',
       blogPost
     )
     commit('newBlog', response.data)
   },
   async deleteBlog({ commit }, id) {
-    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+    console.log(id)
+    await axios.delete(
+      `https://blog-app-backend.onrender.com/api/articles/${id}`
+    )
     commit('removeBlog', id)
   },
-  async filterBlogs({ commit }, e) {
-    const limit = parseInt(
-      e.target.options[e.target.options.selectedIndex].innerText
-    )
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
-    )
-    commit('setBlogs', response.data)
-  },
-
   async updateBlog({ commit }, updBlog) {
     console.log(updBlog)
     const response = await this.$axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${updBlog.id}`,
+      `https://blog-app-backend.onrender.com/api/articles/${updBlog.id}`,
       updBlog
     )
     commit('updateBlog', response.data)

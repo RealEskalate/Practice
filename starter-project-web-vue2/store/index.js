@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
-import blogs from './modules/blogs'
+import blogs from './modules/AbrahamBlogs'
 
 Vue.use(Vuex)
 
