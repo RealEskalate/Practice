@@ -5,7 +5,7 @@
       :key="member.name"
       no-gutters
       dense
-      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
+      class="pa-5 py-0 mx-auto grey lighten-5 mb-6 "
       sm="6"
       md="3"
     >
@@ -38,6 +38,11 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Liben",
+          description:"Web Team Member",
+          link:"/liben"
+        }
       ],
     }
   },
