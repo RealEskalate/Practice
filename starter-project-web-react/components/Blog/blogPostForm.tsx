@@ -32,7 +32,7 @@ export default function BlogPostForm({
     content: Yup.string().required()
   })
   return (
-
+ 
     <Box mb={5} mx={3}>
       <Formik
         initialValues={{
@@ -41,7 +41,7 @@ export default function BlogPostForm({
         validationSchema={FORM_VALIDATION}
         onSubmit={
           values => {
-            console.log(values)
+            // console.log(values)
             dispatch(addBlog({ ...values }, data.access_token) as any)
             handleClose()
           }
