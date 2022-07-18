@@ -1,6 +1,6 @@
 const getOne = (model) => async (req, res) => {
     try {
-      const doc = await model.findOne({ _id: req.params.id }).lean().exec();
+      const doc = await model.findOne({ _id: req.params.id }).lean().populate('userId').exec();
   
       if (!doc) {
         return res.status(400).end();
@@ -15,7 +15,7 @@ const getOne = (model) => async (req, res) => {
   
   const getMany = (model) => async (req, res) => {
     try {
-      const docs = await model.find().lean().exec();
+      const docs = await model.find().lean().populate('userId').exec();
   
       res.status(200).json({ data: docs });
     } catch (e) {
