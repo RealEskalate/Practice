@@ -31,7 +31,6 @@ export default function BlogCard({
     content,
     authorUserId } = blog
   const author = authorUserId.fullName
-  // console.log(_id)
   return (
     <Link
       href={{

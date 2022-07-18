@@ -8,8 +8,7 @@ import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSession } from "next-auth/react"
 import { AppDispatch, RootState } from "../../store/configureStore";
-// import { TurnedInNotOutlined } from '@mui/icons-material';
-// import { any } from 'cypress/types/bluebird';
+
 
 type handle = () => void;
 interface props {
@@ -41,7 +40,6 @@ export default function BlogPostForm({
         validationSchema={FORM_VALIDATION}
         onSubmit={
           values => {
-            // console.log(values)
             dispatch(addBlog({ ...values }, data.access_token) as any)
             handleClose()
           }

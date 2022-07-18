@@ -7,7 +7,7 @@ import Details from '../../../components/blog/Details'
 import { useSelector, useDispatch } from 'react-redux'
 import { getSingleBlog, loadSingleBlog } from '../../../store/slices/blogs'
 import { getSession } from 'next-auth/react'
-// import { useRouter } from 'next/router'
+
 
 const BlogDetail = () => {
   const blog = useSelector((state) => getSingleBlog(state))
@@ -15,7 +15,7 @@ const BlogDetail = () => {
   const dispatch = useDispatch()
   
   const router = useRouter()
-  // console.log(router.query);
+
   useEffect(() => {
     
     dispatch(loadSingleBlog(router.query.id))
