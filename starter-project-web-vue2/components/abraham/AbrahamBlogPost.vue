@@ -23,7 +23,7 @@
     </v-container>
 
     <v-row
-      v-for="blog in allBlogs"
+      v-for="blog in blogs"
       :key="blog.id"
       dense
       class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
@@ -37,7 +37,7 @@
               <v-card-title class="mx-auto text-center black--text">
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="'/' + blog._id"
+                  :to="'/abraham/' + blog._id"
                 >
                   <p>
                     {{ blog.title }}
@@ -49,12 +49,7 @@
               </v-card-text>
             </v-col>
             <v-col cols="1">
-              <v-btn
-                left
-                text
-                @click="handleEditClick(blog)"
-                class="grey--text"
-              >
+              <v-btn left text @click="editArea(blog)" class="grey--text">
                 <v-icon> mdi-pencil </v-icon>
               </v-btn>
             </v-col>
@@ -71,7 +66,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import AbrahamAddBlog from './AbrahamAddBlog.vue'
 export default {
   name: 'BlogPost',
@@ -83,9 +78,13 @@ export default {
       blog_content: '',
     }
   },
+  computed: { ...mapState('abraham', ['blogs']) },
+  created() {
+    this.fetchBlogs()
+  },
   methods: {
-    ...mapActions(['fetchBlogs', 'deleteBlog', 'updateBlog']),
-    handleEditClick(blog) {
+    ...mapActions('abraham', ['fetchBlogs', 'deleteBlog', 'updateBlog']),
+    editArea(blog) {
       this.edit_area = !this.edit_area
       this.current = blog
     },
@@ -98,10 +97,6 @@ export default {
         title: this.blog_title,
       })
     },
-  },
-  computed: mapGetters(['allBlogs']),
-  created() {
-    this.fetchBlogs()
   },
   components: { AbrahamAddBlog },
 }

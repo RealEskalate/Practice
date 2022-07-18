@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NavigationBar from '~/components/NavigationBar.vue'
+import NavigationBar from '~/components/abraham/NavigationBar.vue'
 export default {
   name: 'DefaultLayout',
   components: {

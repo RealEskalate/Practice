@@ -36,7 +36,7 @@ export default {
           name: "Abraham Tadesse",
           description: 'Summer Intern',
           link:
-            '/abraham',
+            '/abraham/abraham',
         },
       ],
     }

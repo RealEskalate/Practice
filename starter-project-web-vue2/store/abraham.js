@@ -3,11 +3,6 @@ import axios from 'axios'
 const state = {
   blogs: [],
 }
-
-const getters = {
-  allBlogs: (state) => state.blogs,
-}
-
 const actions = {
   async fetchBlogs({ commit }) {
     const response = await axios.get(
@@ -55,7 +50,6 @@ const mutations = {
 
 export default {
   state,
-  getters,
   actions,
   mutations,
 }
