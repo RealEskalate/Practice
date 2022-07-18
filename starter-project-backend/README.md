@@ -1,6 +1,14 @@
 ## Backend Team Starter Project
 
-In this project new team members learn, try and experiment backend dev languages, tools and frameworks!
+In this project new team members learn, try and experiment backend dev languages, tools and frameworks! The frameworks include Nodejs, expressjs, mongodb and mongoose. There might be other services to handle file upload and email services. 
+
+Expressjs - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+Nodejs - Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature. It's used for traditional web sites and back-end API services, but was designed with real-time, push-based architectures in mind.
+
+MongoDB - MongoDB is an open source NoSQL database management program. NoSQL is used as an alternative to traditional relational databases. NoSQL databases are quite useful for working with large sets of distributed data. MongoDB is a tool that can manage document-oriented information, store or retrieve information.
+
+Mongoose -  Mongoose provides a straight-forward, schema-based solution to model your application data.
 
 # Starter Project - Backend
 
