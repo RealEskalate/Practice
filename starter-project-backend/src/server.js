@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const ratingController = require("./controllers/rating.controller");
+const articleRouter = require('./routes/article.routes');
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -13,6 +14,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
+
+app.use('/api/v1/article', router) //here router is called for article
 
 app.get("/api/rating", ratingController.getMany);
 app.get("/api/rating/:id", ratingController.getOne);
