@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "npm run build && node dist/server.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "test": "jest"
   },
   "keywords": [
     "blog"
@@ -16,8 +17,10 @@
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "jest": "^28.1.3",
     "mongodb": "^4.8.0",
     "mongoose": "^6.4.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
   }
 }

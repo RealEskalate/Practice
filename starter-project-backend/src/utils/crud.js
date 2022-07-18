@@ -16,7 +16,7 @@ const getOne = (model) => async (req, res) => {
 const getMany = (model) => async (req, res) => {
   try {
     const docs = await model.find().lean().exec();
-
+    
     res.status(200).json({ data: docs });
   } catch (e) {
     console.error(e);
@@ -82,4 +82,5 @@ const crudControllers = (model) => ({
   getOne: getOne(model),
   createOne: createOne(model),
 });
+
 module.exports = { crudControllers };
