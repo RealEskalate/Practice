@@ -3,7 +3,7 @@ const getOne = (model) => async (req, res) => {
     const doc = await model.findOne({ _id: req.params.id }).lean().exec();
 
     if (!doc) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     res.status(200).json({ data: doc });
@@ -48,7 +48,7 @@ const updateOne = (model) => async (req, res) => {
       .exec();
 
     if (!updatedDoc) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     res.status(200).json({ data: updatedDoc });
@@ -65,7 +65,7 @@ const removeOne = (model) => async (req, res) => {
     });
 
     if (!removed) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     return res.status(200).json({ data: removed });
