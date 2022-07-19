@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const ratingController = require("./controllers/rating.controller");
 const articleRouter = require('./routes/article.routes');
+const userRoutes = require('./routes/user.routes')
+const ratingRouter = require("./routes/rating.router");
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -13,15 +14,10 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("dev"));
-
-app.use('/api/v1/article', router) //here router is called for article
-
-app.get("/api/rating", ratingController.getMany);
-app.get("/api/rating/:id", ratingController.getOne);
-app.post("/api/rating", ratingController.createOne);
-app.put("/api/rating/:id", ratingController.updateOne);
-app.delete("/api/rating/:id", ratingController.removeOne);
+app.use(morgan("dev"))
+app.use('/api/v1/user',userRoutes)
+app.use("/api/v1/rating", ratingRouter);
+app.use('/api/v1/article', articleRoutes) //here router is called for article
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });

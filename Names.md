@@ -46,6 +46,7 @@ This is a document holds the team members of the different sub teams in the A2SV
   - Eden Mesfin
   - Elshadai Kassu
   - Dawit Yonas
+  - Henok Fisseha
   - Kidus Yoseph
   - Riyad Hassen
   - Taklemariam Alazar

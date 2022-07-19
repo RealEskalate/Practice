@@ -3,7 +3,7 @@ const getOne = (model) => async (req, res) => {
     const doc = await model.findOne({ _id: req.params.id }).lean().exec();
 
     if (!doc) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     res.status(200).json({ data: doc });
@@ -16,7 +16,7 @@ const getOne = (model) => async (req, res) => {
 const getMany = (model) => async (req, res) => {
   try {
     const docs = await model.find().lean().exec();
-
+    
     res.status(200).json({ data: docs });
   } catch (e) {
     console.error(e);
@@ -48,7 +48,7 @@ const updateOne = (model) => async (req, res) => {
       .exec();
 
     if (!updatedDoc) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     res.status(200).json({ data: updatedDoc });
@@ -65,7 +65,7 @@ const removeOne = (model) => async (req, res) => {
     });
 
     if (!removed) {
-      return res.status(400).end();
+      return res.status(404).end();
     }
 
     return res.status(200).json({ data: removed });
@@ -82,4 +82,5 @@ const crudControllers = (model) => ({
   getOne: getOne(model),
   createOne: createOne(model),
 });
+
 module.exports = { crudControllers };
