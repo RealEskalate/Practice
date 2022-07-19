@@ -18,7 +18,6 @@ app.use('/api/v1/user',userRoutes)
 app.use("/api/rating", ratingRouter);
 
 
-
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
   try {
