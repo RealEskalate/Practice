@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const articleRouter = require('./routes/article.routes');
 const userRoutes = require('./routes/user.routes')
 const ratingRouter = require("./routes/rating.router");
 
@@ -15,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"))
 app.use('/api/v1/user',userRoutes)
-app.use("/api/rating", ratingRouter);
-
+app.use("/api/v1/rating", ratingRouter);
+app.use('/api/v1/article', articleRoutes) //here router is called for article
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
