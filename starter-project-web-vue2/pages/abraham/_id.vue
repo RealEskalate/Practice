@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxt-link :to="'/abraham/abraham'">
+    <nuxt-link :to="'/abraham/'">
       <v-btn dark class="success pa-2 mb-2 mx-7 mt-3"
         >Back To Blogs</v-btn
       ></nuxt-link
