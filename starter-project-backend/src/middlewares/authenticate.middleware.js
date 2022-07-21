@@ -1,21 +1,21 @@
 const jwt = require('jsonwebtoken')
+const secret = 'pass@besp'
 
 const isAuthenticated = async(req, res, next) => {
-    console.log("token", req.cookies)
     const token = req.cookies.jwt;
     
     if (token){
-        jwt.verify(token, 'jwt token', (err,decode) => {
+        jwt.verify(token, `${secret}`, (err,decode) => {
             if (err){
-                res.redirect('/login')
+                res.redirect('/api/v1/user/login')
             }else{
-                console.log(decode)
+                req.userId = decode._id
                 next()
             }
         })
     }else{
-        res.redirect('/login')
+        res.redirect('/api/v1/user/login')
     }   
 }
 
-module.exports = {isAuthenticated}
+module.exports = isAuthenticated

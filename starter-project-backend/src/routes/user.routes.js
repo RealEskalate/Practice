@@ -1,6 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const userController = require('../controllers/user.controller')
+const authenticate = require('../middlewares/login.middleware')
+const register = require('../middlewares/register.middleware')
+const signOut = require('../middlewares/logout.middleware')
+
+router.post('/register', register);
+router.post('/login', authenticate);
+router.get('/logout',signOut)
 
 router.route('/:id').get(userController.getOne)
 router.route('/').get(userController.getMany)
