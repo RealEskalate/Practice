@@ -1,6 +1,14 @@
 ## Backend Team Starter Project
 
-In this project new team members learn, try and experiment backend dev languages, tools and frameworks!
+In this project new team members learn, try and experiment backend dev languages, tools and frameworks! The frameworks include Nodejs, expressjs, mongodb and mongoose. There might be other services to handle file upload and email services. 
+
+Expressjs - Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+Nodejs - Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature. It's used for traditional web sites and back-end API services, but was designed with real-time, push-based architectures in mind.
+
+MongoDB - MongoDB is an open source NoSQL database management program. NoSQL is used as an alternative to traditional relational databases. NoSQL databases are quite useful for working with large sets of distributed data. MongoDB is a tool that can manage document-oriented information, store or retrieve information.
+
+Mongoose -  Mongoose provides a straight-forward, schema-based solution to model your application data.
 
 # Starter Project - Backend
 
@@ -32,6 +40,7 @@ People should register as well as complete an authentication process if they wan
 - **Set a PR and assign a reviewer always for the changes you want to push to master**
 
 ### Phase-1 - Basic CRUD Stage
+In this phase main task is to Implement basic create read update and delete api end points for each model(schema). Models, controllers and routes will be included in each of the model. Testing for respecting endpoint with success and failure senario is expected too.  
 
 - No Authorization implementation
 - No Authentication implementation
@@ -43,12 +52,13 @@ People should register as well as complete an authentication process if they wan
 4. Implement CRUD for Ratings
 
 ### Phase-2 - Interlink between models
-
+In the second phase integration between models is expected, making single componets integrate with conceptual interactions are exepected to be implmented. After modfing each file and folder in a proper manner it's expected to write a test to gurate the intended features are good shape. 
 1. Interlink Articles with Users
 2. Interlink Comments with Articles
 3. Interlink Ratings with Articles and Comments
 
 ### Phase-3 - Add Authorization and Authentication
+In this part of project group is expected to integrate authntication and auturation by includeding modules and writting middlewares, and add guards to respective api endpoints.  
 
 1. Add security measures for Users
 2. Add security measures for Articles
@@ -56,7 +66,7 @@ People should register as well as complete an authentication process if they wan
 4. Add security measures for Ratings
 
 ### Phase-4 - Add File Management
-
+In this part of project integration of file managemnt and others services are going to be implmented.  
 1. Allow users to upload their profile pictures (Use cloudinary service)
 2. Allow users to upload a photo for their Articles (Use cloudinary service)
 
@@ -111,3 +121,43 @@ GET → Get specific comment
 PATCH → Update comment by Id
 
 DEL → Delete comment by Id
+
+
+# Getting started
+
+To get the Node server running locally:
+
+- Clone this repo using
+
+```bash
+git clone https://github.com/RealEskalate/Practice
+```
+
+- Change to the respective backend directory
+
+```bash
+cd 
+```
+starter_project_backend
+- Install all required dependencies
+
+```bash
+npm install
+```
+
+- Receive environment variables either from your team lead or backend team members
+- Start the local dev server. Run 'start' instead of 'dev' for production server instead
+
+```bash
+npm run dev
+```
+
+# Code Overview
+
+## Scripts
+
+- `start` - To build the project and run the application
+- `dev` - To run the project in a development manner
+- `test` - To run and test a specific test file
+- `test:project` - To build and test the whole project. Also generates the code coverage of the project
+
