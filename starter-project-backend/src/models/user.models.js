@@ -1,56 +1,28 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-<<<<<<< HEAD
-    firstName : {
-        type: String,
-        required: [true,'firstName is required'],
-        trim: true,
-    },
-    lastName : {
-        type: String,
-        required: [true,'lastName is required'],
-        trim: true
-    },
-    email : {
-        type: String,
-        required: [true,'email is required'],
-        trim: true
-    },
-    password : {
-        type : String,
-        required: [true,'password is required'],
-        maxlength: [20, 'password can not exceed 20 characters'],
-        minlength: [8, 'password can not be less than 8 characters']
-    },
-    profilePic : String
-})
-
-module.exports = mongoose.model("User", userSchema);
-=======
   firstName: {
     type: String,
-    require: [true, "firstName is required"],
+    required: [true, "firstName is required"],
     trim: true,
   },
   lastName: {
     type: String,
-    require: [true, "lastName is required"],
+    required: [true, "lastName is required"],
     trim: true,
   },
   email: {
     type: String,
-    require: [true, "email is required"],
+    required: [true, "email is required"],
     trim: true,
   },
   password: {
     type: String,
-    require: [true, "password is required"],
+    required: [true, "password is required"],
     maxlength: [20, "password can not exceed 20 characters"],
     minlength: [8, "password can not be less than 8 characters"],
   },
   profilePic: String,
 });
 
-module.exports = mongoose.model("user", userSchema);
->>>>>>> Add security measures to rating
+module.exports = mongoose.model("User", userSchema);

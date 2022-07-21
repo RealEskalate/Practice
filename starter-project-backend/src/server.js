@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-<<<<<<< HEAD
-const articleRouter = require('./routes/article.routes');
-const userRoutes = require('./routes/user.routes')
-=======
+const articleRouter = require("./routes/article.routes");
 const userRoutes = require("./routes/user.routes");
->>>>>>> Add security measures to rating
 const ratingRouter = require("./routes/rating.router");
-const commentRouter = require("./routes/comment.router")
+const commentRouter = require("./routes/comment.router");
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -19,11 +15,11 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("dev"))
-app.use('/api/v1/user',userRoutes)
+app.use(morgan("dev"));
+app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/rating", ratingRouter);
-app.use('/api/v1/article', articleRouter) //here router is called for article
-app.use('/api/v1/comments', commentRouter)
+app.use("/api/v1/article", articleRouter); //here router is called for article
+app.use("/api/v1/comments", commentRouter);
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
