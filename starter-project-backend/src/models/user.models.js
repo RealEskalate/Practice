@@ -19,10 +19,10 @@ const userSchema = mongoose.Schema({
     password : {
         type : String,
         require: [true,'password is required'],
-        maxlength: [20, 'password can not exceed 20 characters'],
-        minlength: [8, 'password can not be less than 8 characters']
+        max: [20, 'password can not exceed 20 characters'],
+        min: [8, 'password can not be less than 8 characters']
     },
     profilePic : String
 })
 
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("User", userSchema);

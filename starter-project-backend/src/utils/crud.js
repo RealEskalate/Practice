@@ -7,6 +7,8 @@ const getOne = (model) => async (req, res) => {
     }
 
     res.status(200).json({ data: doc });
+
+    return doc;
   } catch (e) {
     console.error(e);
     res.status(400).end();
