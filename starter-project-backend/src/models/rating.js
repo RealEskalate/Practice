@@ -9,12 +9,12 @@ const ratingSchema = mongoose.Schema({
   },
   article: {
     type: mongoose.Types.ObjectId,
-    ref: 'Article',
+    ref: "Article",
   },
   user: {
     type: mongoose.Types.ObjectId,
-    ref: 'User',
-  }
+    ref: "User",
+  },
 });
 
 const Rating = mongoose.model("Rating", ratingSchema);

@@ -2,8 +2,12 @@ const mongoose = require("mongoose");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+<<<<<<< HEAD
 const articleRouter = require('./routes/article.routes');
 const userRoutes = require('./routes/user.routes')
+=======
+const userRoutes = require("./routes/user.routes");
+>>>>>>> Add security measures to rating
 const ratingRouter = require("./routes/rating.router");
 const commentRouter = require("./routes/comment.router")
 
