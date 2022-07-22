@@ -6,6 +6,7 @@ const articleRouter = require("./routes/article.routes");
 const userRoutes = require("./routes/user.routes");
 const ratingRouter = require("./routes/rating.router");
 const commentRouter = require("./routes/comment.router");
+const { isAuthenticated } = require("./middleware/isAuthenticated");
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -19,7 +20,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/rating", ratingRouter);
 app.use("/api/v1/article", articleRouter); //here router is called for article
-app.use("/api/v1/comments", commentRouter);
+app.use("/api/v1/comments", isAuthenticated, commentRouter);
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
