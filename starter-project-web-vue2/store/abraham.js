@@ -1,14 +1,9 @@
 import axios from 'axios'
 
-const state = {
+export const state = {
   blogs: [],
 }
-
-const getters = {
-  allBlogs: (state) => state.blogs,
-}
-
-const actions = {
+export const actions = {
   async fetchBlogs({ commit }) {
     const response = await axios.get(
       'https://blog-app-backend.onrender.com/api/articles/all'
@@ -39,7 +34,7 @@ const actions = {
   },
 }
 
-const mutations = {
+export const mutations = {
   setBlogs: (state, blogs) => (state.blogs = blogs),
   newBlog: (state, blog) => state.blogs.unshift(blog),
   removeBlog: (state, id) =>
@@ -51,11 +46,4 @@ const mutations = {
       state.blogs.splice(index, 1, updBlog)
     }
   },
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations,
 }

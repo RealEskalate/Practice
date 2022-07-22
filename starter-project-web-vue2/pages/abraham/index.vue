@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BlogPost from '../components/AbrahamBlogPost.vue'
+import BlogPost from '../../components/abraham/AbrahamBlogPost.vue'
 export default {
   name: 'IndexPage',
   components: { BlogPost },
