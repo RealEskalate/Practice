@@ -24,6 +24,7 @@ const apiCall =
             data,
             headers
           })
+
           dispatch(actions.apiCallSuccess(response.data)) // ourt general success action will dispatch heer
           if (onSuccess) dispatch({ type: onSuccess, payload: response.data }) // our passed success action will dispatch  heer if there is one
         } catch (error:any) {

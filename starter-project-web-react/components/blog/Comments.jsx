@@ -26,6 +26,7 @@ import { useSession } from 'next-auth/react'
 
 export default function Comments({blog}) {
   const dispatch = useDispatch()
+  
   const { data: session } = useSession()
   const onComment = (event) => {
     if (event.keyCode == 13) {

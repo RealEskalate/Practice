@@ -8,6 +8,8 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import Link from 'next/link';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -33,31 +35,35 @@ export default function BlogCard({
     <Link
       href={{
         pathname: '/blog/[id]',
-        query: { _id },
-      }} passHref as={'/blog/' + _id}>
-      <a>
-        <Card sx={{ bgcolor: '#cfe8fc', width: '100%', my: 4, mx: 0 }}>
-          <Box display="inline-block" sx={{ m: 3 }}>
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  {author.charAt(0).toUpperCase()}
-                </Avatar>
-              }
-              title={author.charAt(0).toUpperCase() + author.slice(1)}
-              subheader="September 14, 2016"
-            />
-            <CardContent>
-              <Typography fontWeight="fontWeightBold" gutterBottom variant="h5" component="div">
-                {title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {content}
-              </Typography>
-            </CardContent>
-          </Box>
-        </Card>
-      </a>
+        query: { id:_id },
+      }} passHref as={`/blog/${_id}`}>
+
+      <Card sx={{ bgcolor: '#cfe8fc', maxWidth: '345', my: 4, mx: 0 }}>
+        <Box display="inline-block" sx={{ m: 3 }}>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                {author.charAt(0).toUpperCase()}
+              </Avatar>
+            }
+            title={author.charAt(0).toUpperCase() + author.slice(1)}
+            subheader="September 14, 2016"
+          />
+          <CardContent>
+            <Typography fontWeight="fontWeightBold" gutterBottom variant="h5" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {content}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <a>
+            <Button size="small">Read More</Button>
+            </a>
+          </CardActions>
+        </Box>
+      </Card>
     </Link>
 
   );

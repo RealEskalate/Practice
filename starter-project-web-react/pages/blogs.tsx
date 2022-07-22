@@ -1,4 +1,4 @@
-import react, { useEffect } from 'react'
+import react, { useEffect, useState } from 'react'
 import { Box, Container, Grid, Typography, Divider } from '@mui/material'
 import { getBlogs, loadBlogs, isBlogLoading } from '../store/slices/blogs'
 import { useSelector, useDispatch } from 'react-redux'
@@ -7,6 +7,7 @@ import PostBlog from '../components/Blog/postBlogButton'
 import CircularProgress from '@mui/material/CircularProgress'
 import { getSession } from 'next-auth/react'
 import axios from 'axios'
+import ReactPaginate from 'react-paginate'
 
 const Blogs = () => {
   interface blogType {
@@ -21,6 +22,24 @@ const Blogs = () => {
   useEffect(() => {
     dispatch(loadBlogs() as any)
   }, [])
+
+  const [pageNumber, setPageNumber] = useState(0)
+  const blogsPerPage = 5
+  const pagesVisited = pageNumber * blogsPerPage
+
+  const displayBlogs = blogs
+    .slice(pagesVisited, pagesVisited+blogsPerPage)
+    .map((blog: any) => {
+      return (
+        <BlogCard blog={blog} key={blog._id} />
+      )
+    })
+
+  const pageCount = Math.ceil(blogs.length/blogsPerPage)
+
+  const changePage = (event: { selected: react.SetStateAction<number> }) => {
+    setPageNumber(event.selected)
+  }
   return (
     <Container>
       <Grid container spacing={2} sx={{ mt: 4 }}>
@@ -60,9 +79,18 @@ const Blogs = () => {
           alignItems="center"
           justifyContent="center"
         >
-          {blogs.map((blog: any) => (
-            <BlogCard blog={blog} key={blog._id} />
-          ))}
+          {displayBlogs}
+          <ReactPaginate
+            previousLabel="Prev"
+            nextLabel="Next"
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
         </Box>
       )}
     </Container>
