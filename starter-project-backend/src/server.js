@@ -8,7 +8,7 @@ const ratingRouter = require("./routes/rating.router");
 const commentRouter = require("./routes/comment.router");
 const isAuthenticated = require('./middlewares/authenticate.middleware')
 const cookieParser = require('cookie-parser')
-// require('dotenv').config()
+require('dotenv').config()
 
 const port = 3000;
 const host = "127.0.0.1";
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser())
-// app.use(isAuthenticated)
+app.use(isAuthenticated)
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/rating", ratingRouter);
 app.use("/api/v1/article", articleRouter); //here router is called for article
