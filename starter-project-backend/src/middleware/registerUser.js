@@ -13,6 +13,8 @@ const register = async(req, res, next) => {
             lastName: req.body.lastName,
             email: req.body.email,
             password: hash,
+            profilePic: '',
+            cloudinary_id: ''
         })
     
         await newUser.save()
@@ -23,7 +25,6 @@ const register = async(req, res, next) => {
         const token = jwt.sign({_id: newUser._id},'jwt token')
         res.cookie('jwt',token)
         res.status(201).json({user: newUser._id})
-        // res.redirect('http://localhost:3000/api/v1/user/login')
     }catch(err){
         res.status(401).json({err})
     }
