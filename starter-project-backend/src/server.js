@@ -6,21 +6,28 @@ const articleRouter = require("./routes/article.routes");
 const userRoutes = require("./routes/user.routes");
 const ratingRouter = require("./routes/rating.router");
 const commentRouter = require("./routes/comment.router");
-const { isAuthenticated } = require("./middleware/isAuthenticated");
+const isAuthenticated = require("./middleware/isAuthenticated");
+const profileRouter = require('./utils/profile')
 
 const port = 3000;
 const host = "127.0.0.1";
 const dbUrl = "mongodb://localhost:27017/blog";
 const app = express();
+require('dotenv').config()
 
+console.log(process.env.CLOUDINARY_API_KEY)
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(isAuthenticated)
+
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/rating", ratingRouter);
 app.use("/api/v1/article", articleRouter); //here router is called for article
 app.use("/api/v1/comments", isAuthenticated, commentRouter);
+app.use("/profile",profileRouter)
+
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true });
