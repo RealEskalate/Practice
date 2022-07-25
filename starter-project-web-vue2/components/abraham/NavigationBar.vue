@@ -9,6 +9,14 @@
       <v-toolbar-title>{{ title }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
+      <div v-if="$auth.loggedIn">
+        {{ $auth.user.fullName }}
+        <v-button text>Logout</v-button>
+      </div>
+      <div v-else>
+        <v-btn to="/abraham/login">Login</v-btn>
+        <v-btn to="/abraham/register">Register</v-btn>
+      </div>
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>

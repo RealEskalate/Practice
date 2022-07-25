@@ -1,0 +1,256 @@
+{
+  "plans": [
+    {
+      "id": 1,
+      "deprecated": true,
+      "name": "Pro Mega Early Bird",
+      "month": {
+        "stripeId": {
+          "dev": "plan_GUnIRF35MtJy67",
+          "prod": "plan_GUbsLVGwbTE2K1"
+        },
+        "fullPrice": 36,
+        "currentPrice": 9
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_GUnLuKPVBvo78i",
+          "prod": "plan_GUbw5FDN0z2EHe"
+        },
+        "fullPrice": 290,
+        "currentPrice": 90
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bronze",
+      "services": {
+        "coursePriority": "Elevated priority",
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_GpIlpbs3dTKIzq",
+          "prod": "plan_GpIWfLfs28mht7"
+        },
+        "currentPrice": 29
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_GpIl3qPZ740MO9",
+          "prod": "plan_GpIaFn7tWtHbBe"
+        },
+        "currentPrice": 290
+      }
+    },
+    {
+      "id": 4,
+      "name": "Gold",
+      "services": {
+        "videoChat": "Weekly",
+        "actionPlan": true,
+        "coursePriority": "High priority",
+        "proCourses": true,
+        "groupFaq": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_Gn6tAMhAlEflS5",
+          "prod": "plan_Gn7BidvhyqbSUc"
+        },
+        "currentPrice": 795
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_Gn6zb5FCZh9Qyn",
+          "prod": "plan_Gn7BInzxShwSJU"
+        },
+        "currentPrice": 8745
+      }
+    },
+    {
+      "id": 5,
+      "name": "Platinum",
+      "services": {
+        "actionPlan": true,
+        "retainer": true,
+        "videoChat": "Weekly",
+        "coursePriority": "Top priority",
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_Gn730zfZjoW48z",
+          "prod": "plan_Gn7FaxJcU2PjsJ"
+        },
+        "currentPrice": 1950
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_Gn73Bw0xT5bRLD",
+          "prod": "plan_Gn7FOtAwzaK3Cy"
+        },
+        "currentPrice": 21450
+      }
+    },
+    {
+      "id": 6,
+      "name": "Silver",
+      "services": {
+        "coursePriority": "Elevated priority",
+        "groupFaq": true,
+        "weeklyCheckin": true,
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_GpIm4tXtFFn5Ko",
+          "prod": "plan_GpIVBm6gC18SWC"
+        },
+        "currentPrice": 99
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_GpIm4tXtFFn5Ko",
+          "prod": "plan_GpIV6CzqDCoesU"
+        },
+        "currentPrice": 950
+      }
+    },
+    {
+      "id": 7,
+      "name": "Free",
+      "services": {
+        "free": true
+      }
+    },
+    {
+      "id": 8,
+      "name": "Bronze",
+      "services": {
+        "coursePriority": "Elevated priority",
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_H3A0vT0LwIpKjj",
+          "prod": "plan_H63tXr1IRkl9K9"
+        },
+        "prices": {
+          "1": 29,
+          "2-4": 24,
+          "5+": 19
+        }
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_H3A1yqWbEM37We",
+          "prod": "plan_H63uNgtphXsDf2"
+        },
+        "prices": {
+          "1": 290,
+          "2-4": 240,
+          "5+": 190
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "Silver",
+      "services": {
+        "coursePriority": "Elevated priority",
+        "groupFaq": true,
+        "weeklyCheckin": true,
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_H3AdNlWAFOxXl6",
+          "prod": "plan_H63vnT17qlE1LP"
+        },
+        "prices": {
+          "1": 99,
+          "2-4": 89,
+          "5+": 79
+        }
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_H3AeUwQMTheyHm",
+          "prod": "plan_H63wrpeFp0XQUd"
+        },
+        "prices": {
+          "1": 990,
+          "2-4": 890,
+          "5+": 790
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Gold",
+      "services": {
+        "videoChat": "Weekly",
+        "actionPlan": true,
+        "coursePriority": "High priority",
+        "proCourses": true,
+        "groupFaq": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_H63mswksMWEtFX",
+          "prod": "plan_H63ylRQIlOkDSM"
+        },
+        "prices": {
+          "1": 795,
+          "2-4": 745,
+          "5+": 695
+        }
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_H63nnFd95I8HaP",
+          "prod": "plan_H63zlIX6J4YXZG"
+        },
+        "prices": {
+          "1": 8745,
+          "2-4": 8195,
+          "5+": 7645
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Platinum",
+      "services": {
+        "actionPlan": true,
+        "retainer": true,
+        "videoChat": "Weekly",
+        "coursePriority": "Top priority",
+        "proCourses": true
+      },
+      "month": {
+        "stripeId": {
+          "dev": "plan_H63ovkr9Zm4Y5J",
+          "prod": "plan_H640PkRTzbSctE"
+        },
+        "prices": {
+          "1": 1950,
+          "2-4": 1890,
+          "5+": 1790
+        }
+      },
+      "year": {
+        "stripeId": {
+          "dev": "plan_H63rsom7Btx21z",
+          "prod": "plan_H641E5tohw4MFb"
+        },
+        "prices": {
+          "1": 21450,
+          "2-4": 20790,
+          "5+": 19690
+        }
+      }
+    }
+  ]
+}
