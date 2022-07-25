@@ -1,19 +1,19 @@
-const { Router } = require("express");
-const commentController = require("../controllers/comment.controller");
-const { isAuthorized } = require("../middleware/commentAuthorization");
-const router = Router();
+const { Router } = require('express')
+const commentController = require('../controllers/comment.controller')
+const { isAuthorized } = require('../middlewares/commentAuthorization')
+const router = Router()
 
 // For the routes with: /api/comments
 router
-  .route("/")
+  .route('/')
   .get(commentController.getMany)
-  .post(commentController.createOne);
+  .post(commentController.createOne)
 
 // For the routes with: /api/comments/:id
 router
-  .route("/:id")
+  .route('/:id')
   .get(commentController.getOne)
   .put(isAuthorized, commentController.updateOne)
-  .delete(isAuthorized, commentController.removeOne);
+  .delete(isAuthorized, commentController.removeOne)
 
-module.exports = router;
+module.exports = router
