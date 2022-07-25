@@ -42,6 +42,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -78,4 +79,25 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'https://blog-app-backend.onrender.com/api/auth/login',
+            method: 'POST',
+            name: 'access_token',
+          },
+          logout: false,
+          user: {
+            url: 'https://blog-app-backend.onrender.com/api/user',
+            method: 'GET',
+            propertyName: 'data',
+          },
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer',
+      },
+    },
+  },
 }
