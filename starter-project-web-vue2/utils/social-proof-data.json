@@ -1,0 +1,924 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Shamim Hossain",
+      "img_url": "Shamim+Hossain.jpg",
+      "message": "You saved my job just now.",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 10,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=lv-KHdoeSoI&lc=Ugzy9pMqVu-FaThBBYd4AaABAg"
+    }, {
+      "id": 2,
+      "name": "exception360",
+      "img_url": "exception360.jpg",
+      "message": "Thank you, this video helped me a LOT",
+      "message_priority": 5,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=lv-KHdoeSoI&lc=Ugxc4SDs4tD2n_e-_fh4AaABAg"
+    }, {
+      "id": 3,
+      "name": "Nathan Yang",
+      "img_url": "Nathan+Yang.jpg",
+      "message": "Amazing!!!!! Need this so much!!!!!!",
+      "real_name": true,
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=shCCP4PFXeU&lc=UgzdpOe4M_-9otfWBEd4AaABAg"
+    }, {
+      "id": 4,
+      "name": "Ayoub Hammoudan",
+      "img_url": "ayoubh+hammoudan.jpg",
+      "message": "Thank you so much.",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 4,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=shCCP4PFXeU&lc=Ugwu6Voc4q78L6_Y7Yd4AaABAg"
+    }, {
+      "id": 5,
+      "name": "Happyoe",
+      "img_url": "Happyoe.jpg",
+      "message": "Great tips great video thanks",
+      "message_priority": 3,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=THT5FefYZCo&lc=UgypQIfdPpOzMss0cxJ4AaABAg"
+    }, {
+      "id": 6,
+      "name": "shaun lora",
+      "img_url": "shaun+lora.jpg",
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "real_name": true,
+      "real_face": true,
+      "message": "very nice tips man, appreciate it 💯👏",
+      "link": "https://www.youtube.com/watch?v=j7l5e2ID0aw&lc=Ugw50lbGw3-kv7RiFqV4AaABAg"
+    }, {
+      "id": 7,
+      "name": "Majd Yafi",
+      "img_url": "Majd+Yafi.jpg",
+      "message": "⭐️⭐️⭐️⭐️⭐️",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=nngsKhTb2BA&lc=UgyoJsliNuunEBeUcoV4AaABAg"
+    }, {
+      "id": 8,
+      "name": "BillyBobBonnet",
+      "message_priority": 10,
+      "source": "youtube-comment",
+      "message": "Dude, it's an excellent video. Soothing voice, extensive and crystal clear explanations, troubleshooting common issues... You do it and you do it well. Keep up the good work & congratulations :-) Subscribed without the slightest hesitation",
+      "img_url": "BillyBobBonnet.jpg",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugy5Iyessoo15pI2Ozl4AaABAg"
+    }, {
+      "id": 9,
+      "name": "Anders Wilhelm",
+      "message": "great tutorial, thanks.",
+      "message_priority": 4,
+      "source": "youtube-comment",
+      "img_url": "Anders Wilhelm.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgyzTV6nyoxi2XQFR5d4AaABAg"
+    }, {
+      "id": 10,
+      "name": "Abdur Rahman",
+      "message_priority": 7,
+      "source": "youtube-comment",
+      "message": "Wonderful! Super helpful. Thank you.",
+      "img_url": "Abdur+Rahman.jpg",
+      "real_face": true,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgzdpMev4D0oLZ4wOil4AaABAg"
+    }, {
+      "id": 11,
+      "name": "@awa_it_",
+      "message_priority": 10,
+      "message": "I like the way you explain and teach, also your enunciation is incredible for us 'non native' english persons, everything is so enjoyable...  Thank you for putting so much effort and time into making this video knowledge.",
+      "real_face": true,
+      "img_url": "awa_it_.jpg",
+      "source": "twitter-message"
+    }, {
+      "id": 12,
+      "name": "Alexandros Markovic",
+      "message": "Excellent video! Great work.  Subscribed.",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "img_url": "Alexandros Markovic.jpg",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugz-VYT69WDgqlG4lMR4AaABAg"
+    }, {
+      "id": 13,
+      "name": "Sanjay Gyawali",
+      "message": "Great video.",
+      "real_name": true,
+      "real_face": true,
+      "message_priority": 3,
+      "img_url": "Sanjay+Gyawali.jpg",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgyX4dDhAHzitg7J7qF4AaABAg"
+    }, {
+      "id": 14,
+      "name": "Leon van Rijswijk",
+      "message": "Very well explained.",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 3,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgyUmFMdoBy13CxdPKB4AaABAg",
+      "img_url": "Leon+van+Rijswijk.jpg"
+    }, {
+      "id": 15,
+      "name": "Станислав Скуратов",
+      "message": "Please, keep doing the videos",
+      "real_name": true,
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=AZpQQ4T2Nz4&lc=UgyFXorDgd6K8_cxJzZ4AaABAg",
+      "img_url": "Станислав+Скуратов.jpg"
+    }, {
+      "id": 16,
+      "message": "Thank you very much!!!!!!!",
+      "name": "Idriss Jouid",
+      "real_name": true,
+      "real_face": true,
+      "message_priority": 3,
+      "source": "youtube-comment",
+      "img_url": "idriss+jouid.jpg",
+      "link": "https://www.youtube.com/watch?v=AZpQQ4T2Nz4&lc=UgziFWaQ0I8at7YTexF4AaABAg"
+    }, {
+      "id": 17,
+      "message": "Great vídeo and an interesting approach",
+      "name": "joão Petinga",
+      "real_name": true,
+      "img_url": "joão+Petinga.jpg",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=sSbahlvDfS4&lc=UgxOinQa-j-AOHDNk8h4AaABAg.90TGLMZtlk890TeO0JuSep",
+      "source": "youtube-comment"
+    }, {
+      "id": 18,
+      "name": "มะ ม๋า",
+      "message_priority": 3,
+      "message": "Thank you.",
+      "source": "youtube-comment",
+      "img_url": "มะ+ม๋า.jpg",
+      "link": "https://www.youtube.com/watch?v=sSbahlvDfS4&lc=UgxirELLX754_g6l17p4AaABAg"
+    }, {
+      "id": 19,
+      "name": "אלכסיי לוינזון",
+      "message": "Great as always, thanks Jeffrey.",
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "img_url": "אלכסיי+לוינזון.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=rh_sEwe_tCE&lc=UgyNiFsm0Smh9_uUPKJ4AaABAg"
+    }, {
+      "id": 20,
+      "name": "justLbee",
+      "message_priority": 6,
+      "message": "Thanks, just looked for something good about how Nuxt work with its pages, layout, store, and your videos are really good!",
+      "source": "youtube-comment",
+      "real_face": true,
+      "img_url":"justLbee.jpg",
+      "link": "https://www.youtube.com/watch?v=rh_sEwe_tCE&lc=UgyxfgF_OhSPNAs7YM14AaABAg"
+    }, {
+      "id": 21,
+      "name": "Erika Kim",
+      "message_priority": 7,
+      "source": "youtube-comment",
+      "real_face": true,
+      "real_name": true,
+      "message": "Amazing!",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgwUMK3ryaCBPfHvzsJ4AaABAg",
+      "img_url": "erika+kim.jpg"
+    }, {
+      "id": 22,
+      "name": "Jay Pick",
+      "message_priority": 5,
+      "real_face": true,
+      "real_name": true,
+      "source": "youtube-comment",
+      "message": "Quality tutorial, thanks a lot!",
+      "link": "https://www.youtube.com/watch?v=nngsKhTb2BA&lc=UgzeLAtUwjmTiCojNR94AaABAg",
+      "img_url": "Jay+Pick.jpg"
+    }, {
+      "id": 23,
+      "name": "Ritika Singh",
+      "message": "Thank you for putting in the effort to make these videos and share with all!",
+      "message_priority": 7,
+      "source": "youtube-comment",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=cjRst4qduzM&lc=Ugw4h9XVLI3RLVWvIht4AaABAg",
+      "img_url": "Ritika+Singh.jpg"
+    }, {
+      "id": 24,
+      "name": "Mustahsinul Moula",
+      "source": "youtube-comment",
+      "real_name": true,
+      "message_priority": 6,
+      "message": "Thanks, really liking these videos.",
+      "link": "https://www.youtube.com/watch?v=iorrDubGPzI&lc=Ugwtn1CEmWYOHR8l8Yd4AaABAg",
+      "img_url": "Mustahsinul+Moula.jpg"
+    }, {
+      "id": 25,
+      "name": "Paul Hacker",
+      "source": "youtube-comment",
+      "real_name": true,
+      "real_face": true,
+      "message": "great 👍",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=iorrDubGPzI&lc=Ugz8HByAeO1ls0Lfrgd4AaABAg",
+      "img_url": "Paul+Hacker.jpg"
+    }, {
+      "id": 26,
+      "name": "Nathan Yang",
+      "source": "youtube-comment",
+      "real_name": true,
+      "message_priority": 7,
+      "link": "https://www.youtube.com/watch?v=iorrDubGPzI&lc=UgyQ1_kHWFlcXjcEXsR4AaABAg",
+      "message": "Better and better channel! Amazing",
+      "img_url": "Nathan+Yang.jpg"
+    }, {
+      "id": 27,
+      "name": "Zara Kayn",
+      "message": "This was EXACTLY what I needed. Informative and succinct. Thank you for taking the time to do this.",
+      "message_priority": 10,
+      "source": "youtube-comment",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgwfcEjtTEyuMpaAVOJ4AaABAg",
+      "img_url": "Zara+Kayn.jpg"
+    }, {
+      "id": 28,
+      "message": "Amazing content. Good job, man.",
+      "message_priority": 6,
+      "name": "milose",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgyyE60m_4Fp7jR0At14AaABAg",
+      "source": "youtube-comment",
+      "img_url": "milose.jpg"
+    }, {
+      "id": 29,
+      "message": "Great work man.",
+      "message_priority": 4,
+      "name": "The Nerdy Dev",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgzdauDjzjnP8loo7It4AaABAg",
+      "source": "youtube-comment",
+      "img_url": "The+Nerdy+Dev.jpg"
+    }, {
+      "id": 30,
+      "message": "Thank you for this!!!",
+      "name": "Cyrus Besabella",
+      "message_priority": 5,
+      "real_face": true,
+      "real_name": true,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgxQk9WUieIYDJkKl_p4AaABAg",
+      "img_url": "Cyrus+Besabella.jpg"
+    }, {
+      "id": 31,
+      "message": "<3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3",
+      "name": "Aymen Oppa Software",
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=Ugz5vdiKIABx4bDF8RV4AaABAg",
+      "img_url": "Aymen+Oppa+Software.jpg"
+    }, {
+      "id": 32,
+      "message": "Great video as always!",
+      "message_priority": 5,
+      "name": "אלכסיי לוינזון",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=Ugwsn6yT0RCXT0qK5DN4AaABAg",
+      "real_name": true,
+      "real_face": true,
+      "img_url": "אלכסיי לוינזון.jpg"
+    }, {
+      "id": 33,
+      "message_priority": 6,
+      "name": "Emerson smith Huallpa Zanabria",
+      "message": "More videos please :)",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=Ugz1oaNbnaXBS_V8qFR4AaABAg",
+      "img_url": "Emerson+smith+Huallpa+Zanabria.jpg"
+    }, {
+      "id": 34,
+      "message": "Have looked at so many Vue.js tutorials, your videos are the best ones!",
+      "message_priority": 8,
+      "real_name": true,
+      "name": "Nathan Yang",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=I0ghczi0IZ8&lc=Ugyo5vr3h5urxhoFQkh4AaABAg",
+      "img_url": "Nathan+Yang.jpg"
+    }, {
+      "id": 35,
+      "message": "Great help, helped me solved the Vuex modules mapstate problem I had. Thanks so much again!!",
+      "message_priority": 8,
+      "name": "kidgr33n",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=I0ghczi0IZ8&lc=UgyPU1P5sK6VVJ81Sdh4AaABAg",
+      "img_url": "kidgr33n.jpg"
+    }, {
+      "id": 36,
+      "message": "Another good one, really enjoying the series thus far",
+      "name": "sdguy 1",
+      "source": "youtube-comment",
+      "message_priority": 5,
+      "link": "https://www.youtube.com/watch?v=I0ghczi0IZ8&lc=Ugzv_PZ8aAzye2-GVgh4AaABAg",
+      "img_url": "sdguy+1.jpg"
+    }, {
+      "id": 37,
+      "message": "Awesome video!",
+      "message_priority": 3,
+      "name": "Doïc de Maleprade",
+      "real_name": true,
+      "real_face": true,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=I0ghczi0IZ8&lc=UgytvwGKw6s_aZUgDOJ4AaABAg",
+      "img_url": "Doïc+de+Maleprade.jpg"
+    }, {
+      "id": 38,
+      "message": "Great series!",
+      "name": "Milan Zigmond",
+      "real_face": true,
+      "real_name": true,
+      "img_url": "Milan+Zigmond.jpg",
+      "source": "youtube-comment",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=aV3B3n6YRPg&lc=UgynBxN0uf9cJTenyqN4AaABAg"
+    }, {
+      "id": 39,
+      "message": "Thank you, it is very interesting.",
+      "message_priority": 3,
+      "real_name": true,
+      "name": "Chris LR",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=E_IDcJkAw_k&lc=UgxxPaV5rXEOFNdBX8t4AaABAg",
+      "img_url": "Chris+LR.jpg"
+    }, {
+      "id": 40,
+      "message": "Hi! Your videos are very useful, please go on make it!",
+      "name": "Сергей Миртов",
+      "message_priority": 5,
+      "real_name": true,
+      "real_face": true,
+      "img_url": "Сергей+Миртов.jpg",
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=E_IDcJkAw_k&lc=UgxSpagO4mXHjm2nuKR4AaABAg"
+    }, {
+      "id": 41,
+      "message": "Woohoo... keep it up!",
+      "name": "fazzy akamello",
+      "img_url": "fazzy+akamello.jpg",
+      "message_priority": 6,
+      "source": "youtube-comment",
+      "link": "https://www.youtube.com/watch?v=b9y6_sfmIKs&lc=UgxZZlVkML0OY8yJr0t4AaABAg"
+    }, {
+      "id": 42,
+      "message": "Really enjoying these, thank you!",
+      "message_priority": 6,
+      "name": "Lars Sørensen",
+      "img_url": "Lars+Sørensen.jpg",
+      "source": "youtube-comment",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=Ugyl6w3rzOqtOsFZyk54AaABAg"
+    }, {
+      "id": 43,
+      "message": "Bro,  very appreciate your videos! Keep doing videos please",
+      "message_priority": 6,
+      "name": "Nathan Yang",
+      "img_url": "Nathan+Yang.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=Ugz7K_9OY-2v5bv-vbx4AaABAg"
+    }, {
+      "id": 44,
+      "message": "Very nice thanks",
+      "name": "Henryque",
+      "img_url": "Henryque.jpg",
+      "real_name": true,
+      "real_face": true,
+      "message_priority": 5,
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=Ugx89CiKe9l48wxf7m94AaABAg"
+    }, {
+      "id": 45,
+      "message": "I like your videos they are very good.",
+      "name": "Kreshnik Palushi",
+      "img_url": "Kreshnik+Palushi.jpg",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 6,
+      "link": "https://www.youtube.com/watch?v=-uyz77h2nV8&lc=UgyHB_lcIutNAdf74eB4AaABAg"
+    }, {
+      "id": 46,
+      "message": "great video as ALWAYS :) thanks and keep going with that great project!",
+      "real_name": true,
+      "real_face": true,
+      "message_priority": 7,
+      "name": "אלכסיי לוינזון",
+      "img_url": "אלכסיי לוינזון.jpg",
+      "link": "https://www.youtube.com/watch?v=4phclwjuPMg&lc=Ugw4nXwDSWJY2LRytY94AaABAg"
+    }, {
+      "id": 47,
+      "message": "It's very helpful. Thank you for a great tutorial.",
+      "message_priority": 6,
+      "name": "Abdulaziz Al Ghafli",
+      "img_url": "Abdulaziz+Al+Ghafli.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=0BHPs2kNnVA&lc=UgyeEBYRpS0DTkiqk4h4AaABAg"
+    }, {
+      "id": 48,
+      "message": "Thank you. Even after having seen many tutorials, I keep learning a lot from you. You teach well!",
+      "message_priority": 9,
+      "name": "Lars Sørensen",
+      "img_url": "Lars+Sørensen.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=0BHPs2kNnVA&lc=Ugx--2PcQ2cEmlZZeOJ4AaABAg"
+    }, {
+      "id": 49,
+      "message": "I didn't even think about passing functions down through props to use dynamically until you got there. Another great video, Jeff.",
+      "message_priority": 5,
+      "name": "sdguy 1",
+      "img_url": "sdguy+1.jpg",
+      "link": "https://www.youtube.com/watch?v=0BHPs2kNnVA&lc=Ugz_vPsBxGNq3M5DgaR4AaABAg"
+    }, {
+      "id": 50,
+      "message": "Thank you for putting in the effort to make these videos and share with all!",
+      "link": "https://www.youtube.com/watch?v=cjRst4qduzM&lc=Ugw4h9XVLI3RLVWvIht4AaABAg",
+      "name": "Ritika Singh",
+      "img_url": "Ritika+Singh.jpg",
+      "real_name": true,
+      "message_priority": 7
+    }, {
+      "id": 51,
+      "message": "Great video && Project Jeffrey!! Thank you a lot :)",
+      "name": "אלכסיי לוינזון",
+      "img_url": "אלכסיי לוינזון.jpg",
+      "message_priority": 7,
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=cjRst4qduzM&lc=Ugyu5ymtoIbC2dijjM14AaABAg"
+    }, {
+      "id": 52,
+      "message": "Thank you! Really digging your videos!",
+      "message_priority": 5,
+      "name": "Lars Sørensen",
+      "img_url": "Lars+Sørensen.jpg",
+      "real_name": true
+    }, {
+      "id": 53,
+      "name": "Duane Creates",
+      "img_url": "Duane+Creates.jpg",
+      "real_name": true,
+      "real_face": true,
+      "message": "I like your way of teaching. I just started a a web dev YT channel too and this is inspiring.",
+      "message_priority": 8,
+      "link": "https://www.youtube.com/watch?v=WOv3w2tSp-Y&lc=UgwrfiQWI0vZq9Niu_14AaABAg"
+    }, {
+      "id": 54,
+      "name": "Paurakh Sharma Humagain",
+      "img_url": "Paurakh+Sharma+Humagain.jpg",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 9,
+      "message": "Great video as always, I really like the idea of basing the video in terms of features, as someone only looking to learn particular feature can get benefits from the video. Also, I really like you going through what we have done in the video at the end, it really helps in better understanding.",
+      "link": "https://www.youtube.com/watch?v=WOv3w2tSp-Y&lc=UgxdnmoKjq0BCHsRjxV4AaABAg"
+    }, {
+      "id": 55,
+      "message": "Excellent series! Will definitively follow!",
+      "message_priority": 5,
+      "name": "Lars Sørensen",
+      "img_url": "Lars+Sørensen.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=WOv3w2tSp-Y&lc=UgwCOqzwemzTFDwzuel4AaABAg"
+    }, {
+      "id": 56,
+      "name": "Bairre G",
+      "img_url": "Bairre+G.jpg",
+      "message_priority": 8,
+      "message": "Thanks Jeffrey, great lessons with so much content and new concepts! Can't wait for the next ones.",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=sKrBNGw94eQ&lc=UgwysBGWiQ39EPW3TS54AaABAg"
+    }, {
+      "id": 57,
+      "name": "Paurakh Sharma Humagain",
+      "img_url": "Paurakh+Sharma+Humagain.jpg",
+      "message": "As always thanks for the great content.",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=sKrBNGw94eQ&lc=Ugx-3csXQBcMGZ78j0R4AaABAg",
+      "real_name": true,
+      "real_face": true
+    }, {
+      "id": 58,
+      "message_priority": 6,
+      "message": "EXCELLENT video series so far!",
+      "img_url": "D+Durham.jpg",
+      "name": "D Durham",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=Ugwi01S7XznDCAHXFPN4AaABAg"  
+    }, {
+      "id": 59,
+      "message": "Thanks @Vue Screencasts!! This video helped me a lot in understanding Vuex, and in answering questions that I have, which I can't find answers for on StackOverflow. Keep up the good work!!",
+      "message_priority": 9,
+      "name": "kidgr33n",
+      "img_url": "kidgr33n.jpg",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgxtohufsfsSC_EgnOt4AaABAg"
+    }, {
+      "id": 60,
+      "message_priority": 4,
+      "message": "thank you man, great videos",
+      "name": "BaWaR",
+      "img_url": "BaWaR.jpg",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgzxLqxScVo4MMry-vp4AaABAg"
+    }, {
+      "id": 61,
+      "message": "I’m enjoying your style, keep it up!",
+      "message_priority": 6,
+      "real_name": true,
+      "real_face": true,
+      "name": "Sean B",
+      "img_url": "Sean+B.jpg",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgyTXB0ZvWmCo2IxgbB4AaABAg"
+    }, {
+      "id": 62,
+      "message_priority": 7,
+      "message": "great explanation! thank you!!!",
+      "real_face": true,
+      "real_name": true,
+      "name": "Elizaveta Voloskova",
+      "img_url": "Elizaveta+Voloskova.jpg",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgwoE-CBE58X6f1MkU94AaABAg"
+    }, {
+      "id": 63,
+      "message": "Thank you for listening and being willing to put effort into helping us better understand Vue!",
+      "link": "https://www.youtube.com/watch?v=9xF89Q2052g&lc=UgzfrqLhnzHZ1sZkNIl4AaABAg",
+      "message_priority": 8,
+      "real_name": true,
+      "real_face": true,
+      "name": "Kyle Collie",
+      "img_url": "Kyle+Collie.jpg"
+    }, {
+      "id": 64,
+      "message": "Awesome video! Easy to follow along with a lot of explanation into whats happening! Thanks a ton!",
+      "message_priority": 8,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgyGM-9p3IfidOmeySp4AaABAg",
+      "name": "Ritika Singh",
+      "img_url": "Ritika+Singh.jpg"
+    }, {
+      "id": 65,
+      "message": "Damn it's good content. I am happy that I found VueScreencasts.",
+      "message_priority": 8,
+      "real_name": true,
+      "real_face": true,
+      "name": "Shamim Hossain",
+      "img_url": "Shamim+Hossain.jpg",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=Ugze-Gj1PV-6iJTOwG94AaABAg"
+    }, {
+      "id": 66,
+      "message_priority": 3,
+      "message": "Thank You :)",
+      "name": "xof",
+      "img_url": "xof.jpg",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgxGgqDmnt0mrewXh-h4AaABAg"
+    }, {
+      "id": 67,
+      "message": "Excellent video. Thanks so much. Looking forward to the rest of the series.",
+      "message_priority": 6,
+      "name": "SilenceKillsDesign",
+      "img_url": "SilenceKillsDesign.jpg",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgwrRWEOZ65HmolHnap4AaABAg"
+    }, {
+      "id": 68,
+      "message": "Wow Im gonna follow your video tutorial journey :D",
+      "message_priority": 4,
+      "name": "Mathias Jacobsen",
+      "img_url": "Mathias+Jacobsen.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgzWSBDEmFr-Y4IlxSd4AaABAg"
+    }, {
+      "id": 69,
+      "message": "I am happy to find your video, really amazing. I am excited to hear from you the next one. Thanks a lot.",
+      "message_priority": 7,
+      "real_name": true,
+      "real_face": true,
+      "name": "Azri Ridha",
+      "img_url": "azri+ridha.jpg",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgzjjMk2F4D4dZkjW154AaABAg"
+    }, {
+      "id": 70,
+      "message": "Thanks for this series! Very helpful and good to follow.",
+      "name": "Raúl Wallaart",
+      "img_url": "Raúl+Wallaart.jpg",
+      "message_priority": 6,
+      "real_face": true,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgzvCuwae7q9YcKqS1R4AaABAg"
+    }, {
+      "id": 71,
+      "message": "Great idea man, look forward to follow along.",
+      "message_priority": 4,
+      "name": "Manuel Diera",
+      "img_url": "Manuel+Diera.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgwGKEW7Prs-lx7_fJd4AaABAg"
+    }, {
+      "id": 72,
+      "message": "just started following along on your journey, great start... keep up the good work",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgzZkAShzEGJ58uV-ad4AaABAg",
+      "real_face": true,
+      "real_name": true,
+      "name": "Alison Smith",
+      "img_url": "alison+smith.jpg",
+      "message_priority": 6
+    }, {
+      "id": 73,
+      "name": "note",
+      "img_url": "note.jpg",
+      "message": "thank you so much",
+      "message_priority": 3,
+      "link": "https://www.youtube.com/watch?v=j7l5e2ID0aw&lc=UgwzHnmPcR_UwCUpEnJ4AaABAg"
+    }, {
+      "id": 74,
+      "name": "ivan89pln",
+      "img_url": "ivan89pln.jpg",
+      "message": "Very good tutorial, thanks.",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgxgNJmFMsBrs-dUPrV4AaABAg"
+    }, {
+      "id": 75,
+      "message": "Thank you, work for beginner like me. Big thumb for you!!!",
+      "message_priority": 5,
+      "real_name": true,
+      "name": "Rivera Daniel",
+      "img_url": "Rivera+Daniel.jpg",
+      "link": "https://www.youtube.com/watch?v=shCCP4PFXeU&lc=UgzGLqPC5bmRcFZLtzp4AaABAg"
+    }, {
+      "id": 76,
+      "message": "Here I found answers to questions that I couldn't formulate before.",
+      "message_priority": 9,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgzaHzUUJoQu9eVP_bF4AaABAg",
+      "name": "Almas Kamitov",
+      "img_url": "Almas+Kamitov.jpg"
+    }, {
+      "id": 77,
+      "message": "Your series has really helped... even for seasoned developers!",
+      "message_priority": 9,
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=UgwhX3cGCmBSArOEZoV4AaABAg.93M8O2IKhKI93OLFEC15I9",
+      "name": "D Durham",
+      "img_url": "D+Durham.jpg"
+    }, {
+      "id": 78,
+      "message": "This is an amazing tutorial, especially for beginners. I love how you even go through the package.json. Nice work!",
+      "message_priority": 8,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=UgyeZpKM2Ebngvx9kF94AaABAg",
+      "name": "Jin Tak",
+      "real_name": true,
+      "img_url": "Jin+Tak.jpg"
+    }, {
+      "id": 79,
+      "original": "Спасибо за урок. Никак не мог решить проблему с milddleware, но теперь все встало на свои места", 
+      "message": "Thank you for the lesson. I could not solve the problem with middleware in any way, but now everything fell into place.",
+      "message_priority": 8,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgxEoT3-Dc_iALqwGcl4AaABAg",
+      "name": "Адам Янг",
+      "real_name": true,
+      "img_url": "Адам+Янг.jpg"
+    }, {
+      "id": 80,
+      "message": "👍👍👍👍Great",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgyiVUhWPES2sc6WijN4AaABAg",
+      "name": "Muhammed Owais",
+      "real_name": true,
+      "img_url": "Muhammed+Owais.jpg"
+    }, {
+      "id": 81,
+      "message": "Saved me loads of time!!",
+      "message_priority": 7,
+      "name": "Jack Simple",
+      "link": "https://www.youtube.com/watch?v=0BHPs2kNnVA&lc=UgydADM728Ls6FlUlbB4AaABAg",
+      "real_name": true,
+      "img_url": "Jack+Simple.jpg"
+    }, {
+      "id": 82,
+      "message": "You deserve more views and subs man",
+      "message_priority": 4,
+      "name": "Jijin Jayakumar",
+      "real_name": true,
+      "real_face": true,
+      "img_url": "Jijin+Jayakumar.jpg",
+      "link": "https://www.youtube.com/watch?v=jJgodgk1CTM&lc=UgwdxVlq3yXxDkFyWjZ4AaABAg"
+    }, {
+      "id": 83,
+      "message": "Your tutorial is quite easy to understand.",
+      "message_priority": 5,
+      "name": "Koga2 Kuzengenki",
+      "img_url": "Koga2+Kuzengenki.jpg",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgxHiAu83M92qenujKJ4AaABAg"
+    }, {
+      "id": 84,
+      "name": "Kenneth Solberg",
+      "img_url": "Kenneth+Solberg.jpg",
+      "message_priority": 4,
+      "message": "Excellent video!",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugwf0GmeeWThT0nggjp4AaABAg"
+    }, {
+      "id": 85,
+      "message": "Thanks for the tutorial. Subscribed!!!! :)",
+      "name": "Zenish Shrestha",
+      "img_url": "Zenish+Shrestha.jpg",
+      "real_face": true,
+      "real_name": true,
+      "message_priority": 7,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgxBAtUFX5CYxEXCfit4AaABAg"
+    }, {
+      "id": 86,
+      "message": "Really appreciate it! You're a good tutor.",
+      "message_priority": 5,
+      "name": "Ous",
+      "img_url": "Ous.jpg",
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgzpH5zhec8M3E61Q914AaABAg"
+    }, {
+      "id": 87,
+      "message": "At 14:22... it was exactly that question which I had in mind seconds before!",
+      "message_priority": 8,
+      "name": "Henning Sieh",
+      "img_url": "Henning+Sieh.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=b9y6_sfmIKs&lc=UgxhfFz7v9btE_habzN4AaABAg"
+    }, {
+      "id": 88,
+      "message": "Thanks so much! Helped a lot.",
+      "name": "BoIoko",
+      "img_url": "BoIoko.jpg",
+      "message_priority": 5,
+      "link": "https://www.youtube.com/watch?v=T_QETy__Oko&lc=UgzUlYYSyyxRGjuJnzl4AaABAg"
+    }, {
+      "id": 89,
+      "message": "Thanks for your videos.",
+      "name": "Rafael Canan",
+      "img_url": "Rafael+Canan.jpg",
+      "message_priority": 5,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=T_QETy__Oko&lc=UgwzwCG4FLWwAv7iqod4AaABAg"
+    }, {
+      "id": 90,
+      "message": "tks u so much",
+      "name": "013356386",
+      "img_url": "013356386.jpg",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=Ugx_pp70q02b0K9DAhp4AaABAg"
+    }, {
+      "id": 91,
+      "message": "Awesome!!",
+      "name": "Mohamad Nasir",
+      "img_url": "Mohamad+Nasir.jpg",
+      "message_priority": 5,
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=j7l5e2ID0aw&lc=UgyHjt0Vz4FhX6UZgzx4AaABAg"
+    }, {
+      "id": 92,
+      "message": "Thank you!",
+      "message_priority": 5,
+      "name": "Артем Єрко",
+      "img_url": "Артем+Єрко.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=T_QETy__Oko&lc=UgyvaiI54nZbEJgQmQN4AaABAg"
+    }, {
+      "id": 93,
+      "message": "Excellent tutorial. Thank you!",
+      "name": "luminaia",
+      "img_url": "luminaia.jpg",
+      "message_priority": 6,
+      "link": "https://www.youtube.com/watch?v=sSbahlvDfS4&lc=Ugw-Sf8j_Kl6CHvk3T14AaABAg"
+    }, {
+      "id": 94,
+      "message": "Really nice video with nice explanation. Subscribe",
+      "message_priority": 9,
+      "name": "Igor Špánik",
+      "img_url": "Igor+Špánik.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=Ugx4IrTP_XBmqMneq7J4AaABAg"
+    }, {
+      "id": 95,
+      "message": "Man, this is a nice video, thank you.",
+      "message_priority": 6,
+      "name": "Esteban Cordoba",
+      "img_url": "Esteban+Cordoba.jpg",
+      "real_name": true,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=UgzGkOO4a3aQqT4FyUt4AaABAg"
+    }, {
+      "id": 96,
+      "message": "Nice job.",
+      "message_priority": 4,
+      "name": "Bucur Ion Niculae",
+      "img_url": "Bucur+Ion+Niculae.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=NS0io3Z75GI&lc=UgxZglm02hYzlvRTFHp4AaABAg"
+    }, {
+      "id": 97,
+      "message": "Excellent! Top Vue tutorials I've found.",
+      "message_priority": 8,
+      "name": "Igor Špánik",
+      "real_name": true,
+      "img_url": "Igor+Špánik.jpg",
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=UgyrT7dsYjj92yPEVLd4AaABAg"
+    }, {
+      "id": 98,
+      "message": "You're a blessing my dude. Thank you so much for this!",
+      "message_priority": 9,
+      "name": "elmo",
+      "img_url": "elmo.jpg",
+      "link": "https://www.youtube.com/watch?v=nngsKhTb2BA&lc=UgxGu9ZZDan-f2GpkE14AaABAg"
+    }, {
+      "id": 99,
+      "message": "Short, precise, step-by-step, beginner-friendly and clear.",
+      "name": "Naty Java",
+      "img_url": "naty+java.jpg",
+      "message_priority": 7,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=SGGW8qbsXTg&lc=UgxpIaPgXmsK3gUEc9J4AaABAg"
+    }, {
+      "id": 100,
+      "message": "Such an excellent video! Your explanations are so clear. This is the first time where I don't feel burned out in a 40min+ video tutorial. Thank you so much!",
+      "name": "João Victor Valentim",
+      "img_url": "João+Victor+Valentim.jpg",
+      "real_name": true,
+      "real_face": true,
+      "message_priority": 9,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugwv4XrsXUtExY9Majh4AaABAg"
+    }, {
+      "id": 101,
+      "message": "Great channel.",
+      "name": "The Nerdy Dev",
+      "img_url": "The+Nerdy+Dev.jpg",
+      "message_priority": 5,
+      "link": "https://www.youtube.com/watch?v=ZWYQZegWQgY&lc=Ugyrknj02OTDPqOmzsF4AaABAg"
+    }, {
+      "id": 102,
+      "message": "Really nice, thank you.",
+      "name": "WaterCamelsHowLong",
+      "img_url": "WaterCamelsHowLong.jpg",
+      "message_priority": 4,
+      "link": "https://www.youtube.com/watch?v=lv-KHdoeSoI&lc=UgyQyKwbHNl_aSm0kX54AaABAg"
+    }, {
+      "id": 104,
+      "message": "I spent all evening doing Nuxt registration. I wish I had've spotted this video sooner. 🤦🏻‍♂️. Excellent and clear tutorial. Thank you!",
+      "message_priority": 7,
+      "name": "Si D",
+      "img_url": "Si+D.jpg",
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugxc1_3nboIUnaUKWAR4AaABAg"
+    }, {
+      "id": 105,
+      "message": "You saved my day! Thanks!",
+      "message_priority": 9,
+      "name": "Ivomar Santos",
+      "img_url": "Ivomar+Santos.jpg",
+      "real_name": true,
+      "real_face": true,
+      "link": "https://www.youtube.com/watch?v=zzUpO8tXoaw&lc=Ugy3XgkjyN163w3ioBt4AaABAg"
+    }, {
+      "id": 106,
+      "message": "Thanks!!!",
+      "message_priority": 3,
+      "name": "Tushar Mangle",
+      "img_url": "Tushar+Mangle.jpg",
+      "link": "https://www.youtube.com/watch?v=vaCrzaeC-RE&lc=Ugx16tTlN0d-vsR8Y-Z4AaABAg",
+      "real_face": true,
+      "real_name": true
+    }, {
+      "id": 107,
+      "message": "Thanks man, cool video",
+      "message_priority": 5,
+      "name": "Kirill Baryba",
+      "img_url": "Kirill+Baryba.jpg",
+      "link": "https://www.youtube.com/watch?v=M033S_-uHkQ&lc=UgyUqi555k1kjAqoeEt4AaABAg",
+      "real_name": true,
+      "real_face": true
+    }, {
+      "id": 108,
+      "message": "It really helps me thank you",
+      "message_priority": 5,
+      "name": "CHAHRAZED TOUATI",
+      "img_url": "CHAHRAZED+TOUATI.jpg",
+      "link": "https://www.youtube.com/watch?v=lv-KHdoeSoI&lc=Ugw_e4KNfLIBR8ypMhV4AaABAg"
+    }, {
+      "id": 109,
+      "message": "Perfect videos, thanks a lot!!!, you’re doing good stuff, helping others to understand clearly and easy!!! TY!!!",
+      "message_priority": 9,
+      "real_name": true,
+      "name": "Billy Milligan",
+      "img_url": "Billy+Milligan.jpg",
+      "link": "https://www.youtube.com/watch?v=M033S_-uHkQ&lc=UgxFecCNOAUEj3JOAPp4AaABAg"
+    }
+  ]
+}
