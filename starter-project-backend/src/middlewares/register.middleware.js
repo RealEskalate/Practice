@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../models/user.models');
+const secret = 'pass@besp'
 
 const register = async(req, res, next) => {
 
@@ -20,10 +21,9 @@ const register = async(req, res, next) => {
                     console.log(user)
                 })
         
-        const token = jwt.sign({_id: newUser._id},'jwt token')
+        const token = jwt.sign({_id: newUser._id}, `${secret}`)
         res.cookie('jwt',token)
         res.status(201).json({user: newUser._id})
-        // res.redirect('http://localhost:3000/api/v1/user/login')
     }catch(err){
         res.status(401).json({err})
     }
