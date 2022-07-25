@@ -6,7 +6,10 @@
   "scripts": {
     "start": "npm run build && node dist/server.js",
     "dev": "nodemon src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.js\" --fix",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
   },
   "keywords": [
     "blog"
@@ -25,6 +28,9 @@
     "mongodb": "^4.8.0",
     "mongoose": "^6.4.4",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "eslint": "8.20.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.2.1"
   }
 }
