@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-const mongoose = require("mongoose");
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const articleRouter = require("./routes/article.routes");
-const userRoutes = require("./routes/user.routes");
-const ratingRouter = require("./routes/rating.router");
-const commentRouter = require("./routes/comment.router");
-const isAuthenticated = require('./middlewares/authenticate.middleware')
-const cookieParser = require('cookie-parser')
-require('dotenv').config()
-=======
 const mongoose = require('mongoose')
 const express = require('express')
 const morgan = require('morgan')
@@ -19,35 +6,25 @@ const articleRouter = require('./routes/article.routes')
 const userRoutes = require('./routes/user.routes')
 const ratingRouter = require('./routes/rating.router')
 const commentRouter = require('./routes/comment.router')
-const { isAuthenticated } = require('./middleware/isAuthenticated')
->>>>>>> main
+const isAuthenticated = require('./middlewares/authenticate.middleware')
+const cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 const port = 3000
 const host = '127.0.0.1'
 const dbUrl = 'mongodb://localhost:27017/blog'
 const app = express()
 
-<<<<<<< HEAD
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(morgan("dev"));
-app.use(cookieParser())
-app.use(isAuthenticated)
-app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/rating", ratingRouter);
-app.use("/api/v1/article", articleRouter); //here router is called for article
-app.use("/api/v1/comments", commentRouter);
-=======
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cookieParser())
+app.use(isAuthenticated)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/rating', ratingRouter)
 app.use('/api/v1/article', articleRouter) //here router is called for article
-app.use('/api/v1/comments', isAuthenticated, commentRouter)
->>>>>>> main
+app.use('/api/v1/comments', commentRouter)
 
 const start = async () => {
   await mongoose.connect(dbUrl, { useNewUrlParser: true })
