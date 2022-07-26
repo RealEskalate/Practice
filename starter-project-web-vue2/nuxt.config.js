@@ -18,10 +18,12 @@ export default {
   },
 
 
-  router:{
-    prefetchLinks:false
+  router: {
+    prefetchLinks: false
   },
-  
+
+  loading: '@/components/liben/LoadingBar.vue',
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 

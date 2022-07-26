@@ -5,7 +5,7 @@
       :key="member.name"
       no-gutters
       dense
-      class="pa-5 py-0 mx-auto grey lighten-5 mb-6 "
+      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
       sm="6"
       md="3"
     >
@@ -23,6 +23,7 @@
         </v-card>
       </v-col>
     </v-row>
+    <sth></sth>
   </v-container>
 </template>
 
@@ -33,16 +34,15 @@ export default {
     return {
       members: [
         {
-          name: "Abraham Tadesse",
+          name: 'Abraham Tadesse',
           description: 'Summer Intern',
-          link:
-            '/abraham',
+          link: '/abraham',
         },
         {
-          name: "Liben",
-          description:"Web Team Member",
-          link:"/liben"
-        }
+          name: 'Liben',
+          description: 'Web Team Member',
+          link: '/liben/articles',
+        },
       ],
     }
   },
