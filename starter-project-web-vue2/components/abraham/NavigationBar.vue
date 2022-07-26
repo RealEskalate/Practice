@@ -7,7 +7,6 @@
       fixed
     >
       <v-toolbar-title>{{ title }}</v-toolbar-title>
-
       <v-spacer></v-spacer>
       <div v-if="$auth.loggedIn">
         {{ $auth.user.fullName }}
