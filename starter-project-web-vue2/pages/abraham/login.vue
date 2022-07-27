@@ -16,7 +16,6 @@ export default {
       const res = await this.$auth.loginWith('local', {
         data: loginInfo,
       })
-      console.log(res)
     },
   },
 }
