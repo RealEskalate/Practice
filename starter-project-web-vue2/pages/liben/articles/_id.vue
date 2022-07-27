@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import LibenArticleDetail from '@/components/liben/LibenArticleDetail.vue'
 import LibenArticleComment from '@/components/liben/LibenArticleComment.vue'
 import LibenCommentForm from '@/components/liben/LibenCommentForm.vue'
 export default {
   async fetch({ store, error, params }) {
     try {
-      await store.dispatch('getArticle', params.id)
-      await store.dispatch('getComments', params.id)
+      await store.dispatch('liben/getArticle', params.id)
+      await store.dispatch('liben/getComments', params.id)
     } catch (e) {
       error({
         statusCode: 503,
@@ -46,9 +46,9 @@ export default {
       })
     }
   },
-  computed: mapState({
-    article: (state) => state.libenBlogs.article,
-    comments: (state) => state.libenBlogs.comments,
+  computed: mapGetters({
+    article: 'liben/article',
+    comments: 'liben.comments',
   }),
   components: { LibenArticleDetail, LibenArticleComment, LibenCommentForm },
 }

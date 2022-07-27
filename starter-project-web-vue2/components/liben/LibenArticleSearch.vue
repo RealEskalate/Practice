@@ -35,7 +35,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(['searchArticle']),
+    ...mapActions('liben', ['searchArticle']),
     async search() {
       if (this.message) {
         try {

@@ -3,8 +3,8 @@
     <LibenArticleSearch />
     <v-container>
       <v-row no-gutters>
-        <v-col v-for="blog in blogs" :key="blog.id" cols="4">
-          <LibenArticle :blog="blog" />
+        <v-col v-for="article in articles" :key="article.id" cols="4">
+          <LibenArticle :article="article" />
         </v-col>
       </v-row>
     </v-container>
@@ -12,12 +12,13 @@
 </template> 
 
 <script>
-import { mapState } from 'vuex'
-import LibenArticleSearch from '~/components/liben/LibenArticleSearch.vue'
+import { mapGetters } from 'vuex'
+import LibenArticleSearch from '@/components/liben/LibenArticleSearch.vue'
 export default {
+  components: { LibenArticleSearch },
   async fetch({ store, error }) {
     try {
-      await store.dispatch('getArticles')
+      await store.dispatch('liben/getArticles')
     } catch (e) {
       error({
         statusCode: 503,
@@ -25,9 +26,8 @@ export default {
       })
     }
   },
-  computed: mapState({
-    blogs: (state) => state.libenBlogs.articles,
+  computed: mapGetters({
+    articles: 'liben/articles',
   }),
-  components: { LibenArticleSearch },
 }
 </script>
