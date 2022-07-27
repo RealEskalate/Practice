@@ -15,5 +15,8 @@ export default {
     },
     getArticle(id) {
         return apiClient.get(`/articles/${id}`)
+    },
+    searchArticle(term) {
+        return apiClient.get(`/articles/search/?search-term=${term}`)
     }
 }
