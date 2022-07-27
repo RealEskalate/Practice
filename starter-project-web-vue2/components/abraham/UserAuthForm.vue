@@ -36,8 +36,8 @@ export default {
       showPassword: false,
       hasName: false,
       userInfo: {
-        email: 'tadesseabraham50@gmail.com',
-        password: 'abrahamblogapp',
+        email: 'fakemail1781@gmail.com',
+        password: 'QWER123qwer',
       },
       ...validations,
     }

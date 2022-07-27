@@ -82,21 +82,29 @@ export default {
   auth: {
     strategies: {
       local: {
+        token: {
+          type: 'Bearer',
+          property: 'access_token',
+        },
+        user: {
+          property: false,
+          autoFetch: true,
+        },
         endpoints: {
           login: {
             url: 'https://blog-app-backend.onrender.com/api/auth/login',
             method: 'POST',
-            name: 'access_token',
           },
-          logout: false,
+          logout: true,
           user: {
             url: 'https://blog-app-backend.onrender.com/api/user',
             method: 'GET',
-            propertyName: 'data',
+            propertyName: false,
           },
         },
-        tokenRequired: true,
-        tokenType: 'Bearer',
+        redirect: {
+          logout: '/',
+        },
       },
     },
   },
