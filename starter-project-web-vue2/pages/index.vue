@@ -43,11 +43,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.font {
-  font-family: Helvetica, Arial, sans-serif;
-}
-</style>
-
-</script>
