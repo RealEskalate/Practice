@@ -64,7 +64,6 @@ This is a document holds the team members of the different sub teams in the A2SV
     - Beimnet Zewdu
     - Bereket Heramo
     - Beshir Dekebo
-    - Lydia Gashawtena
     - Meti Adane
     - Rebecca Samuel
     - Sinkumen Aseffa
