@@ -41,8 +41,6 @@ export default {
           name: 'yohans',
           description: 'Summer Intern',
           link: '/yohans',
-          description: 'Summer Intern',
-          link: '/abraham',
         },
         {
           name: 'Amsale Gebrehana',
@@ -74,6 +72,11 @@ export default {
           description: 'Group 32 Student',
           link: '/yared',
         },
+        {
+          name: "Natnael Tedros",
+          description: 'Summer Intern',
+          link: '/natnaelT',
+        }
       ],
     }
   },
