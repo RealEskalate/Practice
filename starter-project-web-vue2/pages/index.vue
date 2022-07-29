@@ -38,6 +38,11 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Yared Tegegn",
+          description:"Group 32 Student",
+          link: "/yared"
+        }
       ],
     }
   },
