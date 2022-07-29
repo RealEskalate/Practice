@@ -29,8 +29,5 @@ export default {
   props: {
     blog: { title: String, content: String },
   },
-  created() {
-    console.log(this.blog)
-  },
 }
 </script>

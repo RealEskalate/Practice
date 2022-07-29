@@ -7,17 +7,10 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      blogs: [
-        { id: 1, title: 'a', content: 'content of a' },
-        { id: 2, title: 'b', content: 'content of b' },
-        { id: 3, title: 'c', content: 'content of c' },
-        { id: 4, title: 'd', content: 'content of d' },
-      ],
-    }
-  },
   computed: {
+    blogs() {
+      return this.$store.state.yohans.blogs
+    },
     blog() {
       return this.blogs[+this.$route.params.blogDetail - 1]
     },
