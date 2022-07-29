@@ -53,15 +53,19 @@ export default {
           link: '/ruth',
         },
         {
-          name: "Keiredin Aman",
+          name: 'Keiredin Aman',
           description: 'Summer Intern',
           link: '/keiredin',
         },
-         {
-          name: "Andualem Sebsbe",
+        {
+          name: 'Andualem Sebsbe',
           description: 'Summer Intern',
-          link:
-            '/andualem',
+          link: '/andualem',
+        },
+        {
+          name: 'Liben',
+          description: 'Web Team Member',
+          link: '/liben/articles',
         },
       ],
     }
