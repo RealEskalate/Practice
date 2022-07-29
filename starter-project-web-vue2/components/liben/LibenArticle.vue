@@ -56,7 +56,6 @@ export default {
       required: true,
     },
   },
-
   methods: {
     calculateRating(obj) {
       const values = Object.values(obj)

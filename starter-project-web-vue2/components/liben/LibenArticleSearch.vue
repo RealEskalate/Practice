@@ -27,6 +27,15 @@ export default {
     message: '',
   }),
 
+<<<<<<< HEAD
+=======
+  computed: {
+    icon() {
+      return this.icons[this.iconIndex]
+    },
+  },
+
+>>>>>>> cae2e13 ([web] Implement Article CRUD)
   methods: {
     ...mapActions('liben', ['searchArticle']),
     async search() {
@@ -46,4 +55,8 @@ export default {
     },
   },
 }
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> cae2e13 ([web] Implement Article CRUD)

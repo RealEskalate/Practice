@@ -19,7 +19,11 @@
     </p>
   </div>
 </template>
+<<<<<<< HEAD
 <script>
+=======
+    <script>
+>>>>>>> cae2e13 ([web] Implement Article CRUD)
 export default {
   name: 'NuxtError',
   props: {
@@ -32,6 +36,17 @@ export default {
     return {
       title: this.message,
     }
+<<<<<<< HEAD
+  },
+  computed: {
+    statusCode() {
+      return (this.error && this.error.statusCode) || 500
+    },
+    message() {
+      return this.error.message
+    },
+=======
+>>>>>>> cae2e13 ([web] Implement Article CRUD)
   },
   computed: {
     statusCode() {
@@ -42,4 +57,8 @@ export default {
     },
   },
 }
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> cae2e13 ([web] Implement Article CRUD)
