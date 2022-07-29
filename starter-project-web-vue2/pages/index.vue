@@ -37,7 +37,12 @@ export default {
           description: 'Summer Intern',
           link:
             '/abraham',
-        },
+        },{
+          name: "Natnael Tedros",
+          description: 'Summer Intern',
+          link:
+            '/natnaelT',
+        }
       ],
     }
   },
