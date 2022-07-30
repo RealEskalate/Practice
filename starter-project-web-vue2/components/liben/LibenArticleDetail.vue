@@ -3,12 +3,7 @@
     <v-container>
       <v-row class="float-right" no-gutters>
         <v-col>
-          <v-btn
-            icon
-            left
-            text
-            :to="'/liben/articles/' + article._id + '/edit'"
-          >
+          <v-btn icon left text :to="`/liben/articles/${article._id} /edit`">
             <v-icon> mdi-pencil </v-icon>
           </v-btn>
         </v-col>

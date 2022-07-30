@@ -1,5 +1,4 @@
-import ArticleService from "@/services/ArticleService";
-import CommentService from "@/services/CommentService";
+
 export const state = () => ({
     articles: [],
     article: {},
@@ -14,42 +13,42 @@ export const getters = {
 
 export const actions = {
     getArticles({ commit }) {
-        return ArticleService.getArticles().then(response => {
+        return this.$axios.get('https://blog-app-backend.onrender.com/api/articles/all').then(response => {
             commit('SET_ARTICLES', response.data)
         })
     },
     getArticle({ commit }, id) {
-        return ArticleService.getArticle(id).then(response => {
+        return this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/${id}`).then(response => {
             commit('SET_ARTICLE', response.data)
         })
     },
     createArticle({ commit }, article) {
-        return ArticleService.createArticle(article).then(response => {
+        return this.$axios.post('https://blog-app-backend.onrender.com/api/articles', article).then(response => {
             commit('SET_NEWARTICLE', response.data)
         })
     },
     updateArticle({ commit }, article) {
-        return ArticleService.updateArticle(article).then(response => {
+        return this.$axios.patch(`https://blog-app-backend.onrender.com/api/articles/${article._id}`, article).then(response => {
             commit('UPDATE_ARTICLE', response.data)
         })
     },
     deleteArticle({ commit }, id) {
-        return ArticleService.deleteArticle(id).then(response => {
+        return this.$axios.delete(`https://blog-app-backend.onrender.com/api/articles/${id}`).then(response => {
             commit('DELETE_ARTICLE', id)
         })
     },
     searchArticle({ commit }, term) {
-        return ArticleService.searchArticle(term).then(response => {
+        return this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/search/?search-term=${term}`).then(response => {
             commit('SET_ARTICLES', response.data)
         })
     },
     getComments({ commit }, id) {
-        return CommentService.getComments(id).then(response => {
+        return this.$axios.get(`https://blog-app-backend.onrender.com/api/comments/${id}`).then(response => {
             commit('SET_COMMENTS', response.data)
         })
     },
     createComment({ commit }, { id, text }) {
-        return CommentService.createComment(id, text).then(response => {
+        return this.$axios.post(`https://blog-app-backend.onrender.com/api/comments/${id}`, { text }).then(response => {
             commit('SET_COMMENT', response.data)
         })
     }

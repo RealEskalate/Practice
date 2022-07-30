@@ -1,30 +1,24 @@
 <template>
-  <form>
+  <form ref="form">
     <v-text-field
       v-model="title"
-      :error-messages="titleErrors"
+      :rules="titleRules"
       label="Title"
       required
-      @input="$v.title.$touch()"
-      @blur="$v.title.$touch()"
     ></v-text-field>
 
     <v-text-field
       v-model="description"
-      :error-messages="descriptionErrors"
+      :rules="descriptionRules"
       label="Description"
       required
-      @input="$v.description.$touch()"
-      @blur="$v.description.$touch()"
     ></v-text-field>
 
     <v-textarea
       v-model="content"
-      :error-messages="contentErrors"
+      :rules="contentRules"
       label="Content"
       required
-      @input="$v.content.$touch()"
-      @blur="$v.content.$touch()"
     ></v-textarea>
 
     <v-text-field
@@ -37,16 +31,7 @@
   </form>
 </template>
 <script>
-import { validationMixin } from 'vuelidate'
-import { required } from 'vuelidate/lib/validators'
-
 export default {
-  mixins: [validationMixin],
-  validations: {
-    title: { required },
-    description: { required },
-    content: { required },
-  },
   props: {
     article: {
       type: Object,
@@ -58,32 +43,12 @@ export default {
     description: '',
     content: '',
     categories: '',
+    titleRules: [(v) => !!v || 'Title is required'],
+    descriptionRules: [(v) => !!v || 'Description is required'],
+    contentRules: [(v) => !!v || 'Content is required'],
   }),
-
-  computed: {
-    titleErrors() {
-      const errors = []
-      if (!this.$v.title.$dirty) return errors
-      !this.$v.title.required && errors.push('Title is required.')
-      return errors
-    },
-    descriptionErrors() {
-      const errors = []
-      if (!this.$v.description.$dirty) return errors
-      !this.$v.description.required && errors.push('Description is required.')
-      return errors
-    },
-    contentErrors() {
-      const errors = []
-      if (!this.$v.content.$dirty) return errors
-      !this.$v.content.required && errors.push('Content is required.')
-      return errors
-    },
-  },
-
   methods: {
     submit() {
-      this.$v.$touch()
       this.$emit('on-submit', {
         title: this.title,
         description: this.description,
@@ -94,7 +59,7 @@ export default {
       })
     },
     clear() {
-      this.$v.$reset()
+      this.$refs.form.reset()
       this.title = ''
       this.description = ''
       this.content = ''
