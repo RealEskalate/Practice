@@ -1,14 +1,31 @@
 <template>
   <div class="addblog">
+    <AddBlogButton :text="showAddBlog ? 'Close' : 'Add Blog'" :color= "showAddBlog ? 'red' : 'blue'" @toggle-add-blog="toggleAddBlog"/>
+    <div v-if="showAddBlog">
+    <AddBlogForm @add-blog="addBlog"/>
+    </div>
     <h1>Test Blog Page</h1>
     <p>This is where the content of the blog would go! List of all the blogs.</p>
-    <nuxt-link to='/natnaelT/NatnaelAddBlog'>Add a new Blog</nuxt-link>
+    <BlogList :blogs="blogs" @delete-blog="deleteBlog"/>
   </div>
 </template>
 
 <script>
-import NatnaelAddBlog from '~/components/natnaelT/NatnaelAddBlog'
+import AddBlogForm from '~/components/natnaelT/AddBlogForm.vue';
+import AddBlogButton from '~/components/natnaelT/AddBlogButton.vue';
+import BlogList from '~/components/natnaelT/BlogList.vue';
 export default {
+    components: {
+    AddBlogButton,
+    AddBlogForm,
+    BlogList
+},
+    data() {
+        return{
+            blogs:[],
+            showAddBlog: true
+        }
+    },
     head() {
         return {
             title: "Blog App",
@@ -19,9 +36,42 @@ export default {
                 }]
         };
     },
-    comments: {
-        NatnaelAddBlog
+    
+    created(){
+            this.blogs = [{
+                id: 1,
+                title: "Blog test one",
+                content: "This is the content of the test Blog one"
+            },
+            {
+                id: 2,
+                title: "Blog test two",
+                content: "This is the content of the test Blog two"
+            },
+            {
+                id: 3,
+                title: "Blog test three",
+                content: "This is the content of the test Blog three"
+            },
+            {
+                id: 4,
+                title: "Blog test four",
+                content: "This is the content of the test Blog four"
+            }]
+        },
+    
+    methods:{
+        addBlog(blog){
+            this.blogs = [...this.blogs,blog]
+        },
+        deleteBlog(id){
+            this.blogs = this.blogs.filter((blog) => blog.id !== id)
+        },
+        toggleAddBlog(){
+            this.showAddBlog = !this.showAddBlog
+        }
     }
+    
 }
 </script>
 
@@ -37,6 +87,16 @@ export default {
     color: aliceblue;
     padding: 0.3rem 1rem;
     margin-right: 0.5rem;
+}
+
+.btn{
+    background: blue;
+    padding: 5px 10px;
+    color: white;
+    display: inline-block;
+    margin: 2px;
+    border-radius: 10px;
+
 }
 
 </style>
