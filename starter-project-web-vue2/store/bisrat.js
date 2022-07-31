@@ -22,21 +22,21 @@ export const state = () => {
 
 export const actions = {
     getBlogs({ commit }){
-        commit("setBlogs")
+        commit("getBlogs")
     },
-    createBlog({ commit }){
-        commit("createBlog", state.blogs)
+    createBlog({ commit }, blog){
+        commit("createBlog", blog)
     },
-    updateBlog({ commit }){
-        commit("updateBlog", state.blogs)
+    updateBlog({ commit }, blog){
+        commit("updateBlog", blog)
     },
-    deleteBlog({ commit }){
-        commit("deleteBlog", state.blogs)
+    deleteBlog({ commit }, blog){
+        commit("deleteBlog", blog)
     }
 }
 
-export const mutuations = {
-    setBlogs: (state) => null,
+export const mutations = {
+    getBlogs: (state) => state.blogs,
     createBlog: (state, blog) => {state.blogs.unshift(blog)},
     updateBlog: (state, blog) => {
         for(let index=0; index < state.blogs.length; index++){
@@ -46,8 +46,14 @@ export const mutuations = {
         }
     },
     deleteBlog: (state, blog) => {
-        const index = state.blogs.indexOf(blog)
-        if (index !== -1) state.blogs.splice(index, 1)
+		let indexOfBlog=-1;
+		for(let index = 0; index < state.blogs.length; index++){
+            if (state.blogs[index].id === blog.id){
+				indexOfBlog = index
+                break
+            }
+        }
+        if (indexOfBlog !== -1) state.blogs.splice(indexOfBlog, 1)
     }
 }
 
