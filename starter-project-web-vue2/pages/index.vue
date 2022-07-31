@@ -38,6 +38,11 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Samuel Abatneh",
+          description: 'Summer Intern',
+          link: '/sami'
+        }
       ],
     }
   },
