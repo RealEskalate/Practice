@@ -1,14 +1,14 @@
 <template>
 	<div style="margin:auto;max-width:600px !important;padding-bottom:30px">
-  <h2><span v-if="blog.id==null">Add Blog</span><span v-if="blog.id!=null">Update Blog</span></h2>
+  <h2><span v-if="id==null">Add Blog</span><span v-if="id!=null">Update Blog</span></h2>
   
   <form>
     <v-text-field
-      v-model="blog.title"
+      v-model="title"
 	  label="Title"
     ></v-text-field>
     <v-textarea
-      v-model="blog.content"
+      v-model="content"
 	  label="Content"
 	  solo
 	  
@@ -18,7 +18,7 @@
       class="mr-4"
       @click="onSubmit"
     >
-      submit
+      {{ getButtonText() }}
     </v-btn>
   </form>
   </div>
@@ -26,35 +26,55 @@
 
 <script>
 
-import { mapActions } from "vuex"
+import { mapActions, mapState } from 'vuex';
 
 export default {
 	name: "AddEditComponent",
-	props: ["updateBlog"],
     data(){
         return {
-			 blog: {
-                id: null,
-                title: "",
-                content: ""
-            },
+			id: null,
+			title: "",
+			content: "",
 			titleRules: [v => v.length > 9 || "title is required and must be at least 10 chars"],
 			contentRules: [v => v.length > 99 || "content is required and must be at least 100 chars"]
         }
     },
+	computed: {...mapState("bisrat", ["blog"])},
     created(){
-        if (this.updateBlog !== undefined){
-            this.blog = this.updateBlog
+        if (this.blog !== null){
+            this.id = this.blog._id
+			this.title = this.blog.title
+			this.content = this.blog.content
         }
     },
     methods: {
-        ...mapActions("bisrat", ["createBlog", "updateBlog"]),
+        ...mapActions("bisrat", ["setFormOpen", "createBlog", "updateBlog", "setUpdateBlog", "formOpen"]),
 		onSubmit(){
-			if(this.blog.id == null){
-			  this.createBlog(this.blog);
+			if(this.id == null){
+			  this.createBlog({
+				_id: this.id,
+				title: this.title,
+				content: this.content
+			  });
 			} else {
-			  this.updateBlog(this.blog);
+			console.log("Updating")
+			  this.updateBlog({
+				_id: this.id,
+				title: this.title,
+				content: this.content
+			  });
 			} 
+			this.id = null
+			this.title = ""
+			this.content = ""
+			this.setUpdateBlog(null)
+			this.setFormOpen(false)
+		},
+		getButtonText(){
+			if (this.id==null){
+				return "Add"
+			}
+			return "Update"
 		}
     }
 }
