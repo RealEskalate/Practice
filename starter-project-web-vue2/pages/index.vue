@@ -38,6 +38,12 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Bisrat Walle",
+          description: 'Software Engineer',
+          link:
+            '/bisrat',
+        },
       ],
     }
   },
