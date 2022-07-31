@@ -27,14 +27,14 @@
       <v-text-field
         outlined
         class="text-black"
-        :value="current.title"
+        :value = "current.content"
         label="Title"
         v-model="blog_title"
       />
       <v-text-field
         outlined
         class="text-black"
-        :value="current.body"
+        :value="current.content"
         label="Content"
         v-model="blog_content"
       />
@@ -93,7 +93,7 @@ export default {
         return {
             current: {},
             edit_area: false,
-            blog_title: "Samuel",
+            blog_title: "",
             blog_content: "",
         };
     },
@@ -106,6 +106,8 @@ export default {
         editArea(blog) {
             this.edit_area = !this.edit_area;
             this.current = blog;
+            this.blog_content = blog.content;
+            this.blog_title = blog.title;
             console.log(blog, "this")
         },
         update() {
