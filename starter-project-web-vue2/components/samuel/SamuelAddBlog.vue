@@ -35,16 +35,14 @@ export default {
   computed: { ...mapState('samuel', ['blogs']) },
   methods: {
     ...mapActions('samuel', ['addBlog']),
-    createBlog() {
-      console.log("blog")
-      // e.preventDefault()
+    createBlog(e) {
+      e.preventDefault()
       this.blogPost = {
         title: this.blogTitle,
         content: this.blogContent,
         description: 'description',
       }
 
-      console.log(this.blogPost, "blog")
       this.addBlog(this.blogPost)
       this.blogTitle = ''
       this.blogContent = ''

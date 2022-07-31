@@ -11,8 +11,8 @@ export const actions = {
         commit('setBlogs', response.data)
     },
     async addBlog({ commit }, blogPost) {
-        console.log(blogPost);
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyNzI3MzIsImV4cCI6MTY1OTI3NjMzMn0.pyQFf4SELYx1z5C6nZgfBLuDSMH2-DDeGjUd69uoISw"
+        console.log(blogPost, "store");
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyODUwNDIsImV4cCI6MTY1OTI4ODY0Mn0._KVpK16isY9xLk6bQRyVOMOLLEHwFy4jE2a7Ocsz-cU"
         const response = await axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
             blogPost, {
@@ -26,7 +26,7 @@ export const actions = {
     },
     async deleteBlog({ commit }, id) {
         console.log(id)
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyNzcwNjgsImV4cCI6MTY1OTI4MDY2OH0.Te1UOSIpbBKBV3J1wU1G7xuQXHGlJZKj0ZkwjhEHSqY"
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyODUwNDIsImV4cCI6MTY1OTI4ODY0Mn0._KVpK16isY9xLk6bQRyVOMOLLEHwFy4jE2a7Ocsz-cU"
         await axios.delete(
             `https://blog-app-backend.onrender.com/api/articles/${id}`, {
                 headers: {
