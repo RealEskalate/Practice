@@ -38,6 +38,12 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Sileshi Abebe",
+          description: 'Summer Intern',
+          link:
+            '/sileshi',
+        },
       ],
     }
   },

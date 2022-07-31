@@ -10,19 +10,20 @@ export const actions = {
     )
     commit('setBlogs', response.data)
   },
-  async addBlog({ commit }, blogPost) {
-    const token = ""
-    const response = await axios.post(
-      'https://blog-app-backend.onrender.com/api/articles',
-      blogPost,
-      {
-        headers: {
-          Authentication: 'Bearer' + token,
-        }
-      }
-    )
-    commit('newBlog', response.data)
-  },
+  async addBlog({ commit }, blogPost) { 
+    console.log(blogPost, "store"); 
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyOTM2NjIsImV4cCI6MTY1OTI5NzI2Mn0.ha_azMTQD7W-ZUBMNTJIx7EbPHhl6UTaUuF1WO9n760" 
+    const response = await axios.post( 
+        'https://blog-app-backend.onrender.com/api/articles', 
+        blogPost, { 
+            headers: { 
+                Authorization: 'Bearer ' + token, 
+            } 
+
+        } 
+    ) 
+    commit('newBlog', response.data) 
+},
   async deleteBlog({ commit }, id) {
     const token = ""
     console.log(id)

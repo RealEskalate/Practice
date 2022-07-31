@@ -1,15 +1,20 @@
 <template>
-  <div>
-    <AddBlog />
-  </div>
+  <v-app>
+    <v-main class="white">
+      <BlogPost />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-
-// import AddBlog from "../../components/sileshi/AddBlog.vue"
+import BlogPost from '../../components/sileshi/SileshiBlogPost.vue'
 export default {
-    name:"BlogList",
-    components: { AddBlog }
+  name: 'IndexPage',
+  components: { BlogPost },
 }
 </script>
-
+<style>
+.padd {
+  padding-top: 5rem;
+}
+</style>
