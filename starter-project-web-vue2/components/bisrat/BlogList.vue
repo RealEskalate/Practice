@@ -1,5 +1,15 @@
 <template>
   <v-container>
+          <div style="display:flex;justify-content:center;padding-bottom:30px">
+  
+            <v-btn color="primary">
+                  Add Blog
+            </v-btn>
+          </div>
+		  
+			<div>
+				<AddEditComponent />
+			</div>
           <v-card
             v-for="blog in blogs"
             :key="blog.id"
@@ -17,6 +27,12 @@
               <v-btn text>
                 More
               </v-btn>
+              <v-btn text color="green">
+                Update
+              </v-btn>
+              <v-btn text color="red" @click="onBlogDelete(blog)">
+                Delete
+              </v-btn>
             </v-card-actions>
           </v-card>
     </v-container>
@@ -25,13 +41,16 @@
 <script>
 
 import { mapActions, mapState } from 'vuex';
+import AddEditComponent from './AddEditBlog.vue';
 
 
 export default {
     name: "BlogList",
+	components: {AddEditComponent},
     data(){
         return {
-
+          formStatus: 0, // 0 - not opened, 1 - update mode, 2 - create mode
+          newBlogTitle: "",
         }
     },
     computed: {...mapState("bisrat", ["blogs"])},
@@ -39,7 +58,10 @@ export default {
         this.getBlogs()
     },
     methods: {
-        ...mapActions('abraham', ['getBlogs', 'createBlog', 'deleteBlog', 'updateBlog'])
+        ...mapActions('bisrat', ['getBlogs', 'deleteBlog']),
+        onBlogDelete(blog){
+          this.deleteBlog(blog);
+        } 
     }
 
     
