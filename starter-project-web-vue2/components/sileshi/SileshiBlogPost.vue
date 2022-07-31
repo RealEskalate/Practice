@@ -1,21 +1,22 @@
 <template>
   <v-container class="font">
     <v-container class="pa-2 mb-6 mx-7 mt-3">
-      <SileshiAddBLog />
+      <SileshiAddBlog />
     </v-container>
+
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
         outlined
         class="text-black"
-        :value="blog_title"
+        :value = "current.content"
         label="Title"
         v-model="blog_title"
       />
       <v-text-field
         outlined
         class="text-black"
-        :value="blog_title"
+        :value="current.content"
         label="Content"
         v-model="blog_content"
       />
@@ -24,7 +25,7 @@
 
     <v-row
       v-for="blog in blogs"
-      :key="blog.id"
+      :key="blog._id"
       dense
       class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
       sm="6"
@@ -37,7 +38,7 @@
               <v-card-title class="mx-auto text-center black--text">
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="'/sileshi/' + blog._id"
+                  :to="'/samuel/' + blog._id"
                 >
                   <p>
                     {{ blog.title }}
@@ -67,40 +68,41 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import SileshiAddBLog from './SileshiAddBLog.vue'
-export default {
-  name: 'BlogPost',
-  data() {
-    return {
-      current: {},
-      edit_area: false,
-      blog_title: '',
-      blog_content: '',
-    }
-  },
-  computed: { ...mapState('abraham', ['blogs']) },
-  created() {
-    this.fetchBlogs()
-  },
-  methods: {
-    ...mapActions('abraham', ['fetchBlogs', 'deleteBlog', 'updateBlog']),
-    editArea(blog) {
-      this.edit_area = !this.edit_area
-      this.blog_content = blog.content 
-      this.blog_title = blog.title
-      this.current = blog
-    },
+import SileshiAddBlog from './SileshiAddBlog.vue'
 
-    update() {
-      this.updateBlog({
-        _id: this.current._id,
-        body: this.blog_content,
-        authorUserId: this.current.authorUserId,
-        title: this.blog_title,
-      })
+export default {
+    name: "BlogPost",
+    data() {
+        return {
+            current: {},
+            edit_area: false,
+            blog_title: "",
+            blog_content: "",
+        };
     },
-  },
-  components: { SileshiAddBLog },
+    computed: { ...mapState("sileshi", ["blogs"]) },
+    created() {
+        this.fetchBlogs();
+    },
+    methods: {
+        ...mapActions("sileshi", ["fetchBlogs", "deleteBlog", "updateBlog"]),
+        editArea(blog) {
+            this.edit_area = !this.edit_area;
+            this.current = blog;
+            this.blog_content = blog.content;
+            this.blog_title = blog.title;
+            console.log(blog, "this")
+        },
+        update() {
+            this.updateBlog({
+                _id: this.current._id,
+                body: this.blog_content,
+                authorUserId: this.current.authorUserId,
+                title: this.blog_title,
+            });
+        },
+    },
+    components: { SileshiAddBlog }
 }
 </script>
 

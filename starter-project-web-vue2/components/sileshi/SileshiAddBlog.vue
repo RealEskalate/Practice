@@ -12,17 +12,17 @@
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field v-model="blogTitle" label="Title" />
-          <v-textarea v-model="blogContent" label="Content" />
+          <v-text-field label="Title" v-model="blogTitle"  />
+          <v-textarea label="Content" v-model="blogContent" />
           <v-spacer></v-spacer>
-          <v-btn @click="onSubmit" class="success mx-0 mt-3">Add Blog</v-btn>
+          <v-btn class="success mx-0 mt-3" @click="createBlog">Add Blog</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 <script>
-import { mapActions, mapState } from 'vuex'
+import {mapState, mapActions } from 'vuex'
 export default {
   name: 'AddBlog',
   data() {
@@ -32,10 +32,10 @@ export default {
       blogPost: {},
     }
   },
-  computed: {...mapState('sileshi', ['blogs'])},
+  computed: { ...mapState('sileshi', ['blogs']) },
   methods: {
     ...mapActions('sileshi', ['addBlog']),
-    onSubmit(e) {
+    createBlog(e) {
       e.preventDefault()
       this.blogPost = {
         title: this.blogTitle,
