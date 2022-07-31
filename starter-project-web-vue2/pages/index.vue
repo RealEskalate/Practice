@@ -38,6 +38,12 @@ export default {
           link:
             '/abraham',
         },
+         {
+          name: "Andualem Sebsbe",
+          description: 'Summer Intern',
+          link:
+            '/andualem',
+        },
       ],
     }
   },
