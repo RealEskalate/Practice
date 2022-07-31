@@ -41,7 +41,7 @@ export default {
         {
           name: "Samuel Abatneh",
           description: 'Summer Intern',
-          link: '/sami'
+          link: '/samuel'
         }
       ],
     }

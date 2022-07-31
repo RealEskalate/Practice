@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import UserAuthForm from '@/components/abraham/UserAuthForm.vue'
+import UserAuthForm from '@/components/samuel/UserAuthForm.vue'
 export default {
   components: {
     UserAuthForm,
