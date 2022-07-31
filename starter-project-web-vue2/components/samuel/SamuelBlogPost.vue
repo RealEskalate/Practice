@@ -1,7 +1,7 @@
 <template>
   <v-container class="font">
     <v-container class="pa-2 mb-6 mx-7 mt-3">
-      <AbrahamAddBlog />
+      <SamuelAddBlog />
     </v-container>
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
@@ -68,38 +68,37 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-// import SamuelAddBlog from './SamuelAddBlog.vue'
+import SamuelAddBlog from './SamuelAddBlog.vue'
 export default {
-  name: 'BlogPost',
-  data() {
-    return {
-      current: {},
-      edit_area: false,
-      blog_title: '',
-      blog_content: '',
-    }
-  },
-  computed: { ...mapState('samuel', ['blogs']) },
-  created() {
-    this.fetchBlogs()
-  },
-  methods: {
-    ...mapActions('samuel', ['fetchBlogs', 'deleteBlog', 'updateBlog']),
-    editArea(blog) {
-      this.edit_area = !this.edit_area
-      this.current = blog
+    name: "BlogPost",
+    data() {
+        return {
+            current: {},
+            edit_area: false,
+            blog_title: "",
+            blog_content: "",
+        };
     },
-
-    update() {
-      this.updateBlog({
-        id: this.current.id,
-        body: this.blog_content,
-        userId: this.current.userId,
-        title: this.blog_title,
-      })
+    computed: { ...mapState("samuel", ["blogs"]) },
+    created() {
+        this.fetchBlogs();
     },
-  },
-//   components: { SamuelAddBlog },
+    methods: {
+        ...mapActions("samuel", ["fetchBlogs", "deleteBlog", "updateBlog"]),
+        editArea(blog) {
+            this.edit_area = !this.edit_area;
+            this.current = blog;
+        },
+        update() {
+            this.updateBlog({
+                id: this.current.id,
+                body: this.blog_content,
+                userId: this.current.userId,
+                title: this.blog_title,
+            });
+        },
+    },
+    components: { SamuelAddBlog }
 }
 </script>
 
