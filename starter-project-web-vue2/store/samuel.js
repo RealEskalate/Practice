@@ -39,10 +39,16 @@ export const actions = {
         commit('removeBlog', id)
     },
     async updateBlog({ commit }, updBlog) {
-        console.log(updBlog)
-        const response = await this.$axios.put(
-            `https://blog-app-backend.onrender.com/api/articles/${updBlog.id}`,
-            updBlog
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyODUwNDIsImV4cCI6MTY1OTI4ODY0Mn0._KVpK16isY9xLk6bQRyVOMOLLEHwFy4jE2a7Ocsz-cU"
+        console.log(updBlog, "updblog")
+        const response = await this.$axios.patch(
+            `https://blog-app-backend.onrender.com/api/articles/${updBlog._id}`,
+            updBlog, {
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                }
+
+            }
         )
         commit('updateBlog', response.data)
     },

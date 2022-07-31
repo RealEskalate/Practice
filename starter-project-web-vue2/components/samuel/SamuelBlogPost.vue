@@ -3,6 +3,25 @@
     <v-container class="pa-2 mb-6 mx-7 mt-3">
       <SamuelAddBlog />
     </v-container>
+
+  <!-- <v-container  v-if="edit_area">
+      <v-dialog>
+          <v-card>
+            <v-card-title>
+              <h2>Edit Post</h2>
+            </v-card-title>
+            <v-card-text>
+              <v-form class="px-3">
+                <v-text-field label="Title"  :value="current.title" v-model="blog_title"  />
+                <v-textarea label="Content" :value="current.content" v-model="blog_content" />
+                <v-spacer></v-spacer>
+                <v-btn class="success mx-0 mt-3" @click="update"> Save </v-btn>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+  </v-container> -->
+
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
@@ -40,7 +59,6 @@
                   :to="'/samuel/' + blog._id"
                 >
                   <p>
-                    {{ blog._id }}
                     {{ blog.title }}
                   </p>
                 </nuxt-link>
@@ -75,7 +93,7 @@ export default {
         return {
             current: {},
             edit_area: false,
-            blog_title: "",
+            blog_title: "Samuel",
             blog_content: "",
         };
     },
@@ -88,12 +106,13 @@ export default {
         editArea(blog) {
             this.edit_area = !this.edit_area;
             this.current = blog;
+            console.log(blog, "this")
         },
         update() {
             this.updateBlog({
-                id: this.current.id,
+                _id: this.current._id,
                 body: this.blog_content,
-                userId: this.current.userId,
+                authorUserId: this.current.authorUserId,
                 title: this.blog_title,
             });
         },
