@@ -6,13 +6,16 @@
   </v-app>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   computed: {
-    blogs() {
-      return this.$store.state.yohans.blogs
-    },
+    ...mapGetters({
+      blogs: 'yohans/blogs',
+    }),
     blog() {
-      return this.blogs[+this.$route.params.blogDetail - 1]
+      return this.blogs.find(
+        (item) => +item.id === +this.$route.params.blogDetail
+      )
     },
   },
 }

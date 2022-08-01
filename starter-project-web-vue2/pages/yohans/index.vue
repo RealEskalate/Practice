@@ -8,8 +8,9 @@
 </template>
 <script>
 import BlogList from '../../components/yohans/BlogList.vue'
+import AddBlog from '../../components/yohans/AddBlog.vue'
 export default {
   name: 'IndexPage',
-  components: { BlogList },
+  components: { BlogList, AddBlog },
 }
 </script>

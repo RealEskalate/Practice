@@ -1,22 +1,33 @@
 <template>
   <v-container>
+    <EditBlog v-if="editComponenet"></EditBlog>
     <div v-for="ablog in blogs" :key="ablog.id">
       <BlogItem :blog="ablog"></BlogItem>
     </div>
   </v-container>
 </template>
 <script>
+import { mapGetters, mapState } from 'vuex'
 import BlogItem from './BlogItem.vue'
+import EditBlog from './EditBlog.vue'
 export default {
   name: 'BlogList',
-  components: { BlogItem },
+  components: { BlogItem, EditBlog },
 
-  computed: {
-    blogs() {
-      return this.$store.state.yohans.blogs
-    },
+  data() {
+    return {}
   },
+  computed: {
+    ...mapGetters({
+      blogs: 'yohans/blogs',
+      editComponenet: 'yohans/editComponenet',
+      currentBlog: 'yohans/currentBlog',
+    }),
 
-  created() {},
+    ...mapState({
+      editComponenet: (state) => state.yohans.editComponenet,
+      currentBlog: (state) => state.yohans.currentBlog,
+    }),
+  },
 }
 </script>
