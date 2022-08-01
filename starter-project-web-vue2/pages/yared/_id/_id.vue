@@ -3,7 +3,7 @@
         <h1>{{joke.title}}</h1>
         <hr>
         <div class="description">
-            <p>{{joke.description}}</p>
+            <p>{{joke.content}}</p>
        </div>
        <small>Created at: {{date}}</small>
        <v-btn
@@ -35,6 +35,7 @@ export default {
     async created(){
         const res = await axios.get(`https://blog-app-backend.onrender.com/api/articles/${this.$route.params.id}`)
         this.joke = res.data
+        console.log(res.data)
    }
     
 }
