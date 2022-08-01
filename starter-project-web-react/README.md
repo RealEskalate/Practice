@@ -18,31 +18,31 @@
 
 7. Add a file called profile.tsx in your pages folder. This page will be used to display a user profile.
 
-7. Add a folder blog/[id] in your pages folder, then create index.tsx file inside this folder. This page will be used to display single blog.
+8. Add a folder blog/[id] in your pages folder, then create index.tsx file inside this folder. This page will be used to display single blog.
 
-8. Add a folder auth inside your pages folder.
+9. Add a folder auth inside your pages folder.
 
-9. Add a file called index.tsx for login page and register.tsx for register page. 
+10. Add a file called index.tsx for login page and register.tsx for register page. 
 
-8. Add any components you want to use in your pages to your components folder. (ex. the component used to display a single blog on the list page.)
+11. Add any components you want to use in your pages to your components folder. (ex. the component used to display a single blog on the list page.)
 
-9. Create UI in any way you prefer. (Buttons, Components, Pages)
+12. Create UI in any way you prefer. (Buttons, Components, Pages)
 
 ### Integration with Backend
 
-10. To retrieve data we'll use https://blog-app-backend.onrender.com/api/
+13. To retrieve data we'll use https://blog-app-backend.onrender.com/api/
 
-11. To work on React-Redux, go to the store folder and create a new folder with your name on it (eg. abraham)
+14. To work on React-Redux, go to the store folder and create a new folder with your name on it (eg. abraham)
 
-12. Use your store file to make requests to the API and populate the UI you built.
+15. Use your store file to make requests to the API and populate the UI you built.
 
 ### Unit Testing
 
-13. We will use the Jest package for unit tests.
+16. We will use the Jest package for unit tests.
 
-14. Write unit tests for each of your store files.
+17. Write unit tests for each of your store files.
 
-15. Since we haven't found concrete resources for testing, refer to the tests written here or on the hakim hub project and reach out to your TLs for questions.
+18. Since we haven't found concrete resources for testing, refer to the tests written here or on the hakim hub project and reach out to your TLs for questions.
     #### Pointers for testing
         - Inoder to unit test the store functions without api requests and next auth, we will mock these functions.
         - Use the jest.mock function to mock API requests for the different types of http methods. These will return mock values of your choice. You can use a variable to control whether these return a success or a failure response.
