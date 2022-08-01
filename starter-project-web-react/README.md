@@ -113,7 +113,6 @@ This directory contains your Vuex store files. Creating a file in this directory
 ## Good Practices
 
 - Follow the github workflow provided to you by your TLs.
-- Call actions in the `created()` function
 - Have three states for all data:
   - `loading`: Display a loading component
   - `empty` : Show that no data is retrieved
@@ -121,5 +120,5 @@ This directory contains your Vuex store files. Creating a file in this directory
 - Make sure UI is reponsive before pushing to github
 - Use semantically consistent variable and test value names
 - Use as little custom css as possible
-- Use vuetify components as much as possible
+- Use mui components as much as possible
 - Make sure all tests pass before pushing
