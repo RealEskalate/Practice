@@ -3,7 +3,7 @@
  
 <v-card>
     <v-container>
-      <v-row dense v-bind:key="blogPost.id" v-for="blogPost in blogPosts">
+      <v-row dense v-bind:key="blogPost.id" v-for="blogPost in allBlogPosts">
         <v-col cols="12">
           <v-card
             color="#385F73"
@@ -15,11 +15,11 @@
 
             <v-card-subtitle>{{blogPost.content}}</v-card-subtitle>
 
-            <v-card-actions>
-              <v-btn text :to="'/singlePage' + blog._id">
+            <!-- <v-card-actions>
+              <v-btn text :to="'/dagmawit/' + blog._id">
                 Read More
               </v-btn>
-            </v-card-actions>
+            </v-card-actions> -->
           </v-card>
         </v-col>
 
@@ -29,10 +29,20 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
   export default {
     name: 'BlogPost',
+    methods:{
+      ...mapActions('dagmawit',['fetchBlogPosts'])
+      
+
+    },
+    computed: mapGetters('dagmawit',["allBlogPosts"]),
+    created(){
+      this.fetchBlogPosts()
+    }
   
-  }
+  };
 </script>
 
 
