@@ -42,6 +42,12 @@ export default {
           description: 'Web Team Member',
           link: '/ruth',
         },
+        {
+          name: "Keiredin Aman",
+          description: 'Summer Intern',
+          link:
+            '/keiredin',
+        },
       ],
     }
   },
