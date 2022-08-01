@@ -7,47 +7,30 @@
         <div v-for="blog in blogs" :key="blog.id">
             <Blog :blog="blog" />
         </div>
-        <v-btn
-              color="blue"
-              fab
-              dark
-              elevation="10"
-              style="position:fixed; bottom:10%; right:5%;"
-            >
-              <v-icon>mdi-plus-thick</v-icon>
-            </v-btn>
-      
+        <AddBlog/>
     </div>
 </template>
 <script>
-import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
 import Blog from './Blog.vue'
+import AddBlog from './AddBlog.vue'
+
+
 export default {
     name:"Blogs",
     components:{
-        Blog
+        Blog,
+        AddBlog
     },
-    data(){
-        return{
-            blogs: []
-        }
+    computed:{
+        ...mapState('yared',['blogs'])
     },
     methods: {
-        async fetchBlogs(){
-            const res = await axios.get('https://blog-app-backend.onrender.com/api/articles/all')
-            const data = res.data.slice(0,3)
-            console.log(data)
-            return data
-        },
-        // async addBlog(newBLog){
-        //     const res = await axios.post('https://blog-app-backend.onrender.com/api/articles/all',newBlog)
-
-        // },
+       ...mapActions('yared' ,['fetchBlogs'])
     },
-
-    async created(){
-        this.blogs = await this.fetchBlogs()
-    }
+    created(){
+        this.fetchBlogs()
+    },
     
 }
 </script>
