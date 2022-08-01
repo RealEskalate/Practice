@@ -23,7 +23,7 @@ export default {
     data() {
         return{
             blogs:[],
-            showAddBlog: true
+            showAddBlog: false
         }
     },
     head() {
@@ -37,38 +37,32 @@ export default {
         };
     },
     
-    created(){
-            this.blogs = [{
-                id: 1,
-                title: "Blog test one",
-                content: "This is the content of the test Blog one"
-            },
-            {
-                id: 2,
-                title: "Blog test two",
-                content: "This is the content of the test Blog two"
-            },
-            {
-                id: 3,
-                title: "Blog test three",
-                content: "This is the content of the test Blog three"
-            },
-            {
-                id: 4,
-                title: "Blog test four",
-                content: "This is the content of the test Blog four"
-            }]
+    async created(){
+            this.blogs = await this.fetchBlog()
         },
     
     methods:{
-        addBlog(blog){
-            this.blogs = [...this.blogs,blog]
+        async addBlog(blog){
+            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/all', {
+                method: "POST",
+                headers:{
+                    'Content-type': "applicatio/json",
+                },
+                body: JSON.stringify(blog)
+            })
+            const data = await res.json()
+            this.blogs = [...this.blogs,data]
         },
         deleteBlog(id){
             this.blogs = this.blogs.filter((blog) => blog.id !== id)
         },
         toggleAddBlog(){
             this.showAddBlog = !this.showAddBlog
+        },
+        async fetchBlog(){
+            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/all')
+            const data = await res.json()
+            return data
         }
     }
     
