@@ -22,8 +22,10 @@
           </v-card-subtitle>
         </v-card>
       </v-col>
+     
     </v-row>
   </v-container>
+  
 </template>
 
 <script>
@@ -38,6 +40,12 @@ export default {
           link:
             '/abraham',
         },
+        {
+           name: "Amsale Gebrehana",
+          description: 'A2SV G31',
+          link:
+            '/amsale',
+        }
       ],
     }
   },
