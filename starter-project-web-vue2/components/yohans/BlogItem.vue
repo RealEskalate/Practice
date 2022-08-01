@@ -16,7 +16,7 @@
 
       <v-col cols="1">
         <v-btn left text>
-          <v-icon @click="() => deleteBlog(blog.id)">mdi-delete</v-icon>
+          <v-icon @click="() => deleteBlog(blog._id)">mdi-delete</v-icon>
         </v-btn>
       </v-col>
     </v-row>

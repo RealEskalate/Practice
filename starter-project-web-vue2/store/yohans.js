@@ -1,11 +1,8 @@
+import axios from 'axios'
+
 export const state = () => ({
   // ablogs: res,
-  blogs: [
-    { id: 4, title: 'a', content: 'content of a' },
-    { id: 3, title: 'b', content: 'content of b' },
-    { id: 2, title: 'c', content: 'content of c' },
-    { id: 1, title: 'd', content: 'content of d' },
-  ],
+  blogs: [],
 
   editComponenet: false,
   currentBlog: 12,
@@ -22,7 +19,7 @@ export const mutations = {
       state.blogs.unshift({ id, title, content })
   },
   deleteBlog(state, id) {
-    state.blogs = state.blogs.filter((item) => item.id !== id)
+    state.blogs = state.blogs.filter((item) => item._id !== id)
   },
   setEdit(state, blog) {
     state.editComponenet = !state.editComponenet
@@ -36,6 +33,9 @@ export const mutations = {
       return blog
     })
     console.log(state.blogs)
+  },
+  fetchBlogs(state, blogs) {
+    state.blogs = blogs
   },
 }
 
@@ -54,5 +54,13 @@ export const actions = {
   },
   updateBlog(context, { id, newTitle, newContent }) {
     context.commit('updateBlog', { id, newTitle, newContent })
+  },
+
+  async fetchBlogs(context) {
+    const url = 'https://blog-app-backend.onrender.com/api/articles/all'
+    const res = await axios.get(url)
+    if (+res.status === 200) {
+      context.commit('fetchBlogs', res.data)
+    }
   },
 }
