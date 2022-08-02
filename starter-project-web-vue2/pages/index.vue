@@ -22,10 +22,8 @@
           </v-card-subtitle>
         </v-card>
       </v-col>
-     
     </v-row>
   </v-container>
-  
 </template>
 
 <script>
@@ -35,17 +33,15 @@ export default {
     return {
       members: [
         {
-          name: "Abraham Tadesse",
+          name: 'Abraham Tadesse',
           description: 'Summer Intern',
-          link:
-            '/abraham',
+          link: '/abraham',
         },
         {
-           name: "Amsale Gebrehana",
+          name: 'Amsale Gebrehana',
           description: 'A2SV G31',
-          link:
-            '/amsale',
-        }
+          link: '/amsale',
+        },
       ],
     }
   },
