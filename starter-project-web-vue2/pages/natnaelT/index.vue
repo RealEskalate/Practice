@@ -1,7 +1,7 @@
 <template>
   <div class="addblog">
     <AddBlogButton :text="showAddBlog ? 'Close' : 'Add Blog'" :color= "showAddBlog ? 'red' : 'blue'" @toggle-add-blog="toggleAddBlog"/>
-    <div class="addblogform" v-if="showAddBlog">
+    <div v-if="showAddBlog" class="addblogform">
     <AddBlogForm @add-blog="addBlog"/>
     </div>
     <div class="bloglist">
