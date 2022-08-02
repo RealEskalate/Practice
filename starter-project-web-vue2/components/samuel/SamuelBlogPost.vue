@@ -108,7 +108,6 @@ export default {
             this.current = blog;
             this.blog_content = blog.content;
             this.blog_title = blog.title;
-            console.log(blog, "this")
         },
         update() {
             this.updateBlog({
