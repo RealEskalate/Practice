@@ -4,6 +4,7 @@
       <BlogPost />
     </v-main>
   </v-app>
+  
 </template>
 
 <script>
