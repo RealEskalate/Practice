@@ -10,7 +10,7 @@
       </v-row>
     </v-container>
   </div>
-</template> 
+</template>
 
 <script>
 import { mapGetters } from 'vuex'

@@ -38,14 +38,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
 
-  // axios: {
-  //   baseURL: 'https://blog-app-backend.onrender.com/api'
-  // },
+  axios: {
+    baseURL: 'https://blog-app-backend.onrender.com/api/',
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -70,7 +67,7 @@ export default {
   build: {},
 
   router: {
-    middleware: 'unauthorized'
+    middleware: 'unauthorized',
   },
 
   auth: {

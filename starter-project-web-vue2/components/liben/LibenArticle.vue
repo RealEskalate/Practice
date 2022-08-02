@@ -38,7 +38,7 @@
     <v-card-title>Tags</v-card-title>
 
     <v-card-text>
-      <v-chip-group column v-if="article.categories">
+      <v-chip-group v-if="article.categories" column>
         <v-chip v-for="(cat, index) in article.categories" :key="index">{{
           cat
         }}</v-chip>

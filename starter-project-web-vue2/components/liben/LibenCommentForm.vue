@@ -3,10 +3,10 @@
     <v-toolbar-title>
       <v-container>
         <v-text-field
+          v-model="comment"
           label="Comment..."
           :rules="rules"
           hide-details="auto"
-          v-model="comment"
         ></v-text-field>
       </v-container>
     </v-toolbar-title>

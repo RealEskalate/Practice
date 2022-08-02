@@ -19,7 +19,7 @@
     </p>
   </div>
 </template>
-    <script>
+<script>
 export default {
   name: 'NuxtError',
   props: {

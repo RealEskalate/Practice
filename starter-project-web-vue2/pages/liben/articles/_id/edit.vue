@@ -22,7 +22,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('article', ['article']),
+    ...mapGetters('liben', ['article']),
   },
   methods: {
     ...mapActions('liben', ['updateArticle']),
