@@ -1,0 +1,37 @@
+import axios from 'axios'
+
+const state = {
+  blogs: [],
+}
+
+const getters = {
+  allBlogs: (state) => state.blogs,
+}
+
+const actions = {
+  async fetchBlogs({ commit }) {
+    const res = await axios.get(
+      'https://blog-app-backend.onrender.com/api/articles/all'
+    )
+    commit('setBlogs', res.data)
+  },
+  async deleteBlog({ commit }, id) {
+    await axios.delete(
+      `https://blog-app-backend.onrender.com/api/articles/all${id}`
+    )
+    commit('removeBlog', id)
+  },
+}
+
+const mutations = {
+  setBlogs: (state, blogs) => (state.blogs = blogs),
+  removeBlog: (state, id) =>
+    (state.blogs = state.blogs.filter((blog) => blog._id !== id)),
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations,
+}

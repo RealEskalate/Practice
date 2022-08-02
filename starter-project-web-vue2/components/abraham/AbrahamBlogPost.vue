@@ -6,20 +6,20 @@
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
+        v-model="blog_title"
         outlined
         class="text-black"
         :value="current.title"
         label="Title"
-        v-model="blog_title"
       />
       <v-text-field
+        v-model="blog_content"
         outlined
         class="text-black"
         :value="current.body"
         label="Content"
-        v-model="blog_content"
       />
-      <v-btn @click="update" class="pa-2 mb-2 mx-7 mt-3" dark>Save</v-btn>
+      <v-btn class="pa-2 mb-2 mx-7 mt-3" dark @click="update">Save</v-btn>
     </v-container>
 
     <v-row
@@ -49,12 +49,12 @@
               </v-card-text>
             </v-col>
             <v-col cols="1">
-              <v-btn left text @click="editArea(blog)" class="grey--text">
+              <v-btn left text class="grey--text" @click="editArea(blog)">
                 <v-icon> mdi-pencil </v-icon>
               </v-btn>
             </v-col>
             <v-col cols="1">
-              <v-btn @click="deleteBlog(blog.id)" left text class="grey--text">
+              <v-btn left text class="grey--text" @click="deleteBlog(blog.id)">
                 <v-icon> mdi-delete </v-icon>
               </v-btn>
             </v-col>
