@@ -6,7 +6,7 @@
           <v-container>
             <v-text-field
               v-model="message"
-              :append-outer-icon="'mdi-magnify'"
+              append-outer-icon="mdi-magnify"
               clear-icon="mdi-close-circle"
               clearable
               label="Search"
@@ -26,12 +26,6 @@ export default {
   data: () => ({
     message: '',
   }),
-
-  computed: {
-    icon() {
-      return this.icons[this.iconIndex]
-    },
-  },
 
   methods: {
     ...mapActions('liben', ['searchArticle']),

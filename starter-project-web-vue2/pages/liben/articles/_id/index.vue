@@ -11,14 +11,12 @@
               <LibenCommentForm />
               <v-card max-width="450" class="mx-auto">
                 <v-list three-line>
-                  <template>
-                    <v-subheader>Comments</v-subheader>
-                    <LibenArticleComment
-                      v-for="comment in comments"
-                      :key="comment._id"
-                      :comment="comment"
-                    />
-                  </template>
+                  <v-subheader>Comments</v-subheader>
+                  <LibenArticleComment
+                    v-for="comment in comments"
+                    :key="comment._id"
+                    :comment="comment"
+                  />
                 </v-list>
               </v-card>
             </v-container>
@@ -35,6 +33,7 @@ import LibenArticleDetail from '@/components/liben/LibenArticleDetail.vue'
 import LibenArticleComment from '@/components/liben/LibenArticleComment.vue'
 import LibenCommentForm from '@/components/liben/LibenCommentForm.vue'
 export default {
+  components: { LibenArticleDetail, LibenArticleComment, LibenCommentForm },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('liben/getArticle', params.id)
@@ -46,10 +45,8 @@ export default {
       })
     }
   },
-  computed: mapGetters({
-    article: 'liben/article',
-    comments: 'liben/comments',
-  }),
-  components: { LibenArticleDetail, LibenArticleComment, LibenCommentForm },
+  computed: {
+    ...mapGetters('liben', ['article', 'comments']),
+  },
 }
 </script>

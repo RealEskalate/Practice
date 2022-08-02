@@ -13,7 +13,6 @@
         <v-list-item-subtitle>{{
           formatTime(comment.updatedAt)
         }}</v-list-item-subtitle>
-        <!-- <span></span> -->
       </v-list-item-content>
     </v-list-item>
   </div>

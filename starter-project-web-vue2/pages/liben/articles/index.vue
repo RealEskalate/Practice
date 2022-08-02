@@ -4,7 +4,7 @@
     <LibenArticleSearch />
     <v-container>
       <v-row no-gutters>
-        <v-col cols="12" v-for="article in articles" :key="article.id" md="4">
+        <v-col v-for="article in articles" :key="article.id" md="4" cols="12">
           <LibenArticle :article="article" />
         </v-col>
       </v-row>
@@ -27,8 +27,8 @@ export default {
       })
     }
   },
-  computed: mapGetters({
-    articles: 'liben/articles',
-  }),
+  computed: {
+    ...mapGetters('liben', ['articles']),
+  },
 }
 </script>

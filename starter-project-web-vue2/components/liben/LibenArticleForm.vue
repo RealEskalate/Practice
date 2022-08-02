@@ -1,28 +1,28 @@
 <template>
   <form ref="form">
     <v-text-field
-      v-model="title"
-      :rules="titleRules"
+      v-model="formData.title"
+      :rules="reqRules"
       label="Title"
       required
     ></v-text-field>
 
     <v-text-field
-      v-model="description"
-      :rules="descriptionRules"
+      v-model="formData.description"
+      :rules="reqRules"
       label="Description"
       required
     ></v-text-field>
 
     <v-textarea
-      v-model="content"
-      :rules="contentRules"
+      v-model="formData.content"
+      :rules="reqRules"
       label="Content"
       required
     ></v-textarea>
 
     <v-text-field
-      v-model="categories"
+      v-model="formData.categories"
       label="Categories comma separated"
     ></v-text-field>
 
@@ -38,42 +38,35 @@ export default {
       default: () => ({ empty: true }),
     },
   },
-  data: () => ({
-    title: '',
-    description: '',
-    content: '',
-    categories: '',
-    titleRules: [(v) => !!v || 'Title is required'],
-    descriptionRules: [(v) => !!v || 'Description is required'],
-    contentRules: [(v) => !!v || 'Content is required'],
-  }),
-  methods: {
-    submit() {
-      this.$emit('on-submit', {
-        title: this.title,
-        description: this.description,
-        content: this.content,
-        categories:
-          this.categories &&
-          this.categories.split(',').map((item) => item.trim()),
-      })
-    },
-    clear() {
-      this.$refs.form.reset()
-      this.title = ''
-      this.description = ''
-      this.content = ''
-      this.categories = ''
-    },
+  data() {
+    return {
+      formData: { title: '', description: '', content: '', categories: '' },
+      reqRules: [(v) => !!v || 'This field is required'],
+    }
   },
   created() {
     if (!this.article.empty) {
-      this.title = this.article.title
-      this.description = this.article.description
-      this.content = this.article.content
-      this.categories =
+      this.formData.title = this.article.title
+      this.formData.description = this.article.description
+      this.formData.content = this.article.content
+      this.formData.categories =
         this.article.categories && this.article.categories.join()
     }
+  },
+  methods: {
+    submit() {
+      this.formData.categories =
+        this.formData.categories &&
+        this.formData.categories.split(',').map((item) => item.trim())
+      this.$emit('on-submit', this.formData)
+    },
+    clear() {
+      this.$refs.form.reset()
+      this.formData.title = ''
+      this.formData.description = ''
+      this.formData.content = ''
+      this.formData.categories = ''
+    },
   },
 }
 </script>

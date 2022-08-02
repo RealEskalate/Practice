@@ -11,6 +11,11 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
+  middleware({ store, redirect }) {
+    if (!store.state.auth.loggedIn) {
+      return redirect('/abraham/login')
+    }
+  },
   methods: {
     ...mapActions('liben', ['createArticle']),
     async createNewArticle(articleForm) {

@@ -11,6 +11,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  async fetch({ store, params, error }) {
+    try {
+      await store.dispatch('liben/getArticle', params.id)
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch articles at this time. Please try agin.',
+      })
+    }
+  },
+  computed: {
+    ...mapGetters('article', ['article']),
+  },
   methods: {
     ...mapActions('liben', ['updateArticle']),
     async editArticle(articleForm) {
@@ -25,18 +38,5 @@ export default {
       }
     },
   },
-  async fetch({ store, params, error }) {
-    try {
-      await store.dispatch('liben/getArticle', params.id)
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch articles at this time. Please try agin.',
-      })
-    }
-  },
-  computed: mapGetters({
-    article: 'liben/article',
-  }),
 }
 </script>

@@ -12,45 +12,40 @@ export const getters = {
 }
 
 export const actions = {
-    getArticles({ commit }) {
-        return this.$axios.get('https://blog-app-backend.onrender.com/api/articles/all').then(response => {
-            commit('SET_ARTICLES', response.data)
-        })
+    async getArticles({ commit }) {
+        const response = await this.$axios.get('https://blog-app-backend.onrender.com/api/articles/all')
+        commit('SET_ARTICLES', response.data)
+
     },
-    getArticle({ commit }, id) {
-        return this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/${id}`).then(response => {
-            commit('SET_ARTICLE', response.data)
-        })
+    async getArticle({ commit }, id) {
+        const response = await this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/${id}`)
+        commit('SET_ARTICLE', response.data)
     },
-    createArticle({ commit }, article) {
-        return this.$axios.post('https://blog-app-backend.onrender.com/api/articles', article).then(response => {
-            commit('SET_NEWARTICLE', response.data)
-        })
+    async createArticle({ commit }, article) {
+        const response = await this.$axios.post('https://blog-app-backend.onrender.com/api/articles', article)
+        commit('SET_NEWARTICLE', response.data)
     },
-    updateArticle({ commit }, article) {
-        return this.$axios.patch(`https://blog-app-backend.onrender.com/api/articles/${article._id}`, article).then(response => {
-            commit('UPDATE_ARTICLE', response.data)
-        })
+    async updateArticle({ commit }, article) {
+        const response = await this.$axios.patch(`https://blog-app-backend.onrender.com/api/articles/${article._id}`, article)
+        commit('UPDATE_ARTICLE', response.data)
     },
-    deleteArticle({ commit }, id) {
-        return this.$axios.delete(`https://blog-app-backend.onrender.com/api/articles/${id}`).then(response => {
-            commit('DELETE_ARTICLE', id)
-        })
+    async deleteArticle({ commit }, id) {
+        await this.$axios.delete(`https://blog-app-backend.onrender.com/api/articles/${id}`)
+        commit('DELETE_ARTICLE', id)
+
     },
-    searchArticle({ commit }, term) {
-        return this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/search/?search-term=${term}`).then(response => {
-            commit('SET_ARTICLES', response.data)
-        })
+    async searchArticle({ commit }, term) {
+        const response = await this.$axios.get(`https://blog-app-backend.onrender.com/api/articles/search/?search-term=${term}`)
+        commit('SET_ARTICLES', response.data)
     },
-    getComments({ commit }, id) {
-        return this.$axios.get(`https://blog-app-backend.onrender.com/api/comments/${id}`).then(response => {
-            commit('SET_COMMENTS', response.data)
-        })
+    async getComments({ commit }, id) {
+        const response = await this.$axios.get(`https://blog-app-backend.onrender.com/api/comments/${id}`)
+        commit('SET_COMMENTS', response.data)
     },
-    createComment({ commit }, { id, text }) {
-        return this.$axios.post(`https://blog-app-backend.onrender.com/api/comments/${id}`, { text }).then(response => {
-            commit('SET_COMMENT', response.data)
-        })
+    async createComment({ commit }, { id, text }) {
+        const response = await this.$axios.post(`https://blog-app-backend.onrender.com/api/comments/${id}`, { text })
+        commit('SET_COMMENT', response.data)
+
     }
 }
 
