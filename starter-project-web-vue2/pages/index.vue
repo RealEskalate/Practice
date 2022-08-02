@@ -57,6 +57,12 @@ export default {
           description: 'Summer Intern',
           link: '/keiredin',
         },
+         {
+          name: "Dagmawit Getachew",
+          description: 'Summer Intern',
+          link:
+            '/dagmawit',
+        },
       ],
     }
   },
