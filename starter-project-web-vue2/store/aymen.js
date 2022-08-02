@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 const state = {
   blogs: [],
 }
@@ -10,13 +8,13 @@ const getters = {
 
 const actions = {
   async fetchBlogs({ commit }) {
-    const res = await axios.get(
+    const res = await this.$axios.get(
       'https://blog-app-backend.onrender.com/api/articles/all'
     )
     commit('setBlogs', res.data)
   },
   async deleteBlog({ commit }, id) {
-    await axios.delete(
+    await this.$axios.delete(
       `https://blog-app-backend.onrender.com/api/articles/all${id}`
     )
     commit('removeBlog', id)
