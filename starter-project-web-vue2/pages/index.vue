@@ -57,6 +57,12 @@ export default {
           description: 'Summer Intern',
           link: '/keiredin',
         },
+         {
+          name: "Andualem Sebsbe",
+          description: 'Summer Intern',
+          link:
+            '/andualem',
+        },
       ],
     }
   },
