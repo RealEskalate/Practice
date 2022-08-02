@@ -53,7 +53,7 @@ export default {
           link: '/ruth',
         },
         {
-          name: "Keiredin Aman",
+          name: 'Keiredin Aman',
           description: 'Summer Intern',
           link: '/keiredin',
         },
