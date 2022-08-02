@@ -38,14 +38,11 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
 
-  // axios: {
-  //   baseURL: 'https://blog-app-backend.onrender.com/api'
-  // },
+  axios: {
+    baseURL: 'https://blog-app-backend.onrender.com/api/',
+  },
 
   axios: {
     baseURL: 'https://blog-app-backend.onrender.com/api/',
