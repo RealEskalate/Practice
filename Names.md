@@ -54,6 +54,7 @@ This is a document holds the team members of the different sub teams in the A2SV
 ### Web Team
 
 - **Full-Time**
+  - Daniel Geremew
   - Lensa Billion
   - Natneam Mesele
   - Elshadai Tegegn
@@ -63,8 +64,6 @@ This is a document holds the team members of the different sub teams in the A2SV
     - Beimnet Zewdu
     - Bereket Heramo
     - Beshir Dekebo
-    - Daniel Geremew
-    - Lydia Gashawtena
     - Meti Adane
     - Rebecca Samuel
     - Sinkumen Aseffa

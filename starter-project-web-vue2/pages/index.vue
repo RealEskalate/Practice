@@ -37,11 +37,29 @@ export default {
           description: 'Summer Intern',
           link: '/abraham',
         },
-
         {
           name: 'yohans',
           description: 'Summer Intern',
           link: '/yohans',
+          description: 'Summer Intern',
+          link: '/abraham',
+        },
+        {
+          name: 'Amsale Gebrehana',
+          description: 'A2SV G31',
+          link: '/amsale',
+        },
+        {
+          name: 'Ruth Getachew',
+          description: 'Web Team Member',
+          link: '/ruth',
+        },
+        {
+          name: "Keiredin Aman",
+          description: 'Summer Intern',
+          link:
+            '/keiredin',
+
         },
       ],
     }
