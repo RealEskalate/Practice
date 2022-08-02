@@ -1,12 +1,12 @@
 <template>
   <div class="addblog">
     <AddBlogButton :text="showAddBlog ? 'Close' : 'Add Blog'" :color= "showAddBlog ? 'red' : 'blue'" @toggle-add-blog="toggleAddBlog"/>
-    <div v-if="showAddBlog">
+    <div class="addblogform" v-if="showAddBlog">
     <AddBlogForm @add-blog="addBlog"/>
     </div>
-    <h1>Test Blog Page</h1>
-    <p>This is where the content of the blog would go! List of all the blogs.</p>
+    <div class="bloglist">
     <BlogList :blogs="blogs" @delete-blog="deleteBlog"/>
+    </div>
   </div>
 </template>
 
@@ -43,10 +43,10 @@ export default {
     
     methods:{
         async addBlog(blog){
-            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/all', {
+            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/', {
                 method: "POST",
                 headers:{
-                    'Content-type': "applicatio/json",
+                    'Content-type': "application/json"
                 },
                 body: JSON.stringify(blog)
             })
@@ -84,6 +84,7 @@ export default {
 }
 
 .btn{
+    justify-content: center;
     background: blue;
     padding: 5px 10px;
     color: white;

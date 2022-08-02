@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>{{blog.title}}</h3>
+  <div class="singleblog">
+    <h2>{{blog.title}}</h2>
     <p>{{blog.content}}</p>
     <button class="btn">Update</button>
     <button @click="$emit('delete-blog',blog.id)" class="btn">Delete</button>
@@ -23,6 +23,13 @@ export default {
     padding: 2px; 
     margin: 1px;
     border-radius: 0.5px;
+}
+
+.singleblog{
+  background: 	#D3D3D3;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 15px;
 }
 
 </style>
