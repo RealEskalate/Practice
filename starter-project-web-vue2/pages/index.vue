@@ -33,16 +33,15 @@ export default {
     return {
       members: [
         {
-          name: "Abraham Tadesse",
+          name: 'Abraham Tadesse',
           description: 'Summer Intern',
-          link:
-            '/abraham',
+          link: '/abraham',
         },
         {
-          name: "Yared Tegegn",
-          description:"Group 32 Student",
-          link: "/yared"
-        }
+          name: 'Yared Tegegn',
+          description: 'Group 32 Student',
+          link: '/yared',
+        },
       ],
     }
   },
