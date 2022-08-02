@@ -33,16 +33,14 @@ export default {
     return {
       members: [
         {
-          name: "Abraham Tadesse",
+          name: 'Abraham Tadesse',
           description: 'Summer Intern',
-          link:
-            '/abraham',
+          link: '/abraham',
         },
-         {
-          name: "Dagmawit Getachew",
+        {
+          name: 'Dagmawit Getachew',
           description: 'Summer Intern',
-          link:
-            '/dagmawit',
+          link: '/dagmawit',
         },
       ],
     }

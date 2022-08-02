@@ -1,21 +1,17 @@
 <template>
-    <v-app>
+  <v-app>
     <v-main class="white">
       <BlogPost />
     </v-main>
   </v-app>
-  
 </template>
 
 <script>
-import BlogPost from '../../components/dagmawit/BlogPost.vue';
+import BlogPost from '../../components/dagmawit/BlogPost.vue'
 export default {
-    name: 'Index',
-    components: {
-        BlogPost,
-
-    },
-     
-    
+  name: 'Index',
+  components: {
+    BlogPost,
+  },
 }
 </script>

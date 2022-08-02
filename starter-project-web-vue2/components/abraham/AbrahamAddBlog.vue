@@ -1,6 +1,6 @@
 <template>
   <v-dialog max-width="600px">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn color="primary" dark v-on="on">
         <v-icon left> mdi-plus </v-icon>
         Add Blog</v-btn
@@ -15,7 +15,7 @@
           <v-text-field v-model="blogTitle" label="Title" />
           <v-textarea v-model="blogContent" label="Content" />
           <v-spacer></v-spacer>
-          <v-btn @click="onSubmit" class="success mx-0 mt-3">Add Blog</v-btn>
+          <v-btn class="success mx-0 mt-3" @click="onSubmit">Add Blog</v-btn>
         </v-form>
       </v-card-text>
     </v-card>
