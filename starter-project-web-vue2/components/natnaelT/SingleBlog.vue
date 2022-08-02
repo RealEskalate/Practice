@@ -3,7 +3,7 @@
     <h2>{{blog.title}}</h2>
     <p>{{blog.content}}</p>
     <button class="btn">Update</button>
-    <button @click="$emit('delete-blog',blog.id)" class="btn">Delete</button>
+    <button class="btn" @click="$emit('delete-blog',blog.id)">Delete</button>
   </div>
 </template>
 
