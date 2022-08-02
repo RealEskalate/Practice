@@ -68,10 +68,10 @@ export default {
           link: '/liben/articles',
         },
         {
-          name: "Yared Tegegn",
-          description:"Group 32 Student",
-          link: "/yared"
-        }
+          name: 'Yared Tegegn',
+          description: 'Group 32 Student',
+          link: '/yared',
+        },
       ],
     }
   },

@@ -1,14 +1,13 @@
 <template>
-<Blogs />
-    
+  <Blogs />
 </template>
 
 <script>
 import Blogs from '../../components/yared/Blogs.vue'
 export default {
-    name: "Home",
-    components:{
-        Blogs
-    }
+  name: 'Home',
+  components: {
+    Blogs,
+  },
 }
 </script>
