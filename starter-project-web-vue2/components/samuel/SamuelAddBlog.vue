@@ -26,10 +26,10 @@ import {mapState, mapActions } from 'vuex'
 export default {
   name: 'AddBlog',
   data() {
-    return {
-      blogTitle: '',
-      blogContent: '',
-      blogPost: {},
+    return blog: {
+      title: '',
+      content: '',
+      post: {},
     }
   },
   computed: { ...mapState('samuel', ['blogs']) },
@@ -43,7 +43,7 @@ export default {
         description: 'description',
       }
 
-      this.addBlog(this.blogPost)
+      this.addBlog(this.blog)
       this.blogTitle = ''
       this.blogContent = ''
     },
