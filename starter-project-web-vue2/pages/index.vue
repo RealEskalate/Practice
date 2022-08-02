@@ -38,10 +38,14 @@ export default {
           link: '/abraham',
         },
         {
+          name: 'Aymen Mohammednur',
+          description: 'Group 31 Member',
+          link: '/aymen',
+        },
+        {
           name: 'Amsale Gebrehana',
           description: 'A2SV G31',
           link: '/amsale',
-         
         },
         {
           name: 'Ruth Getachew',
@@ -51,8 +55,7 @@ export default {
         {
           name: "Keiredin Aman",
           description: 'Summer Intern',
-          link:
-            '/keiredin',
+          link: '/keiredin',
         },
       ],
     }
