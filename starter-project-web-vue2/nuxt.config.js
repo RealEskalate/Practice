@@ -19,8 +19,6 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
-  loading: '@/components/liben/LoadingBar.vue',
-
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
@@ -39,10 +37,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
-
-  axios: {
-    baseURL: 'https://blog-app-backend.onrender.com/api/',
-  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -65,10 +59,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-
-  router: {
-    middleware: 'unauthorized',
-  },
 
   auth: {
     strategies: {
