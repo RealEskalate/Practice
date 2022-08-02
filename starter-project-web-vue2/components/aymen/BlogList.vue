@@ -1,6 +1,16 @@
 <template>
   <v-container>
-    <h2>Latest Blogs</h2>
+    <v-toolbar flat app>
+      <v-toolbar-title class="text-uppercase grey--text">
+        <span class="font-weight-light">Latest</span>
+        <span>Blogs</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn flat color="grey">
+        <span>Sign Out</span>
+        <v-icon right>mdi-exit-to-app</v-icon>
+      </v-btn>
+    </v-toolbar>
     <v-row>
       <v-col v-for="blog in allBlogs" :key="blog._id" cols="12" md="4">
         <v-card outlined class="mx-auto">
@@ -11,10 +21,11 @@
             <div>{{ blog.description }}</div>
           </v-card-text>
           <v-card-actions>
+            <v-btn text>More</v-btn>
+            <v-spacer></v-spacer>
             <v-btn fab depressed x-small dark color="blue lighten-1">
               <v-icon small>mdi-pencil</v-icon>
             </v-btn>
-            <v-spacer></v-spacer>
             <v-btn
               fab
               depressed
@@ -38,7 +49,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'BlogList',
   computed: {
-    ...mapGetters('aymen', ['allBlogs']),
+    ...mapGetters('aymen', ['allBlogs', 'token']),
   },
   created() {
     this.fetchBlogs()
