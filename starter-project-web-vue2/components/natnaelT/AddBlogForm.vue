@@ -1,19 +1,19 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
+  <form class="add-form" @submit="onSubmit">
     <div class="form-control">
-      <label>Title of Blog</label>
-      <input type="text" v-model="title" name="content" placeholder="Blog Title here..." />
+      <label>Title</label>
+      <input v-model="title" type="text" name="content" placeholder="Blog Title here..." />
     </div>
     <div class="form-control">
-      <label>Content of Blog</label>
+      <label>Content</label>
       <input
-        type="text"
         v-model="content"
+        type="text"
         name="content"
         placeholder="Write here..."
       />
     </div>
-    <input type="submit" value="Save Task" class="btn" />
+    <input type="submit" value="Save Blog" class="btn" />
   </form>
 </template>
 
@@ -34,7 +34,7 @@ export default {
         return
       }
       const newBlog = {
-        id: Math.floor(Math.random() * 100000),
+        // id: Math.floor(Math.random() * 100000),
         title: this.title,
         content: this.content
       }
