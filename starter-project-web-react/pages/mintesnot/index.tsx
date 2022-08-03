@@ -1,6 +1,5 @@
 import react from 'react'
 import { Box, Container, Grid, Typography, Divider } from '@mui/material'
-
 import CircularProgress from '@mui/material/CircularProgress'
 import { useFetchBlogsQuery } from '../../store/mintesnot/blog/BlogApiSlice'
 import PostBlog from '../../components/mintesnot/blog/PostBlogButton'
