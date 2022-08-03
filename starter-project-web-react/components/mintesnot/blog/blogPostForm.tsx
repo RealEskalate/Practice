@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Button } from '@mui/material'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import BlogPostTextField from './BlogPostTextField'
+import BlogPostTextField from './blogPostTextField'
 
 type handle = () => void
 interface props {

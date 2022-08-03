@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import BlogPostForm from './BlogPostForm'
+import BlogPostForm from './blogPostForm'
 
 export default function BlogPostDialog({ open, handleClose }: any) {
   const theme = useTheme()

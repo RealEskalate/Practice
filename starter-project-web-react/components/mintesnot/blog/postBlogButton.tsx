@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Typography } from '@mui/material'
-import BlogPostDialog from './BlogPostDialog'
+import BlogPostDialog from './blogPostDialog'
 
 export default function PostBlog(props: any) {
   const [open, setOpen] = useState(false)
