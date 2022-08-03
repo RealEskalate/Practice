@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <div>
     <EditBlog v-if="editComponenet"></EditBlog>
     <div v-for="ablog in blogs" :key="ablog.id">
       <BlogItem :blog="ablog"></BlogItem>
     </div>
-  </v-container>
+  </div>
 </template>
 <script>
 import { mapGetters, mapState } from 'vuex'

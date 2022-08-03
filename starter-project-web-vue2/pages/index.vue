@@ -41,8 +41,6 @@ export default {
           name: 'yohans',
           description: 'Summer Intern',
           link: '/yohans',
-          description: 'Summer Intern',
-          link: '/abraham',
         },
         {
           name: 'Amsale Gebrehana',
