@@ -1,11 +1,7 @@
 <template>
   <v-dialog max-width="900px">
     <template #activator="{ on, attrs }">
-      <v-btn
-        color="primary"
-        dark
-        v-bind="attrs"
-        v-on="on">
+      <v-btn color="primary" dark v-bind="attrs" v-on="on">
         <v-icon left> mdi-plus </v-icon>
         Add New Blog</v-btn
       >
@@ -26,13 +22,8 @@
   </v-dialog>
 </template>
 
-
 <script>
 export default {
   name: 'AddBlog',
 }
 </script>
-
-
-
-
