@@ -38,9 +38,11 @@ export default {
           link: '/abraham',
         },
         {
-          name: 'Aymen Mohammednur',
-          description: 'Group 31 Member',
-          link: '/aymen',
+          name: 'yohans',
+          description: 'Summer Intern',
+          link: '/yohans',
+          description: 'Summer Intern',
+          link: '/abraham',
         },
         {
           name: 'Amsale Gebrehana',
