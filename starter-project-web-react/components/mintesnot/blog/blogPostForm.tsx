@@ -2,8 +2,7 @@ import React from 'react'
 import { Box, Button } from '@mui/material'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import BlogPostTextField from './blogPostTextField'
-import { useSession } from 'next-auth/react'
+import BlogPostTextField from './BlogPostTextField'
 
 type handle = () => void
 interface props {
