@@ -1,14 +1,22 @@
 <template>
-  <BlogList />
+  <div>
+    <Header />
+    <AddBlog />
+    <BlogList />
+  </div>
 </template>
 
 <script>
 import BlogList from '../../components/aymen/BlogList.vue'
+import AddBlog from '../../components/aymen/AddBlog.vue'
+import Header from '../../components/aymen/Header.vue'
 
 export default {
   name: 'Aymen',
   components: {
     BlogList,
+    AddBlog,
+    Header
   },
 }
 </script>
