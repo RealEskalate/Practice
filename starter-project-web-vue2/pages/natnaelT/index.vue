@@ -1,30 +1,30 @@
 <template>
   <div class="addblog">
-    <AddBlogButton :text="showAddBlog ? 'Close' : 'Add Blog'" :color= "showAddBlog ? 'red' : 'blue'" @toggle-add-blog="toggleAddBlog"/>
+    <AddBlogButton :text="showAddBlog ? 'Close' : 'Add Blog'" :color= "showAddBlog ? 'red' : 'blue'" @toggle-add-blog="toggleAddBlog()" />
     <div v-if="showAddBlog" class="addblogform">
-    <AddBlogForm @add-blog="addBlog"/>
+    <AddBlogForm />
     </div>
     <div class="bloglist">
-    <BlogList :blogs="blogs" @delete-blog="deleteBlog"/>
+    <BlogList /> 
     </div>
   </div>
 </template>
 
 <script>
+
 import AddBlogForm from '~/components/natnaelT/AddBlogForm.vue';
 import AddBlogButton from '~/components/natnaelT/AddBlogButton.vue';
 import BlogList from '~/components/natnaelT/BlogList.vue';
 export default {
+    data() {
+        return {
+            showAddBlog: false
+            }
+    },
     components: {
     AddBlogButton,
     AddBlogForm,
     BlogList
-},
-    data() {
-        return{
-            blogs:[],
-            showAddBlog: false
-        }
     },
     head() {
         return {
@@ -36,35 +36,13 @@ export default {
                 }]
         };
     },
-    
-    async created(){
-            this.blogs = await this.fetchBlog()
-        },
-    
+ 
     methods:{
-        async addBlog(blog){
-            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/', {
-                method: "POST",
-                headers:{
-                    'Content-type': "application/json"
-                },
-                body: JSON.stringify(blog)
-            })
-            const data = await res.json()
-            this.blogs = [...this.blogs,data]
-        },
-        deleteBlog(id){
-            this.blogs = this.blogs.filter((blog) => blog.id !== id)
-        },
         toggleAddBlog(){
-            this.showAddBlog = !this.showAddBlog
-        },
-        async fetchBlog(){
-            const res = await fetch('https://blog-app-backend.onrender.com/api/articles/all')
-            const data = await res.json()
-            return data
-        }
+        this.showAddBlog = !this.showAddBlog
+    },
     }
+    
     
 }
 </script>
@@ -85,9 +63,9 @@ export default {
 
 .btn{
     justify-content: center;
-    background: blue;
+    background: lightblue;
     padding: 5px 10px;
-    color: white;
+    color: black;
     display: inline-block;
     margin: 2px;
     border-radius: 10px;

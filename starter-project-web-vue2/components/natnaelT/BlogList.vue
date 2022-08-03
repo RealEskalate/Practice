@@ -1,24 +1,46 @@
 <template>
 <div>
-<div v-for="blog in blogs" :key="blog.id">
-    <SingleBlog :blog="blog" @delete-blog="$emit('delete-blog',blog.id)"/>
-    <p>
-      
-    </p>
+<div class="singleblog" v-for="blog in allBlogs" :key="blog.id">
+    <SingleBlog :blog="blog" @delete-blog="deleteBlog(blog.id)"/>
+    
   </div>
 </div>
 </template>
 
 <script>
-import SingleBlog from './SingleBlog.vue'
+import {mapGetters, mapActions} from "vuex";
+import SingleBlog from './SingleBlog.vue';
+
 export default {
 name:"BlogList",
-props:{
-blogs: Array
+methods:{
+    ...mapActions('natnaelT',['fetchBlogs','deleteBlog']),
 },
+computed: mapGetters('natnaelT',['allBlogs']),
+created(){
+    this.fetchBlogs();
+},
+
 components:{
     SingleBlog
-},
-emits: ["delete-blog"]
+}
 }
 </script>
+<style>
+
+.btn {
+    display: flex;
+    padding: 1px; 
+    margin: 1px;
+    border-radius: 0.5px;
+}
+
+.singleblog{
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 15px;
+  box-shadow: 1px 1px 4px gray;
+}
+
+</style>

@@ -1,9 +1,13 @@
 <template>
-  <div class="singleblog">
+  <div class="card">
+    <v-card-text>
     <h2>{{blog.title}}</h2>
     <p>{{blog.content}}</p>
-    <button class="btn">Update</button>
-    <button class="btn" @click="$emit('delete-blog',blog.id)">Delete</button>
+    <v-btn class="btn">Update</v-btn>
+    <v-btn class="btn" @click="$emit('delete-blog',blog.id)">Delete</v-btn>
+    </v-card-text>
+    
+    <!-- <nuxt-link :to="{ path: '/natnaelT/_id', query:{a:1,b:2}}">Show more</nuxt-link> -->
   </div>
 </template>
 
@@ -16,20 +20,3 @@ export default {
     emits: ["delete-blog"]
 }
 </script>
-<style>
-
-.btn {
-    display: flex;
-    padding: 2px; 
-    margin: 1px;
-    border-radius: 0.5px;
-}
-
-.singleblog{
-  background: 	#D3D3D3;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 15px;
-}
-
-</style>

@@ -18,8 +18,10 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
   name: 'AddBlogForm',
+  
   data() {
     return {
       title: '',
@@ -27,18 +29,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions('natnaelT',['addBlog']),
+
     onSubmit(e) {
       e.preventDefault()
       if (!this.title) {
-        alert('Please add a task')
+        alert('Please add a blog')
         return
       }
       const newBlog = {
-        // id: Math.floor(Math.random() * 100000),
         title: this.title,
         content: this.content
       }
-      this.$emit('add-blog', newBlog)
+      this.addBlog(newBlog)
       this.title = ''
       this.content = ''
     },

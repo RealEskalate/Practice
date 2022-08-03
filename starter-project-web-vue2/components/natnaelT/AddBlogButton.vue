@@ -1,5 +1,5 @@
 <template>
-    <button class="btn" :style="{ background: 'color', display: 'center'}" @click="onClick()">{{text}}</button>
+    <v-btn @click="onClick()">{{text}}</v-btn>
 </template>
 <script>
 export default {
