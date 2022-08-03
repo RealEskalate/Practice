@@ -67,6 +67,11 @@ export default {
           description: 'Web Team Member',
           link: '/liben/articles',
         },
+        {
+          name: "Amanuel Sisay",
+          description: "Web Team Member",
+          link: '/amanabiy',
+        },
       ],
     }
   },
