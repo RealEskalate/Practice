@@ -3,11 +3,14 @@
     <v-card-text>
     <h2>{{blog.title}}</h2>
     <p>{{blog.content}}</p>
-    <v-btn class="btn">Update</v-btn>
+    <v-btn class="btn" @click="$emit('update-blog',blog.id)">Update</v-btn>
     <v-btn class="btn" @click="$emit('delete-blog',blog.id)">Delete</v-btn>
+    <nuxt-link style="text-decoration: none;" :to="'/natnaelT/'+ blog._id">
+    <v-btn>
+      Show more
+    </v-btn> 
+    </nuxt-link>
     </v-card-text>
-    
-    <!-- <nuxt-link :to="{ path: '/natnaelT/_id', query:{a:1,b:2}}">Show more</nuxt-link> -->
   </div>
 </template>
 
@@ -17,6 +20,6 @@ export default {
     props: {
         blog: Object
     },
-    emits: ["delete-blog"]
+    emits: ["delete-blog","update-blog"]
 }
 </script>
