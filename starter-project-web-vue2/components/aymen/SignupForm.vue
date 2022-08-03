@@ -40,7 +40,14 @@
             <v-btn to="/aymen/signin">Signin</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="indigo darken-4 white--text" @click.prevent="signup()"
-              >Signup</v-btn
+              ><v-progress-circular
+                v-if="issignup"
+                :size="25"
+                :width="2"
+                indeterminate
+                color="white"
+              ></v-progress-circular>
+              <h4 v-else>Signup</h4></v-btn
             >
           </v-card-actions>
         </v-card>
@@ -61,18 +68,21 @@ export default {
         password: '',
       },
       error: false,
+      issignup: false
     }
   },
   methods: {
     ...mapActions('aymen', ['register']),
-    signup() {
-      this.register(this.userInfo)
-        .then((success) => {
-          this.$router.push('/aymen/signin')
-        })
-        .catch((_error) => {
-          this.error = true
-        })
+    async signup() {
+      this.issignup = true
+      const res = await this.register(this.userInfo)
+      if (res) {
+        this.issignup = false
+        this.$router.push('/signup')
+      } else {
+        this.error = true
+        this.issignup = false
+      }
     },
   },
 }

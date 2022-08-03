@@ -32,9 +32,19 @@
             Don't have an account? &nbsp;
             <v-btn to="/aymen/signup">Signup</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="indigo darken-4 white--text" @click.prevent="signin()"
-              >Signin</v-btn
+            <v-btn
+              color="indigo darken-4 white--text"
+              @click.prevent="signin()"
             >
+              <v-progress-circular
+                v-if="islogging"
+                :size="25"
+                :width="2"
+                indeterminate
+                color="white"
+              ></v-progress-circular>
+              <h4 v-else>Signin</h4>
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -43,8 +53,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   name: 'SigninForm',
   data() {
@@ -54,18 +62,26 @@ export default {
         password: '',
       },
       error: false,
+      islogging: false,
     }
   },
   methods: {
-    ...mapActions('aymen', ['login']),
-    signin() {
-      this.login(this.userInfo)
-        .then((success) => {
-          this.$router.push('/aymen')
-        })
-        .catch((_error) => {
+    async signin() {
+      this.islogging = true
+      try {
+        const res = await this.$auth.loginWith('local', { data: this.userInfo })
+        if (res.data.status && res.data.status === 401) {
           this.error = true
-        })
+        } else {
+          localStorage.setItem('token', res.data.access_token)
+          this.islogging = false
+          this.$router.push('/aymen')
+        }
+        this.islogging = false
+      } catch (error) {
+        this.error = true
+        this.islogging = false
+      }
     },
   },
 }
