@@ -1,11 +1,9 @@
 const state = {
     blogs: [],
-    token: ""
 }
 
 const getters = {
     allBlogs: (state) => state.blogs,
-    token: (state) => state.token
 }
 
 const actions = {
@@ -21,51 +19,19 @@ const actions = {
         )
         commit('removeBlog', id)
     },
-    register({ commit }, userInfo) {
-        return new Promise((resolve, reject) => {
-            this.$axios.post("https://blog-app-backend.onrender.com/api/user", userInfo)
-                .then((res) => {
-                    if (res.status === 201) {
-                        resolve(true)
-                    }
-                    else {
-                        reject(res)
-                    }
-                })
-                .catch(error => {
-                    reject(error)
-                })
-        })
+    async register({ commit }, userInfo) {
+        try {
+            await this.$axios.post("https://blog-app-backend.onrender.com/api/user", userInfo)
+            return true
+        } catch (error) {
+            return false
+        }
     },
-    login({ commit }, userInfo) {
-        return new Promise((resolve, reject) => {
-            this.$axios.post("https://blog-app-backend.onrender.com/api/auth/login", userInfo)
-                .then((res) => {
-                    if (res.status === 201) {
-                        if (!res.data.status) {
-                            commit('authToken', res.data)
-                            resolve(true)
-                        }
-                        else {
-                            reject(res)
-                        }
-                    }
-                    else {
-                        reject(res)
-                    }
-                })
-                .catch(error => {
-                    reject(error)
-                })
-
-        })
-    }
 }
 
 const mutations = {
     setBlogs: (state, blogs) => (state.blogs = blogs),
     removeBlog: (state, id) => (state.blogs = state.blogs.filter((blog) => blog._id !== id)),
-    authToken: (state, res) => (state.token = res.access_token)
 }
 
 export default {

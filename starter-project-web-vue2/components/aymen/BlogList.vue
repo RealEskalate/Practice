@@ -6,7 +6,7 @@
         <span>Blogs</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat color="grey">
+      <v-btn flat color="grey" @click="signout()">
         <span>Sign Out</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
@@ -49,13 +49,17 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'BlogList',
   computed: {
-    ...mapGetters('aymen', ['allBlogs', 'token']),
+    ...mapGetters('aymen', ['allBlogs']),
   },
   created() {
     this.fetchBlogs()
   },
   methods: {
     ...mapActions('aymen', ['fetchBlogs', 'deleteBlog']),
+    signout() {
+      localStorage.removeItem("token")
+      this.$router.push('/aymen/signin')
+    }
   },
 }
 </script>
