@@ -8,18 +8,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getSingleBlog, loadSingleBlog } from '../../../store/slices/blogs'
 import { getSession } from 'next-auth/react'
 
-
 const BlogDetail = () => {
   const blog = useSelector((state) => getSingleBlog(state))
 
   const dispatch = useDispatch()
-  
+
   const router = useRouter()
 
   useEffect(() => {
-    
     dispatch(loadSingleBlog(router.query.id))
-  }, [])
+  })
 
   return (
     <Container sx={{ mt: 5 }} mt={5}>
