@@ -55,7 +55,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'BlogList',
   computed: {
-    ...mapGetters('aymen', ['allBlogs', 'token']),
+    ...mapGetters('aymen', ['allBlogs']),
   },
   created() {
     this.fetchBlogs()
