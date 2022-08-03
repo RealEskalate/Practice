@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { CircularProgress, Container, Box, Grid } from '@mui/material'
 
 import Details from '../../../../components/mintesnot/blog/Details'
-import { useFetchSinglBlogQuery } from '../../../../store/mintesnot/features/blog/BlogApiSlice'
+import { useFetchSinglBlogQuery } from '../../../../store/mintesnot/blog/BlogApiSlice'
 const BlogDetail = () => {
   const router = useRouter()
   const { data = {}, isFetching } = useFetchSinglBlogQuery(
