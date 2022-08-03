@@ -13,6 +13,7 @@
       <v-card-text>
         <v-form class="px-3">
           <v-text-field label="Title" />
+          <v-text-field label="Description" />
           <v-textarea label="Content" />
           <v-spacer></v-spacer>
           <v-btn class="success mx-0 mt-3">Add Blog</v-btn>
@@ -25,5 +26,10 @@
 <script>
 export default {
   name: 'AddBlog',
+  middleware({ store, redirect }) {
+    if (!store.state.auth.loggedIn) {
+      return redirect('/abraham/login')
+    }
+  },
 }
 </script>
