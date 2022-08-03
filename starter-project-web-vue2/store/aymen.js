@@ -9,24 +9,36 @@ const getters = {
 const actions = {
     async fetchBlogs({ commit }) {
         const res = await this.$axios.get(
-            'https://blog-app-backend.onrender.com/api/articles/all'
+            'articles/all'
         )
         commit('setBlogs', res.data)
     },
     async deleteBlog({ commit }, id) {
         await this.$axios.delete(
-            `https://blog-app-backend.onrender.com/api/articles/all${id}`
+            `articles/all${id}`
         )
         commit('removeBlog', id)
     },
     async register({ commit }, userInfo) {
         try {
-            await this.$axios.post("https://blog-app-backend.onrender.com/api/user", userInfo)
+            await this.$axios.post("user", userInfo)
             return true
         } catch (error) {
             return false
         }
     },
+    async login({ commit }, userInfo) {
+        try {
+            const res = await this.$auth.loginWith('local', { data: userInfo })
+            if (res.data.status && res.data.status === 401) {
+                return false
+            } else {
+                return true
+            }
+        } catch (error) {
+            return false
+        }
+    }
 }
 
 const mutations = {

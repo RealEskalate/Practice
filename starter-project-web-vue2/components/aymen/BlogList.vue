@@ -1,19 +1,23 @@
 <template>
   <v-container>
-    <v-toolbar flat app>
+    <v-toolbar elevation="0">
       <v-toolbar-title class="text-uppercase grey--text">
         <span class="font-weight-light">Latest</span>
         <span>Blogs</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat color="grey" @click="signout()">
+      <v-btn v-if="$auth.loggedIn" color="grey" @click="signout()">
         <span>Sign Out</span>
+        <v-icon right>mdi-exit-to-app</v-icon>
+      </v-btn>
+      <v-btn v-else color="grey" to="aymen/signin">
+        <span>Sign In</span>
         <v-icon right>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-toolbar>
     <v-row>
       <v-col v-for="blog in allBlogs" :key="blog._id" cols="12" md="4">
-        <v-card outlined class="mx-auto">
+        <v-card class="mx-auto" min-height="250">
           <v-card-title>{{ blog.title }}</v-card-title>
 
           <v-card-subtitle class="pb-0">{{ blog.content }}</v-card-subtitle>
@@ -57,9 +61,8 @@ export default {
   methods: {
     ...mapActions('aymen', ['fetchBlogs', 'deleteBlog']),
     signout() {
-      localStorage.removeItem("token")
-      this.$router.push('/aymen/signin')
-    }
+      this.$auth.logout()
+    },
   },
 }
 </script>

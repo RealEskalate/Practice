@@ -34,7 +34,7 @@
             <v-spacer></v-spacer>
             <v-btn
               color="indigo darken-4 white--text"
-              @click.prevent="signin()"
+              @click.prevent="signin($event)"
             >
               <v-progress-circular
                 v-if="islogging"
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'SigninForm',
   data() {
@@ -66,21 +68,17 @@ export default {
     }
   },
   methods: {
-    async signin() {
+    ...mapActions('aymen', ['login']),
+    signin(e) {
+      e.preventDefault()
       this.islogging = true
-      try {
-        const res = await this.$auth.loginWith('local', { data: this.userInfo })
-        if (res.data.status && res.data.status === 401) {
-          this.error = true
-        } else {
-          localStorage.setItem('token', res.data.access_token)
-          this.islogging = false
-          this.$router.push('/aymen')
-        }
+      const res = this.login(this.userInfo)
+      if (res) {
+        this.$router.push('/aymen')
+      }
+      else {
         this.islogging = false
-      } catch (error) {
         this.error = true
-        this.islogging = false
       }
     },
   },
