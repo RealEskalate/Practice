@@ -27,7 +27,7 @@ export default function ButtonAppBar() {
         email: session.user.email,
       })
     }
-  })
+  }, [session, user])
 
   const openProfile = () => {
     router.push('/mintesnot/profile')
