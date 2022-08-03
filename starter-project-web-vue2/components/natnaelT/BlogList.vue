@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="singleblog" v-for="blog in allBlogs" :key="blog.id">
-    <SingleBlog :blog="blog" @delete-blog="deleteBlog(blog.id)"/>
+    <SingleBlog :blog="blog" @delete-blog="deleteBlog(blog.id)" @update-blog="updateBlog(blog.id)"/>
     
   </div>
 </div>
@@ -14,7 +14,7 @@ import SingleBlog from './SingleBlog.vue';
 export default {
 name:"BlogList",
 methods:{
-    ...mapActions('natnaelT',['fetchBlogs','deleteBlog']),
+    ...mapActions('natnaelT',['fetchBlogs','deleteBlog','updateBlog']),
 },
 computed: mapGetters('natnaelT',['allBlogs']),
 created(){

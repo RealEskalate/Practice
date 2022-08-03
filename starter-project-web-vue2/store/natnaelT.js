@@ -19,6 +19,9 @@ async deleteBlog({commit},id){
     await axios.delete(`https://blog-app-backend.onrender.com/api/articles/${id}`);
     commit('removeBlog',id)
 },
+async updateBlog({commit},id){
+    await axios.patch(`https://blog-app-backend.onrender.com/api/articles/${id}`)
+}
 };
 const mutations = {
     setBlogs: (state,blogs) => (state.blogs = blogs),
