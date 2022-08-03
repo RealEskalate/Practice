@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>{{ blog }}</h1>
+    <h1>{{ blog.title }}</h1>
     <hr />
-    <div class="description">
+    <div class="text-justify pa-4">
       <p>{{ blog.content }}</p>
     </div>
-    <small>Created at: {{ date }}</small>
+    <small>Created at: {{ blog.createdAt }}</small>
     <br />
     <v-btn absolute style="right: 9%" to="/yared" elevation="2" nuxt
       >Go Back</v-btn
@@ -14,29 +14,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'BlogDetail',
-  data() {
-    return {
-      blog: {},
-      date: this.giveDate(),
+  async fetch({ store, params }) {
+    try {
+      const response = await store.dispatch('yared/fetchBlog', params.id)
+      this.blog = response.data
+    } catch (e) {
+      // error()
     }
   },
-  async mounted() {
-        const res = await this.$axios.get(
-        `https://blog-app-backend.onrender.com/api/articles/${this.$route.params.id}`
-        )
-        this.blog = res.data
-  },
-  methods: {
-    giveDate() {
-      return Date(this.blog)
-    },
+  computed: {
+    ...mapState('yared', ['blog']),
   },
 }
 </script>
-<style scoped>
-.description {
-  margin: 20px 30px;
-}
-</style>

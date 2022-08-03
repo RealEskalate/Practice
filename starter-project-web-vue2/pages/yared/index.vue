@@ -1,5 +1,7 @@
 <template>
-  <Blogs />
+  <div class="d-inline">
+    <Blogs />
+  </div>
 </template>
 
 <script>

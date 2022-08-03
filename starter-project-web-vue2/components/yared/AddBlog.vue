@@ -18,24 +18,21 @@
         <v-card-title>
           <h2>Add a New Blog</h2>
         </v-card-title>
-        <v-form class="px-12" lazy-validation>
+        <v-form class="px-12">
           <v-text-field
-            v-model="title"
+            v-model="newBlog.title"
             :counter="20"
             label="Title"
             required
           ></v-text-field>
 
           <v-text-field
-            v-model="content"
+            v-model="newBlog.content"
             label="Content"
             required
           ></v-text-field>
 
-          <v-text-field
-            v-model="imageUrl"
-            label="image"
-          ></v-text-field>
+          <v-text-field v-model="newBlog.imageUrl" label="image"></v-text-field>
 
           <v-btn color="success" class="ma-4" @click="onSubmit">
             Add Blog
@@ -52,28 +49,27 @@ export default {
   name: 'AddBlog',
   data() {
     return {
-      title: '',
-      content: '',
-      description: 'this is a sample description',
-      imageUrl: '',
+      newBlog: {
+        title: '',
+        content: '',
+        description: 'this is a sample description',
+        imageUrl: '',
+      },
     }
   },
   methods: {
     ...mapActions({
       addBlog: 'yared/addBlog',
     }),
-    onSubmit(e) {
-      e.preventDefault()
-      const newBlog = {
-        title: this.title,
-        content: this.content,
-        description: this.description,
-        imageUrls: this.imageUrl
-      }
-      this.addBlog(newBlog)
-      this.title = ''
-      this.content = ''
-      this.imageUrl = ""
+    clearForm() {
+      this.newBlog.title = ''
+      this.newBlog.content = ''
+      this.newBlog.imageUrl = ''
+    },
+    onSubmit() {
+      // e.preventDefault()
+      this.addBlog(this.newBlog)
+      this.clearForm()
     },
   },
 }
