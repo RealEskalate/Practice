@@ -11,12 +11,5 @@ export default {
   components: {
     UserAuthForm,
   },
-  methods: {
-    async loginUser(loginInfo) {
-      const res = await this.$auth.loginWith('local', {
-        data: loginInfo,
-      })
-    },
-  },
 }
 </script>

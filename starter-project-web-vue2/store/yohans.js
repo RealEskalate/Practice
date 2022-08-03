@@ -6,12 +6,14 @@ export const state = () => ({
 
   editComponenet: false,
   currentBlog: 12,
+  userLogedIn: false,
 })
 export const getters = {
   blogs(state) {
     return state.blogs
   },
 }
+
 export const mutations = {
   addBlog(state, { title, content }) {
     const id = state.blogs.length ? state.blogs[0].id + 1 : 0
@@ -36,6 +38,10 @@ export const mutations = {
   },
   fetchBlogs(state, blogs) {
     state.blogs = blogs
+  },
+
+  logIn(state) {
+    state.userLogedIn = true
   },
 }
 
@@ -62,5 +68,9 @@ export const actions = {
     if (+res.status === 200) {
       context.commit('fetchBlogs', res.data)
     }
+  },
+
+  logIn(context) {
+    context.commit('logIn')
   },
 }
