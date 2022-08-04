@@ -3,8 +3,8 @@
     <div v-for="blog in allBlogs" :key="blog.id" class="singleblog">
       <SingleBlog
         :blog="blog"
-        @delete-blog="deleteBlog(blog.id)"
-        @update-blog="updateBlog(blog.id)"
+        @delete-blog="deleteBlog(blog._id)"
+        @update-blog="updateBlog(blog._id)"
       />
     </div>
   </div>

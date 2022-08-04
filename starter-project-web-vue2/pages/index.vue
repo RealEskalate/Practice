@@ -74,7 +74,7 @@ export default {
         },
         {
           name: "Natnael Tedros",
-          description: 'Summer Intern',
+          description: 'G32 Web Team Member',
           link: '/natnaelT',
         }
       ],

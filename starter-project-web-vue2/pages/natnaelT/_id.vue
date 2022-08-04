@@ -6,8 +6,8 @@
       </v-btn>
     </nuxt-link>
     <v-card>
-      <h2>{{ blog.title }}</h2>
       <v-container>
+        <h2>{{ blog.title }}</h2>
         <p>{{ blog.content }}</p>
       </v-container>
     </v-card>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -27,8 +26,8 @@ export default {
   },
   async created() {
     try {
-      const response = await axios.get(
-        `https://blog-app-backend.onrender.com/api/articles/${this.$route.params.id}`
+      const response = await this.$axios.get(
+        `articles/${this.$route.params.id}`
       )
       this.blog = response.data
     } catch (err) {

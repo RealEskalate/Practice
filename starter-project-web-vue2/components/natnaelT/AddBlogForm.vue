@@ -7,6 +7,7 @@
         type="text"
         name="content"
         placeholder="Blog Title here..."
+        required
       ></v-text-field>
     </div>
     <div class="form-control">
@@ -16,6 +17,7 @@
         type="text"
         name="content"
         placeholder="Write here..."
+        required
       ></v-text-field>
     </div>
     <div class="form-control">
@@ -25,9 +27,10 @@
         type="text"
         name="description"
         placeholder="Write here..."
+        required
       ></v-text-field>
     </div>
-    <v-btn value="Save Blog" class="btn" @click="onSubmit()">Save Blog</v-btn>
+    <v-btn class="btn" @click="onSubmit()">Save Blog</v-btn>
   </v-form>
 </template>
 
@@ -48,11 +51,16 @@ export default {
   methods: {
     ...mapActions('natnaelT', ['addBlog']),
 
-    onSubmit() {
-      this.addBlog(this.blog)
-      // this.title = ''
-      // this.content = ''
+    clearForm(){
+      this.blog.title = ''
+      this.blog.content = ''
+      this.blog.description = ''
     },
+    onSubmit() {
+      this.addBlog(this.blog);
+      this.clearForm();
+    }
+
   },
 }
 </script>
