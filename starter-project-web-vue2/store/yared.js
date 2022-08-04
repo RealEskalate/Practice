@@ -36,7 +36,7 @@ export default {
     updateBlog: (state, updBlog) => {
       const idx = state.blogs.findIndex((blog) => blog.id === updBlog.id)
       if (idx !== -1) {
-        console.log('hi');
+        console.log('hi')
         state.blogs.splice(idx, 1, updBlog)
       }
     },

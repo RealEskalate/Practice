@@ -73,10 +73,10 @@ export default {
           link: '/yared',
         },
         {
-          name: "Natnael Tedros",
+          name: 'Natnael Tedros',
           description: 'G32 Web Team Member',
           link: '/natnaelT',
-        }
+        },
       ],
     }
   },

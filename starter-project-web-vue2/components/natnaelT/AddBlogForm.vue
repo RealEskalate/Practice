@@ -51,16 +51,15 @@ export default {
   methods: {
     ...mapActions('natnaelT', ['addBlog']),
 
-    clearForm(){
+    clearForm() {
       this.blog.title = ''
       this.blog.content = ''
       this.blog.description = ''
     },
     onSubmit() {
-      this.addBlog(this.blog);
-      this.clearForm();
-    }
-
+      this.addBlog(this.blog)
+      this.clearForm()
+    },
   },
 }
 </script>
