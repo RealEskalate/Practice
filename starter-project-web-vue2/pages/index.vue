@@ -54,6 +54,12 @@ export default {
           link:
             '/keiredin',
         },
+        {
+          name: "Zerubabel Kassahun",
+          description: 'Web dev team',
+          link:
+            '/zerubabel',
+        },
       ],
     }
   },
