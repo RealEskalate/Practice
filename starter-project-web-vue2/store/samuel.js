@@ -1,7 +1,7 @@
 export const state = {
     blogs: [],
 }
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyOTU0ODcsImV4cCI6MTY1OTI5OTA4N30.tuCmpMKu02VHIGP5uK6Cx1021DE91wNhJjM5weV8Av8"
+const token = localStorage.getItem('auth._token.local')
 export const actions = {
 
     async fetchBlogs({ commit }) {
@@ -44,6 +44,7 @@ export const actions = {
 
             }
         )
+
         commit('updateBlog', response.data)
     },
 }

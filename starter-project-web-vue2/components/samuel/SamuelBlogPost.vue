@@ -8,14 +8,12 @@
       <v-text-field
         outlined
         class="text-black"
-        :value = "current.content"
         label="Title"
         v-model="blog_title"
       />
       <v-text-field
         outlined
         class="text-black"
-        :value="current.content"
         label="Content"
         v-model="blog_content"
       />
@@ -93,7 +91,7 @@ export default {
         update() {
             this.updateBlog({
                 _id: this.current._id,
-                body: this.blog_content,
+                content: this.blog_content,
                 authorUserId: this.current.authorUserId,
                 title: this.blog_title,
             });
