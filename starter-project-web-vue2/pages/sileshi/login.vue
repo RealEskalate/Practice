@@ -6,14 +6,14 @@
 </template>
 
 <script>
-// import UserAuthForm from '@/components/sileshi/userAuthForm.vue'
+import UserAuthForm from '@/components/sileshi/userAuthForm.vue'
 export default {
   components: {
     UserAuthForm,
   },
   methods: {
     async loginUser(loginInfo) {
-      const res = await this.$auth.loginWith('local', {
+      await this.$auth.loginWith('local', {
         data: loginInfo,
       })
     },

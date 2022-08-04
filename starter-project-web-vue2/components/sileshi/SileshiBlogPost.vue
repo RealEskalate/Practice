@@ -36,7 +36,7 @@
               <v-card-title class="mx-auto text-center black--text">
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="'/samuel/' + blog._id"
+                  :to="`/sileshi/${blog._id}`"
                 >
                   <p>
                     {{ blog.title }}
@@ -85,19 +85,21 @@ export default {
     methods: {
         ...mapActions("sileshi", ["fetchBlogs", "deleteBlog", "updateBlog"]),
         editArea(blog) {
+
             this.edit_area = !this.edit_area;
             this.current = blog;
-            this.blog_content = blog.content;
-            this.blog_title = blog.title;
-            console.log(blog, "this")
+            this.blog_content = this.current.content;
+            this.blog_title = this.current.title;
         },
         update() {
+          
             this.updateBlog({
                 _id: this.current._id,
-                body: this.blog_content,
+                content: this.blog_content,
                 authorUserId: this.current.authorUserId,
                 title: this.blog_title,
             });
+            this.edit_area = !this.edit_area
         },
     },
     components: { SileshiAddBlog }

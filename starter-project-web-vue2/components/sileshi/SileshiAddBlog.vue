@@ -22,7 +22,7 @@
   </v-dialog>
 </template>
 <script>
-import {mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'AddBlog',
   data() {
@@ -32,9 +32,8 @@ export default {
       blogPost: {},
     }
   },
-  computed: { ...mapState('sileshi', ['blogs']) },
   methods: {
-    ...mapActions('sileshi', ['addBlog']),
+    ...mapActions("sileshi", ["addBlog"]),
     createBlog(e) {
       e.preventDefault()
       this.blogPost = {
@@ -43,6 +42,9 @@ export default {
         description: 'description',
       }
       this.addBlog(this.blogPost)
+      this.clearBlog()
+    },
+    clearBlog(){
       this.blogTitle = ''
       this.blogContent = ''
     },

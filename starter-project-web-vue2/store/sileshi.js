@@ -2,9 +2,7 @@
 export const state = {
     blogs: [],
 }
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTk1NzIyNjQsImV4cCI6MTY1OTU3NTg2NH0.j86oAsdjvtgw55uXg96Rsn8F4eVbF7TFWyPKg5YYloY"
 export const actions = {
-  
     async fetchBlogs({ commit }) {
         const response = await this.$axios.get(
             'https://blog-app-backend.onrender.com/api/articles/all'
@@ -14,37 +12,18 @@ export const actions = {
     async addBlog({ commit }, blogPost) {
         const response = await this.$axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
-            blogPost, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
-        )
+            blogPost)
         commit('newBlog', response.data)
     },
     async deleteBlog({ commit }, id) {
         await this.$axios.delete(
-            `https://blog-app-backend.onrender.com/api/articles/${id}`, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
-
-        )
+            `https://blog-app-backend.onrender.com/api/articles/${id}`)
         commit('removeBlog', id)
     },
     async updateBlog({ commit }, updBlog) {
         const response = await this.$axios.patch(
             `https://blog-app-backend.onrender.com/api/articles/${updBlog._id}`,
-            updBlog, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
-        )
+            updBlog)
         commit('updateBlog', response.data)
     },
 }
