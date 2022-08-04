@@ -13,8 +13,3 @@ export default {
   components: { BlogPost },
 }
 </script>
-<style>
-.padd {
-  padding-top: 5rem;
-}
-</style>
