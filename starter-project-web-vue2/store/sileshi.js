@@ -13,7 +13,6 @@ export const actions = {
         commit('setBlogs', response.data)
     },
     async addBlog({ commit }, blogPost) {
-        console.log(blogPost, "store");
         const response = await axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
             blogPost, {
@@ -26,7 +25,6 @@ export const actions = {
         commit('newBlog', response.data)
     },
     async deleteBlog({ commit }, id) {
-        console.log(id)
         await axios.delete(
             `https://blog-app-backend.onrender.com/api/articles/${id}`, {
                 headers: {
@@ -39,7 +37,6 @@ export const actions = {
         commit('removeBlog', id)
     },
     async updateBlog({ commit }, updBlog) {
-        console.log(updBlog, "updblog")
         const response = await this.$axios.patch(
             `https://blog-app-backend.onrender.com/api/articles/${updBlog._id}`,
             updBlog, {
