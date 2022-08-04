@@ -37,7 +37,7 @@
               <v-card-title class="mx-auto text-center black--text">
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="/samuel/${blog._id}"
+                  :to="`/samuel/${blog._id}`"
                 >
                   <p>
                     {{ blog.title }}
