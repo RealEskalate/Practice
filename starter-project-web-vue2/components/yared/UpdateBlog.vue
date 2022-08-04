@@ -1,7 +1,17 @@
 <template>
   <v-dialog max-width="600">
     <template #activator="{ on, attrs }">
-      <v-btn v-bind="attrs" color="yellow" v-on="on"> Update </v-btn>
+      <v-btn 
+        v-bind="attrs" 
+        style="position: absolute; right: 12%"
+        color="orange"
+        dark
+        fab
+        small
+        v-on="on"
+      > 
+        <v-icon dark> mdi-pencil </v-icon>
+      </v-btn>
     </template>
     <v-card>
       <v-card-title>
@@ -19,7 +29,7 @@
         <v-text-field v-model="currentBlog.content" label="Content" required>
         </v-text-field>
 
-        <v-btn color="success" class="ma-4" @click="onUpdate">
+        <v-btn color="success" class="ma-4"  @click="onUpdate">
           Update Blog
         </v-btn>
       </v-form>

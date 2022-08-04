@@ -31,14 +31,14 @@ export default {
     displayBlog: (state, blog) => (state.blog = blog),
     setBlogs: (state, blogs) => (state.blogs = blogs),
     addBlog: (state, blog) => state.blogs.unshift(blog),
-    deleteBlog: (state, id) =>
-      (state.blogs = state.blogs.filter((blog) => blog._id !== id)),
+    deleteBlog: (state, id) =>{
+      state.blogs = state.blogs.filter((blog) => blog._id !== id)},
     updateBlog: (state, updBlog) => {
       const idx = state.blogs.findIndex((blog) => blog.id === updBlog.id)
       if (idx !== -1) {
-        console.log('hi');
         state.blogs.splice(idx, 1, updBlog)
       }
+      state.blog  = updBlog
     },
   },
 }

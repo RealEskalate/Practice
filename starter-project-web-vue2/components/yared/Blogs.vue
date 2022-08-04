@@ -12,9 +12,11 @@
       </div>
     </div>
     <hr />
-    <div v-for="blog in blogs" :key="blog.id">
-      <Blog :blog="blog" />
-    </div>
+    <v-row dense>
+      <v-col v-for="blog in blogs" :key="blog.id">
+        <Blog :blog="blog" />
+      </v-col>
+    </v-row>
     <AddBlog />
   </div>
 </template>

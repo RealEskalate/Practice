@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog max-width="600px">
+    <v-dialog  max-width="600px">
       <template #activator="{ on, attrs }">
         <v-btn
           v-bind="attrs"
@@ -18,7 +18,9 @@
         <v-card-title>
           <h2>Add a New Blog</h2>
         </v-card-title>
-        <v-form class="px-12">
+        <v-form 
+        enctype="multipart/form-data"
+        class="px-12">
           <v-text-field
             v-model="newBlog.title"
             :counter="20"
@@ -27,12 +29,22 @@
           ></v-text-field>
 
           <v-text-field
+            v-model="newBlog.description"
+            label="Description"
+            required
+          ></v-text-field>
+          <v-text-field
             v-model="newBlog.content"
             label="Content"
             required
           ></v-text-field>
-
-          <v-text-field v-model="newBlog.imageUrl" label="image"></v-text-field>
+          <!-- <input
+            truncate-length="15"
+            type= "file"
+            ref ="file"
+            label="image"
+            @change="uploadImage"
+          > -->
 
           <v-btn color="success" class="ma-4" @click="onSubmit">
             Add Blog
@@ -53,7 +65,8 @@ export default {
         title: '',
         content: '',
         description: 'this is a sample description',
-        imageUrl: '',
+        // imageUrls: []
+
       },
     }
   },
@@ -61,10 +74,16 @@ export default {
     ...mapActions({
       addBlog: 'yared/addBlog',
     }),
+    // uploadImage(){
+    //   const image = this.$refs.file.files[0]
+    //   console.log(image)
+    //   this.newBlog.imageUrls = image 
+    // },
     clearForm() {
       this.newBlog.title = ''
       this.newBlog.content = ''
-      this.newBlog.imageUrl = ''
+      this.newBlog.description = ''
+      // this.newBlog.imageUrls = []
     },
     onSubmit() {
       // e.preventDefault()
