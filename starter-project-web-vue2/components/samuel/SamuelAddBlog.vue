@@ -12,8 +12,8 @@
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field label="Title" v-model="blogTitle"  />
-          <v-textarea label="Content" v-model="blogContent" />
+          <v-text-field label="Title" v-model="blog.title"  />
+          <v-textarea label="Content" v-model="blog.content" />
           <v-spacer></v-spacer>
           <v-btn class="success mx-0 mt-3" @click="createBlog">Add Blog</v-btn>
         </v-form>
@@ -26,26 +26,22 @@ import {mapState, mapActions } from 'vuex'
 export default {
   name: 'AddBlog',
   data() {
-    return {
-      blogTitle: '',
-      blogContent: '',
-      blogPost: {},
+    return blog: {
+      title: '',
+      content: '',
+      post: {},
     }
   },
   computed: { ...mapState('samuel', ['blogs']) },
   methods: {
     ...mapActions('samuel', ['addBlog']),
-    createBlog(e) {
-      e.preventDefault()
-      this.blogPost = {
-        title: this.blogTitle,
-        content: this.blogContent,
-        description: 'description',
+    createBlog(){
+      this.addBlog(this.blog)
+      this.blog: {
+          title: '',
+          content: '',
+          post: {},
       }
-
-      this.addBlog(this.blogPost)
-      this.blogTitle = ''
-      this.blogContent = ''
     },
   },
 }
