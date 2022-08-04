@@ -107,10 +107,6 @@ export default {
 </script>
 
 <style>
-.font {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
 .text-black input {
   color: black !important;
 }
