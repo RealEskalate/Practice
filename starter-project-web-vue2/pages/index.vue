@@ -74,6 +74,11 @@ export default {
           description: 'Group 32 Student',
           link: '/yared',
         },
+        {
+          name: 'Abel Mesele',
+          description: 'Group 32 Student',
+          link: '/abel',
+        },
       ],
     }
   },
