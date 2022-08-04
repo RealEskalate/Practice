@@ -1,56 +1,63 @@
 <template>
-  <form class="add-form" @submit="onSubmit">
+  <v-form class="add-form">
     <div class="form-control">
-      <label>Title</label>
-      <input v-model="title" type="text" name="content" placeholder="Blog Title here..." />
+      <v-text-field
+        v-model="blog.title"
+        label="Title"
+        type="text"
+        name="content"
+        placeholder="Blog Title here..."
+      ></v-text-field>
     </div>
     <div class="form-control">
-      <label>Content</label>
-      <input
-        v-model="content"
+      <v-text-field
+        v-model="blog.content"
+        label="Content"
         type="text"
         name="content"
         placeholder="Write here..."
-      />
+      ></v-text-field>
     </div>
-    <input type="submit" value="Save Blog" class="btn" />
-  </form>
+    <div class="form-control">
+      <v-text-field
+        v-model="blog.description"
+        label="Description"
+        type="text"
+        name="description"
+        placeholder="Write here..."
+      ></v-text-field>
+    </div>
+    <v-btn value="Save Blog" class="btn" @click="onSubmit()">Save Blog</v-btn>
+  </v-form>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   name: 'AddBlogForm',
-  
+
   data() {
     return {
-      title: '',
-      content: ''
+      blog: {
+        title: '',
+        content: '',
+        description: '',
+      },
     }
   },
   methods: {
-    ...mapActions('natnaelT',['addBlog']),
+    ...mapActions('natnaelT', ['addBlog']),
 
-    onSubmit(e) {
-      e.preventDefault()
-      if (!this.title) {
-        alert('Please add a blog')
-        return
-      }
-      const newBlog = {
-        title: this.title,
-        content: this.content
-      }
-      this.addBlog(newBlog)
-      this.title = ''
-      this.content = ''
+    onSubmit() {
+      this.addBlog(this.blog)
+      // this.title = ''
+      // this.content = ''
     },
   },
 }
 </script>
 
 <style scoped>
-
 .add-form {
   margin-bottom: 40px;
 }
@@ -85,5 +92,4 @@ export default {
   flex: 2;
   height: 20px;
 }
-
 </style>

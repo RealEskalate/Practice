@@ -6,9 +6,9 @@
       </v-btn>
     </nuxt-link>
     <v-card>
-      <h2>{{blog.title}}</h2>
+      <h2>{{ blog.title }}</h2>
       <v-container>
-        <p>{{blog.content}}</p>
+        <p>{{ blog.content }}</p>
       </v-container>
     </v-card>
   </div>
