@@ -1,4 +1,3 @@
-import axios from 'axios'
 
 export const state = {
     blogs: [],
@@ -7,13 +6,13 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFp
 export const actions = {
   
     async fetchBlogs({ commit }) {
-        const response = await axios.get(
+        const response = await this.$axios.get(
             'https://blog-app-backend.onrender.com/api/articles/all'
         )
         commit('setBlogs', response.data)
     },
     async addBlog({ commit }, blogPost) {
-        const response = await axios.post(
+        const response = await this.$axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
             blogPost, {
                 headers: {
@@ -25,7 +24,7 @@ export const actions = {
         commit('newBlog', response.data)
     },
     async deleteBlog({ commit }, id) {
-        await axios.delete(
+        await this.$axios.delete(
             `https://blog-app-backend.onrender.com/api/articles/${id}`, {
                 headers: {
                     Authorization: 'Bearer ' + token,
