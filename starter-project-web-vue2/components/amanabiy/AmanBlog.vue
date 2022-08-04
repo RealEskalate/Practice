@@ -16,7 +16,7 @@
             <v-list-item-content>
                 <nuxt-link
                   style="text-decoration: none; color: inherit"
-                  :to="'/amanabiy/' + blog.id"
+                  :to="`/amanabiy/${blog.id}`"
                 >
                     <v-list-item-title>{{ blog.title }}</v-list-item-title>
                     <v-list-item-subtitle> <span class="font-weight-bold"> By {{blog.author}}: </span> {{ blog.desc }}</v-list-item-subtitle>
@@ -29,7 +29,7 @@
               </v-btn>
             </v-list-item-action>
 
-            <v-list-item-action :key="blog.id">
+            <v-list-item-action :key="blog.id" @click="deleteBlog(blog.id)">
               <v-btn icon>
                 <v-icon color="red">mdi-delete</v-icon>
               </v-btn>
@@ -43,42 +43,20 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   export default {
     name: 'BlogsList',
-
     data: () => {
       return {
-    
-        blogs: [
-          {
-            id: 1,
-            title: "Why you should Wake up",
-            desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam.",
-            author: "Amanuel Sisay",
-          },
-          {
-            id: 2,
-            title: "Why you should Gym",
-            desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam.",
-
-            author: "Abel",
-          },
-          {
-            id: 3,
-            title: "The benifit of Working hard",
-            desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam.",
-            author: "Abebe",
-
-          },
-          {
-            id: 4,
-            title: "Interviews Trick",
-            desc: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam.",
-            author: "Kebede",
-
-          },
-        ]
+        current: {},
       }
     },
+    computed: { ...mapState('amanabiy', ['blogs']) },
+    created () {
+      this.getBlogs()
+    },
+    methods: {
+      ...mapActions('amanabiy', ['getBlogs', 'deleteBlog']),
+    }
   }
 </script>
