@@ -50,6 +50,7 @@
 <script>
 import moment from 'moment'
 export default {
+  name: 'LibenArticle',
   props: {
     article: {
       type: Object,

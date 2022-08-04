@@ -1,7 +1,13 @@
 <template>
   <div>
     <v-container>
-      <v-row class="float-right" no-gutters>
+      <v-row
+        v-if="
+          this.$auth.user && this.$auth.user._id == article.authorUserId._id
+        "
+        class="float-right"
+        no-gutters
+      >
         <v-col>
           <v-btn icon left text :to="`/liben/articles/${article._id}/edit`">
             <v-icon> mdi-pencil </v-icon>
@@ -47,6 +53,7 @@
 </template>
 <script>
 import moment from 'moment'
+import { mapGetters } from 'vuex'
 import LibenDialog from './LibenDialog.vue'
 export default {
   components: { LibenDialog },
@@ -60,6 +67,9 @@ export default {
     return {
       dialog: false,
     }
+  },
+  computed: {
+    ...mapGetters('liben', ['article']),
   },
   methods: {
     formatTime(t) {
