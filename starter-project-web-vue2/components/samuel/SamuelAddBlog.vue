@@ -42,7 +42,6 @@ export default {
         content: this.blogContent,
         description: 'description',
       }
-
       this.addBlog(this.blogPost)
       this.blogTitle = ''
       this.blogContent = ''
