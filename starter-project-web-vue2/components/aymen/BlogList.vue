@@ -17,7 +17,7 @@
     </v-toolbar>
     <v-row>
       <v-col v-for="blog in allBlogs" :key="blog._id" cols="12" md="4">
-        <v-card class="mx-auto" min-height="250">
+        <v-card class="mx-auto" min-height="220">
           <v-card-title>{{ blog.title }}</v-card-title>
 
           <v-card-subtitle class="pb-0">{{ blog.content }}</v-card-subtitle>
@@ -27,19 +27,21 @@
           <v-card-actions>
             <v-btn text>More</v-btn>
             <v-spacer></v-spacer>
-            <v-btn fab depressed x-small dark color="blue lighten-1">
-              <v-icon small>mdi-pencil</v-icon>
-            </v-btn>
-            <v-btn
-              fab
-              depressed
-              x-small
-              dark
-              color="red"
-              @click="deleteBlog(blog._id)"
-            >
-              <v-icon small>mdi-delete</v-icon>
-            </v-btn>
+            <div v-if="$auth.loggedIn">
+              <v-btn fab depressed x-small dark color="blue lighten-1">
+                <v-icon small>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn
+                fab
+                depressed
+                x-small
+                dark
+                color="red"
+                @click="deleteBlog(blog._id)"
+              >
+                <v-icon small>mdi-delete</v-icon>
+              </v-btn>
+            </div>
           </v-card-actions>
         </v-card>
       </v-col>

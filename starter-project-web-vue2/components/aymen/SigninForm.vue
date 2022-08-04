@@ -28,10 +28,7 @@
               ></v-text-field>
             </v-form>
           </v-card-text>
-          <v-card-actions>
-            Don't have an account? &nbsp;
-            <v-btn to="/aymen/signup">Signup</v-btn>
-            <v-spacer></v-spacer>
+          <v-layout class="align-center justify-center">
             <v-btn
               color="indigo darken-4 white--text"
               @click.prevent="signin($event)"
@@ -45,7 +42,13 @@
               ></v-progress-circular>
               <h4 v-else>Signin</h4>
             </v-btn>
-          </v-card-actions>
+          </v-layout>
+          <v-layout class="align-center justify-center">
+            <v-card-actions>
+              Don't have an account? &nbsp;
+              <v-btn class="indigo--text" text to="/aymen/signup">Signup</v-btn>
+            </v-card-actions>
+          </v-layout>
         </v-card>
       </v-flex>
     </v-layout>
@@ -69,14 +72,13 @@ export default {
   },
   methods: {
     ...mapActions('aymen', ['login']),
-    signin(e) {
+    async signin(e) {
       e.preventDefault()
       this.islogging = true
-      const res = this.login(this.userInfo)
+      const res = await this.login(this.userInfo)
       if (res) {
         this.$router.push('/aymen')
-      }
-      else {
+      } else {
         this.islogging = false
         this.error = true
       }

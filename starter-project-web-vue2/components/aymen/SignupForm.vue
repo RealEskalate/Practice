@@ -35,21 +35,27 @@
               ></v-text-field>
             </v-form>
           </v-card-text>
-          <v-card-actions>
-            Already have an account? &nbsp;
-            <v-btn to="/aymen/signin">Signin</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="indigo darken-4 white--text" @click.prevent="signup()"
-              ><v-progress-circular
-                v-if="issignup"
+          <v-layout class="align-center justify-center">
+            <v-btn
+              color="indigo darken-4 white--text"
+              @click.prevent="signup()"
+            >
+              <v-progress-circular
+                v-if="islogging"
                 :size="25"
                 :width="2"
                 indeterminate
                 color="white"
               ></v-progress-circular>
-              <h4 v-else>Signup</h4></v-btn
-            >
-          </v-card-actions>
+              <h4 v-else>Signup</h4>
+            </v-btn>
+          </v-layout>
+          <v-layout class="align-center justify-center">
+            <v-card-actions>
+              Already have an account? &nbsp;
+              <v-btn class="indigo--text" text to="/aymen/signin">Signin</v-btn>
+            </v-card-actions>
+          </v-layout>
         </v-card>
       </v-flex>
     </v-layout>
@@ -68,7 +74,7 @@ export default {
         password: '',
       },
       error: false,
-      issignup: false
+      issignup: false,
     }
   },
   methods: {
