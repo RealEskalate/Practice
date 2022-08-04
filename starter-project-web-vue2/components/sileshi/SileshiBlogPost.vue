@@ -5,17 +5,15 @@
     </v-container>
 
     <v-container v-if="edit_area" class="px-0 black--text">
-      <p class="edit-post">Edit Post</p>
+      <v-subheader class="pb-10"> <h1>Edit Post </h1></v-subheader>
       <v-text-field
         outlined
-        class="text-black"
-        :value = "current.content"
+        :value = "current.title"
         label="Title"
         v-model="blog_title"
       />
       <v-text-field
         outlined
-        class="text-black"
         :value="current.content"
         label="Content"
         v-model="blog_content"
@@ -105,19 +103,3 @@ export default {
     components: { SileshiAddBlog }
 }
 </script>
-
-<style>
-.font {
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.text-black input {
-  color: black !important;
-}
-
-.edit-post {
-  margin-left: 2rem;
-  font-weight: bold;
-  font-family: Helvetica, Arial, sans-serif;
-}
-</style>

@@ -1,20 +1,18 @@
-import axios from 'axios'
 
 export const state = {
     blogs: [],
 }
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTkyOTU0ODcsImV4cCI6MTY1OTI5OTA4N30.tuCmpMKu02VHIGP5uK6Cx1021DE91wNhJjM5weV8Av8"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbXVlbEBnbWFpbC5jb20iLCJzdWIiOiI2MmU2N2Q4ZGUwMDQ4MDdlNWUzMzQ1M2EiLCJpYXQiOjE2NTk1NzIyNjQsImV4cCI6MTY1OTU3NTg2NH0.j86oAsdjvtgw55uXg96Rsn8F4eVbF7TFWyPKg5YYloY"
 export const actions = {
   
     async fetchBlogs({ commit }) {
-        const response = await axios.get(
+        const response = await this.$axios.get(
             'https://blog-app-backend.onrender.com/api/articles/all'
         )
         commit('setBlogs', response.data)
     },
     async addBlog({ commit }, blogPost) {
-        console.log(blogPost, "store");
-        const response = await axios.post(
+        const response = await this.$axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
             blogPost, {
                 headers: {
@@ -26,8 +24,7 @@ export const actions = {
         commit('newBlog', response.data)
     },
     async deleteBlog({ commit }, id) {
-        console.log(id)
-        await axios.delete(
+        await this.$axios.delete(
             `https://blog-app-backend.onrender.com/api/articles/${id}`, {
                 headers: {
                     Authorization: 'Bearer ' + token,
@@ -39,7 +36,6 @@ export const actions = {
         commit('removeBlog', id)
     },
     async updateBlog({ commit }, updBlog) {
-        console.log(updBlog, "updblog")
         const response = await this.$axios.patch(
             `https://blog-app-backend.onrender.com/api/articles/${updBlog._id}`,
             updBlog, {
@@ -52,7 +48,6 @@ export const actions = {
         commit('updateBlog', response.data)
     },
 }
-
 export const mutations = {
     setBlogs: (state, blogs) => (state.blogs = blogs),
     newBlog: (state, blog) => state.blogs.unshift(blog),
