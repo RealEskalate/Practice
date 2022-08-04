@@ -1,9 +1,9 @@
 const state = {
-  blogs: [],
+    blogs: [],
 }
 
 const getters = {
-  allBlogs: (state) => state.blogs,
+    allBlogs: (state) => state.blogs,
 }
 
 const actions = {
@@ -38,14 +38,13 @@ const actions = {
 }
 
 const mutations = {
-  setBlogs: (state, blogs) => (state.blogs = blogs),
-  removeBlog: (state, id) =>
-    (state.blogs = state.blogs.filter((blog) => blog._id !== id)),
+    setBlogs: (state, blogs) => (state.blogs = blogs),
+    removeBlog: (state, id) => (state.blogs = state.blogs.filter((blog) => blog._id !== id)),
 }
 
 export default {
-  state,
-  getters,
-  actions,
-  mutations,
+    state,
+    getters,
+    actions,
+    mutations,
 }
