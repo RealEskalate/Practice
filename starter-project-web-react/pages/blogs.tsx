@@ -21,21 +21,19 @@ const Blogs = () => {
   const isLoading = useSelector((state: any) => isBlogLoading(state))
   useEffect(() => {
     dispatch(loadBlogs() as any)
-  }, [])
+  })
 
   const [pageNumber, setPageNumber] = useState(0)
   const blogsPerPage = 5
   const pagesVisited = pageNumber * blogsPerPage
 
   const displayBlogs = blogs
-    .slice(pagesVisited, pagesVisited+blogsPerPage)
+    .slice(pagesVisited, pagesVisited + blogsPerPage)
     .map((blog: any) => {
-      return (
-        <BlogCard blog={blog} key={blog._id} />
-      )
+      return <BlogCard blog={blog} key={blog._id} />
     })
 
-  const pageCount = Math.ceil(blogs.length/blogsPerPage)
+  const pageCount = Math.ceil(blogs.length / blogsPerPage)
 
   const changePage = (event: { selected: react.SetStateAction<number> }) => {
     setPageNumber(event.selected)
@@ -85,11 +83,11 @@ const Blogs = () => {
             nextLabel="Next"
             pageCount={pageCount}
             onPageChange={changePage}
-            containerClassName={"paginationBttns"}
-            previousLinkClassName={"previousBttn"}
-            nextLinkClassName={"nextBttn"}
-            disabledClassName={"paginationDisabled"}
-            activeClassName={"paginationActive"}
+            containerClassName={'paginationBttns'}
+            previousLinkClassName={'previousBttn'}
+            nextLinkClassName={'nextBttn'}
+            disabledClassName={'paginationDisabled'}
+            activeClassName={'paginationActive'}
           />
         </Box>
       )}
