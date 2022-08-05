@@ -2,10 +2,7 @@
   <v-row>
     <v-col v-for="blog in allBlogs" :key="blog.title" cols="12" sm="8" md="4">
       <AbelSingleBlogVue
-        :id="blog._id"
-        :title="blog.title"
-        :description="blog.description"
-        :content="blog.content"
+        :blog="blog"
       />
     </v-col>
   </v-row>

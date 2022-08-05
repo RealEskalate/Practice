@@ -5,16 +5,22 @@
     max-width="344"
   >
     <v-card-text>
-      <div>{{ fullName }}</div>
-      <p class="text-h5 text--primary">{{ title }}</p>
-      <div class="text--secondary">{{ content }}</div>
-      <div class="text--secondary">{{ description }}</div>
+      <div>
+        {{
+          blog.authorUserId.fullName !== null
+            ? blog.authorUserId.fullName
+            : 'Unknown'
+        }}
+      </div>
+      <p class="text-h5 text--primary">{{ blog.title }}</p>
+      <div class="text--secondary">{{ blog.content }}</div>
+      <div class="text--secondary">{{ blog.description }}</div>
     </v-card-text>
     <v-card-actions class="d-flex flex-wrap">
-      <nuxt-link :to="'/abel/' + id">
+      <nuxt-link :to="'/abel/' + blog._id">
         <v-btn text color="text--white"> Read blog </v-btn></nuxt-link
       >
-      <v-btn text color="text--white" @click="deleteBlog(id)">
+      <v-btn text color="text--white" @click="deleteBlog(blog._id)">
         Delete blog
       </v-btn>
     </v-card-actions>
@@ -27,10 +33,7 @@ import { mapActions } from 'vuex'
 export default {
   name: 'SingleBlog',
   props: {
-    title: String,
-    description: String,
-    content: String,
-    id: String,
+    blog: Object,
   },
   methods: {
     ...mapActions('abel', ['deleteBlog']),
