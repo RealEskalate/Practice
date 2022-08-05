@@ -78,6 +78,11 @@ export default {
           link: '/yared',
         },
         {
+          name: "Samuel Abatneh",
+          description: 'Summer Intern',
+          link: '/samuel'
+        },
+        {
           name: 'Bisrat Walle',
           description: 'Software Engineer',
           link: '/bisrat',
