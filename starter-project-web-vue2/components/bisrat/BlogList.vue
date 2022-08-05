@@ -2,6 +2,7 @@
   <v-container>
     <div style="display: flex; justify-content: center; padding-bottom: 30px">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <v-btn v-if="!loggedIn" color="primary" @click="onAddButtonClick"> Add Blog </v-btn>
 	  <div v-else>
 		<nuxt-link
@@ -14,6 +15,8 @@
 	</div>
 	
 =======
+=======
+>>>>>>> Stashed changes
       <v-btn v-if="!loggedIn" color="primary" @click="onAddButtonClick">
         Add Blog
       </v-btn>
@@ -26,6 +29,9 @@
         </nuxt-link>
       </div>
     </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     <div v-if="formOpen">
@@ -54,15 +60,21 @@
           <v-btn text> More </v-btn>
         </nuxt-link>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		<div v-if="isOwner(blog)">
 			<v-btn text color="green" @click="onBlogUpdate(blog)"> Update </v-btn>
 			<v-btn text color="red" @click="onBlogDelete(blog)"> Delete </v-btn>
 		</div>
 =======
+=======
+>>>>>>> Stashed changes
         <div v-if="isOwner(blog)">
           <v-btn text color="green" @click="onBlogUpdate(blog)"> Update </v-btn>
           <v-btn text color="red" @click="onBlogDelete(blog)"> Delete </v-btn>
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       </v-card-actions>
     </v-card>
@@ -80,7 +92,11 @@ export default {
     return {
       newBlogTitle: '',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	  loggedIn: false,
+=======
+      loggedIn: false,
+>>>>>>> Stashed changes
 =======
       loggedIn: false,
 >>>>>>> Stashed changes
@@ -90,7 +106,11 @@ export default {
   async created() {
     await this.getBlogs()
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	this.loggedIn = super.$auth && super.$auth.loggedIn;
+=======
+    this.loggedIn = super.$auth && super.$auth.loggedIn
+>>>>>>> Stashed changes
 =======
     this.loggedIn = super.$auth && super.$auth.loggedIn
 >>>>>>> Stashed changes
@@ -103,12 +123,15 @@ export default {
       'setFormOpen',
     ]),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	
 	isOwner(blog){
 		return this.$auth.user && this.$auth.user.email===blog.authorUserId.email;
 	},
 	
 =======
+=======
+>>>>>>> Stashed changes
 
     isOwner(blog) {
       return (
@@ -116,6 +139,9 @@ export default {
       )
     },
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     onBlogDelete(blog) {
       this.deleteBlog(blog)
