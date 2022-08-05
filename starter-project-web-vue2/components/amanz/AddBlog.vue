@@ -38,10 +38,18 @@
                 ></v-text-field>
               </v-col> -->
               <v-col cols="12">
-                <v-text-field label="Title*" required></v-text-field>
+                <v-text-field
+                  v-model="title"
+                  label="Title*"
+                  required
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Content*" required></v-text-field>
+                <v-text-field
+                  v-model="content"
+                  label="Content*"
+                  required
+                ></v-text-field>
               </v-col>
               <!-- <v-col cols="12" sm="6">
                 <v-select
@@ -69,18 +77,16 @@
               </v-col> -->
             </v-row>
           </v-container>
-          <v-text class="ml-3 text-h6 font-weight-medium"
-            >* indicates required field</v-text
+          <v-text class="ml-3 text-subtitle-1 font-weight-medium"
+            ><v-text color="red">*</v-text>indicates required field</v-text
           >
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">
-            Close
+            Cancel
           </v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">
-            Save
-          </v-btn>
+          <v-btn color="blue darken-1" text @click="onSubmit"> Add </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -88,9 +94,26 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data: () => ({
     dialog: false,
+    newBlog: {},
+    title: '',
+    content: '',
   }),
+  methods: {
+    ...mapActions('amanz', ['addBlog']),
+    onSubmit(e) {
+      e.preventDefault()
+      this.newBlog = {
+        title: this.title,
+        content: this.content,
+        description: 'description 101',
+      }
+      this.addBlog(this.newBlog)
+      this.dialog = false
+    },
+  },
 }
 </script>
