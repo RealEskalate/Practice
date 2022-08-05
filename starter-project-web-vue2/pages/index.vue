@@ -77,6 +77,11 @@ export default {
           description: 'Group 32 Student',
           link: '/yared',
         },
+        {
+          name: 'Bisrat Walle',
+          description: 'Software Engineer',
+          link: '/bisrat',
+        }
       ],
     }
   },
