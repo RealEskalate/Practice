@@ -30,6 +30,7 @@ export default {
       blog:{
         blogTitle: '',
         blogContent: '',
+        imageUrl: '',
         blogPost: {},
       }
     }
@@ -42,11 +43,13 @@ export default {
       this.blogPost = {
         title: this.blog.blogTitle,
         content: this.blog.blogContent,
+        imageUrls: this.imageUrl,
         description: 'description',
       }
       this.addBlog(this.blogPost)
       this.blogTitle = ''
       this.blogContent = ''
+      this.imageUrl = ''
     },
   },
 }
