@@ -2,8 +2,9 @@ import React from 'react'
 import Moment from 'moment'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
+import { Blog } from '../../../types/Blog'
 
-const Details = ({ blog }) => {
+const Details = ({ ...blog }: Blog) => {
   const formattedDate = Moment(blog.createdAt).format('MMMM DD, YYYY')
   return (
     <div>

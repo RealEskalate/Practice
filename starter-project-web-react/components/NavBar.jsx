@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
   const router = useRouter()
 
   const logoutHandler = () => {
-    signOut({ callbackUrl: `${window.location.origin}/auth/login` })
+    signOut({ callbackUrl: `${window.location.origin}/` })
   }
 
   useEffect(() => {
