@@ -30,7 +30,7 @@ export default function ButtonAppBar() {
   }, [session, user])
 
   const openProfile = () => {
-    router.push('/profile')
+    router.push('/mintesnot/profile')
   }
   const backToHome = () => {
     router.push('/')
