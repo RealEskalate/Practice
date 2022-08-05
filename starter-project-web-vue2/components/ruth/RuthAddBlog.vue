@@ -15,10 +15,20 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field dense label="Title*" required></v-text-field>
+                  <v-text-field
+                    v-model="title"
+                    dense
+                    label="Title *"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea dense label="Content*" required></v-textarea>
+                  <v-textarea
+                    v-model="content"
+                    dense
+                    label="Content *"
+                    required
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -28,7 +38,7 @@
             <v-btn color="red darken-1" text @click="dialog = false">
               Discard
             </v-btn>
-            <v-btn color="green darken-1" text @click="dialog = false">
+            <v-btn color="green darken-1" text @click="onSubmit">
               Add Blog
             </v-btn>
           </v-card-actions>
@@ -39,12 +49,36 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'RuthAddBlog',
   data() {
     return {
       dialog: false,
+      isLoggedIn: false,
+      newBlog: {},
+      title: '',
+      content: '',
     }
+  },
+  created() {
+    this.isLoggedIn = this.$auth.$state.user
+  },
+  methods: {
+    ...mapActions('ruth', ['addBlog']),
+    onSubmit(e) {
+      e.preventDefault()
+      this.newBlog = {
+        title: this.title,
+        content: this.content,
+        description: 'description',
+      }
+      this.$store.dispatch('ruth/addBlog', this.newBlog)
+      this.blogTitle = ''
+      this.blogContent = ''
+      this.dialog = false
+    },
   },
 }
 </script>
