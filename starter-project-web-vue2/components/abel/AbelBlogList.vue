@@ -1,10 +1,10 @@
 <template>
   <v-row>
-    <v-col v-for="blog in allBlogs" :key="blog.title" cols="12" sm="4">
-      <SingleBlog
+    <v-col v-for="blog in allBlogs" :key="blog.title" cols="12" sm="8" md="4">
+      <AbelSingleBlogVue
+        :id="blog._id"
         :title="blog.title"
-        :fullName="blog.authorUserId.fullName"
-        :tag="blog.tag"
+        :description="blog.description"
         :content="blog.content"
       />
     </v-col>
@@ -13,9 +13,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import SingleBlog from '../../pages/abel/_id.vue'
+import AbelSingleBlogVue from './AbelSingleBlog.vue'
 export default {
-  components: { SingleBlog },
+  components: { AbelSingleBlogVue },
   computed: mapGetters('abel', ['allBlogs']),
   created() {
     this.fetchBlogs()
