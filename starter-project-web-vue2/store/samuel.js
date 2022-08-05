@@ -1,7 +1,7 @@
 export const state = {
     blogs: [],
+    user: "",
 }
-const token = localStorage.getItem('auth._token.local')
 export const actions = {
 
     async fetchBlogs({ commit }) {
@@ -10,26 +10,22 @@ export const actions = {
         )
         commit('setBlogs', response.data)
     },
+    async getCuruser({ commit }) {
+        const response = await this.$axios.get(
+            `https://blog-app-backend.onrender.com/api/user`
+        )
+        commit('getUser', response.data)
+    },
     async addBlog({ commit }, blogPost) {
         const response = await this.$axios.post(
             'https://blog-app-backend.onrender.com/api/articles',
-            blogPost, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
+            blogPost
         )
         commit('newBlog', response.data)
     },
     async deleteBlog({ commit }, id) {
         await this.$axios.delete(
-            `https://blog-app-backend.onrender.com/api/articles/${id}`, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
+            `https://blog-app-backend.onrender.com/api/articles/${id}`
 
         )
         commit('removeBlog', id)
@@ -37,12 +33,7 @@ export const actions = {
     async updateBlog({ commit }, updBlog) {
         const response = await this.$axios.patch(
             `https://blog-app-backend.onrender.com/api/articles/${updBlog._id}`,
-            updBlog, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                }
-
-            }
+            updBlog
         )
 
         commit('updateBlog', response.data)
@@ -51,6 +42,7 @@ export const actions = {
 
 export const mutations = {
     setBlogs: (state, blogs) => (state.blogs = blogs),
+    getUser: (state, user) => (state.user = user),
     newBlog: (state, blog) => state.blogs.unshift(blog),
     removeBlog: (state, id) =>
         (state.blogs = state.blogs.filter((blog) => blog._id !== id)),

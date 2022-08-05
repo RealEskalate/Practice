@@ -37,22 +37,31 @@
                   style="text-decoration: none; color: inherit"
                   :to="`/samuel/${blog._id}`"
                 >
-                  <p>
+                  <h4>
                     {{ blog.title }}
-                  </p>
+                  </h4>
                 </nuxt-link>
               </v-card-title>
               <v-card-text class="black--text">
                 {{ blog.content }}
+                <p v-if="blog.authorUserId._id!==user._id" style="color:red">
+                <br>
+                By: {{ blog.authorUserId.fullName }}
+                </p>
+                <p v-if="blog.authorUserId._id===user._id" style="color:green">
+                <br>
+                Posted by You
+                <i>{{user.fullName}}</i>
+                </p>
               </v-card-text>
             </v-col>
             <v-col cols="1">
-              <v-btn left text @click="editArea(blog)" class="grey--text">
+              <v-btn v-if="blog.authorUserId._id===user._id" left text @click="editArea(blog)" class="grey--text">
                 <v-icon> mdi-pencil </v-icon>
               </v-btn>
             </v-col>
             <v-col cols="1">
-              <v-btn @click="deleteBlog(blog._id)" left text class="grey--text">
+              <v-btn v-if="blog.authorUserId._id===user._id" @click="deleteBlog(blog._id)" left text class="grey--text">
                 <v-icon> mdi-delete </v-icon>
               </v-btn>
             </v-col>
@@ -73,15 +82,16 @@ export default {
             current: {},
             edit_area: false,
             blog_title: "",
-            blog_content: "",
+            blog_content: ""
         };
     },
-    computed: { ...mapState("samuel", ["blogs"]) },
+    computed: { ...mapState("samuel", ["blogs", "user"]) },
     created() {
         this.fetchBlogs();
+        this.getCuruser();
     },
     methods: {
-        ...mapActions("samuel", ["fetchBlogs", "deleteBlog", "updateBlog"]),
+        ...mapActions("samuel", ["fetchBlogs", "deleteBlog", "updateBlog", "getCuruser"]),
         editArea(blog) {
             this.edit_area = !this.edit_area;
             this.current = blog;
@@ -95,6 +105,7 @@ export default {
                 authorUserId: this.current.authorUserId,
                 title: this.blog_title,
             });
+            this.edit_area = !this.edit_area;
         },
     },
     components: { SamuelAddBlog }
