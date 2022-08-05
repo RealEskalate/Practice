@@ -7,7 +7,7 @@
         Add New Blog</v-btn
       >
     </template>
-    <v-card v-if="dialogVisible">
+    <v-card v-if="!dialogVisible">
       <v-card-title>
         <h2>Add a New Blog</h2>
       </v-card-title>
@@ -17,7 +17,7 @@
           <v-text-field v-model="description" label="Description" />
           <v-textarea v-model="content" label="Content" />
           <v-spacer></v-spacer>
-          <v-btn class="success mx-0 mt-3" @click="onSubmit">Add Blog</v-btn>
+          <v-btn class="success mx-0 mt-3"  @click="onSubmit">Add Blog</v-btn>
         </v-form>
       </v-card-text>
     </v-card>

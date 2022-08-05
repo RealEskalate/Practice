@@ -1,7 +1,7 @@
 <template>
   <div>
     <nuxt-link style="text-decoration: none; color: inherit" :to="'/keiredin'">
-      <v-btn dark class="success pa-2 mb-2  mt-3">
+      <v-btn dark class="white black--text pa-2 mb-2  mt-3">
         <v-icon class="mr-2">
           mdi-arrow-left-bold-circle-outline
         </v-icon>
@@ -13,7 +13,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import KeiredinBlogDetail from '../../components/keiredin/KeiredinBlogDetail.vue'
+import KeiredinBlogDetail from '../../../components/keiredin/KeiredinBlogDetail.vue'
 export default {
   name: 'DetailPage',
   components: { KeiredinBlogDetail },

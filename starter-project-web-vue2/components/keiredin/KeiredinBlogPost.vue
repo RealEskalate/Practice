@@ -13,9 +13,8 @@
   >
     <v-col cols="12">
         <v-card
-          class="mx-0"
+          class="mx-0 grey"
 
-          dark
           max-width="500"
         >
           <v-card-title>
@@ -25,10 +24,10 @@
               >
 
               <v-icon
-                large
+                medium
                 left
               >
-                mdi-post
+                mdi-format-title
               </v-icon>
               <span class="text-h6 font-weight-bold">{{ blog.title }}</span>
             </nuxt-link>
@@ -50,7 +49,8 @@
                 <v-list-item-title> {{ blog.authorUserId.fullName }}</v-list-item-title>
               </v-list-item-content>
 
-              <v-row
+              <!-- <v-row
+                v-if="$auth.loggedIn  $auth.user.email == blog.authorUserId.email"
                 align="center"
                 justify="end"
               >
@@ -67,7 +67,8 @@
                   </v-icon>
                   <span class="subheading">delete</span>
                 </v-btn>
-              </v-row>
+
+              </v-row> -->
             </v-list-item>
           </v-card-actions>
         </v-card>
