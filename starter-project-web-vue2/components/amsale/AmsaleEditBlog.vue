@@ -24,26 +24,18 @@
             ></v-textarea>
 
             <v-btn class="mr-4" @click="onSave()"> save </v-btn>
-            <v-btn > clear </v-btn>
+            <v-btn> clear </v-btn>
           </form>
         </v-card>
-         <v-snackbar
-      v-model="snackbar"
-      color="green"
-    >
-     Edited
+        <v-snackbar v-model="snackbar" color="green">
+          Edited
 
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="pink"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+          <template #action="{ attrs }">
+            <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
       </div>
     </v-expand-transition>
   </div>
@@ -59,9 +51,9 @@ export default {
     },
   },
   data: () => ({
-     snackbar: false,
+    snackbar: false,
     show: false,
-    updatedBlog: {}
+    updatedBlog: {},
   }),
 
   created() {
@@ -71,12 +63,12 @@ export default {
   methods: {
     ...mapActions('amsale', ['editBlog']),
     onSave() {
-        console.log("from frontend", this.blog, this.$auth.user)
-      this.editBlog({ blog: this.updatedBlog, id:this.blog._id})
-    //   this.$nuxt.refresh()
-    this.snackbar=true
-        window.location.reload();
-      this.show=false
+      console.log('from frontend', this.blog, this.$auth.user)
+      this.editBlog({ blog: this.updatedBlog, id: this.blog._id })
+      //   this.$nuxt.refresh()
+      this.snackbar = true
+      window.location.reload()
+      this.show = false
     },
   },
 }
