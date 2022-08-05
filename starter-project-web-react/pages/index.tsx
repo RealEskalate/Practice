@@ -15,9 +15,9 @@ const Home: NextPage = () => {
       }}
     >
       <Grid container spacing={0}>
-        {personalPage.map((name) => {
+        {personalPage.map((name, idx) => {
           return (
-            <Grid item xs={12}>
+            <Grid key={idx} item xs={12}>
               <Link
                 href={{
                   pathname: '${name}/',
