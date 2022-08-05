@@ -1,70 +1,65 @@
-const desc = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum necessitatibus officia labore illo accusamus temporibus commodi eveniet praesentium ullam exercitationem vel nulla, deleniti modi obcaecati laudantium natus soluta laborum quisquam."
+import axios from 'axios'
 
 export const state = {
-        blogs: [
-        {
-            id: "1",
-            title: "Why you should Wake up early",
-            author: "Amanuel Sisay",
-            desc,
-        },
-        {
-            id: "2",
-            title: "Why you should Gym and go to gym",
-            desc,
-            author: "Abel",
-        },
-        {
-            id: "3",
-            title: "The benifit of Working hard",
-            desc,
-            author: "Abebe",
-        },
-        {
-            id: "4",
-            title: "Interviews Trick",
-            desc,
-            author: "Kebede",
-        },
-    ],
+  blogs: [],
 }
 
 export const actions = {
-    getBlogs({ commit }) {
-        commit('getBlogs', state.blogs)
-    },
+  async getBlogs({ commit }) {
+    const response = await axios.get(
+      'https://blog-app-backend.onrender.com/api/articles/all'
+    )
+    commit('getBlogs', response.data)
+  },
 
-    deleteBlog({ commit }, id) {
-        commit('deleteBlog', id)
-    },
+  async deleteBlog({ commit }, id) {
+    await this.$axios.delete(
+      `https://blog-app-backend.onrender.com/api/articles/${id}`
+    )
+    commit('deleteBlog', id)
+  },
 
-    addBlog({ commit }, addedBlog) {
-        commit('addBlogs', addedBlog)
-    },
+  async addBlog({ commit }, newBlog) {
+    const response = await this.$axios.post(
+      'https://blog-app-backend.onrender.com/api/articles/',
+      newBlog
+    )
+    commit('addBlogs', response.data)
+  },
 
-    updateBlog({ commit }, updatedBlog) {
-        commit('updateBlog', updatedBlog)
-    }
-
+  async updateBlog({ commit }, updatedBlog) {
+    const response = await this.$axios.patch(
+      `https://blog-app-backend.onrender.com/api/articles/${updatedBlog._id}`,
+      updatedBlog
+    )
+    commit('updateBlogs', response.data)
+  },
 }
 
 export const getters = {
-    // sorted options
+  getOneBlog(state) {
+    return (id) => {
+      return state.blogs.filter((blog) => blog._id === id)[0]
+    }
+  },
 
-    // filtered options
-
-    // filtered + sorterd options
+  blogs(state) {
+    return state.blogs
+  },
 }
 
 export const mutations = {
-    getBlogs: (state, blogs) => (state.blogs = blogs),
-    deleteBlog: (state, id) => {
-        (state.blogs = state.blogs.filter((blog) => blog.id !== id))},
-    editBlog: (state, newBlog) => {
-        const blogToEdit = state.blogs.filter((blog) => blog.id === newBlog.id)[0]
-        blogToEdit.title = newBlog.title
-        blogToEdit.desc = newBlog.desc
-        blogToEdit.author = newBlog.author
-    },
-    addBlog: (state, newBlog) => { state.blogs.unshift(newBlog)}
+  getBlogs: (state, blogs) => (state.blogs = blogs),
+  deleteBlog: (state, id) => {
+    state.blogs = state.blogs.filter((blog) => blog._id !== id)
+  },
+  updateBlogs: (state, newBlog) => {
+    const index = state.blogs.findIndex((blog) => blog._id === newBlog._id)
+    if (index !== -1) {
+      state.blogs.splice(index, 1, newBlog)
+    }
+  },
+  addBlogs: (state, newBlog) => {
+    state.blogs.push(newBlog)
+  },
 }
