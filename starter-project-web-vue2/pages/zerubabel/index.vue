@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="white">
+    <v-main md="xl">
       <BlogPost />
     </v-main>
   </v-app>
@@ -13,8 +13,3 @@ export default {
   components: { BlogPost },
 }
 </script>
-<style>
-.white{
-  width: 100%;
-}
-</style>

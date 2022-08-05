@@ -1,76 +1,53 @@
 <template>
-    <v-container>
-        <v-row>
-          <v-btn
-          class="ma-2"
-          color="primary"
-          dark
-        >
-          <nuxt-link to="/zerubabel" class="link">
-            <v-icon
-              dark
-              left
-            >
-              mdi-arrow-left
-            </v-icon>Back
+  <v-container>
+    <v-container v-if="blog != null">
+      <v-row>
+        <v-btn dark color="primary" class="text-black">
+          <nuxt-link to="/zerubabel" class="text-decoration-none">
+            <v-icon left> mdi-arrow-left </v-icon>Back
           </nuxt-link>
         </v-btn>
+      </v-row>
+      <v-row class="pa-6 d-flex flex-column mt-10">
+        <v-row class="d-flex flex-column">
+          <span class="text-h2 text-black">{{ blog.title }}</span>
+          <hr class="mt-5" />
+          <h3 class="text-subtitle-1 mt-10">Author: {{ blog.author }}</h3>
         </v-row>
-        <v-row class="pa-6 d-flex flex-column">
-          <v-row class="d-flex flex-column">
-            <h1 class="title">{{blog.title}}</h1>
-            <h3 class="author">Author: {{blog.author}}</h3>
-          </v-row>
-          <v-row>
-            <p class="desc">{{blog.description}}</p>
-          </v-row>
+        <v-row>
+          <span class="text-subtitle-1 mt-5">Content: {{ blog.content }}</span>
+          <p class="mt-10">{{ blog.description }}</p>
         </v-row>
+      </v-row>
     </v-container>
+    <v-container v-else class="text-center text-h6">
+      <v-progress-circular indeterminate color="primary"></v-progress-circular>
+      <v-container class="text-grey"> Loading... </v-container>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
-import { mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
-  data(){
+  data() {
     return {
       id: null,
-      blog: null
+      blog: null,
     }
   },
   computed: {
     ...mapState('zerubabel', ['blogs']),
-    },
-  created(){
+  },
+  created() {
     const path = this.$route.fullPath.split('/')
     this.id = path[path.length - 1]
-    this.blogs.forEach(element => {
-      if(element._id === parseInt(this.id)){
+    this.blogs.forEach((element) => {
+      if (element._id === parseInt(this.id)) {
         this.blog = element
       }
-    });
-  }
+    })
+  },
 }
 </script>
-
-<style scoped>
-.link{
-  text-decoration: none;
-  color: #fff;
-}  
-
-.title{
-  color: #1e1e1e;
-}
-
-.author{
-  color: grey;
-  font-size: 15px;
-  margin-top: 15px;
-}
-
-.desc{
-  color: #1e1e1e;
-  margin-top: 15px;
-}
-</style>

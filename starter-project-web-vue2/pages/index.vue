@@ -41,7 +41,6 @@ export default {
           name: 'Amsale Gebrehana',
           description: 'A2SV G31',
           link: '/amsale',
-         
         },
         {
           name: 'Ruth Getachew',
@@ -49,16 +48,14 @@ export default {
           link: '/ruth',
         },
         {
-          name: "Keiredin Aman",
+          name: 'Keiredin Aman',
           description: 'Summer Intern',
-          link:
-            '/keiredin',
+          link: '/keiredin',
         },
         {
-          name: "Zerubabel Kassahun",
+          name: 'Zerubabel Kassahun',
           description: 'Web dev team',
-          link:
-            '/zerubabel',
+          link: '/zerubabel',
         },
       ],
     }

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1>LogIn</h1>
-    <UserAuthForm buttonText="Login" :submitForm="loginUser" />
+    <UserAuthForm button-text="Login" :submit-form="loginUser" />
   </v-container>
 </template>
 
@@ -16,6 +16,7 @@ export default {
       const res = await this.$auth.loginWith('local', {
         data: loginInfo,
       })
+      console.log(res)
     },
   },
 }
