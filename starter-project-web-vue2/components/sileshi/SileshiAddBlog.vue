@@ -12,8 +12,8 @@
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field label="Title" v-model="blogTitle"  />
-          <v-textarea label="Content" v-model="blogContent" />
+          <v-text-field label="Title" v-model="blog.blogTitle"  />
+          <v-textarea label="Content" v-model="blog.blogContent" />
           <v-spacer></v-spacer>
           <v-btn class="success mx-0 mt-3" @click="createBlog">Add Blog</v-btn>
         </v-form>
@@ -27,26 +27,28 @@ export default {
   name: 'AddBlog',
   data() {
     return {
-      blogTitle: '',
-      blogContent: '',
-      blogPost: {},
+      blog:{
+        blogTitle: '',
+        blogContent: '',
+        blogPost: {},
+      }
     }
   },
   methods: {
     ...mapActions("sileshi", ["addBlog"]),
     createBlog(e) {
       e.preventDefault()
-      this.blogPost = {
-        title: this.blogTitle,
-        content: this.blogContent,
+      this.blog.blogPost = {
+        title: this.blog.blogTitle,
+        content: this.blog.blogContent,
         description: 'description',
       }
-      this.addBlog(this.blogPost)
+      this.addBlog(this.blog.blogPost)
       this.clearBlog()
     },
     clearBlog(){
-      this.blogTitle = ''
-      this.blogContent = ''
+      this.blog.blogTitle = ''
+      this.blog.blogContent = ''
     },
   },
 }

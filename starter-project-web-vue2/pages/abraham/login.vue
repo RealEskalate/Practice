@@ -13,7 +13,7 @@ export default {
   },
   methods: {
     async loginUser(loginInfo) {
-      const res = await this.$auth.loginWith('local', {
+      await this.$auth.loginWith('local', {
         data: loginInfo,
       })
     },

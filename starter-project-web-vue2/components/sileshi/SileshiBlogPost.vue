@@ -76,6 +76,7 @@ export default {
             edit_area: false,
             blog_title: "",
             blog_content: "",
+            authorUserId: "",
         };
     },
     computed: { ...mapState("sileshi", ["blogs"]) },
@@ -90,6 +91,7 @@ export default {
             this.current = blog;
             this.blog_content = this.current.content;
             this.blog_title = this.current.title;
+            this.authorUserId = this.current.authorUserId;
         },
         update() {
           
