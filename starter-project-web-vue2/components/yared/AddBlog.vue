@@ -20,19 +20,23 @@
         </v-card-title>
         <v-form class="px-12">
           <v-text-field
-            v-model="newBlog.title"
+            v-model="title"
             :counter="20"
             label="Title"
             required
           ></v-text-field>
 
           <v-text-field
-            v-model="newBlog.content"
+            v-model="description"
+            label="Description"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="content"
             label="Content"
             required
           ></v-text-field>
-
-          <v-text-field v-model="newBlog.imageUrl" label="image"></v-text-field>
+          <input ref="file" type="file" label="image" @change="uploadImage" />
 
           <v-btn color="success" class="ma-4" @click="onSubmit">
             Add Blog
@@ -49,26 +53,32 @@ export default {
   name: 'AddBlog',
   data() {
     return {
-      newBlog: {
-        title: '',
-        content: '',
-        description: 'this is a sample description',
-        imageUrl: '',
-      },
+      title: '',
+      content: '',
+      description: 'this is a sample description',
+      imageUrls: null,
     }
   },
   methods: {
     ...mapActions({
       addBlog: 'yared/addBlog',
     }),
+    uploadImage() {
+      this.imageUrls = this.$refs.file.files[0]
+    },
     clearForm() {
-      this.newBlog.title = ''
-      this.newBlog.content = ''
-      this.newBlog.imageUrl = ''
+      this.title = ''
+      this.content = ''
+      this.description = ''
+      this.imageUrls = null
     },
     onSubmit() {
-      // e.preventDefault()
-      this.addBlog(this.newBlog)
+      const fd = new FormData()
+      fd.append('image', this.imageUrls)
+      fd.append('title', this.title)
+      fd.append('description', this.description)
+      fd.append('content', this.content)
+      this.addBlog(fd)
       this.clearForm()
     },
   },

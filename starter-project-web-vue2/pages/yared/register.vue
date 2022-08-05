@@ -27,7 +27,7 @@
         :disabled="!valid"
         color="success"
         class="mr-4"
-        @click="registerUser(userInfo)"
+        @click="registerUser"
       >
         Sign up
       </v-btn>
@@ -50,11 +50,9 @@ export default {
     }
   },
   methods: {
-    async registerUser(regInfo) {
-      await this.$axios.post('api/user', regInfo)
-      this.$auth.loginWith('local', {
-        data: regInfo,
-      })
+    async registerUser() {
+      await this.$store.dispatch('yared/registerUser', this.userInfo)
+      this.$router.push('yared/login')
     },
   },
 }
