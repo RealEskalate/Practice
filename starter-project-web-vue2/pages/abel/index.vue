@@ -1,14 +1,14 @@
 <template>
   <v-component>
-    <div v-show="showAddTask">
-      <AbelAddTaskVue />
+    <div v-show="showAddBlog">
+      <AbelAddBlogVue />
     </div>
     <div class="mb-1">
       <h1>Blogs</h1>
       <AbelButtonVue
         @toggle-task="toggleTask"
-        :show="this.showAddTask"
-        :text="!this.showAddTask ? 'Add Task' : 'No more'"
+        :show="this.showAddBlog"
+        :text="!this.showAddBlog ? 'Add Blog' : 'No more'"
       />
     </div>
     <AbelBlogListVue />
@@ -18,22 +18,22 @@
 <script>
 import AbelBlogListVue from '~/components/abel/AbelBlogList.vue'
 import AbelButtonVue from '~/components/abel/AbelButton.vue'
-import AbelAddTaskVue from '~/components/abel/AbelAddTask.vue'
+import AbelAddBlogVue from '~/components/abel/AbelAddBlog.vue'
 
 export default {
   data() {
     return {
-      showAddTask: false,
+      showAddBlog: false,
     }
   },
   components: {
     AbelBlogListVue,
     AbelButtonVue,
-    AbelAddTaskVue,
+    AbelAddBlogVue,
   },
   methods: {
     toggleTask() {
-      this.showAddTask = !this.showAddTask
+      this.showAddBlog = !this.showAddBlog
     },
   },
 }
