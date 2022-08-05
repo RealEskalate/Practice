@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="display: flex; justify-content: center; padding-bottom: 30px">
-      <nuxt-link style="text-decoration: none; color: inherit" :to="/bisrat/">
+      <nuxt-link style="text-decoration: none; color: inherit" :to="'/bisrat/'">
         <v-btn color="primary"> Back to List of Blogs </v-btn>
       </nuxt-link>
     </div>
