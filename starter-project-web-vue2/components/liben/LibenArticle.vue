@@ -50,13 +50,13 @@
 <script>
 import moment from 'moment'
 export default {
+  name: 'LibenArticle',
   props: {
     article: {
       type: Object,
       required: true,
     },
   },
-
   methods: {
     calculateRating(obj) {
       const values = Object.values(obj)

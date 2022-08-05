@@ -36,8 +36,10 @@ export default {
   components: { LibenArticleDetail, LibenArticleComment, LibenCommentForm },
   async fetch({ store, error, params }) {
     try {
-      await store.dispatch('liben/getArticle', params.id)
-      await store.dispatch('liben/getComments', params.id)
+      await Promise.all([
+        store.dispatch('liben/getArticle', params.id),
+        store.dispatch('liben/getComments', params.id),
+      ])
     } catch (e) {
       error({
         statusCode: 503,

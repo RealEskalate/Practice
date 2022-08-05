@@ -44,6 +44,10 @@ export default {
     baseURL: 'https://blog-app-backend.onrender.com/api/',
   },
 
+  axios: {
+    baseURL: 'https://blog-app-backend.onrender.com/api/',
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
