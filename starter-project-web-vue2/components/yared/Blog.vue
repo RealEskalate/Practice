@@ -12,21 +12,7 @@
         </v-card-title>
       </v-img>
 
-      <v-card-subtitle class="pb-0"> ID: {{ blog._id }} </v-card-subtitle>
-      <v-card-actions>
-        <UpdateBlog :blog="blog" />
-        <v-btn
-          style="position: absolute; right: 0%"
-          class="mx-2"
-          fab
-          dark
-          small
-          color="red"
-          @click="dltBlg(blog._id)"
-        >
-          <v-icon dark> mdi-minus </v-icon>
-        </v-btn>
-      </v-card-actions>
+      <v-card-subtitle class="pb-3"> {{ blog.description }} </v-card-subtitle>
     </v-card>
   </v-col>
 </template>

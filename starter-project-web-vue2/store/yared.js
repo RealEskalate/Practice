@@ -15,7 +15,11 @@ export default {
       commit('setBlogs', data)
     },
     async addBlog({ commit }, newBlog) {
-      const res = await this.$axios.post('articles', newBlog)
+      const res = await this.$axios.post('articles', newBlog, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+      })
       commit('addBlog', res.data)
     },
     async deleteBlog({ commit }, id) {
@@ -25,6 +29,14 @@ export default {
     async updateBlog({ commit }, updBlog) {
       const res = await this.$axios.patch(`articles/${updBlog.id}`, updBlog)
       commit('updateBlog', res.data)
+    },
+    async loginUser(_, loginInfo) {
+      await this.$auth.loginWith('local', {
+        data: loginInfo,
+      })
+    },
+    async registerUser(_, regInfo) {
+      await this.$axios.post('user', regInfo)
     },
   },
   mutations: {
@@ -36,7 +48,7 @@ export default {
     updateBlog: (state, updBlog) => {
       const idx = state.blogs.findIndex((blog) => blog.id === updBlog.id)
       if (idx !== -1) {
-        console.log('hi');
+        console.log('hi')
         state.blogs.splice(idx, 1, updBlog)
       }
     },
