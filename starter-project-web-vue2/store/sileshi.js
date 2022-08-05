@@ -8,7 +8,6 @@ export const actions = {
             'https://blog-app-backend.onrender.com/api/articles/all'
         )
         commit('setBlogs', response.data)
-    console.log("");
     },
     async addBlog({ commit }, blogPost) {
         const response = await this.$axios.post(
