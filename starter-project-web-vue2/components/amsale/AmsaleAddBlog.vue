@@ -21,12 +21,21 @@
           <v-container>
             <v-row>
               <v-col cols="8" sm="6" md="12">
-                <v-text-field label="Title" required></v-text-field>
+                <v-text-field
+                  v-model="title"
+                  label="Title"
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="8" md="12">
-                <v-textarea solo name="input-7-4" label="Content"></v-textarea>
+                <v-textarea
+                  v-model="content"
+                  solo
+                  name="input-7-4"
+                  label="Content"
+                ></v-textarea>
               </v-col>
             </v-row>
           </v-container>
@@ -36,7 +45,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false"> Save </v-btn>
+          <v-btn color="primary" text @click="onSubmit"> Save </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -44,11 +53,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
       dialog: false,
+      title: '',
+      content: '',
     }
+  },
+  methods: {
+    ...mapActions('amsale', ['addBlog']),
+    onSubmit(e) {
+      e.preventDefault()
+      const blog = {
+        title: this.title,
+        content: this.content,
+        description: 'description',
+      }
+      this.addBlog(blog)
+      this.title = ''
+      this.content = ''
+      this.dialog = false
+    },
   },
 }
 </script>
