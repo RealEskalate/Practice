@@ -1,6 +1,6 @@
 <template>
   <v-dialog max-width="600px">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn color="primary" v-on="on">
         <v-icon left> mdi-plus </v-icon>
         add blog

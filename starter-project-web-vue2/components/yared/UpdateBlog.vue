@@ -48,7 +48,6 @@ export default {
       updateBlog: 'yared/updateBlog',
     }),
     onUpdate(e) {
-      // e.preventDefault()
       this.updateBlog(this.currentBlog)
     },
   },

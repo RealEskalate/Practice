@@ -17,12 +17,7 @@
         label="Password"
         required
       ></v-text-field>
-      <v-btn
-        :disabled="!valid"
-        color="success"
-        class="mr-4"
-        @click="loginUser(userInfo)"
-      >
+      <v-btn :disabled="!valid" color="success" class="mr-4" @click="loginUser">
         Login
       </v-btn>
     </v-form>
@@ -43,10 +38,8 @@ export default {
     }
   },
   methods: {
-    async loginUser(loginInfo) {
-      await this.$auth.loginWith('local', {
-        data: loginInfo,
-      })
+    async loginUser() {
+      await this.$store.dispatch('yared/loginUser', this.userInfo)
     },
   },
 }
