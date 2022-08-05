@@ -128,10 +128,6 @@ export default {
       this.dialog = !this.dialog
       this.current = blog
     },
-    // delBlog(id) {
-    //   this.$store.dispatch('ruth/deleteBlog', id)
-    //   // this.$store.dispatch('ruth/fetchBlogs')
-    // },
     updBlog(id) {
       this.updatedBlog = {
         _id: id,

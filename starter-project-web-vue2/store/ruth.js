@@ -30,7 +30,6 @@ export const actions = {
       `https://blog-app-backend.onrender.com/api/articles/${currentBlog._id}`,
       currentBlog
     )
-    console.log(response.data)
     commit('editBlog', response.data)
   },
 }

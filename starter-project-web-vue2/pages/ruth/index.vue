@@ -41,14 +41,6 @@ export default {
     this.isLoggedIn = this.$auth.$state.user
     this.fetchBlogs()
   },
-  // watch: {
-  //     // whenever question changes, this function will run
-  //     blogs(newQuestion, oldQuestion) {
-  //       if (newQuestion.includes('?')) {
-  //         this.getAnswer()
-  //       }
-  //     }
-  //   },
   methods: {
     ...mapActions('ruth', ['fetchBlogs']),
   },
