@@ -77,11 +77,6 @@ export default {
           description: 'Group 32 Student',
           link: '/yared',
         },
-        {
-          name: "Samuel Abatneh",
-          description: 'Summer Intern',
-          link: '/samuel'
-        }
       ],
     }
   },
