@@ -1,10 +1,10 @@
 <template>
   <v-form v-model="valid" class="pa-5 py-0 mx-auto grey lighten-5 mb-6">
     <v-text-field
+      v-if="hasNamee"
       v-model="userInfo.name"
       label="Name"
       :rules="[required('name')]"
-      v-if="hasNamee"
     />
 
     <v-text-field
@@ -18,9 +18,9 @@
       label="Password"
       :type="showPassword ? 'text' : 'password'"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-      @click:append="showPassword = !showPassword"
       counter="true"
       :rules="[required('password'), minLength('password', 3)]"
+      @click:append="showPassword = !showPassword"
     />
 
     <v-btn @click="submitForm(userInfo)">{{ buttonText }}</v-btn>
@@ -30,6 +30,7 @@
 <script>
 import validations from '@/utils/validations'
 export default {
+  props: ['submitForm', 'buttonText', 'hasNamee'],
   data() {
     return {
       valid: false,
@@ -42,7 +43,6 @@ export default {
       ...validations,
     }
   },
-  props: ['submitForm', 'buttonText', 'hasNamee'],
 }
 </script>
 
