@@ -10,13 +10,13 @@ const actions = {
     console.log('deleted id', id)
     await this.$axios.delete(`articles/${id}`)
     commit('deletedBlog', id)
-    window.location.reload();
+    window.location.reload()
   },
   async addBlog({ commit }, blog) {
     const response = await this.$axios.post('articles', blog)
     commit('newBlog', response.data)
   },
-  async editBlog({ commit }, {blog, id}) {
+  async editBlog({ commit }, { blog, id }) {
     console.log(blog, id)
     const response = await this.$axios.patch(`articles/${id}`, blog)
     commit('editBlog', response.data)
