@@ -5,12 +5,12 @@
       :key="member.name"
       no-gutters
       dense
-      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
+      class="pa-5 py-0 mx-auto mb-6"
       sm="6"
       md="3"
     >
       <v-col cols="12">
-        <v-card :to="member.link" color="#FFFFFF" nuxt>
+        <v-card :to="member.link" class="shadow" nuxt>
           <v-card-title class="mx-auto text-center black--text">
             <p>
               {{ member.name }}
@@ -82,3 +82,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.shadow {
+  box-shadow: 0 10px 26px rgb(0 0 0 / 10%) !important;
+}
+</style>
