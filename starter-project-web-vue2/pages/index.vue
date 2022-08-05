@@ -33,10 +33,46 @@ export default {
     return {
       members: [
         {
-          name: "Abraham Tadesse",
+          name: 'Abraham Tadesse',
           description: 'Summer Intern',
-          link:
-            '/abraham',
+          link: '/abraham',
+        },
+        {
+          name: 'yohans',
+          description: 'Summer Intern',
+          link: '/yohans',
+          description: 'Summer Intern',
+          link: '/abraham',
+        },
+        {
+          name: 'Amsale Gebrehana',
+          description: 'A2SV G31',
+          link: '/amsale',
+        },
+        {
+          name: 'Ruth Getachew',
+          description: 'Web Team Member',
+          link: '/ruth',
+        },
+        {
+          name: 'Keiredin Aman',
+          description: 'Summer Intern',
+          link: '/keiredin',
+        },
+        {
+          name: 'Andualem Sebsbe',
+          description: 'Summer Intern',
+          link: '/andualem',
+        },
+        {
+          name: 'Liben',
+          description: 'Web Team Member',
+          link: '/liben/articles',
+        },
+        {
+          name: 'Yared Tegegn',
+          description: 'Group 32 Student',
+          link: '/yared',
         },
         {
           name: "Samuel Abatneh",

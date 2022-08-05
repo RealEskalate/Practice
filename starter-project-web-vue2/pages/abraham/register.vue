@@ -2,9 +2,9 @@
   <v-contair>
     <h1>Register</h1>
     <UserAuthForm
-      buttonText="Register"
-      :submitForm="registerUser"
-      hasNamee="true"
+      button-text="Register"
+      :submit-form="registerUser"
+      has-namee="true"
     />
   </v-contair>
 </template>
