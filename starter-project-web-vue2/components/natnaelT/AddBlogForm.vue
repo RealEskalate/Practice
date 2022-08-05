@@ -1,0 +1,102 @@
+<template>
+  <v-form class="add-form">
+    <div class="form-control">
+      <v-text-field
+        v-model="blog.title"
+        label="Title"
+        type="text"
+        name="content"
+        placeholder="Blog Title here..."
+        required
+      ></v-text-field>
+    </div>
+    <div class="form-control">
+      <v-text-field
+        v-model="blog.content"
+        label="Content"
+        type="text"
+        name="content"
+        placeholder="Write here..."
+        required
+      ></v-text-field>
+    </div>
+    <div class="form-control">
+      <v-text-field
+        v-model="blog.description"
+        label="Description"
+        type="text"
+        name="description"
+        placeholder="Write here..."
+        required
+      ></v-text-field>
+    </div>
+    <v-btn class="btn" @click="onSubmit()">Save Blog</v-btn>
+  </v-form>
+</template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'AddBlogForm',
+
+  data() {
+    return {
+      blog: {
+        title: '',
+        content: '',
+        description: '',
+      },
+    }
+  },
+  methods: {
+    ...mapActions('natnaelT', ['addBlog']),
+
+    clearForm() {
+      this.blog.title = ''
+      this.blog.content = ''
+      this.blog.description = ''
+    },
+    onSubmit() {
+      this.addBlog(this.blog)
+      this.clearForm()
+    },
+  },
+}
+</script>
+
+<style scoped>
+.add-form {
+  margin-bottom: 40px;
+}
+
+.form-control {
+  margin: 20px 0;
+}
+
+.form-control label {
+  display: block;
+}
+
+.form-control input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
+}
+
+.form-control-check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-control-check label {
+  flex: 1;
+}
+
+.form-control-check input {
+  flex: 2;
+  height: 20px;
+}
+</style>

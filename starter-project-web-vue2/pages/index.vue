@@ -77,6 +77,11 @@ export default {
           description: 'Group 32 Student',
           link: '/yared',
         },
+        {
+          name: 'Natnael Tedros',
+          description: 'G32 Web Team Member',
+          link: '/natnaelT',
+        },
       ],
     }
   },
