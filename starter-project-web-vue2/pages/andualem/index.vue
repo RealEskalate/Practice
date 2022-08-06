@@ -102,7 +102,6 @@ export default {
   computed: { ...mapState('andualem', ['blogs']) },
   created() {
     this.fetchBlogs()
-    console.log(this.$auth.user)
   },
   methods: {
     ...mapActions('andualem', [

@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data() {
     return {
@@ -28,17 +26,14 @@ export default {
       },
     }
     try {
-      const res = await axios.get(
+      const res = await this.$axios.get(
         `https://blog-app-backend.onrender.com/api/articles/${this.$route.params.id}`,
         config
       )
-      console.log(res)
 
       this.content = res.data.content
       this.title = res.data.title
-    } catch (err) {
-      console.log(err)
-    }
+    } catch (err) {}
   },
 }
 </script>
