@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import Link from 'next/link'
 
 const Home: NextPage = () => {
-  const personalPage = ['mintesnot']
+  const personalPage = [{ name: 'Mintesnot', link: 'mintesnot/' }]
   return (
     <Box
       sx={{
@@ -15,15 +15,15 @@ const Home: NextPage = () => {
       }}
     >
       <Grid container spacing={0}>
-        {personalPage.map((name, idx) => {
+        {personalPage.map((value, idx) => {
           return (
             <Grid key={idx} item xs={12}>
               <Link
                 href={{
-                  pathname: '${name}/',
+                  pathname: '${value.link}',
                 }}
                 passHref
-                as={`${name}/`}
+                as={`${value.link}`}
               >
                 <Box
                   sx={{
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
                   }}
                 >
                   <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
-                    Mintesnot
+                    {value.name}
                   </Typography>
                 </Box>
               </Link>

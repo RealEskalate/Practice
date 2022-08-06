@@ -11,13 +11,13 @@ import CircularProgress from '@mui/material/CircularProgress'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
+const INITIAL_STATE_VALUE = {
+  fullname: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
 const RegisterForm = () => {
-  const [INITIAL_STATE_VALUE, setInitialValue] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  })
   const [isRegistered, setIsRegistered] = useState(false)
   const [registerFail, setRegisterFail] = useState('')
   const [loading, setLoading] = useState(false)

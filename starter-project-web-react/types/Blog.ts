@@ -1,36 +1,36 @@
 export interface Blog {
-        _id: "",
+        _id: string,
         authorUserId: {
-          fullName: "",
-          email: "",
-          __v: 0
+          fullName: string,
+          email: string,
+          __v: number
         },
-        title: "",
-        content: "",
+        title: string,
+        content: string,
         imageUrls: [],
-        rating: {},
-        description: "",
-        createdAt: "",
-        updatedAt: "",
+        rating: object,
+        description: string,
+        createdAt: string,
+        updatedAt: string,
         __v: 0
       
 }
 
 export interface Comment {
-        _id: "62a09cf33aa47e9a199297b8",
+        _id: string,
         user: {
-          fullName: "aben",
-          email: "aben@gmail.com",
-          __v: 0,
+          fullName: string,
+          email: string,
+          __v: number,
           profileId: {
-            __v: 0,
-            bio: "My profile Id",
-            imageUrl: "http://res.cloudinary.com/hakimhub/image/upload/v1654695757/starter_project/co4vhtyxggimo9aalbf4.png"
+            __v: number,
+            bio: string,
+            imageUrl: string
           }
         },
-        text: "comment 3",
-        created_at: "2022-06-08T12:58:27.392Z",
-        updated_at: "2022-06-08T12:58:27.392Z",
-        __v: 0
+        text: string,
+        created_at: string,
+        updated_at: string,
+        __v: number
       
 }

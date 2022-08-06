@@ -19,13 +19,8 @@ interface FormValue {
   email: string
   password: string
 }
-
+const INITIAL_STATE_VALUE = { email: '', password: '' }
 const LoginForm = () => {
-  const [INITIAL_STATE_VALUE, setValue] = useState({
-    email: '',
-    password: '',
-  })
-
   const [loading, setLoading] = useState(false)
 
   const FORM_VALIDATION = yup.object().shape({
