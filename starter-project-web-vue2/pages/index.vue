@@ -60,22 +60,14 @@ export default {
         {
           name: 'Keiredin Aman',
           description: 'Summer Intern',
-          link: '/keiredin',
+          link:
+            '/keiredin',
         },
         {
-          name: 'Andualem Sebsbe',
+          name: "Luhana Daniel",
           description: 'Summer Intern',
-          link: '/andualem',
-        },
-        {
-          name: 'Liben',
-          description: 'Web Team Member',
-          link: '/liben/articles',
-        },
-        {
-          name: 'Yared Tegegn',
-          description: 'Group 32 Student',
-          link: '/yared',
+          link:
+            '/luhana',
         },
         {
           name: 'Bisrat Walle',
