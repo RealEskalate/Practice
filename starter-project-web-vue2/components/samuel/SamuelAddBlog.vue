@@ -1,6 +1,6 @@
 <template>
   <v-dialog max-width="600px">
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-btn color="primary" dark v-on="on">
         <v-icon left> mdi-plus </v-icon>
         Add Blog</v-btn
@@ -12,8 +12,8 @@
       </v-card-title>
       <v-card-text>
         <v-form class="px-3">
-          <v-text-field label="Title" v-model="blog.blogTitle"  />
-          <v-textarea label="Content" v-model="blog.blogContent" />
+          <v-text-field v-model="blog.blogTitle" label="Title" />
+          <v-textarea v-model="blog.blogContent" label="Content" />
           <v-spacer></v-spacer>
           <v-btn class="success mx-0 mt-3" @click="createBlog">Add Blog</v-btn>
         </v-form>
@@ -22,17 +22,17 @@
   </v-dialog>
 </template>
 <script>
-import {mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'AddBlog',
   data() {
     return {
-      blog:{
+      blog: {
         blogTitle: '',
         blogContent: '',
         imageUrl: '',
         blogPost: {},
-      }
+      },
     }
   },
   computed: { ...mapState('samuel', ['blogs']) },

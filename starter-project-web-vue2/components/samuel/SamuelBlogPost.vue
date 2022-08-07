@@ -6,18 +6,18 @@
     <v-container v-if="edit_area" class="px-0 black--text">
       <p class="edit-post">Edit Post</p>
       <v-text-field
+        v-model="blog_title"
         outlined
         class="text-black"
         label="Title"
-        v-model="blog_title"
       />
       <v-text-field
+        v-model="blog_content"
         outlined
         class="text-black"
         label="Content"
-        v-model="blog_content"
       />
-      <v-btn @click="update" class="pa-2 mb-2 mx-7 mt-3" dark>Save</v-btn>
+      <v-btn class="pa-2 mb-2 mx-7 mt-3" dark @click="update">Save</v-btn>
     </v-container>
 
     <v-row
@@ -44,24 +44,39 @@
               </v-card-title>
               <v-card-text class="black--text">
                 {{ blog.content }}
-                <p v-if="blog.authorUserId._id!==user._id" style="color:red">
-                <br>
-                By: {{ blog.authorUserId.fullName }}
+                <p v-if="blog.authorUserId._id !== user._id" style="color: red">
+                  <br />
+                  By: {{ blog.authorUserId.fullName }}
                 </p>
-                <p v-if="blog.authorUserId._id===user._id" style="color:green">
-                <br>
-                Posted by You
-                <i>{{user.fullName}}</i>
+                <p
+                  v-if="blog.authorUserId._id === user._id"
+                  style="color: green"
+                >
+                  <br />
+                  Posted by You
+                  <i>{{ user.fullName }}</i>
                 </p>
               </v-card-text>
             </v-col>
             <v-col cols="1">
-              <v-btn v-if="blog.authorUserId._id===user._id" left text @click="editArea(blog)" class="grey--text">
+              <v-btn
+                v-if="blog.authorUserId._id === user._id"
+                left
+                text
+                class="grey--text"
+                @click="editArea(blog)"
+              >
                 <v-icon> mdi-pencil </v-icon>
               </v-btn>
             </v-col>
             <v-col cols="1">
-              <v-btn v-if="blog.authorUserId._id===user._id" @click="deleteBlog(blog._id)" left text class="grey--text">
+              <v-btn
+                v-if="blog.authorUserId._id === user._id"
+                left
+                text
+                class="grey--text"
+                @click="deleteBlog(blog._id)"
+              >
                 <v-icon> mdi-delete </v-icon>
               </v-btn>
             </v-col>
@@ -76,39 +91,44 @@
 import { mapState, mapActions } from 'vuex'
 import SamuelAddBlog from './SamuelAddBlog.vue'
 export default {
-    name: "BlogPost",
-    data() {
-        return {
-            current: {},
-            edit_area: false,
-            blog_title: "",
-            blog_content: ""
-        };
+  name: 'BlogPost',
+  data() {
+    return {
+      current: {},
+      edit_area: false,
+      blog_title: '',
+      blog_content: '',
+    }
+  },
+  computed: { ...mapState('samuel', ['blogs', 'user']) },
+  created() {
+    this.fetchBlogs()
+    this.getCuruser()
+  },
+  methods: {
+    ...mapActions('samuel', [
+      'fetchBlogs',
+      'deleteBlog',
+      'updateBlog',
+      'getCuruser',
+    ]),
+    editArea(blog) {
+      this.edit_area = !this.edit_area
+      this.current = blog
+      this.blog_content = blog.content
+      this.blog_title = blog.title
     },
-    computed: { ...mapState("samuel", ["blogs", "user"]) },
-    created() {
-        this.fetchBlogs();
-        this.getCuruser();
+    update() {
+      this.updateBlog({
+        _id: this.current._id,
+        content: this.blog_content,
+        authorUserId: this.current.authorUserId,
+        title: this.blog_title,
+      })
+      this.edit_area = !this.edit_area
     },
-    methods: {
-        ...mapActions("samuel", ["fetchBlogs", "deleteBlog", "updateBlog", "getCuruser"]),
-        editArea(blog) {
-            this.edit_area = !this.edit_area;
-            this.current = blog;
-            this.blog_content = blog.content;
-            this.blog_title = blog.title;
-        },
-        update() {
-            this.updateBlog({
-                _id: this.current._id,
-                content: this.blog_content,
-                authorUserId: this.current.authorUserId,
-                title: this.blog_title,
-            });
-            this.edit_area = !this.edit_area;
-        },
-    },
-    components: { SamuelAddBlog }
+  },
+  components: { SamuelAddBlog },
 }
 </script>
 

@@ -17,7 +17,7 @@ export default {
     async addBlog({ commit }, newBlog) {
       const res = await this.$axios.post('articles', newBlog, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
         },
       })
       commit('addBlog', res.data)
