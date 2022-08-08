@@ -2,7 +2,7 @@
   <div class="mt-5 mb-5 mr-4">
     <v-row align="end" justify="space-around">
       <v-spacer></v-spacer>
-      <v-btn tile color="success" @click="show = !show">
+      <v-btn v-if="isAuthor" tile color="success" @click="show = !show">
         <v-icon left> mdi-pencil </v-icon>
         Edit
       </v-btn>
@@ -55,6 +55,13 @@ export default {
     show: false,
     updatedBlog: {},
   }),
+  computed: {
+    isAuthor() {
+      return this.$auth.loggedIn && this.blog.authorUserId
+        ? this.blog.authorUserId._id === this.$auth.user._id
+        : 'loading'
+    },
+  },
 
   created() {
     this.updatedBlog.title = this.blog.title
@@ -63,9 +70,7 @@ export default {
   methods: {
     ...mapActions('amsale', ['editBlog']),
     onSave() {
-      console.log('from frontend', this.blog, this.$auth.user)
       this.editBlog({ blog: this.updatedBlog, id: this.blog._id })
-      //   this.$nuxt.refresh()
       this.snackbar = true
       window.location.reload()
       this.show = false

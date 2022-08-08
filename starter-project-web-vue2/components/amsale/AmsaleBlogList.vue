@@ -28,7 +28,7 @@
           <v-spacer></v-spacer>
           <v-col align="end">
             <v-btn
-              v-if="$auth.loggedIn"
+              v-if="$auth.loggedIn && isAuthor(blog)"
               class="ma-2"
               outlined
               small
@@ -76,11 +76,15 @@ export default {
       dialog: false,
     }
   },
-
   methods: {
     ...mapActions('amsale', ['fetchBlogs', 'deleteBlog']),
+    isAuthor(blog) {
+      return blog.authorUserId._id === this.$auth.user._id
+    },
   },
-  computed: { ...mapState('amsale', ['blogs']) },
+  computed: {
+    ...mapState('amsale', ['blogs']),
+  },
   components: { AmsaleAddBlogVue },
   created() {
     this.fetchBlogs()
