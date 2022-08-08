@@ -4,31 +4,21 @@
     <v-container>
       <AddBlog />
     </v-container>
-  <v-row
-    v-for="blog in blogs"
-    :key="blog.id"
-    class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
-    sm="6"
-    md="3"
-  >
-    <v-col cols="12">
-        <v-card
-          class="mx-0 grey"
-
-          max-width="500"
-        >
+    <v-row
+      v-for="blog in blogs"
+      :key="blog.id"
+      class="pa-5 py-0 mx-auto grey lighten-5 mb-6"
+      sm="6"
+      md="3"
+    >
+      <v-col cols="12">
+        <v-card class="mx-0 grey" max-width="500">
           <v-card-title>
             <nuxt-link
-                style="text-decoration: none; color: inherit"
-                :to="`/keiredin/${blog._id}`"
-              >
-
-              <v-icon
-                medium
-                left
-              >
-                mdi-format-title
-              </v-icon>
+              style="text-decoration: none; color: inherit"
+              :to="`/keiredin/${blog._id}`"
+            >
+              <v-icon medium left> mdi-format-title </v-icon>
               <span class="text-h6 font-weight-bold">{{ blog.title }}</span>
             </nuxt-link>
           </v-card-title>
@@ -46,7 +36,9 @@
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title> {{ blog.authorUserId.fullName }}</v-list-item-title>
+                <v-list-item-title>
+                  {{ blog.authorUserId.fullName }}</v-list-item-title
+                >
               </v-list-item-content>
 
               <!-- <v-row
@@ -82,9 +74,9 @@ import { mapGetters, mapActions } from 'vuex'
 import AddBlog from '../keiredin/KeiredinNewBlog.vue'
 export default {
   name: 'BlogPost',
-    components: {
-      AddBlog
-    },
+  components: {
+    AddBlog,
+  },
 
   computed: { ...mapGetters('keiredin', ['blogs']) },
   created() {
@@ -93,6 +85,5 @@ export default {
   methods: {
     ...mapActions('keiredin', ['fetchBlogs']),
   },
-
 }
 </script>

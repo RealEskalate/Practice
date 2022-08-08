@@ -1,10 +1,14 @@
 <template>
   <v-app>
-    <v-card class="mx-6 my-6 ">
+    <v-card class="mx-6 my-6">
       <v-container v-if="$auth.loggedIn">
-        <v-row v-if="$auth.user.email == blog.authorUserId.email" class="float-right" no-gutters >
+        <v-row
+          v-if="$auth.user.email == blog.authorUserId.email"
+          class="float-right"
+          no-gutters
+        >
           <v-col>
-            <v-btn icon left text :to="`/keiredin/${blog._id}/edit`" >
+            <v-btn icon left text :to="`/keiredin/${blog._id}/edit`">
               <v-icon> mdi-pencil </v-icon>
             </v-btn>
           </v-col>
@@ -22,16 +26,12 @@
         @close="dialog = false"
       />
       <v-card-title>
-        <span class="text-h4 font-weight-bold"
-          >{{ blog.title }}
-          </span
-        >
+        <span class="text-h4 font-weight-bold">{{ blog.title }} </span>
       </v-card-title>
 
       <v-card-text class="text-h5">
         {{ blog.description }}
       </v-card-text>
-
 
       <v-card-text class="text-h6">
         {{ blog.content }}
@@ -40,18 +40,18 @@
       <v-card-actions>
         <v-list-item class="grow">
           <v-list-item-content>
-            <v-list-item-title>By : {{ blog.authorUserId.fullName }}</v-list-item-title>
-            <v-list-item-title>email:  {{ blog.authorUserId.email }}</v-list-item-title>
+            <v-list-item-title
+              >By : {{ blog.authorUserId.fullName }}</v-list-item-title
+            >
+            <v-list-item-title
+              >email: {{ blog.authorUserId.email }}</v-list-item-title
+            >
           </v-list-item-content>
-
-
         </v-list-item>
       </v-card-actions>
     </v-card>
   </v-app>
 </template>
-
-
 
 <script>
 import ConfirmDelete from './ConfirmDelete.vue'
@@ -69,6 +69,4 @@ export default {
     }
   },
 }
-
 </script>
-
