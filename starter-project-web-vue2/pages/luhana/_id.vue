@@ -8,9 +8,7 @@
 
     <v-card class="mx-6 my-6">
       <v-card-title>
-        <span class="text-h6 font-weight-light"
-          >{{ title }} </span
-        >
+        <span class="text-h6 font-weight-light">{{ title }} </span>
       </v-card-title>
 
       <v-card-text class="text-h6">
@@ -33,8 +31,7 @@ export default {
   data() {
     return {
       title: 'Classic Books',
-      desc:
-        'Altough most classic novels are a bit harder to read, they carry the authenticity with a time-stamp that takes you to a time you;ve never been.',
+      desc: 'Altough most classic novels are a bit harder to read, they carry the authenticity with a time-stamp that takes you to a time you;ve never been.',
       author: 'Luhana',
     }
   },

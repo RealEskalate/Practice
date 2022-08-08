@@ -1,18 +1,18 @@
 <template>
-<v-app>
+  <v-app>
     <v-main>
-        <BlogList/>
+      <BlogList />
     </v-main>
-</v-app>
+  </v-app>
 </template>
 
 <script>
-import BlogList from '../../components/luhana/LuhanaBlogList.vue';
+import BlogList from '../../components/luhana/LuhanaBlogList.vue'
 
 export default {
-    name: 'IndexPage',
-    components:{
-        BlogList
-    },
+  name: 'IndexPage',
+  components: {
+    BlogList,
+  },
 }
 </script>

@@ -60,14 +60,12 @@ export default {
         {
           name: 'Keiredin Aman',
           description: 'Summer Intern',
-          link:
-            '/keiredin',
+          link: '/keiredin',
         },
         {
-          name: "Luhana Daniel",
+          name: 'Luhana Daniel',
           description: 'Summer Intern',
-          link:
-            '/luhana',
+          link: '/luhana',
         },
         {
           name: 'Bisrat Walle',

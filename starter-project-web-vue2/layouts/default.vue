@@ -40,11 +40,20 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
+<<<<<<< HEAD
+=======
+      <<<<<<< Updated upstream =======
+    </v-app-bar>
+>>>>>>> 6b37ff1 ([web] add bloglist UI)
     <v-app-bar :clipped-left="clipped" color="blue" dark fixed app>
       <v-btn text to="/">
         <v-toolbar-title v-text="title" />
       </v-btn>
       <v-spacer />
+<<<<<<< HEAD
+=======
+      >>>>>>> Stashed changes
+>>>>>>> 6b37ff1 ([web] add bloglist UI)
     </v-app-bar>
     <v-main>
       <v-container>

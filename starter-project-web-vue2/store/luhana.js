@@ -30,5 +30,4 @@ export const mutations = {
   newBlog: (state, blog) => state.blogs.unshift(blog),
   removeBlog: (state, id) =>
     (state.blogs = state.blogs.filter((blog) => blog.id !== id)),
-  
 }
