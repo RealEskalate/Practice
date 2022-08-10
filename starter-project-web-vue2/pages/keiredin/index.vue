@@ -8,6 +8,7 @@
 
 <script>
 import BlogPost from '../../components/keiredin/KeiredinBlogPost.vue'
+
 export default {
   name: 'IndexPage',
   components: { BlogPost },
