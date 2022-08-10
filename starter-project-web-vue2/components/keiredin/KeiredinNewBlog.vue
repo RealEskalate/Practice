@@ -22,7 +22,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-btn v-else color="red" dark @click="gotoLogin()">
+    <v-btn v-else color="grey" dark @click="gotoLogin()">
       <v-icon left> mdi-plus </v-icon>
       Add New Blog</v-btn
     >
