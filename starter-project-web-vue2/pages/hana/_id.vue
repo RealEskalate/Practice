@@ -8,9 +8,7 @@
 
     <v-card class="mx-6 my-6">
       <v-card-title>
-        <span class="text-h6 font-weight-light"
-          >{{ title }} <small>{{ id }}</small></span
-        >
+        <span class="text-h6 font-weight-light">{{ title }} </span>
       </v-card-title>
 
       <v-card-text class="text-h6">
@@ -19,9 +17,7 @@
 
       <v-card-actions>
         <v-list-item class="grow">
-          <v-list-item-content>
-            <v-list-item-title>By {{ author }}</v-list-item-title>
-          </v-list-item-content>
+          <v-list-item-content> </v-list-item-content>
         </v-list-item>
       </v-card-actions>
     </v-card>

@@ -1,38 +1,50 @@
 <template>
-  <v-row justify="left pa-9">
+  <v-row>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template #activator="{ on, attrs }">
-        <v-btn color="red" dark v-bind="attrs" v-on="on"> Add Blog </v-btn>
+
+        <v-btn
+          tile
+          color="success"
+          :disabled="!isAuthor"
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon center pa-4>mdi-pencil</v-icon>Edit
+        </v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="text-h5">Add New Blog</span>
+          <span class="text-h5">Edit Blog</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  v-model="Title"
+                  v-model="title"
                   label="Title*"
                   required
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                  v-model="Content"
-                  label="Blog post*"
+                  v-model="content"
+                  label="Content*"
                   required
                 ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red" text @click="dialog = false"> Close </v-btn>
-          <v-btn color="green darken-1" text @click="onSubmit"> Save </v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Cancel
+          </v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">
+            Save
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -40,27 +52,21 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
-  name: 'HanaAddBlog',
+  props: {
+    blogger: {
+      type: Object,
+      required: true,
+    },
+  },
   data: () => ({
     dialog: false,
-    Title: '',
-    Content: '',
+    title: '',
+    content: '',
   }),
-
-  methods: {
-    ...mapActions('hana', ['addBlog']),
-    onSubmit(e) {
-      e.preventDefault()
-      this.blogPost = {
-        title: this.Title,
-        content: this.Content,
-        description: 'description',
-      }
-      this.addBlog(this.blogPost)
-      this.dialog = false
-    },
+  mounted() {
+    this.title = this.blogger.title
+    this.content = this.blogger.content
   },
 }
 </script>
