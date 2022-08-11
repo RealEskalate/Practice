@@ -1,11 +1,10 @@
 import React from 'react';
-import LoginCard from "../../components/auth/LoginCard_tibebu";
-
-import RegisterCard from '../../components/auth/RegisterCard';
+import RegisterCard_tibebu from '../../components/auth/RegisterCard_tibebu';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { useRouter } from 'next/router'
 import { getSession } from 'next-auth/react';
+import LoginCard_tibebu from '../../components/auth/LoginCard_tibebu';
 
 const theme = createTheme({
     typography:{
@@ -19,7 +18,7 @@ const LoginPage: React.FC = ()=>{
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="sm">
-                <LoginCard/>            
+                <LoginCard_tibebu />            
             </Container>
         </ThemeProvider>
     )
