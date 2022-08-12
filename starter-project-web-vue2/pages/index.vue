@@ -38,6 +38,11 @@ export default {
           link:
             '/abraham',
         },
+        {
+          name: "Samiya Hamid",
+          description: 'A2SV group 31',
+          link: '/samiya',
+        }
       ],
     }
   },
