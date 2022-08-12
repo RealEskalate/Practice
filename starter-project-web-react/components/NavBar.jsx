@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
   const router = useRouter()
 
   const logoutHandler = () => {
-    signOut({ callbackUrl: `${window.location.origin}/auth/login` })
+    signOut({ callbackUrl: `${window.location.origin}/` })
   }
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function ButtonAppBar() {
         email: session.user.email,
       })
     }
-  }, [])
+  }, [session, user])
 
   const openProfile = () => {
     router.push('/profile')

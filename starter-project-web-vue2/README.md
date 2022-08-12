@@ -16,7 +16,7 @@
 
 6. Add a file called index.vue in your pages folder. This page will be used to display a list of blogs.
 
-7. Add a file called _id.vue in your pages folder. This page will be used to display a single blog.
+7. Add a file called \_id.vue in your pages folder. This page will be used to display a single blog.
 
 8. Add any components you want to use in your pages to your components folder. (ex. the component used to display a single blog on the list page.)
 
@@ -45,7 +45,7 @@
 
 ### End to End Testing
 
-. . . 
+. . .
 
 ## Build Setup
 
