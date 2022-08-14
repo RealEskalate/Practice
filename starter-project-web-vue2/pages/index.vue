@@ -43,6 +43,11 @@ export default {
           link: '/aymen',
         },
         {
+          name: "Samiya Hamid",
+          description: 'A2SV group 31',
+          link: '/samiya',
+        },
+        {
           name: 'yohans',
           description: 'Summer Intern',
           link: '/yohans',
