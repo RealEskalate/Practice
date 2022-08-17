@@ -81,7 +81,12 @@ export default {
           name: 'Bisrat Walle',
           description: 'Software Engineer',
           link: '/bisrat',
-        }
+        },
+        {
+          name: 'Tibebu Getachew',
+          description: 'Software Engineer',
+          link: '/tibebu',
+        },
       ],
     }
   },
