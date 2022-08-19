@@ -19,6 +19,7 @@ export default {
   created() {
     const id = this.$route.params.id
     for (const blog of this.blogs) {
+      console.log(id)
       if (blog._id === id) {
         this.setBlogDetail(blog)
         break
