@@ -23,7 +23,7 @@ Open the `starter-project-[your team]` folder where you will find a `README.md` 
 13. If the reviewer approves the pull request, you can now merge it to the main branch. Github offers you the option to merge the pull request. If you choose the `Squash and Merge` option, it allows you to group together your multiple smaller commits into one commit message with the others listed as a description.
 14. Once you have merged a branch, make sure to rebase again to get updates from the main if you intend to keep working on it. Otherwise try to delete it as soon as you can. It is better and easier to recreate the branch again later if you need it.
 
-# If you have any other questions, feel free to look it up, ask your team leads or really anyone else. Thank You.
+# If you have any other questions, feel free to look it up, ask your team leads or really anyone else. Thank You!
 
 
 ![eskalate](https://user-images.githubusercontent.com/36234545/91556848-14882e00-e93c-11ea-8ebb-a490362c924d.png)
