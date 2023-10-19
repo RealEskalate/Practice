@@ -1,6 +1,5 @@
 import React from 'react';
-import LoginCard from "../../components/auth/LoginCard_tibebu";
-
+import ResetPasswordCard from "../../components/auth/ResetPasswordCard";
 import RegisterCard from '../../components/auth/RegisterCard';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
@@ -14,12 +13,12 @@ const theme = createTheme({
     }
 })
 
-const LoginPage: React.FC = ()=>{
+const ResetPassword: React.FC = ()=>{
 
     return (
         <ThemeProvider theme={theme}>
             <Container maxWidth="sm">
-                <LoginCard/>            
+                <ResetPasswordCard />            
             </Container>
         </ThemeProvider>
     )
@@ -27,7 +26,7 @@ const LoginPage: React.FC = ()=>{
 
 
 
-export default LoginPage; 
+export default ResetPassword; 
 
 
 export async function getServerSideProps(context:any) {
