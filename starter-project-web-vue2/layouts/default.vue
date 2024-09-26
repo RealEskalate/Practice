@@ -40,6 +40,7 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
+    </v-app-bar>
     <v-app-bar :clipped-left="clipped" color="blue" dark fixed app>
       <v-btn text to="/">
         <v-toolbar-title v-text="title" />
