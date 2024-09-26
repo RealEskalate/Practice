@@ -68,6 +68,11 @@ export default {
           link: '/keiredin',
         },
         {
+          name: 'Hana Workneh',
+          description: 'Web Team Member',
+          link: '/hana',
+        },
+        {
           name: 'Andualem Sebsbe',
           description: 'Summer Intern',
           link: '/andualem',
