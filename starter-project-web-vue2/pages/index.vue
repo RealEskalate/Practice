@@ -59,7 +59,7 @@ export default {
         },
         {
           name: 'Ruth Getachew',
-          description: 'Web Team Member',
+          description: 'A2SV G33',
           link: '/ruth',
         },
         {
